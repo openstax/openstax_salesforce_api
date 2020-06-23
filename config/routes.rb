@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     ) do
 
       resources :schools
-      
+
     end
   end
 end

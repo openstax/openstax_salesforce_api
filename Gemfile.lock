@@ -63,6 +63,8 @@ GEM
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     erubi (1.9.0)
+    faker (2.12.0)
+      i18n (>= 1.6, < 2)
     ffi (1.13.1)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
@@ -145,6 +147,7 @@ GEM
     websocket-driver (0.7.2)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.5)
+    will_paginate (3.1.8)
     yard (0.9.25)
     zeitwerk (2.3.0)
 
@@ -154,6 +157,7 @@ PLATFORMS
 DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
+  faker
   listen (~> 3.2)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
@@ -162,6 +166,7 @@ DEPENDENCIES
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data
   versionist
+  will_paginate (~> 3.1.0)
 
 RUBY VERSION
    ruby 2.7.1p83

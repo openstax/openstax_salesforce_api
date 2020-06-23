@@ -2,7 +2,7 @@ class Api::V1::SchoolsController < ApplicationController
 
   # GET /schools
   def index
-    @schools = School.all
+    @schools = School.paginate(page: params[:page], per_page: 20)
     render json: @schools
   end
 
