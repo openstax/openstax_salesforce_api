@@ -10,12 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_23_170047) do
+ActiveRecord::Schema.define(version: 2020_06_23_145634) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "schools", force: :cascade do |t|
+    t.string "salesforce_id"
     t.string "name"
     t.string "school_type"
     t.string "location"
@@ -23,7 +24,6 @@ ActiveRecord::Schema.define(version: 2020_06_23_170047) do
     t.boolean "is_child_of_kip"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.string "salesforce_id"
   end
 
 end
