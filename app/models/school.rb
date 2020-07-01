@@ -1,3 +1,3 @@
 class School < ApplicationRecord
-  validates :salesforce_id, presence: true
+  validates :salesforce_id, presence: true, uniqueness: true
 end
