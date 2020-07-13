@@ -10,10 +10,36 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_06_23_145634) do
+ActiveRecord::Schema.define(version: 2020_07_08_202005) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "leads", force: :cascade do |t|
+    t.string "first_name"
+    t.string "last_name"
+    t.string "salutation"
+    t.string "subject"
+    t.string "school"
+    t.string "phone"
+    t.string "website"
+    t.string "status"
+    t.string "email"
+    t.string "source"
+    t.string "newsletter"
+    t.string "newsletter_opt_in"
+    t.boolean "adoption_status"
+    t.integer "num_students"
+    t.string "os_accounts_id"
+    t.string "accounts_uuid"
+    t.string "application_source"
+    t.string "role"
+    t.string "who_chooses_books"
+    t.string "verification_status"
+    t.boolean "finalize_educator_signup"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+  end
 
   create_table "schools", force: :cascade do |t|
     t.string "salesforce_id"
