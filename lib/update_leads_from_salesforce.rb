@@ -1,22 +1,24 @@
 class UpdateLeadsFromSalesforce
 
   def start_update
+    retrieve_salesforce_and_lead_data
     update_leads
     create_new_leads
   end
 
-  def update_leads
-    #read data from salesforce
+  def retrieve_salesforce_and_lead_data
     @sf_leads ||= OpenStax::Salesforce::Remote::Lead
                       .where(source: "OSC Faculty")
                       .select(:id, :email)
                       .to_a
-
     @leads = Lead.all
+  end
+
+  def update_leads
 
     #update existing Leads
     @leads.each do |lead|
-      sf_lead = sf_leads[email: lead.email]
+      sf_lead = @sf_leads.find {|item| item.email == lead.email}
       lead.first_name = sf_lead.first_name
       lead.last_name = sf_lead.last_name
       lead.salutation = sf_lead.salutation
@@ -40,7 +42,6 @@ class UpdateLeadsFromSalesforce
       lead.finalize_educator_signup = sf_lead.finalize_educator_signup
 
       lead.save if lead.changed?
-
     end
   end
 
@@ -76,10 +77,15 @@ class UpdateLeadsFromSalesforce
       new_lead.save
 
       #handle errors
+      if new_lead.errors.any?
+        handle_errors(new_lead)
+      end
     end
 
+    def handle_errors(obj)
+      logger = Logger.new('dev_log.log')
+      logger.error(obj.errors.inspect)
 
+    end
   end
-
-
 end
