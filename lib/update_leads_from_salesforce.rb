@@ -1,24 +1,24 @@
 class UpdateLeadsFromSalesforce
 
   def start_update
-    retrieve_salesforce_and_lead_data
-    update_leads
-    create_new_leads
+    sf_leads = retrieve_salesforce_data
+    leads = Lead.all
+    update_leads(sf_leads, leads)
+    create_new_leads(sf_leads, leads)
   end
 
-  def retrieve_salesforce_and_lead_data
-    @sf_leads ||= OpenStax::Salesforce::Remote::Lead
-                      .where(source: "OSC Faculty")
-                      .select(:id, :email)
-                      .to_a
-    @leads = Lead.all
+  def retrieve_salesforce_data
+    OpenStax::Salesforce::Remote::Lead
+        .where(source: "OSC Faculty")
+        .select(:id, :email)
+        .to_a
   end
 
-  def update_leads
+  def update_leads(sf_leads, leads)
 
     #update existing Leads
-    @leads.each do |lead|
-      sf_lead = @sf_leads.find {|item| item.email == lead.email}
+    leads.each do |lead|
+      sf_lead = sf_leads.find {|item| item.email == lead.email}
       lead.first_name = sf_lead.first_name
       lead.last_name = sf_lead.last_name
       lead.salutation = sf_lead.salutation
@@ -45,8 +45,8 @@ class UpdateLeadsFromSalesforce
     end
   end
 
-  def create_new_leads
-    new_sf_leads = @sf_leads.reject { |s| @leads.include? s }
+  def create_new_leads(sf_leads, leads)
+    new_sf_leads = sf_leads.reject { |s| leads.include? s }
 
     #loop through new leads and save
     new_sf_leads.each do |sf_lead|

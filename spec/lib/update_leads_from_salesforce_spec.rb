@@ -1,37 +1,25 @@
 require 'rails_helper'
-require_relative '../../lib/update_leads_from_salesforce'
+require 'update_leads_from_salesforce'
 
 describe UpdateLeadsFromSalesforce do
   let(:ulfs) { UpdateLeadsFromSalesforce.new }
 
-  # before(:each) do
-  #   ulfs.retrieve_salesforce_and_lead_data
-  # end
+  it 'update leads' do
+    stub_leads
+    ulfs.update_leads(@sf_leads, @leads)
 
-  it 'start update' do
-    ulfs.start_update
-
-    expect Lead.count > 0
+    expect Lead.count == @leads.count
   end
 
-  def stub_salesforce(leads: [])
-    stub_leads(leads)
+  it 'create new leads' do
+    stub_leads
+    ulfs.create_new_leads(@sf_leads, @leads)
+
+    expect Lead.count == @sf_leads.count
   end
 
-  def stub_leads(leads)
-    leads = [leads].flatten.map do |lead|
-      case lead
-      when OpenStax::Salesforce::Remote::Lead
-        lead
-      when Hash
-        OpenStax::Salesforce::Remote::Lead.new(
-            id: lead[:id] || SecureRandom.hex(10),
-            email: lead[:email],
-            status: lead[:status]
-        )
-      end
-    end
-
-    expect_any_instance_of(described_class).to receive(:leads) { leads }
+  def stub_leads
+    @leads = FactoryBot.create_list('lead', 10)
+    @sf_leads = @leads.dup + FactoryBot.create_list('lead', 2)
   end
 end
