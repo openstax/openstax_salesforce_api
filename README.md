@@ -18,3 +18,14 @@ $> bundle exec rake db:seed
 ### Running tests
 You can run the tests with `$> bundle exec rspec`
 
+#### Local development testing with .env file
+Using a .env file with Salesforce credentials allows developers to test using data from the Salesforce sandbox. This should not be used for Travis and the .env file should not be committed to Github. There is a .env-sample file to get you started.
+
+The steps are
+ - Create a .env file and copy the Salesforce fields in .env-sample to your .env file
+ - Fill in the needed credentials from the Salesforce sandbox. **DO NOT USE PRODUCTION CREDENTIALS.**
+ - The .env file is already blocked in .gitignore. Make sure this does not change. **DO NOT COMMIT YOUR .env FILE.**
+ - Code needing to connect via the openstax_salesforce gem should now have access to the Salesforce Sandbox.
+ - Any specs should use mocked data, not the .env file 
+
+
