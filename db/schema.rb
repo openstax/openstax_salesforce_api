@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_08_202005) do
+ActiveRecord::Schema.define(version: 2020_07_15_163657) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -28,7 +28,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_202005) do
     t.string "source"
     t.string "newsletter"
     t.string "newsletter_opt_in"
-    t.boolean "adoption_status"
+    t.string "adoption_status"
     t.integer "num_students"
     t.string "os_accounts_id"
     t.string "accounts_uuid"
