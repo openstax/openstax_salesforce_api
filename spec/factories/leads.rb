@@ -2,6 +2,7 @@ require 'faker'
 
 FactoryBot.define do
   factory :lead do
+    salesforce_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     salutation { Faker::Name.suffix }

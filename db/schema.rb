@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_15_163657) do
+ActiveRecord::Schema.define(version: 2020_07_15_214840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -29,7 +29,7 @@ ActiveRecord::Schema.define(version: 2020_07_15_163657) do
     t.string "newsletter"
     t.string "newsletter_opt_in"
     t.string "adoption_status"
-    t.integer "num_students"
+    t.bigint "num_students"
     t.string "os_accounts_id"
     t.string "accounts_uuid"
     t.string "application_source"
@@ -39,6 +39,7 @@ ActiveRecord::Schema.define(version: 2020_07_15_163657) do
     t.boolean "finalize_educator_signup"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.string "salesforce_id"
   end
 
   create_table "schools", force: :cascade do |t|

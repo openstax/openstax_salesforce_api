@@ -10,7 +10,10 @@ class UpdateLeadsFromSalesforce
   def retrieve_salesforce_data
     OpenStax::Salesforce::Remote::Lead
         .where(source: "OSC Faculty")
-        .select(:id, :email)
+        .select(:id, :first_name, :last_name, :salutation, :subject, :school, :phone,
+                :website, :status, :email, :source, :newsletter, :newsletter_opt_in, :adoption_status,
+                :num_students, :os_accounts_id, :accounts_uuid, :application_source, :role,
+                :who_chooses_books, :verification_status, :finalize_educator_signup)
         .to_a
   end
 
@@ -19,6 +22,7 @@ class UpdateLeadsFromSalesforce
     #update existing Leads
     leads.each do |lead|
       sf_lead = sf_leads.find {|item| item.email == lead.email}
+      lead.salesforce_id = sf_lead.id
       lead.first_name = sf_lead.first_name
       lead.last_name = sf_lead.last_name
       lead.salutation = sf_lead.salutation
@@ -51,6 +55,7 @@ class UpdateLeadsFromSalesforce
     #loop through new leads and save
     new_sf_leads.each do |sf_lead|
       new_lead = Lead.new(
+          salesforce_id: sf_lead.id,
         first_name: sf_lead.first_name,
         last_name: sf_lead.last_name,
         salutation: sf_lead.salutation,
