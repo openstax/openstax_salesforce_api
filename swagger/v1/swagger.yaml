@@ -1,0 +1,60 @@
+---
+openapi: 3.0.1
+info:
+  title: API V1
+  version: v1
+paths:
+  "/api/v1/schools":
+    get:
+      summary: List all Schools
+      tags:
+      - Schools
+      parameters: []
+      responses:
+        '200':
+          description: schools retrieved
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                salesforce_id:
+                  type: string
+                name:
+                  type: string
+                school_type:
+                  type: string
+                location:
+                  type: string
+                is_kip:
+                  type: boolean
+                is_child_of_kip:
+                  type: boolean
+              required:
+              - salesforce_id
+              - name
+  "/api/v1/schools/{id}":
+    get:
+      summary: Return one school
+      tags:
+      - Schools
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: school found
+          content: {}
+        '404':
+          description: school not found
+          content: {}
+servers:
+- url: https://salesforce.openstax.org
+  variables:
+    defaultHost:
+      default: salesforce.openstax.org
