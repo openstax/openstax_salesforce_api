@@ -1,8 +1,9 @@
 require 'faker'
 
 FactoryBot.define do
-  factory :lead do
-    salesforce_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
+  factory :lead, class: OpenStax::Salesforce::Remote::Lead do
+    skip_create
+    id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
     salutation { Faker::Name.suffix }
@@ -21,7 +22,7 @@ FactoryBot.define do
     accounts_uuid { Faker::Internet.uuid }
     application_source { ['Tutor Signup', 'OS Web', 'Accounts', 'Formsite'].sample }
     role { ['student', 'faculty', 'other', 'administrator', 'librarian', 'adjunct faculty', 'instructional designer', 'home school teacher' ].sample }
-    who_chooses_books { ['Someone', 'Everyone'].sample }
+    who_chooses_books { ['instructor','committee', 'coordinator'].sample }
     verification_status { ['pending_faculty', 'confirmed_faculty', 'rejected_faculty'].sample }
     finalize_educator_signup { false }
   end
