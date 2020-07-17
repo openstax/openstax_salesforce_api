@@ -50,7 +50,8 @@ class UpdateLeadsFromSalesforce
   end
 
   def create_new_leads(sf_leads, leads)
-    new_sf_leads = sf_leads.reject { |s| leads.include? s }
+    existing_lead_ids = Set.new(leads.map(&:salesforce_id))
+    new_sf_leads = sf_leads.reject { |lead| existing_lead_ids.include? lead.id }
 
     #loop through new leads and save
     new_sf_leads.each do |sf_lead|
@@ -86,11 +87,11 @@ class UpdateLeadsFromSalesforce
         handle_errors(new_lead)
       end
     end
+  end
 
-    def handle_errors(obj)
-      logger = Logger.new('dev_log.log')
-      logger.error(obj.errors.inspect)
+  def handle_errors(obj)
+    logger = Logger.new('dev_log.log')
+    logger.error(obj.errors.inspect)
 
-    end
   end
 end
