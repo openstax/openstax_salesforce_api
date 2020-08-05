@@ -7,8 +7,8 @@ Rails.application.routes.draw do
     ) do
 
       resources :schools
-
       resources :books
+      resources :campaigns
 
     end
   end
