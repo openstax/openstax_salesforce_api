@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_07_28_144652) do
+ActiveRecord::Schema.define(version: 2020_08_03_181117) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -51,7 +51,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_144652) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
-  
+
   create_table "campaigns", force: :cascade do |t|
     t.string "salesforce_id"
     t.string "name"
@@ -78,6 +78,7 @@ ActiveRecord::Schema.define(version: 2020_07_28_144652) do
     t.string "adoption_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.boolean "grant_tutor_access"
   end
 
   create_table "leads", force: :cascade do |t|
@@ -105,6 +106,17 @@ ActiveRecord::Schema.define(version: 2020_07_28_144652) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "salesforce_id"
+    t.string "name"
+  end
+
+  create_table "opportunities", force: :cascade do |t|
+    t.string "salesforce_id"
+    t.string "term_year"
+    t.string "book_name"
+    t.string "contact_id"
+    t.boolean "new"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "schools", force: :cascade do |t|
