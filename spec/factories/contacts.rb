@@ -17,5 +17,6 @@ FactoryBot.define do
     all_emails { Faker::Internet.safe_email }
     confirmed_emails { Faker::Internet.safe_email }
     adoption_status { ['Confirmed Adoption Won', 'Confirmed Adoption Recommend', 'High Interest In Using', 'Not Using'].sample }
+    grant_tutor_access { [false, true].sample }
   end
 end

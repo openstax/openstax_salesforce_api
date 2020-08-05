@@ -8,7 +8,7 @@ class UpdateContactsFromSalesforce
     OpenStax::Salesforce::Remote::Contact
         .select(:id, :name, :first_name, :last_name, :email, :email_alt, :faculty_confirmed_date, :faculty_verified,
                 :last_modified_at, :school_id, :school_type, :send_faculty_verification_to, :confirmed_emails,
-                :all_emails, :adoption_status)
+                :all_emails, :adoption_status, :grant_tutor_access)
         .to_a
   end
 
@@ -30,6 +30,7 @@ class UpdateContactsFromSalesforce
       contact_to_update.all_emails = sf_contact.all_emails
       contact_to_update.confirmed_emails = sf_contact.confirmed_emails
       contact_to_update.adoption_status = sf_contact.adoption_status
+      contact_to_update.grant_tutor_access = sf_contact.grant_tutor_access
 
       contact_to_update.save if contact_to_update.changed?
     end
