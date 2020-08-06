@@ -9,6 +9,7 @@ Rails.application.routes.draw do
       resources :schools
 
       resources :books
+      resources :leads
 
     end
   end
