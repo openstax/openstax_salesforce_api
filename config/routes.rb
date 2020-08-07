@@ -10,6 +10,7 @@ Rails.application.routes.draw do
 
       resources :books
       resources :contacts
+      resources :leads
 
     end
   end
