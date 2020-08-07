@@ -24,6 +24,13 @@ gem 'will_paginate', '~> 3.1.0'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false
 
+# Gives 200 OK from /ping
+gem 'openstax_healthcheck'
+
+# For installing secrets on deploy
+gem "aws-sdk-ssm"
+gem 'dotenv-rails'
+
 # Use Rack CORS for handling Cross-Origin Resource Sharing (CORS), making cross-origin AJAX possible
 # gem 'rack-cors'
 
