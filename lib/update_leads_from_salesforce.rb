@@ -21,6 +21,7 @@ class UpdateLeadsFromSalesforce
     sf_leads.each do |sf_lead|
       lead_to_update = Lead.find_or_initialize_by(salesforce_id: sf_lead.id)
       lead_to_update.salesforce_id = sf_lead.id
+      lead_to_update.name = sf_lead.name
       lead_to_update.first_name = sf_lead.first_name
       lead_to_update.last_name = sf_lead.last_name
       lead_to_update.salutation = sf_lead.salutation
