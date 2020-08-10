@@ -1,4 +1,7 @@
 class UpdateOpportunitiesFromSalesforce
+  def self.call
+    new.start_update
+  end
 
   def start_update
     sf_opportunities = retrieve_salesforce_data

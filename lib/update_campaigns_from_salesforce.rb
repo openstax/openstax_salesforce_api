@@ -1,4 +1,8 @@
 class UpdateCampaignsFromSalesforce
+  def self.call
+    new.start_update
+  end
+
   def start_update
     sf_campaigns = retrieve_salesforce_data
     update_campaigns(sf_campaigns)

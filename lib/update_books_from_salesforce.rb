@@ -1,4 +1,8 @@
 class UpdateBooksFromSalesforce
+  def self.call
+    new.start_update
+  end
+
   def start_update
     sf_books = retrieve_salesforce_data
     update_books(sf_books)

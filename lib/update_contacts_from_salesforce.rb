@@ -1,4 +1,8 @@
 class UpdateContactsFromSalesforce
+  def self.call
+    new.start_update
+  end
+
   def start_update
     sf_contacts = retrieve_salesforce_data
     update_contacts(sf_contacts)

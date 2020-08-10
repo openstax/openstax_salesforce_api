@@ -1,4 +1,8 @@
 class UpdateCampaignMembersFromSalesforce
+  def self.call
+    new.start_update
+  end
+
   def start_update
     sf_campaign_members = retrieve_salesforce_data
     update_campaign_members(sf_campaign_members)

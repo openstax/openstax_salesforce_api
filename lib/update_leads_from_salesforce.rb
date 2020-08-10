@@ -1,4 +1,7 @@
 class UpdateLeadsFromSalesforce
+  def self.call
+    new.start_update
+  end
 
   def start_update
     sf_leads = retrieve_salesforce_data
