@@ -1,4 +1,8 @@
 class UpdateSchoolsFromSalesforce
+  def self.call
+    new.start_update
+  end
+
   def start_update
     sf_schools = retrieve_salesforce_data
     update_schools(sf_schools)

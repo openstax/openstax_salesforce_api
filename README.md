@@ -27,5 +27,20 @@ The steps are
  - The .env file is already blocked in .gitignore. Make sure this does not change. **DO NOT COMMIT YOUR .env FILE.**
  - Code needing to connect via the openstax_salesforce gem should now have access to the Salesforce Sandbox.
  - Any specs should use mocked data, not the .env file 
+ 
+### Pull Salesforce data using Rake task
+
+There are 8 rake tasks to pull data from Salesforce. Seven of the tasks are for each object type and one to load all data.
+
+The commands for the tasks are:
+
+* books: `rake salesforce:update_books`
+* campaign members: `rake salesforce:update_campaign_members`
+* campaigns: `rake salesforce:update_campaigns`
+* contacts: `rake salesforce:update_contacts`
+* leads: `rake salesforce:update_leads`
+* opportunities: `rake salesforce:update_opportunities`
+* schools: `rake salesforce:update_schools`
+* update all: `rake salesforce:update_all`
 
 
