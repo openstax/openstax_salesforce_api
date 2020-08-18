@@ -8,5 +8,15 @@ FactoryBot.define do
     book_name {Faker::Book.title}
     contact_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
     new { [true, false].sample}
+    close_date { Date.today }
+    stage_name { "Confirm Adoption Won" }
+    type { "Renewal - Verified" }
+    number_of_students { Faker::Number.between(from: 1, to: 200)}
+    student_number_status { "Reported" }
+    time_period { 'Year' }
+    class_start_date { Date.today }
+    school_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
+    book_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
+    lead_source { 'openstax-salesforce-api' }
   end
 end
