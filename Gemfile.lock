@@ -81,6 +81,7 @@ GEM
     codecov (0.2.9)
       json
       simplecov
+    colorize (0.8.1)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
     database_cleaner (1.8.5)
@@ -205,6 +206,7 @@ GEM
       rspec-mocks (~> 3.9)
       rspec-support (~> 3.9)
     rspec-support (3.9.3)
+<<<<<<< HEAD
     rswag (2.3.1)
       rswag-api (= 2.3.1)
       rswag-specs (= 2.3.1)
@@ -218,6 +220,8 @@ GEM
     rswag-ui (2.3.1)
       actionpack (>= 3.1, < 7.0)
       railties (>= 3.1, < 7.0)
+=======
+>>>>>>> Updated codecov gem
     simplecov (0.19.0)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
