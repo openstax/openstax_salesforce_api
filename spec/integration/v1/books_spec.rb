@@ -10,8 +10,8 @@ RSpec.describe 'api/v1/books', type: :request do
         properties: {
           salesforce_id: { type: :string },
           name: { type: :string },
-          created_at: { type: :datetime },
-          updated_at: { type: :datetime }
+          created_at: { type: :string },
+          updated_at: { type: :string }
         },
         required: %w[salesforce_id name]
       }
@@ -34,8 +34,8 @@ RSpec.describe 'api/v1/books', type: :request do
                properties: {
                  salesforce_id: { type: :string },
                  name: { type: :string },
-                 created_at: { type: :datetime },
-                 updated_at: { type: :datetime }
+                 created_at: { type: :string },
+                 updated_at: { type: :string }
                },
                required: %w[salesforce_id name]
 

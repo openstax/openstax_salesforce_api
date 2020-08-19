@@ -11,8 +11,8 @@ RSpec.describe 'api/v1/campaigns', type: :request do
           salesforce_id: { type: :string },
           name: { type: :string },
           is_active: { type: :boolean },
-          created_at: { type: :datetime },
-          updated_at: { type: :datetime }
+          created_at: { type: :string },
+          updated_at: { type: :string }
         },
         required: %w[salesforce_id name]
       }
@@ -36,8 +36,8 @@ RSpec.describe 'api/v1/campaigns', type: :request do
                  salesforce_id: { type: :string },
                  name: { type: :string },
                  is_active: { type: :boolean },
-                 created_at: { type: :datetime },
-                 updated_at: { type: :datetime }
+                 created_at: { type: :string },
+                 updated_at: { type: :string }
                },
                required: %w[salesforce_id name]
 

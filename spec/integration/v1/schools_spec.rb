@@ -14,8 +14,8 @@ RSpec.describe 'api/v1/schools', type: :request do
             location: { type: :string },
             is_kip: { type: :boolean },
             is_child_of_kip: { type: :boolean },
-            created_at: { type: :datetime },
-            updated_at: { type: :datetime }
+            created_at: { type: :string },
+            updated_at: { type: :string }
           },
           required: %w[salesforce_id name school_type]
       }
@@ -42,8 +42,8 @@ RSpec.describe 'api/v1/schools', type: :request do
                  location: { type: :string},
                  is_kip: { type: :boolean},
                  is_child_of_kip: { type: :boolean},
-                 created_at: { type: :datetime },
-                 updated_at: { type: :datetime }
+                 created_at: { type: :string },
+                 updated_at: { type: :string }
                },
                required: %w[salesforce_id name school_type]
 

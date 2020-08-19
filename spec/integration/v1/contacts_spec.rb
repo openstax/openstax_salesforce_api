@@ -14,7 +14,7 @@ RSpec.describe 'api/v1/contacts', type: :request do
           last_name: { type: :string },
           email: { type: :string },
           email_alt: { type: :string },
-          faculty_confirmed_date: { type: :datetime },
+          faculty_confirmed_date: { type: :string },
           faculty_verified: { type: :string },
           last_modified_at: { type: :datetime },
           school_id: { type: :string },
@@ -23,8 +23,8 @@ RSpec.describe 'api/v1/contacts', type: :request do
           all_emails: { type: :string },
           confirmed_emails: { type: :string },
           adoption_status: { type: :string },
-          created_at: { type: :datetime },
-          updated_at: { type: :datetime },
+          created_at: { type: :string },
+          updated_at: { type: :string },
           grant_tutor_access: { type: :boolean }
         },
         required: %w[salesforce_id name]
@@ -52,7 +52,7 @@ RSpec.describe 'api/v1/contacts', type: :request do
                  last_name: { type: :string },
                  email: { type: :string },
                  email_alt: { type: :string },
-                 faculty_confirmed_date: { type: :datetime },
+                 faculty_confirmed_date: { type: :string },
                  faculty_verified: { type: :string },
                  last_modified_at: { type: :datetime },
                  school_id: { type: :string },
@@ -61,8 +61,8 @@ RSpec.describe 'api/v1/contacts', type: :request do
                  all_emails: { type: :string },
                  confirmed_emails: { type: :string },
                  adoption_status: { type: :string },
-                 created_at: { type: :datetime },
-                 updated_at: { type: :datetime },
+                 created_at: { type: :string },
+                 updated_at: { type: :string },
                  grant_tutor_access: { type: :boolean }
                },
                required: %w[salesforce_id name]

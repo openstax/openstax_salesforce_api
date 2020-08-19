@@ -25,9 +25,9 @@ paths:
                 name:
                   type: string
                 created_at:
-                  type: datetime
+                  type: string
                 updated_at:
-                  type: datetime
+                  type: string
               required:
               - salesforce_id
               - name
@@ -72,9 +72,9 @@ paths:
                 is_active:
                   type: boolean
                 created_at:
-                  type: datetime
+                  type: string
                 updated_at:
-                  type: datetime
+                  type: string
               required:
               - salesforce_id
               - name
@@ -125,7 +125,7 @@ paths:
                 email_alt:
                   type: string
                 faculty_confirmed_date:
-                  type: datetime
+                  type: string
                 faculty_verified:
                   type: string
                 last_modified_at:
@@ -143,9 +143,9 @@ paths:
                 adoption_status:
                   type: string
                 created_at:
-                  type: datetime
+                  type: string
                 updated_at:
-                  type: datetime
+                  type: string
                 grant_tutor_access:
                   type: boolean
               required:
@@ -198,11 +198,11 @@ paths:
                 subject:
                   type: string
                 school:
-                  type: datetime
+                  type: string
                 phone:
                   type: string
                 website:
-                  type: datetime
+                  type: string
                 status:
                   type: string
                 email:
@@ -230,11 +230,11 @@ paths:
                 verification_status:
                   type: string
                 finalize_educator_signup:
-                  type: string
+                  type: boolean
                 created_at:
-                  type: datetime
+                  type: string
                 updated_at:
-                  type: datetime
+                  type: string
               required:
               - salesforce_id
               - name
@@ -285,9 +285,9 @@ paths:
                 is_child_of_kip:
                   type: boolean
                 created_at:
-                  type: datetime
+                  type: string
                 updated_at:
-                  type: datetime
+                  type: string
               required:
               - salesforce_id
               - name

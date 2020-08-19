@@ -14,9 +14,9 @@ RSpec.describe 'api/v1/leads', type: :request do
           last_name: { type: :string },
           salutation: { type: :string },
           subject: { type: :string },
-          school: { type: :datetime },
+          school: { type: :string },
           phone: { type: :string },
-          website: { type: :datetime },
+          website: { type: :string },
           status: { type: :string },
           email: { type: :string },
           source: { type: :string },
@@ -30,9 +30,9 @@ RSpec.describe 'api/v1/leads', type: :request do
           role: { type: :string },
           who_chooses_books: { type: :string },
           verification_status: { type: :string },
-          finalize_educator_signup: { type: :string },
-          created_at: { type: :datetime },
-          updated_at: { type: :datetime }
+          finalize_educator_signup: { type: :boolean },
+          created_at: { type: :string },
+          updated_at: { type: :string }
         },
         required: %w[salesforce_id name]
       }
@@ -75,9 +75,9 @@ RSpec.describe 'api/v1/leads', type: :request do
                  role: { type: :string },
                  who_chooses_books: { type: :string },
                  verification_status: { type: :string },
-                 finalize_educator_signup: { type: :string },
-                 created_at: { type: :datetime },
-                 updated_at: { type: :datetime }
+                 finalize_educator_signup: { type: :boolean },
+                 created_at: { type: :string },
+                 updated_at: { type: :string }
                },
                required: %w[salesforce_id name]
 
