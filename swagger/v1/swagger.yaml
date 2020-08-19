@@ -24,6 +24,10 @@ paths:
                   type: string
                 name:
                   type: string
+                created_at:
+                  type: datetime
+                updated_at:
+                  type: datetime
               required:
               - salesforce_id
               - name
@@ -164,6 +168,93 @@ paths:
           content: {}
         '404':
           description: contact not found
+          content: {}
+  "/api/v1/leads":
+    get:
+      summary: List all Leads
+      tags:
+      - Leads
+      parameters: []
+      responses:
+        '200':
+          description: leads retrieved
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                salesforce_id:
+                  type: string
+                name:
+                  type: string
+                first_name:
+                  type: string
+                last_name:
+                  type: string
+                salutation:
+                  type: string
+                subject:
+                  type: string
+                school:
+                  type: datetime
+                phone:
+                  type: string
+                website:
+                  type: datetime
+                status:
+                  type: string
+                email:
+                  type: string
+                source:
+                  type: string
+                newsletter:
+                  type: string
+                newsletter_opt_in:
+                  type: string
+                adoption_status:
+                  type: string
+                num_students:
+                  type: string
+                os_accounts_id:
+                  type: string
+                accounts_uuid:
+                  type: string
+                application_source:
+                  type: string
+                role:
+                  type: string
+                who_chooses_books:
+                  type: string
+                verification_status:
+                  type: string
+                finalize_educator_signup:
+                  type: string
+                created_at:
+                  type: datetime
+                updated_at:
+                  type: datetime
+              required:
+              - salesforce_id
+              - name
+  "/api/v1/leads/{id}":
+    get:
+      summary: Return one lead
+      tags:
+      - Leads
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: lead found
+          content: {}
+        '404':
+          description: lead not found
           content: {}
   "/api/v1/schools":
     get:
