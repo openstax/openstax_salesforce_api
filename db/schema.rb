@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_08_18_160607) do
+ActiveRecord::Schema.define(version: 2020_08_19_163422) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -127,6 +127,7 @@ ActiveRecord::Schema.define(version: 2020_08_18_160607) do
     t.string "school_id"
     t.string "book_id"
     t.string "lead_source"
+    t.boolean "salesforce_updated", default: true
   end
 
   create_table "schools", force: :cascade do |t|

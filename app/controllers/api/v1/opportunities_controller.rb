@@ -18,22 +18,30 @@ class Api::V1::OpportunitiesController < ApplicationController
     end
   end
 
+  # POST /opportunities(.:format)
   def create
+    @opportunity = Opportunity.new(opportunity_params)
     push_opportunity = PushOpportunityToSalesforce.new
     success = push_opportunity.create_new_opportunity(opportunity_params)
     if success
       render json: { status: 'Opportunity creation status: Success' }
     else
+      @opportunity.salesforce_updated = false
+      @opportunity.save
       render json: { status: 'Opportunity creation status: Failure' }
     end
   end
 
+  # PATCH/PUT /opportunities/:id(.:format)
   def update
+    @opportunity.update(opportunity_params)
     push_opportunity = PushOpportunityToSalesforce.new
     success = push_opportunity.update_opportunity(opportunity_params)
     if success
       render json: { opportunity_id: opportunity_params['salesforce_id'], status: 'Opportunity update status: Success' }
     else
+      @opportunity.salesforce_updated = false
+      @opportunity.save
       render json: { opportunity_id: opportunity_params['salesforce_id'], status: 'Opportunity update status: Failure' }
     end
   end
@@ -42,6 +50,7 @@ class Api::V1::OpportunitiesController < ApplicationController
 
   def opportunity_params
     params.require(:opportunity).permit([
+      :salesforce_id,
       :term_year,
       :book_name,
       :contact_id,
