@@ -4,6 +4,47 @@ info:
   title: API V1
   version: v1
 paths:
+  "/api/v1/books":
+    get:
+      summary: List all Books
+      tags:
+      - Books
+      parameters: []
+      responses:
+        '200':
+          description: books retrieved
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                salesforce_id:
+                  type: string
+                name:
+                  type: string
+              required:
+              - salesforce_id
+              - name
+  "/api/v1/books/{id}":
+    get:
+      summary: Return one book
+      tags:
+      - Books
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: book found
+          content: {}
+        '404':
+          description: book not found
+          content: {}
   "/api/v1/schools":
     get:
       summary: List all Schools
@@ -35,6 +76,7 @@ paths:
               required:
               - salesforce_id
               - name
+              - school_type
   "/api/v1/schools/{id}":
     get:
       summary: Return one school
