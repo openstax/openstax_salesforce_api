@@ -45,6 +45,49 @@ paths:
         '404':
           description: book not found
           content: {}
+  "/api/v1/campaigns":
+    get:
+      summary: List all Campaigns
+      tags:
+      - Campaigns
+      parameters: []
+      responses:
+        '200':
+          description: campaigns retrieved
+          content: {}
+      requestBody:
+        content:
+          application/json:
+            schema:
+              type: object
+              properties:
+                salesforce_id:
+                  type: string
+                name:
+                  type: string
+                is_active:
+                  type: boolean
+              required:
+              - salesforce_id
+              - name
+  "/api/v1/campaigns/{id}":
+    get:
+      summary: Return one campaign
+      tags:
+      - Campaigns
+      parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: string
+      responses:
+        '200':
+          description: campaign found
+          content: {}
+        '404':
+          description: campaign not found
+          content: {}
   "/api/v1/contacts":
     get:
       summary: List all Contacts
