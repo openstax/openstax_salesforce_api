@@ -67,6 +67,10 @@ paths:
                   type: string
                 is_active:
                   type: boolean
+                created_at:
+                  type: datetime
+                updated_at:
+                  type: datetime
               required:
               - salesforce_id
               - name
@@ -189,6 +193,10 @@ paths:
                   type: boolean
                 is_child_of_kip:
                   type: boolean
+                created_at:
+                  type: datetime
+                updated_at:
+                  type: datetime
               required:
               - salesforce_id
               - name

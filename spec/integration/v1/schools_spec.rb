@@ -1,47 +1,51 @@
-require "swagger_helper"
+require 'swagger_helper'
 
-RSpec.describe "api/v1/schools", type: :request do
-  path "/api/v1/schools" do
-    get "List all Schools" do
-      tags "Schools"
-      consumes "application/json"
+RSpec.describe 'api/v1/schools', type: :request do
+  path '/api/v1/schools' do
+    get 'List all Schools' do
+      tags 'Schools'
+      consumes 'application/json'
       parameter name: :school, in: :body, schema: {
           type: :object,
           properties: {
-              salesforce_id: { type: :string },
-              name: { type: :string },
-              school_type: { type: :string},
-              location: { type: :string},
-              is_kip: { type: :boolean},
-              is_child_of_kip: { type: :boolean},
+            salesforce_id: { type: :string },
+            name: { type: :string },
+            school_type: { type: :string },
+            location: { type: :string },
+            is_kip: { type: :boolean },
+            is_child_of_kip: { type: :boolean },
+            created_at: { type: :datetime },
+            updated_at: { type: :datetime }
           },
-          required: ["salesforce_id", "name", "school_type"],
+          required: %w[salesforce_id name school_type]
       }
-      response "200", "schools retrieved" do
+      response '200', 'schools retrieved' do
         let(:school) { FactoryBot.create :school }
         run_test!
       end
     end
   end
 
-  path "/api/v1/schools/{id}" do
+  path '/api/v1/schools/{id}' do
 
-    get "Return one school" do
-      tags "Schools"
-      consumes "application/json"
+    get 'Return one school' do
+      tags 'Schools'
+      consumes 'application/json'
       parameter name: :id, in: :path, type: :string
 
-      response "200", "school found" do
+      response '200', 'school found' do
         schema type: :object,
                properties: {
-                   salesforce_id: { type: :string },
-                   name: { type: :string },
-                   school_type: { type: :string},
-                   location: { type: :string},
-                   is_kip: { type: :boolean},
-                   is_child_of_kip: { type: :boolean},
+                 salesforce_id: { type: :string },
+                 name: { type: :string },
+                 school_type: { type: :string},
+                 location: { type: :string},
+                 is_kip: { type: :boolean},
+                 is_child_of_kip: { type: :boolean},
+                 created_at: { type: :datetime },
+                 updated_at: { type: :datetime }
                },
-               required: ["salesforce_id", "name"]
+               required: %w[salesforce_id name school_type]
 
         let(:id) { School.create(name: 'Rice University', salesforce_id: 'AZ44335AQ').id }
         run_test!
