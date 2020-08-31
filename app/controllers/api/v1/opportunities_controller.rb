@@ -24,11 +24,11 @@ class Api::V1::OpportunitiesController < ApplicationController
     push_opportunity = PushOpportunityToSalesforce.new
     success = push_opportunity.create_new_opportunity(opportunity_params)
     if success
-      render json: { status: 'Opportunity creation status: Success' }
+      render json: { opportunity_id: @opportunity.salesforce_id, status: 'Opportunity creation status: Success' }
     else
       @opportunity.salesforce_updated = false
       @opportunity.save
-      render json: { status: 'Opportunity creation status: Failure' }
+      render json: { opportunity_id: @opportunity.salesforce_id, status: 'Opportunity creation status: Failure' }
     end
   end
 

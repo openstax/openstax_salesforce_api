@@ -1,12 +1,13 @@
 class PushOpportunityToSalesforce
 
   def find_or_create_opportunity(opportunity_data)
+    success = false;
     if opportunity_data['salesforce_id'] == ''
-      create_new_opportunity(opportunity_data)
+      success = create_new_opportunity(opportunity_data)
     else
-      update_opportunity(opportunity_data)
+      success = update_opportunity(opportunity_data)
     end
-
+    #success
   end
 
   def create_new_opportunity(opportunity_data)
