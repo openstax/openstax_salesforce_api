@@ -7,3 +7,4 @@ namespace :opportunities do
     RetryFailedOpportunities.call
     puts "retry task: completed"
   end
+end
