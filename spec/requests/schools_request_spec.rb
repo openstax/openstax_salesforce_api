@@ -10,9 +10,8 @@ RSpec.describe "Schools", type: :request do
   it "returns one school" do
     school = School.first
     get "/api/v1/schools/#{school.id}"
-
-    expect(response).to be_successful
-    expect(response.body).to match(school.name)
+    expect(JSON.parse(response.body).size).to eq(1)
+    expect(response).to have_http_status(:success)
   end
 
 end
