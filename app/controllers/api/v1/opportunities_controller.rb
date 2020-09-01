@@ -65,7 +65,8 @@ class Api::V1::OpportunitiesController < ApplicationController
       :school_id,
       :book_id,
       :contact_id,
-      :lead_source
+      :lead_source,
+      :os_accounts_id
   ])
   end
 end

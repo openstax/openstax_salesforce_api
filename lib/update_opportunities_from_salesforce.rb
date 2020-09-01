@@ -12,7 +12,7 @@ class UpdateOpportunitiesFromSalesforce
     OpenStax::Salesforce::Remote::Opportunity
         .select(:id, :term_year, :book_name, :contact_id, :new, :close_date, :stage_name,
                 :type, :number_of_students, :student_number_status, :time_period, :class_start_date, :school_id,
-                :book_id, :lead_source)
+                :book_id, :lead_source, :os_accounts_id)
         .to_a
   end
 
@@ -34,6 +34,7 @@ class UpdateOpportunitiesFromSalesforce
       opportunity_to_update.school_id = sf_opportunity.school_id
       opportunity_to_update.book_id = sf_opportunity.book_id
       opportunity_to_update.lead_source = sf_opportunity.lead_source
+      opportunity_to_update.os_accounts_id = sf_opportunity.os_accounts_id
 
       opportunity_to_update.save if opportunity_to_update.changed?
     end

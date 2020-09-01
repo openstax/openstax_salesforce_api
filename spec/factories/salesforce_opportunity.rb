@@ -18,5 +18,6 @@ FactoryBot.define do
     school_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
     book_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
     lead_source { 'openstax-salesforce-api' }
+    os_accounts_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
   end
 end
