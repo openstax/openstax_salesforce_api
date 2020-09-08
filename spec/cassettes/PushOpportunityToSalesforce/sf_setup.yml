@@ -1,0 +1,56 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.salesforce.com/services/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=password&client_id=3MVG9QDx8IX8nP5SBmviozePV1EMPRhI8Md46CHrY5ggUOLokqWIoWAo9lCPv6afg7cGsu6GjmYQGM1ks9pY4&client_secret=7528286358971715000&username=trackinguser%40rice.edu.tutorqa&password=ISH88fv0FFHqWnO14xUbZ0XBMiETJmMHmrRX9i0meIg
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Sep 2020 15:24:21 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-B3-Traceid:
+      - 8f69d8d5758a3119
+      X-B3-Spanid:
+      - 8f69d8d5758a3119
+      X-B3-Sampled:
+      - '0'
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=XtrTU_HnEeqF2CemgRFSJw; domain=.salesforce.com; path=/; expires=Wed,
+        08-Sep-2021 15:24:21 GMT; Max-Age=31536000
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Readonlymode:
+      - 'false'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1599578662415","signature":"<salesforce_signature>"}'
+  recorded_at: Tue, 08 Sep 2020 15:24:22 GMT
+recorded_with: VCR 6.0.0

@@ -17,4 +17,11 @@ RSpec.describe "Opportunities", type: :request do
     expect(response).to have_http_status(:success)
   end
 
+  it "returns opportunity using os_accounts_id" do
+    opportunity = Opportunity.first
+    get "/api/v1/opportunities?os_accounts_id=" + opportunity.os_accounts_id
+    expect(JSON.parse(response.body).size).to eq(1)
+    expect(response).to have_http_status(:success)
+  end
+
 end

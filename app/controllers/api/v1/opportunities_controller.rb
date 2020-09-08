@@ -2,7 +2,19 @@ class Api::V1::OpportunitiesController < ApplicationController
 
   # GET /opportunities
   def index
-    @opportunities = Opportunity.paginate(page: params[:page], per_page: 20)
+    if params['os_accounts_id'].present?
+      begin
+        @opportunities = Opportunity.where(os_accounts_id: params['os_accounts_id'])
+      rescue ActiveRecord::RecordNotFound => e
+        render json: {
+          os_accounts_id: params['os_accounts_id'],
+          error: e.to_s,
+          status: 'Opportunity not found'
+        }
+      end
+    else
+      @opportunities = Opportunity.paginate(page: params[:page], per_page: 20)
+    end
     render json: @opportunities
   end
 
@@ -13,8 +25,10 @@ class Api::V1::OpportunitiesController < ApplicationController
       render json: @opportunity, status: :ok
     rescue ActiveRecord::RecordNotFound => e
       render json: {
-          error: e.to_s
-      }, status: :not_found
+        opportunity_id: params[:id],
+        error: e.to_s,
+        status: 'Opportunity not found'
+      }
     end
   end
 
@@ -66,7 +80,8 @@ class Api::V1::OpportunitiesController < ApplicationController
       :book_id,
       :contact_id,
       :lead_source,
-      :os_accounts_id
+      :os_accounts_id,
+      :name
   ])
   end
 end

@@ -41,6 +41,11 @@ group :development, :test do
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   gem "rspec-rails"
   gem "rswag-specs"
+  # Stubs HTTP requests
+  gem 'webmock'
+
+  # Records HTTP requests
+  gem 'vcr'
 end
 
 group :test do
@@ -62,4 +67,5 @@ end
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
-gem 'openstax_salesforce', '~> 4.8', '>= 4.8.0'
+gem 'openstax_salesforce', '~> 4.9', '>= 4.9.0'
+

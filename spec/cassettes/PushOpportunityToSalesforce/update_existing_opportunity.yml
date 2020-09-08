@@ -1,0 +1,113 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: "<salesforce_instance_url_lower>/services/data/v37.0/query?q=SELECT%20Id,%20TermYear__c,%20Book_Text__c,%20Contact__c,%20New__c,%20CloseDate,%20StageName,%20Type,%20Students__c,%20Student_No_Status__c,%20Time_Period__c,%20Class_Start_Date__c,%20AccountId,%20Book__c,%20LeadSource,%20OS_Accounts_ID__c,%20Name%20FROM%20Opportunity%20WHERE%20(Id%20=%20%27006R000000Z00kIIAR%27)%20LIMIT%201"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 08 Sep 2020 15:24:23 GMT
+      Strict-Transport-Security:
+      - max-age=31536002; includeSubDomains
+      Public-Key-Pins-Report-Only:
+      - pin-sha256="9n0izTnSRF+W4W4JTq51avSXkWhQB8duS2bxVLfzXsY="; pin-sha256="5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=";
+        pin-sha256="njN4rRG+22dNXAi+yb8e3UMypgzPUPHlv4+foULwl1g="; max-age=86400;
+        includeSubDomains; report-uri="https://a.forcesslreports.com/hpkp-report/00DR0000001zq0Zm";
+      Expect-Ct:
+      - max-age=86400, report-uri="https://a.forcesslreports.com/Expect-CT-report/00DR0000001zq0Zm"
+      X-Robots-Tag:
+      - none
+      X-B3-Traceid:
+      - fcc0825928d4db47
+      X-B3-Spanid:
+      - fcc0825928d4db47
+      X-B3-Sampled:
+      - '0'
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=YBUBDvHnEeqy0xkEDEdh0w; domain=.salesforce.com; path=/; expires=Wed,
+        08-Sep-2021 15:24:23 GMT; Max-Age=31536000
+      Sforce-Limit-Info:
+      - api-usage=5397/51000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Opportunity","url":"/services/data/v37.0/sobjects/Opportunity/006R000000Z00kIIAR"},"Id":"006R000000Z00kIIAR","TermYear__c":"2020
+        - 21 Fall","Book_Text__c":null,"Contact__c":"003U000001ijfa2IAA","New__c":true,"CloseDate":"2020-09-02","StageName":"Confirmed
+        Adoption (1)","Type":"New Business","Students__c":123.0,"Student_No_Status__c":"Reported","Time_Period__c":"Year","Class_Start_Date__c":"2020-09-02","AccountId":"001R000001hawseIAA","Book__c":null,"LeadSource":"openstax-salesforce-api","OS_Accounts_ID__c":null,"Name":"new
+        from openstax-salesforce-api"}]}'
+  recorded_at: Tue, 08 Sep 2020 15:24:24 GMT
+- request:
+    method: patch
+    uri: "<salesforce_instance_url_lower>/services/data/v37.0/sobjects/Opportunity/006R000000Z00kIIAR"
+    body:
+      encoding: UTF-8
+      string: '{"CloseDate":"2020-09-02","Type":null,"Students__c":123,"Class_Start_Date__c":"2020-09-02","Name":"OS
+        Salesforce API Update"}'
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 204
+      message: No Content
+    headers:
+      Date:
+      - Tue, 08 Sep 2020 15:24:24 GMT
+      Strict-Transport-Security:
+      - max-age=31536002; includeSubDomains
+      Public-Key-Pins-Report-Only:
+      - pin-sha256="9n0izTnSRF+W4W4JTq51avSXkWhQB8duS2bxVLfzXsY="; pin-sha256="5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=";
+        pin-sha256="njN4rRG+22dNXAi+yb8e3UMypgzPUPHlv4+foULwl1g="; max-age=86400;
+        includeSubDomains; report-uri="https://a.forcesslreports.com/hpkp-report/00DR0000001zq0Zm";
+      Expect-Ct:
+      - max-age=86400, report-uri="https://a.forcesslreports.com/Expect-CT-report/00DR0000001zq0Zm"
+      X-Robots-Tag:
+      - none
+      X-B3-Traceid:
+      - 18cee6beebc82dda
+      X-B3-Spanid:
+      - 18cee6beebc82dda
+      X-B3-Sampled:
+      - '0'
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=YEpCafHnEeq9Yy8Yt7w6-w; domain=.salesforce.com; path=/; expires=Wed,
+        08-Sep-2021 15:24:24 GMT; Max-Age=31536000
+      Sforce-Limit-Info:
+      - api-usage=5395/51000
+    body:
+      encoding: UTF-8
+      string: ''
+  recorded_at: Tue, 08 Sep 2020 15:24:25 GMT
+recorded_with: VCR 6.0.0

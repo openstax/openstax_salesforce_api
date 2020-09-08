@@ -15,7 +15,6 @@ Rails.application.routes.draw do
       resources :leads
       resources :campaign_members
       resources :opportunities
-      resources :opportunities , path: "opportunities/:os_accounts_id/", defaults: {os_accounts_id: ""}, only: [:show]
 
     end
   end
