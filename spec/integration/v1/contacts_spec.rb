@@ -1,6 +1,11 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/contacts', type: :request do
+
+  before(:all) do
+    @contact = FactoryBot.create :api_contact
+  end
+
   path '/api/v1/contacts' do
     get 'List all Contacts' do
       tags 'Contacts'
@@ -30,7 +35,7 @@ RSpec.describe 'api/v1/contacts', type: :request do
         required: %w[salesforce_id name]
       }
       response '200', 'contacts retrieved' do
-        let(:contact) { FactoryBot.create :contact }
+        let(:contact) { @contact }
         run_test!
       end
     end
@@ -67,7 +72,7 @@ RSpec.describe 'api/v1/contacts', type: :request do
                },
                required: %w[salesforce_id name]
 
-        let(:id) { Contact.create(name: 'William Marsh Rice', salesforce_id: 'AZ44335AQ').id }
+        let(:id) { @contact.id }
         run_test!
       end
 

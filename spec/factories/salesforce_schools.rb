@@ -1,7 +1,7 @@
 require 'faker'
 
 FactoryBot.define do
-  factory :school, class: OpenStax::Salesforce::Remote::School do
+  factory :salesforce_school, class: OpenStax::Salesforce::Remote::School do
     skip_create
     name {Faker::University.name}
     id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}

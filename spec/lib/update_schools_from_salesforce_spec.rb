@@ -12,6 +12,6 @@ describe UpdateSchoolsFromSalesforce do
   end
 
   def stub_schools
-    @sf_schools = FactoryBot.create_list('school', 12)
+    @sf_schools = FactoryBot.create_list('salesforce_school', 12)
   end
 end

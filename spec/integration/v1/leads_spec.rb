@@ -1,6 +1,11 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/leads', type: :request do
+
+  before(:all) do
+    @lead = FactoryBot.create :api_lead
+  end
+
   path '/api/v1/leads' do
     get 'List all Leads' do
       tags 'Leads'
@@ -37,7 +42,7 @@ RSpec.describe 'api/v1/leads', type: :request do
         required: %w[salesforce_id name]
       }
       response '200', 'leads retrieved' do
-        let(:lead) { FactoryBot.create :lead }
+        let(:lead) { @lead }
         run_test!
       end
     end
@@ -81,12 +86,12 @@ RSpec.describe 'api/v1/leads', type: :request do
                },
                required: %w[salesforce_id name]
 
-        let(:id) { Lead.create(name: 'William Marsh Rice', salesforce_id: 'AZ44335AQ').id }
+        let(:id) { @lead.salesforce_id }
         run_test!
       end
 
       response '404', 'lead not found' do
-        let(:id) { 25 }
+        let(:id) { 'invalid' }
         run_test!
       end
     end

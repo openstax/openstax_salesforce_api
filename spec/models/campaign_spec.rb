@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Campaign, type: :model do
-  subject(:campaign) {FactoryBot.create :campaign}
+  subject(:campaign) {FactoryBot.create :api_campaign}
   it { is_expected.to be_valid}
 
   context "with campaign" do

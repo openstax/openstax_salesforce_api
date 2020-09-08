@@ -12,6 +12,6 @@ describe UpdateLeadsFromSalesforce do
   end
 
   def stub_leads
-    @sf_leads = FactoryBot.create_list('lead', 12)
+    @sf_leads = FactoryBot.create_list('salesforce_lead', 12)
   end
 end

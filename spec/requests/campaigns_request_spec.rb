@@ -2,16 +2,19 @@ require 'rails_helper'
 
 RSpec.describe "Campaigns", type: :request do
 
+  before(:all) do
+    @campaign = FactoryBot.create :api_campaign
+  end
+
   it 'returns all campaigns' do
     get '/api/v1/campaigns'
-    expect(JSON.parse(response.body).size).to eq(12)
+    expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
 
   it "return one campaign" do
-    campaign = Campaign.first
-    get '/api/v1/campaigns/' + campaign.salesforce_id
-    expect(JSON.parse(response.body).size).to eq(1)
+    get '/api/v1/campaigns/' + @campaign.salesforce_id
+    expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
 end

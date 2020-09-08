@@ -1,9 +1,8 @@
 require 'faker'
 
 FactoryBot.define do
-  factory :lead, class: OpenStax::Salesforce::Remote::Lead do
-    skip_create
-    id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
+  factory :api_lead, class: Lead do
+    salesforce_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
     name {Faker::Name.name }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }

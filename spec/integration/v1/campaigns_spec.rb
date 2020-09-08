@@ -1,6 +1,11 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/campaigns', type: :request do
+
+  before(:all) do
+    @campaign = FactoryBot.create :api_campaign
+  end
+
   path '/api/v1/campaigns' do
     get 'List all Campaigns' do
       tags 'Campaigns'
@@ -17,7 +22,7 @@ RSpec.describe 'api/v1/campaigns', type: :request do
         required: %w[salesforce_id name]
       }
       response '200', 'campaigns retrieved' do
-        let(:campaign) { FactoryBot.create :campaign }
+        let(:campaign) { @campaign }
         run_test!
       end
     end
@@ -41,7 +46,7 @@ RSpec.describe 'api/v1/campaigns', type: :request do
                },
                required: %w[salesforce_id name]
 
-        let(:id) { Campaign.create(name: 'Test Campaign', salesforce_id: 'AZ44335AQ').id }
+        let(:id) { @campaign.id }
         run_test!
       end
 

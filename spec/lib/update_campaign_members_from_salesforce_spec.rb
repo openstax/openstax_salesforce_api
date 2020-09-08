@@ -12,6 +12,6 @@ describe UpdateCampaignMembersFromSalesforce do
   end
 
   def stub_campaign_members
-    @sf_campaign_members = FactoryBot.create_list('campaign_member', 12)
+    @sf_campaign_members = FactoryBot.create_list('salesforce_campaign_member', 12)
   end
 end

@@ -1,6 +1,10 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/books', type: :request do
+  before(:all) do
+    @book = FactoryBot.create :api_book
+  end
+
   path '/api/v1/books' do
     get 'List all Books' do
       tags 'Books'
@@ -16,7 +20,7 @@ RSpec.describe 'api/v1/books', type: :request do
         required: %w[salesforce_id name]
       }
       response '200', 'books retrieved' do
-        let(:book) { FactoryBot.create :book }
+        let(:book) { @book }
         run_test!
       end
     end
@@ -39,7 +43,7 @@ RSpec.describe 'api/v1/books', type: :request do
                },
                required: %w[salesforce_id name]
 
-        let(:id) { Book.create(name: 'College Algebra', salesforce_id: 'AZ44335AQ').id }
+        let(:id) { @book.id }
         run_test!
       end
 
