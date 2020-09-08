@@ -5,7 +5,7 @@ http_interactions:
     uri: https://test.salesforce.com/services/oauth2/token
     body:
       encoding: US-ASCII
-      string: grant_type=password&client_id=3MVG9QDx8IX8nP5SBmviozePV1EMPRhI8Md46CHrY5ggUOLokqWIoWAo9lCPv6afg7cGsu6GjmYQGM1ks9pY4&client_secret=7528286358971715000&username=trackinguser%40rice.edu.tutorqa&password=ISH88fv0FFHqWnO14xUbZ0XBMiETJmMHmrRX9i0meIg
+      string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password><salesforce_security_token>
     headers:
       User-Agent:
       - Faraday v1.0.1
