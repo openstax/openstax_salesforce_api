@@ -12,8 +12,8 @@ RSpec.describe "Books", type: :request do
     expect(response).to have_http_status(:success)
   end
 
-  it "return one book" do
-    get '/api/v1/books/' + @book.salesforce_id
+  it "return one book by id" do
+    get "/api/v1/books/#{@book.id}"
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end

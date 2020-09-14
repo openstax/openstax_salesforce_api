@@ -12,8 +12,8 @@ RSpec.describe "Contacts", type: :request do
     expect(response).to have_http_status(:success)
   end
 
-  it "return one contact" do
-    get '/api/v1/contacts/' + @contact.salesforce_id
+  it "return one contact by id" do
+    get "/api/v1/contacts/#{@contact.id}"
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end

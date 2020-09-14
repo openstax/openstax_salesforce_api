@@ -1,4 +1,5 @@
 require 'swagger_helper'
+require 'rails_helper'
 
 RSpec.describe 'api/v1/leads', type: :request do
 
@@ -10,7 +11,7 @@ RSpec.describe 'api/v1/leads', type: :request do
     get 'List all Leads' do
       tags 'Leads'
       consumes 'application/json'
-      parameter name: :contact, in: :body, schema: {
+      parameter name: :lead, in: :body, schema: {
         type: :object,
         properties: {
           salesforce_id: { type: :string },
@@ -73,7 +74,7 @@ RSpec.describe 'api/v1/leads', type: :request do
                  newsletter: { type: :string },
                  newsletter_opt_in: { type: :string },
                  adoption_status: { type: :string },
-                 num_students: { type: :string },
+                 num_students: { type: :integer },
                  os_accounts_id: { type: :string },
                  accounts_uuid: { type: :string },
                  application_source: { type: :string },
@@ -86,7 +87,7 @@ RSpec.describe 'api/v1/leads', type: :request do
                },
                required: %w[salesforce_id name]
 
-        let(:id) { @lead.salesforce_id }
+        let(:id) { @lead.id }
         run_test!
       end
 

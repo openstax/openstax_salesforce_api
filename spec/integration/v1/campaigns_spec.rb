@@ -51,7 +51,7 @@ RSpec.describe 'api/v1/campaigns', type: :request do
       end
 
       response '404', 'campaign not found' do
-        let(:id) { 25 }
+        let(:id) { 'invalid' }
         run_test!
       end
     end

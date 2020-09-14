@@ -9,7 +9,7 @@ class Api::V1::CampaignsController < ApplicationController
   # GET /campaigns/:id
   def show
     begin
-      @campaign = Campaign.where(salesforce_id: params[:id])
+      @campaign = Campaign.find(params[:id])
       render json: @campaign, status: :ok
     rescue ActiveRecord::RecordNotFound => e
       render json: {

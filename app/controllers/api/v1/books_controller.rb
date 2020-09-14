@@ -9,7 +9,7 @@ class Api::V1::BooksController < ApplicationController
   # GET /books/:id
   def show
     begin
-      @book = Book.where(salesforce_id: params[:id])
+      @book = Book.find(params[:id])
       render json: @book, status: :ok
     rescue ActiveRecord::RecordNotFound => e
       render json: {
