@@ -1,7 +1,7 @@
 require 'faker'
 
 FactoryBot.define do
-  factory :campaign_member, class: OpenStax::Salesforce::Remote::CampaignMember do
+  factory :salesforce_campaign_member, class: OpenStax::Salesforce::Remote::CampaignMember do
     skip_create
     id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
     campaign_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}

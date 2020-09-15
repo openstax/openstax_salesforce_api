@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Contact, type: :model do
-  subject(:contact) {FactoryBot.create :contact}
+  subject(:contact) {FactoryBot.create :api_contact}
   it { is_expected.to be_valid}
 
   context "with contact" do

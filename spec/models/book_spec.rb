@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Book, type: :model do
-  subject(:book) {FactoryBot.create :book}
+  subject(:book) {FactoryBot.create :api_book}
   it { is_expected.to be_valid}
 
   context "with book" do

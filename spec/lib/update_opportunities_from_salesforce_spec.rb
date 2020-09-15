@@ -12,6 +12,6 @@ describe UpdateOpportunitiesFromSalesforce do
   end
 
   def stub_opportunities
-    @sf_opportunities = FactoryBot.create_list('opportunity', 12)
+    @sf_opportunities = FactoryBot.create_list('salesforce_opportunity', 12)
   end
 end

@@ -8,7 +8,13 @@ class Api::V1::SchoolsController < ApplicationController
 
   # GET /schools/:id
   def show
-    @school = School.find(params[:id])
-    render json: @school
+    begin
+      @school = School.find(params[:id])
+      render json: @school, status: :ok
+    rescue ActiveRecord::RecordNotFound => e
+      render json: {
+          error: e.to_s
+      }, status: :not_found
+    end
   end
 end

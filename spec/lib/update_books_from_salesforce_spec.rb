@@ -12,6 +12,6 @@ describe UpdateBooksFromSalesforce do
   end
 
   def stub_books
-    @sf_books = FactoryBot.create_list('book', 12)
+    @sf_books = FactoryBot.create_list('salesforce_book', 12)
   end
 end

@@ -12,6 +12,6 @@ describe UpdateContactsFromSalesforce do
   end
 
   def stub_contacts
-    @sf_contacts = FactoryBot.create_list('contact', 12)
+    @sf_contacts = FactoryBot.create_list('salesforce_contact', 12)
   end
 end

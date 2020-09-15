@@ -12,6 +12,6 @@ describe UpdateCampaignsFromSalesforce do
   end
 
   def stub_campaigns
-    @sf_campaigns = FactoryBot.create_list('campaign', 12)
+    @sf_campaigns = FactoryBot.create_list('salesforce_campaign', 12)
   end
 end
