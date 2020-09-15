@@ -63,7 +63,7 @@ class PushOpportunityToSalesforce
     id_of_book = nil
     book = Book.where(name: book_name)
     unless book[0].nil?
-      id_of_book = book[0][:salesforce_id]
+      id_of_book = book[0]['salesforce_id']
     end
     return id_of_book
   end
