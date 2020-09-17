@@ -1,11 +1,11 @@
 class PushOpportunityToSalesforce
 
   def find_or_create_opportunity(opportunity_data)
-    success = false;
+    salesforce_id = null
     if opportunity_data['salesforce_id'] == ''
-      success = create_new_opportunity(opportunity_data)
+      salesforce_id = create_new_opportunity(opportunity_data)
     else
-      success = update_opportunity(opportunity_data)
+      salesforce_id = update_opportunity(opportunity_data)
     end
   end
 
@@ -28,10 +28,8 @@ class PushOpportunityToSalesforce
 
     if opportunity.errors.any?
       Rails.logger.warn('Error creating opportunity in salesforce:' + opportunity.errors.inspect)
-      false
-    else
-      true
     end
+    opportunity
   end
 
   def update_opportunity(opportunity_data)
@@ -53,10 +51,8 @@ class PushOpportunityToSalesforce
 
     if opportunity.errors.any?
       Rails.logger.warn('Error updating opportunity in salesforce:' + opportunity.errors.inspect)
-      false
-    else
-      true
     end
+    opportunity
   end
 
   def get_book_id(book_name)

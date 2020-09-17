@@ -1,3 +1,5 @@
+require 'push_opportunity_to_salesforce'
+
 class Api::V1::OpportunitiesController < ApplicationController
 
   # GET /opportunities
@@ -34,29 +36,44 @@ class Api::V1::OpportunitiesController < ApplicationController
 
   # POST /opportunities(.:format)
   def create
-    @opportunity = Opportunity.new(opportunity_params)
     push_opportunity = PushOpportunityToSalesforce.new
-    success = push_opportunity.create_new_opportunity(opportunity_params)
-    if success
-      render json: { opportunity_id: @opportunity.salesforce_id, status: 'Opportunity creation status: Success' }
-    else
-      @opportunity.salesforce_updated = false
-      @opportunity.save
-      render json: { opportunity_id: @opportunity.salesforce_id, status: 'Opportunity creation status: Failure' }
+    sf_opportunity = push_opportunity.create_new_opportunity(opportunity_params)
+    if !sf_opportunity.blank? && !sf_opportunity.id.blank?
+      @opportunity = Opportunity.new(opportunity_params)
+      # setting the value this way because of issue with the Salesforce field named 'type'
+      @opportunity.update_type = 'New Business'
+      @opportunity.salesforce_id = sf_opportunity.id
+      if @opportunity.save
+        render json: { opportunity_id: @opportunity.salesforce_id, status: 'SFAPI and SF Opportunity creation status: Success' }
+      else
+        render json: { opportunity_id: sf_opportunity.id, status: 'SFAPI Opportunity creation status: Failure. SF Opportunity creation status: Success' }
+      end
     end
   end
 
   # PATCH/PUT /opportunities/:id(.:format)
   def update
-    @opportunity.update(opportunity_params)
-    push_opportunity = PushOpportunityToSalesforce.new
-    success = push_opportunity.update_opportunity(opportunity_params)
-    if success
-      render json: { opportunity_id: opportunity_params['salesforce_id'], status: 'Opportunity update status: Success' }
+    @opportunity = Opportunity.where(salesforce_id: opportunity_params[:salesforce_id])
+    if !@opportunity.blank?
+      @opportunity.update(opportunity_params)
+      # setting the value this way because of issue with the Salesforce field named 'type'
+      @opportunity.update_type = 'Renewal - Verified'
+      if @opportunity.save
+        push_opportunity = PushOpportunityToSalesforce.new
+        sf_opportunity = push_opportunity.update_opportunity(opportunity_params)
+        if sf_opportunity.errors.none?
+          render json: { opportunity_id: @opportunity.salesforce_id, status: 'SFAPI and SF Opportunity update status: Success' }
+        else
+          @opportunity.salesforce_updated = false
+          if @opportunity.save
+            render json: { opportunity_id: @opportunity.salesforce_id, status: 'SFAPI Opportunity update status: Success. SF Opportunity update status: Failure. Will retry.' }
+          end
+        end
+      else
+        render json: { opportunity_id: @opportunity.salesforce_id, status: 'SFAPI Opportunity update status: Failure. Did not attempt SF Update.' }
+      end
     else
-      @opportunity.salesforce_updated = false
-      @opportunity.save
-      render json: { opportunity_id: opportunity_params['salesforce_id'], status: 'Opportunity update status: Failure' }
+      render json: { opportunity_id: opportunity_params[:salesforce_id], status: 'Opportunity update status: Failure. Opportunity not found in SFAPI.' }
     end
   end
 
@@ -71,7 +88,6 @@ class Api::V1::OpportunitiesController < ApplicationController
       :new,
       :close_date,
       :stage_name,
-      :type,
       :number_of_students,
       :student_number_status,
       :time_period,

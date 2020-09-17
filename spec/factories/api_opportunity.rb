@@ -7,5 +7,6 @@ FactoryBot.define do
     book_name {Faker::Book.title}
     contact_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
     new { [true, false].sample}
+    os_accounts_id { Faker::Number.number(digits: 10) }
   end
 end

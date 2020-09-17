@@ -1,0 +1,117 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.salesforce.com/services/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password_url><salesforce_security_token>
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 17 Sep 2020 14:55:46 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      X-B3-Traceid:
+      - 5901a0bbea01ccc4
+      X-B3-Spanid:
+      - 5901a0bbea01ccc4
+      X-B3-Sampled:
+      - '0'
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=3eEI5_j1EeqFQLdCtr2DYA; domain=.salesforce.com; path=/; expires=Fri,
+        17-Sep-2021 14:55:46 GMT; Max-Age=31536000
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Readonlymode:
+      - 'false'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1600354546650","signature":"<salesforce_signature>"}'
+  recorded_at: Thu, 17 Sep 2020 14:55:46 GMT
+- request:
+    method: post
+    uri: "<salesforce_instance_url>/services/data/v37.0/sobjects/Opportunity"
+    body:
+      encoding: UTF-8
+      string: '{"Contact__c":"0037X00000cVyfIQAS","CloseDate":"2020-09-02","StageName":"Confirmed
+        Adoption (1)","Type":"New Business","Students__c":"123","Student_No_Status__c":"Reported","Time_Period__c":"Year","Class_Start_Date__c":"2020-09-02","AccountId":"001U0000007gj6EIAQ","LeadSource":"openstax-salesforce-api","Name":"new
+        from openstax-salesforce-api"}'
+    headers:
+      User-Agent:
+      - Faraday v1.0.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Thu, 17 Sep 2020 14:55:47 GMT
+      Strict-Transport-Security:
+      - max-age=31536002; includeSubDomains
+      Public-Key-Pins-Report-Only:
+      - pin-sha256="9n0izTnSRF+W4W4JTq51avSXkWhQB8duS2bxVLfzXsY="; pin-sha256="5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=";
+        pin-sha256="njN4rRG+22dNXAi+yb8e3UMypgzPUPHlv4+foULwl1g="; max-age=86400;
+        includeSubDomains; report-uri="https://a.forcesslreports.com/hpkp-report/00D7X000000Gyi2m";
+      Expect-Ct:
+      - max-age=86400, report-uri="https://a.forcesslreports.com/Expect-CT-report/00D7X000000Gyi2m"
+      X-Robots-Tag:
+      - none
+      X-B3-Traceid:
+      - f2cb7649364e86b7
+      X-B3-Spanid:
+      - f2cb7649364e86b7
+      X-B3-Sampled:
+      - '0'
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=3sj37Pj1EeqRJ_MLnG_l_Q; domain=.salesforce.com; path=/; expires=Fri,
+        17-Sep-2021 14:55:47 GMT; Max-Age=31536000
+      Sforce-Limit-Info:
+      - api-usage=5437/5000000
+      Location:
+      - "/services/data/v37.0/sobjects/Opportunity/0067X000007eTlTQAU"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"0067X000007eTlTQAU","success":true,"errors":[]}'
+  recorded_at: Thu, 17 Sep 2020 14:55:48 GMT
+recorded_with: VCR 6.0.0

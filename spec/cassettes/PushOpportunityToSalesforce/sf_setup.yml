@@ -5,7 +5,7 @@ http_interactions:
     uri: https://test.salesforce.com/services/oauth2/token
     body:
       encoding: US-ASCII
-      string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password><salesforce_security_token>
+      string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password_url><salesforce_security_token>
     headers:
       User-Agent:
       - Faraday v1.0.1
@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 08 Sep 2020 15:24:21 GMT
+      - Wed, 16 Sep 2020 20:58:30 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
@@ -29,16 +29,16 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-B3-Traceid:
-      - 8f69d8d5758a3119
+      - c20274a3a7d09530
       X-B3-Spanid:
-      - 8f69d8d5758a3119
+      - c20274a3a7d09530
       X-B3-Sampled:
       - '0'
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Set-Cookie:
-      - BrowserId=XtrTU_HnEeqF2CemgRFSJw; domain=.salesforce.com; path=/; expires=Wed,
-        08-Sep-2021 15:24:21 GMT; Max-Age=31536000
+      - BrowserId=X9a3I_hfEeqtH4dhRYa4-A; domain=.salesforce.com; path=/; expires=Thu,
+        16-Sep-2021 20:58:30 GMT; Max-Age=31536000
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       X-Readonlymode:
@@ -51,6 +51,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1599578662415","signature":"<salesforce_signature>"}'
-  recorded_at: Tue, 08 Sep 2020 15:24:22 GMT
+      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1600289910565","signature":"<salesforce_signature>"}'
+  recorded_at: Wed, 16 Sep 2020 20:58:30 GMT
 recorded_with: VCR 6.0.0
