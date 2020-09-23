@@ -1,3 +1,5 @@
+require 'push_opportunity_to_salesforce'
+
 class RetryFailedOpportunities
 
   def self.call
@@ -5,14 +7,17 @@ class RetryFailedOpportunities
   end
 
   def retry_opportunities
-    opportunities = Opportunity.find(salesforce_updated: false)
+    opportunities = Opportunity.where(salesforce_updated: false)
 
     opportunities.each do |opportunity|
       push_opportunity = PushOpportunityToSalesforce.new
-      success = push_opportunity.find_or_create_opportunity(opportunity.to_json)
-      if success
+      sf_opportunity = push_opportunity.find_or_create_opportunity(opportunity.as_json.symbolize_keys)
+      if sf_opportunity.errors.none?
         opportunity.salesforce_updated = true
+        opportunity.salesforce_id = sf_opportunity.id
         opportunity.save
+      else
+        Rails.logger.warn('[RetryFailedOpportunities] Error creating opportunity in salesforce:' + opportunity.id + ' ' + sf_opportunity.errors.inspect)
       end
     end
   end

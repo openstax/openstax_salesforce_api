@@ -6,7 +6,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"Contact__c":"0037X00000cVyfIQAS","CloseDate":"2020-09-02","StageName":"Confirmed
-        Adoption (1)","Type":"New Business","Students__c":123,"Student_No_Status__c":"Reported","Time_Period__c":"Year","Class_Start_Date__c":"2020-09-02","AccountId":"001U0000007gj6EIAQ","LeadSource":"openstax-salesforce-api","Name":"new
+        Adoption (1)","Type":"New Business","Students__c":"123","Student_No_Status__c":"Reported","Time_Period__c":"Year","Class_Start_Date__c":"2020-09-02","AccountId":"001U0000007gj6EIAQ","LeadSource":"openstax-salesforce-api","Name":"new
         from openstax-salesforce-api"}'
     headers:
       User-Agent:
@@ -25,7 +25,7 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 23 Sep 2020 20:18:14 GMT
+      - Wed, 23 Sep 2020 20:18:20 GMT
       Strict-Transport-Security:
       - max-age=31536002; includeSubDomains
       Public-Key-Pins-Report-Only:
@@ -37,20 +37,20 @@ http_interactions:
       X-Robots-Tag:
       - none
       X-B3-Traceid:
-      - 3984a76169480b32
+      - c3bac9c34de2b96c
       X-B3-Spanid:
-      - 3984a76169480b32
+      - c3bac9c34de2b96c
       X-B3-Sampled:
       - '0'
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Set-Cookie:
-      - BrowserId=6Mfzk_3ZEeqmug1Ud_CKLQ; domain=.salesforce.com; path=/; expires=Thu,
-        23-Sep-2021 20:18:14 GMT; Max-Age=31536000
+      - BrowserId=7El5gf3ZEeqmug1Ud_CKLQ; domain=.salesforce.com; path=/; expires=Thu,
+        23-Sep-2021 20:18:20 GMT; Max-Age=31536000
       Sforce-Limit-Info:
-      - api-usage=879/5000000
+      - api-usage=880/5000000
       Location:
-      - "/services/data/v37.0/sobjects/Opportunity/0067X000007enhgQAA"
+      - "/services/data/v37.0/sobjects/Opportunity/0067X000007enhqQAA"
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -59,6 +59,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"0067X000007enhgQAA","success":true,"errors":[]}'
-  recorded_at: Wed, 23 Sep 2020 20:18:15 GMT
+      string: '{"id":"0067X000007enhqQAA","success":true,"errors":[]}'
+  recorded_at: Wed, 23 Sep 2020 20:18:20 GMT
 recorded_with: VCR 6.0.0

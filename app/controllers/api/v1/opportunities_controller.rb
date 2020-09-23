@@ -57,20 +57,20 @@ class Api::V1::OpportunitiesController < ApplicationController
     if !@opportunity.blank?
       @opportunity.update(opportunity_params)
       # setting the value this way because of issue with the Salesforce field named 'type'
-      @opportunity.update_type = 'Renewal - Verified'
-      if @opportunity.save
+      @opportunity[0].update_type = 'Renewal - Verified'
+      if @opportunity[0].save
         push_opportunity = PushOpportunityToSalesforce.new
         sf_opportunity = push_opportunity.update_opportunity(opportunity_params)
         if sf_opportunity.errors.none?
-          render json: { opportunity_id: @opportunity.salesforce_id, status: 'SFAPI and SF Opportunity update status: Success' }
+          render json: { opportunity_id: @opportunity[0].salesforce_id, status: 'SFAPI and SF Opportunity update status: Success' }
         else
-          @opportunity.salesforce_updated = false
-          if @opportunity.save
-            render json: { opportunity_id: @opportunity.salesforce_id, status: 'SFAPI Opportunity update status: Success. SF Opportunity update status: Failure. Will retry.' }
+          @opportunity[0].salesforce_updated = false
+          if @opportunity[0].save
+            render json: { opportunity_id: @opportunity[0].salesforce_id, status: 'SFAPI Opportunity update status: Success. SF Opportunity update status: Failure. Will retry.' }
           end
         end
       else
-        render json: { opportunity_id: @opportunity.salesforce_id, status: 'SFAPI Opportunity update status: Failure. Did not attempt SF Update.' }
+        render json: { opportunity_id: @opportunity[0].salesforce_id, status: 'SFAPI Opportunity update status: Failure. Did not attempt SF Update.' }
       end
     else
       render json: { opportunity_id: opportunity_params[:salesforce_id], status: 'Opportunity update status: Failure. Opportunity not found in SFAPI.' }

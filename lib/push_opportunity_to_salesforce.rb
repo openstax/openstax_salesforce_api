@@ -1,11 +1,10 @@
 class PushOpportunityToSalesforce
 
   def find_or_create_opportunity(opportunity_data)
-    salesforce_id = null
-    if opportunity_data['salesforce_id'] == ''
-      salesforce_id = create_new_opportunity(opportunity_data)
+    if opportunity_data[:salesforce_id] == 'Not Set' || opportunity_data[:salesforce_id] == ''
+      @opportunity = create_new_opportunity(opportunity_data)
     else
-      salesforce_id = update_opportunity(opportunity_data)
+      @opportunity = update_opportunity(opportunity_data)
     end
   end
 

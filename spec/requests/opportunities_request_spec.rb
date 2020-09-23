@@ -5,6 +5,10 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
 
   before(:all) do
     @opportunity = FactoryBot.create :api_opportunity
+    VCR.use_cassette('OpportunitiesController/sf_setup', VCR_OPTS) do
+      @proxy = SalesforceProxy.new
+      @proxy.setup_cassette
+    end
   end
 
   it "returns a successful response for all opportunities" do
@@ -25,30 +29,23 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
   end
 
   it 'create new opportunity' do
-    VCR.use_cassette('OpportunitiesController/sf_setup', VCR_OPTS) do
-      @proxy = SalesforceProxy.new
-      @proxy.setup_cassette
-      opportunity_data = create_new_opportunity_data
-      headers = { "ACCEPT" => "application/json" }
-      post "/api/v1/opportunities", :params => opportunity_data, :headers => headers
+    opportunity_data = create_new_opportunity_data
+    headers = { "ACCEPT" => "application/json" }
+    post "/api/v1/opportunities", :params => opportunity_data, :headers => headers
 
-      expect(response.content_type).to eq("application/json; charset=utf-8")
-      expect(response).to have_http_status(:success)
-    end
+    expect(response.content_type).to eq("application/json; charset=utf-8")
+    expect(response).to have_http_status(:success)
   end
 
   it 'update opportunity' do
-    VCR.use_cassette('OpportunitiesController/sf_setup', VCR_OPTS) do
-      VCR.current_cassette.instance_variable_set(:@allow_unused_http_interactions, true) if VCR.current_cassette
-      @proxy = SalesforceProxy.new
-      @proxy.setup_cassette
-      opportunity_data = create_update_opportunity_data
-      headers = { "ACCEPT" => "application/json" }
-      put "/api/v1/opportunities/" + @opportunity.id.to_s, :params => opportunity_data, :headers => headers
+    @proxy = SalesforceProxy.new
+    @proxy.setup_cassette
+    opportunity_data = create_update_opportunity_data
+    headers = { "ACCEPT" => "application/json" }
+    put "/api/v1/opportunities/" + @opportunity.id.to_s, :params => opportunity_data, :headers => headers
 
-      expect(response.content_type).to eq("application/json; charset=utf-8")
-      expect(response).to have_http_status(:success)
-    end
+    expect(response.content_type).to eq("application/json; charset=utf-8")
+    expect(response).to have_http_status(:success)
   end
 
   def create_new_opportunity_data
