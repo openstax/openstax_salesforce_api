@@ -10,9 +10,8 @@ class Api::V1::OpportunitiesController < ApplicationController
       rescue ActiveRecord::RecordNotFound => e
         render json: {
           os_accounts_id: params['os_accounts_id'],
-          error: e.to_s,
-          status: 'Opportunity not found'
-        }
+          error: e.to_s
+        }, status: :not_found
       end
     else
       @opportunities = Opportunity.paginate(page: params[:page], per_page: 20)
@@ -28,9 +27,8 @@ class Api::V1::OpportunitiesController < ApplicationController
     rescue ActiveRecord::RecordNotFound => e
       render json: {
         opportunity_id: params[:id],
-        error: e.to_s,
-        status: 'Opportunity not found'
-      }
+        error: e.to_s
+      }, status: :not_found
     end
   end
 
