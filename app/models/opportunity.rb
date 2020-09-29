@@ -1,3 +1,3 @@
 class Opportunity <ApplicationRecord
-  validates :salesforce_id, presence: true, uniqueness: true
+  validates :salesforce_id, presence: true
 end
