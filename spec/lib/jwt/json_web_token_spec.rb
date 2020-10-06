@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'jwt/json_web_token'
+#require 'jwt/json_web_token'
 
 describe JsonWebToken do
 
@@ -10,7 +10,8 @@ describe JsonWebToken do
   end
 
   it 'decode token' do
-    decoded_token = JsonWebToken.decode('eyJhbGciOiJIUzI1NiJ9.eyJ1c2VyX2lkIjoidGVzdHVzZXJuYW1lIiwiZXhwIjoxNjAyMDA4NTM0fQ.sE4sXAfU2tWgtUh5jqmpVbzL5SORy7OG3iprMbCe-QM')
+    token = JsonWebToken.encode(user_id: 'testusername')
+    decoded_token = JsonWebToken.decode(token)
 
     expect(decoded_token['user_id']).to eq('testusername')
   end
