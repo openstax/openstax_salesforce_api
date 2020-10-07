@@ -1,4 +1,5 @@
 class Api::V1::LeadsController < ApplicationController
+  before_action :authorize_request
 
   # GET /leads
   def index

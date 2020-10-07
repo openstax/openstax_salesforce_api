@@ -1,10 +1,12 @@
 require 'rails_helper'
 require 'vcr_helper'
+require 'spec_helper'
 
 RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
 
   before(:all) do
     @opportunity = FactoryBot.create :api_opportunity
+    @request_header = request_header_with_token
     VCR.use_cassette('OpportunitiesController/sf_setup', VCR_OPTS) do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette

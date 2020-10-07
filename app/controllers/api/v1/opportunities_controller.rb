@@ -1,6 +1,7 @@
 require 'push_opportunity_to_salesforce'
 
 class Api::V1::OpportunitiesController < ApplicationController
+  #before_action :authorize_request
 
   # GET /opportunities
   def index

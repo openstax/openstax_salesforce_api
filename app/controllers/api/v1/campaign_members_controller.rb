@@ -1,4 +1,5 @@
 class Api::V1::CampaignMembersController < ApplicationController
+  before_action :authorize_request
 
   # GET /campaign_members
   def index

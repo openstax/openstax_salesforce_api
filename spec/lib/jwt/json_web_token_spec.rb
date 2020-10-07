@@ -4,16 +4,16 @@ require 'rails_helper'
 describe JsonWebToken do
 
   it 'encode token' do
-    token = JsonWebToken.encode(user_id: 'testusername')
+    token = JsonWebToken.encode(username: 'testusername')
 
     expect(token).not_to be_empty
   end
 
   it 'decode token' do
-    token = JsonWebToken.encode(user_id: 'testusername')
+    token = JsonWebToken.encode(username: 'testusername')
     decoded_token = JsonWebToken.decode(token)
 
-    expect(decoded_token['user_id']).to eq('testusername')
+    expect(decoded_token['username']).to eq('testusername')
   end
 
 

@@ -7,7 +7,7 @@ class AuthenticationController < ApplicationController
     credentials = header.split(':')
     @user = User.find_by_username(credentials[0])
     if !@user.blank? && @user.authenticate(credentials[1]) && @user.has_access?
-      token = JsonWebToken.encode(user_id: @user.username)
+      token = JsonWebToken.encode(username: @user.username)
       time = Time.now + 24.hours.to_i
       render json: { token: token, exp: time.strftime("%m-%d-%Y %H:%M") }, status: :ok
     else

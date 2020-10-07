@@ -1,3 +1,4 @@
+require 'faker'
 require 'simplecov'
 SimpleCov.start
 require 'codecov'
@@ -98,4 +99,13 @@ RSpec.configure do |config|
   # as the one that triggered the failure.
   Kernel.srand config.seed
 =end
+end
+
+def request_header_with_token
+  name = Faker::Name.name
+  FactoryBot.create(:user, {:username=>name, :password=>'good_authpassword',:has_access=>true, :is_admin=>false})
+  headers = { "Authorization" => name + ":good_authpassword" }
+  post "/auth/authenticate", :headers => headers
+  token = JSON.parse(response.body)['token']
+  request_header = { "Authorization" => token }
 end

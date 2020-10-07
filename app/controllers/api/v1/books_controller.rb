@@ -1,4 +1,5 @@
 class Api::V1::BooksController < ApplicationController
+  before_action :authorize_request
 
   # GET /books
   def index

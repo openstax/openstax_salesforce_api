@@ -1,4 +1,5 @@
 class Api::V1::SchoolsController < ApplicationController
+  before_action :authorize_request
 
   # GET /schools
   def index
