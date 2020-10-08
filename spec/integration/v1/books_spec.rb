@@ -1,8 +1,11 @@
 require 'swagger_helper'
+require 'spec_helper'
 
 RSpec.describe 'api/v1/books', type: :request do
   before(:all) do
     @book = FactoryBot.create :api_book
+    request_header = request_header_with_token
+    @token = request_header['Authorization']
   end
 
   path '/api/v1/books' do
@@ -19,8 +22,16 @@ RSpec.describe 'api/v1/books', type: :request do
         },
         required: %w[salesforce_id name]
       }
+      parameter({
+        :in => :header,
+        :type => :string,
+        :name => :Authorization,
+        :required => true,
+        :description => 'Client token'
+      })
       response '200', 'books retrieved' do
         let(:book) { @book }
+        let(:Authorization) { @token }
         run_test!
       end
     end
@@ -32,6 +43,13 @@ RSpec.describe 'api/v1/books', type: :request do
       tags 'Books'
       consumes 'application/json'
       parameter name: :id, in: :path, type: :string
+      parameter({
+          :in => :header,
+          :type => :string,
+          :name => :Authorization,
+          :required => true,
+          :description => 'Client token'
+      })
 
       response '200', 'book found' do
         schema type: :object,
@@ -44,11 +62,13 @@ RSpec.describe 'api/v1/books', type: :request do
                required: %w[salesforce_id name]
 
         let(:id) { @book.id }
+        let(:Authorization) { @token }
         run_test!
       end
 
       response '404', 'book not found' do
         let(:id) { 25 }
+        let(:Authorization) { @token }
         run_test!
       end
     end

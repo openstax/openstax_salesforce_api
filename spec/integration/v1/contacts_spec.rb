@@ -1,9 +1,12 @@
 require 'swagger_helper'
+require 'spec_helper'
 
 RSpec.describe 'api/v1/contacts', type: :request do
 
   before(:all) do
     @contact = FactoryBot.create :api_contact
+    request_header = request_header_with_token
+    @token = request_header['Authorization']
   end
 
   path '/api/v1/contacts' do
@@ -34,8 +37,16 @@ RSpec.describe 'api/v1/contacts', type: :request do
         },
         required: %w[salesforce_id name]
       }
+      parameter({
+          :in => :header,
+          :type => :string,
+          :name => :Authorization,
+          :required => true,
+          :description => 'Client token'
+      })
       response '200', 'contacts retrieved' do
         let(:contact) { @contact }
+        let(:Authorization) { @token }
         run_test!
       end
     end
@@ -47,6 +58,13 @@ RSpec.describe 'api/v1/contacts', type: :request do
       tags 'Contacts'
       consumes 'application/json'
       parameter name: :id, in: :path, type: :string
+      parameter({
+          :in => :header,
+          :type => :string,
+          :name => :Authorization,
+          :required => true,
+          :description => 'Client token'
+      })
 
       response '200', 'contact found' do
         schema type: :object,
@@ -73,11 +91,13 @@ RSpec.describe 'api/v1/contacts', type: :request do
                required: %w[salesforce_id name]
 
         let(:id) { @contact.id }
+        let(:Authorization) { @token }
         run_test!
       end
 
       response '404', 'contact not found' do
         let(:id) { 25 }
+        let(:Authorization) { @token }
         run_test!
       end
     end

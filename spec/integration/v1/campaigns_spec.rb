@@ -1,9 +1,12 @@
 require 'swagger_helper'
+require 'spec_helper'
 
 RSpec.describe 'api/v1/campaigns', type: :request do
 
   before(:all) do
     @campaign = FactoryBot.create :api_campaign
+    request_header = request_header_with_token
+    @token = request_header['Authorization']
   end
 
   path '/api/v1/campaigns' do
@@ -21,8 +24,16 @@ RSpec.describe 'api/v1/campaigns', type: :request do
         },
         required: %w[salesforce_id name]
       }
+      parameter({
+          :in => :header,
+          :type => :string,
+          :name => :Authorization,
+          :required => true,
+          :description => 'Client token'
+      })
       response '200', 'campaigns retrieved' do
         let(:campaign) { @campaign }
+        let(:Authorization) { @token }
         run_test!
       end
     end
@@ -34,6 +45,13 @@ RSpec.describe 'api/v1/campaigns', type: :request do
       tags 'Campaigns'
       consumes 'application/json'
       parameter name: :id, in: :path, type: :string
+      parameter({
+          :in => :header,
+          :type => :string,
+          :name => :Authorization,
+          :required => true,
+          :description => 'Client token'
+      })
 
       response '200', 'campaign found' do
         schema type: :object,
@@ -47,11 +65,13 @@ RSpec.describe 'api/v1/campaigns', type: :request do
                required: %w[salesforce_id name]
 
         let(:id) { @campaign.id }
+        let(:Authorization) { @token }
         run_test!
       end
 
       response '404', 'campaign not found' do
         let(:id) { 'invalid' }
+        let(:Authorization) { @token }
         run_test!
       end
     end

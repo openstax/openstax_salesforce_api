@@ -1,10 +1,13 @@
 require 'swagger_helper'
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe 'api/v1/leads', type: :request do
 
   before(:all) do
     @lead = FactoryBot.create :api_lead
+    request_header = request_header_with_token
+    @token = request_header['Authorization']
   end
 
   path '/api/v1/leads' do
@@ -42,8 +45,16 @@ RSpec.describe 'api/v1/leads', type: :request do
         },
         required: %w[salesforce_id name]
       }
+      parameter({
+          :in => :header,
+          :type => :string,
+          :name => :Authorization,
+          :required => true,
+          :description => 'Client token'
+      })
       response '200', 'leads retrieved' do
         let(:lead) { @lead }
+        let(:Authorization) { @token }
         run_test!
       end
     end
@@ -55,6 +66,13 @@ RSpec.describe 'api/v1/leads', type: :request do
       tags 'Leads'
       consumes 'application/json'
       parameter name: :id, in: :path, type: :string
+      parameter({
+          :in => :header,
+          :type => :string,
+          :name => :Authorization,
+          :required => true,
+          :description => 'Client token'
+      })
 
       response '200', 'lead found' do
         schema type: :object,
@@ -88,11 +106,13 @@ RSpec.describe 'api/v1/leads', type: :request do
                required: %w[salesforce_id name]
 
         let(:id) { @lead.id }
+        let(:Authorization) { @token }
         run_test!
       end
 
       response '404', 'lead not found' do
         let(:id) { 'invalid' }
+        let(:Authorization) { @token }
         run_test!
       end
     end
