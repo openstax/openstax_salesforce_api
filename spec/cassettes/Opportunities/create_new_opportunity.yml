@@ -25,7 +25,7 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 23 Sep 2020 20:18:20 GMT
+      - Thu, 08 Oct 2020 13:43:47 GMT
       Strict-Transport-Security:
       - max-age=31536002; includeSubDomains
       Public-Key-Pins-Report-Only:
@@ -37,20 +37,20 @@ http_interactions:
       X-Robots-Tag:
       - none
       X-B3-Traceid:
-      - c3bac9c34de2b96c
+      - c4ac8bee4c9101ce
       X-B3-Spanid:
-      - c3bac9c34de2b96c
+      - c4ac8bee4c9101ce
       X-B3-Sampled:
       - '0'
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Set-Cookie:
-      - BrowserId=7El5gf3ZEeqmug1Ud_CKLQ; domain=.salesforce.com; path=/; expires=Thu,
-        23-Sep-2021 20:18:20 GMT; Max-Age=31536000
+      - BrowserId=SmTNIwlsEeuEGJFyAQPBeg; domain=.salesforce.com; path=/; expires=Fri,
+        08-Oct-2021 13:43:47 GMT; Max-Age=31536000
       Sforce-Limit-Info:
-      - api-usage=880/5000000
+      - api-usage=992/5000000
       Location:
-      - "/services/data/v37.0/sobjects/Opportunity/0067X000007enhqQAA"
+      - "/services/data/v37.0/sobjects/Opportunity/0067X000007fcwcQAA"
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -59,6 +59,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"0067X000007enhqQAA","success":true,"errors":[]}'
-  recorded_at: Wed, 23 Sep 2020 20:18:20 GMT
+      string: '{"id":"0067X000007fcwcQAA","success":true,"errors":[]}'
+  recorded_at: Thu, 08 Oct 2020 13:43:48 GMT
 recorded_with: VCR 6.0.0

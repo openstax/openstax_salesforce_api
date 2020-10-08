@@ -14,25 +14,25 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
   end
 
   it "returns a successful response for all opportunities" do
-    get "/api/v1/opportunities/"
+    get "/api/v1/opportunities/", :headers => @request_header
     expect(response).to be_successful
   end
 
   it "returns one opportunity" do
-    get "/api/v1/opportunities/" + @opportunity.salesforce_id
+    get "/api/v1/opportunities/" + @opportunity.salesforce_id, :headers => @request_header
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
 
   it "returns opportunity using os_accounts_id" do
-    get "/api/v1/opportunities?os_accounts_id=" + @opportunity.os_accounts_id
+    get "/api/v1/opportunities?os_accounts_id=" + @opportunity.os_accounts_id, :headers => @request_header
     expect(JSON.parse(response.body).size).to eq(1)
     expect(response).to have_http_status(:success)
   end
 
   it 'create new opportunity' do
     opportunity_data = create_new_opportunity_data
-    headers = { "ACCEPT" => "application/json" }
+    headers = { "ACCEPT" => "application/json", "Authorization" => @request_header["Authorization"] }
     post "/api/v1/opportunities", :params => opportunity_data, :headers => headers
 
     expect(response.content_type).to eq("application/json; charset=utf-8")
@@ -43,7 +43,7 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
     @proxy = SalesforceProxy.new
     @proxy.setup_cassette
     opportunity_data = create_update_opportunity_data
-    headers = { "ACCEPT" => "application/json" }
+    headers = { "ACCEPT" => "application/json", "Authorization" => @request_header["Authorization"] }
     put "/api/v1/opportunities/" + @opportunity.id.to_s, :params => opportunity_data, :headers => headers
 
     expect(response.content_type).to eq("application/json; charset=utf-8")

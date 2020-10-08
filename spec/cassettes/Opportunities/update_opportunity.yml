@@ -21,7 +21,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 23 Sep 2020 20:18:20 GMT
+      - Thu, 08 Oct 2020 13:43:48 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
@@ -29,16 +29,16 @@ http_interactions:
       X-Xss-Protection:
       - 1; mode=block
       X-B3-Traceid:
-      - 9af6c34715ab4dd6
+      - 59c9e7bee8bc722c
       X-B3-Spanid:
-      - 9af6c34715ab4dd6
+      - 59c9e7bee8bc722c
       X-B3-Sampled:
       - '0'
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Set-Cookie:
-      - BrowserId=7LUzZ_3ZEeqq4eeTHknezg; domain=.salesforce.com; path=/; expires=Thu,
-        23-Sep-2021 20:18:20 GMT; Max-Age=31536000
+      - BrowserId=Sw1otwlsEeuGQENdu6cfzg; domain=.salesforce.com; path=/; expires=Fri,
+        08-Oct-2021 13:43:48 GMT; Max-Age=31536000
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       X-Readonlymode:
@@ -51,8 +51,8 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1600892301506","signature":"<salesforce_signature>"}'
-  recorded_at: Wed, 23 Sep 2020 20:18:21 GMT
+      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1602164628970","signature":"<salesforce_signature>"}'
+  recorded_at: Thu, 08 Oct 2020 13:43:49 GMT
 - request:
     method: get
     uri: "<salesforce_instance_url>/services/data/v37.0/query?q=SELECT%20Id,%20TermYear__c,%20Book_Text__c,%20Contact__c,%20New__c,%20CloseDate,%20StageName,%20Type,%20Students__c,%20Student_No_Status__c,%20Time_Period__c,%20Class_Start_Date__c,%20AccountId,%20Book__c,%20LeadSource,%20OS_Accounts_ID__c,%20Name%20FROM%20Opportunity%20WHERE%20(Id%20=%20%270067X000007eQMeQAM%27)%20LIMIT%201"
@@ -74,7 +74,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 23 Sep 2020 20:18:21 GMT
+      - Thu, 08 Oct 2020 13:43:49 GMT
       Strict-Transport-Security:
       - max-age=31536002; includeSubDomains
       Public-Key-Pins-Report-Only:
@@ -86,18 +86,18 @@ http_interactions:
       X-Robots-Tag:
       - none
       X-B3-Traceid:
-      - 97ba4305c1532df2
+      - b23e55a78b177f80
       X-B3-Spanid:
-      - 97ba4305c1532df2
+      - b23e55a78b177f80
       X-B3-Sampled:
       - '0'
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Set-Cookie:
-      - BrowserId=7UGUXf3ZEeq16rdsQfYgiw; domain=.salesforce.com; path=/; expires=Thu,
-        23-Sep-2021 20:18:21 GMT; Max-Age=31536000
+      - BrowserId=S5rcNQlsEeuEGJFyAQPBeg; domain=.salesforce.com; path=/; expires=Fri,
+        08-Oct-2021 13:43:49 GMT; Max-Age=31536000
       Sforce-Limit-Info:
-      - api-usage=880/5000000
+      - api-usage=993/5000000
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -110,7 +110,7 @@ http_interactions:
         - 21 Fall","Book_Text__c":null,"Contact__c":"0037X00000cVyfIQAS","New__c":true,"CloseDate":"2020-09-02","StageName":"Confirmed
         Adoption (1)","Type":"Renewal - Verified","Students__c":123.0,"Student_No_Status__c":"Reported","Time_Period__c":"Year","Class_Start_Date__c":"2020-09-02","AccountId":"001U0000007gj6EIAQ","Book__c":null,"LeadSource":"openstax-salesforce-api","OS_Accounts_ID__c":null,"Name":"-
         teacher 1"}]}'
-  recorded_at: Wed, 23 Sep 2020 20:18:21 GMT
+  recorded_at: Thu, 08 Oct 2020 13:43:49 GMT
 - request:
     method: patch
     uri: "<salesforce_instance_url>/services/data/v37.0/sobjects/Opportunity/0067X000007eQMeQAM"
@@ -135,7 +135,7 @@ http_interactions:
       message: No Content
     headers:
       Date:
-      - Wed, 23 Sep 2020 20:18:22 GMT
+      - Thu, 08 Oct 2020 13:43:49 GMT
       Strict-Transport-Security:
       - max-age=31536002; includeSubDomains
       Public-Key-Pins-Report-Only:
@@ -147,20 +147,20 @@ http_interactions:
       X-Robots-Tag:
       - none
       X-B3-Traceid:
-      - 02d16d52b22d864d
+      - 6b745abc1509dcbd
       X-B3-Spanid:
-      - 02d16d52b22d864d
+      - 6b745abc1509dcbd
       X-B3-Sampled:
       - '0'
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Set-Cookie:
-      - BrowserId=7XQW_P3ZEeq5SXEeOsg_1Q; domain=.salesforce.com; path=/; expires=Thu,
-        23-Sep-2021 20:18:22 GMT; Max-Age=31536000
+      - BrowserId=S9N4RwlsEeubG8MyVEObAw; domain=.salesforce.com; path=/; expires=Fri,
+        08-Oct-2021 13:43:49 GMT; Max-Age=31536000
       Sforce-Limit-Info:
-      - api-usage=880/5000000
+      - api-usage=992/5000000
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Wed, 23 Sep 2020 20:18:22 GMT
+  recorded_at: Thu, 08 Oct 2020 13:43:50 GMT
 recorded_with: VCR 6.0.0
