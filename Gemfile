@@ -70,4 +70,8 @@ end
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 gem 'openstax_salesforce', '~> 4.9', '>= 4.9.0'
+gem 'twitter-bootstrap-rails'
+gem 'jquery-rails'
+gem 'popper_js'
+
 

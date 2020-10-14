@@ -20,4 +20,6 @@ Rails.application.routes.draw do
   end
 
   post '/auth/authenticate', to: 'authentication#authenticate'
+  get 'login', to: 'login#new'
+  post 'login', to: 'login#create'
 end

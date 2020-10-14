@@ -14,6 +14,10 @@ class ApplicationController < ActionController::API
     end
   end
 
+  def current_user
+    @current_user ||= User.find(session[:username]) if session[:username]
+  end
+
   def logged_in?
     !!current_user
   end
