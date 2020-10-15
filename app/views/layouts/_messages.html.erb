@@ -1,0 +1,9 @@
+<div class="content">
+  <%  flash.each do |key, msg| %>
+    <div class="alert" role="alert">
+
+      <span class="closebtn" aria-hidden="true" onclick="this.parentElement.style.display='none';">&times;</span>
+      <%= msg %>
+    </div>
+  <% end %>
+</div>

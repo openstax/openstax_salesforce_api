@@ -1,4 +1,4 @@
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
 
   def authorize_request
     auth = request.headers['Authorization']
@@ -15,7 +15,7 @@ class ApplicationController < ActionController::API
   end
 
   def current_user
-    @current_user ||= User.find(session[:username]) if session[:username]
+    @current_user ||= User.find_by(username: session[:username]) if session[:username]
   end
 
   def logged_in?
