@@ -22,7 +22,8 @@ Rails.application.routes.draw do
   post '/auth/authenticate', to: 'authentication#authenticate'
   get 'login', to: 'login#new'
   post 'login', to: 'login#create'
-  get 'users', to: 'login#index'
+  #get 'users', to: 'login#index'
   delete 'logout', to: 'login#destroy'
   get 'logout', to: 'login#destroy'
+  resources :users, except: [:new]
 end

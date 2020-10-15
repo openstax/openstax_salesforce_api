@@ -1,0 +1,20 @@
+
+<div class="content" >
+  <table id="users">
+    <tr>
+      <th>Username</th>
+      <th>Is Admin</th>
+      <th>Has Access</th>
+    </tr>
+  <% @users.each do |user| %>
+      <tr>
+        <td><%= link_to user.username, edit_user_path(user) %></td>
+        <td><%= user.is_admin %></td>
+        <td><%= user.has_access %></td>
+      </tr>
+
+  <% end %>
+  </table>
+</div>
+
+
