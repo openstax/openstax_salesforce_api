@@ -7,12 +7,16 @@ class UsersController < ApplicationController
     #render json: @users, status: :ok
   end
 
-  # GET /users/{username}
+  # GET /users/{id}
   def show
-    @user = User.find_by_username!(params[:username])
-    render json: @user, status: :ok
+    @user = User.find(params[:id])
+    puts '*** User: ' + @user.inspect
+    #render edit_user_path(@user)
+    #render json: @user, status: :ok
   rescue ActiveRecord::RecordNotFound
-    render json: { errors: 'User not found' }, status: :not_found
+    #render json: { errors: 'User not found' }, status: :not_found
+    flash.now[:notice] = 'User not found'
+    redirect_to user_path
   end
 
   def create
@@ -31,20 +35,28 @@ class UsersController < ApplicationController
     end
   end
 
+  def edit
+    @user = User.find(params[:id])
+  end
+
   # PUT /users/{username}
   def update
-    unless @user.update(user_params)
-      render json: { errors: @user.errors.full_messages },
-             status: :unprocessable_entity
+    @user = User.find(params[:id])
+    if !@user.update(user_params)
+      # render json: { errors: @user.errors.full_messages },
+      #        status: :
+      flash[:notice] = "#{@user.username} was not successfully updated."
+      redirect_to edit_user_path
+    else
+      flash[:notice] = "#{@user.username} successfully updated."
+      redirect_to users_path
     end
   end
 
   private
 
   def user_params
-    params.permit(
-        :username, :password
-    )
+    params.require(:user).permit(:username, :password, :is_admin, :has_access)
   end
 
 

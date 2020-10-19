@@ -1,25 +1,25 @@
 <div class=content id='page-content'>
-  <h1 class="text-center mt-4">Log In</h1>
+  <h3 class="h3">Log In</h3>
   <div class="row justify-content-center">
-    <div class="col-10">
+    <div class="form">
       <%= form_with(scope: :login, url: login_path, class: "shadow p-3 mb-3 bg-info rounded", local: true) do |f| %>
 
-        <div class="firm-group row mb-3">
-          <%= f.label :username, class: "col-2 col-form-label text-light" %>
-          <div class="col-sm-10">
-            <%=f.text_field  :username, class: "form-control shadow rounded", placeholder: "Enter a user name" %>
+        <div class="input">
+          <div>
+            <%= f.label :username, class: "label" %>
+            <%=f.text_field  :username, class: "input", placeholder: "Enter a user name" %>
           </div>
         </div>
 
-        <div class="firm-group row mb-3">
-          <%= f.label :password, class: "col-2 col-form-label text-light" %>
-          <div class="col-sm-10">
-            <%=f.password_field  :password, class: "form-control shadow rounded", placeholder: "Enter a password" %>
+        <div class="input">
+          <div>
+            <%= f.label :password, class: "label" %>
+            <%=f.password_field  :password, class: "input", placeholder: "Enter a password" %>
           </div>
         </div>
 
-        <div class="firm-group row justify-content-center">
-          <%= f.submit "Log in", class: "btn btn-outline-light btn-lg" %>
+        <div>
+          <%= f.submit "Log in", class: "button" %>
         </div>
 
       <% end %>

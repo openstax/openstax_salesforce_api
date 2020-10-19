@@ -1,6 +1,6 @@
 
 .toolbar {
-    background-color: black !important;
+    background-color: #0dc0dc !important;
     height: 56px;
     width: 100%;
     position: fixed;
@@ -30,7 +30,7 @@
 
 #logo {
   float: left;
-  font-size: 1.7em;
+  font-size: 1.2em;
   color: #fff;
   text-transform: uppercase;
   letter-spacing: -1px;
@@ -39,13 +39,6 @@
 
 #home-container {
   margin-top: 25px;
-}
-
-.jumbotron {
-  background-image: image-url('splash3.jpg');
-  background-position: center center;
-  background-repeat: no-repeat;
-  background-size: cover;
 }
 
 .input_checkbox input {
@@ -61,11 +54,11 @@ body {
 
 #page-content {
   flex: 1 0 auto;
-  background-color: lightgrey;
 }
 
 .sticky-footer {
-  flex-shrink: none;
+    text-align: center;
+    padding-top: 25px;
 }
 
 .flickr_pagination {
@@ -105,7 +98,7 @@ body {
 
 .alert {
     padding: 20px;
-    background-color: #f44336; /* Red */
+    background-color: #f8e8ea
     color: white;
     margin-bottom: 15px;
 }
@@ -127,8 +120,60 @@ body {
 
 table {
     border-collapse: collapse;
+    margin-left: auto;
+    margin-right: auto;
 }
 
 table, th, td {
     border: 1px solid black;
+    padding: 5px;
 }
+
+.h3 {
+    text-align: center;
+}
+
+form {border: 3px solid #f1f1f1;}
+
+form div {
+    text-align: center;
+}
+
+.input[type=text], input[type=password] {
+    width: 25%;
+    padding: 12px 20px;
+    margin: 8px 0;
+    display: inline-block;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+.button {
+    color: black;
+    padding: 14px 20px;
+    margin: 8px 0;
+    border: none;
+    cursor: pointer;
+    width: 15%;
+    background-color: #0dc0dc;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.cancelbtn {
+    width: auto;
+    padding: 10px 18px;
+    background-color: #f44336;
+}
+
+.img-responsive {
+    height: auto;
+    width: auto;
+    max-height: 50px;
+    max-width: 175px;
+}
+
+
+

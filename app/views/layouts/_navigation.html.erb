@@ -1,8 +1,11 @@
 <nav class="toolbar">
-  <%= link_to 'Salesforce API', login_path, class: "navbar-brand", id: "logo"  %>
+  <%= link_to login_path, class: "navbar-brand", id: "logo" do %>
+    <%= image_tag "logo.svg", class: 'img-responsive' %>
+  <% end %>
 
   <div id="navbarSupportedContent">
     <ul>
+      <li>Salesforce API</li>
       <% if logged_in? %>
         <li>
           <%= link_to "Users", users_path, class: "nav-link"%>
