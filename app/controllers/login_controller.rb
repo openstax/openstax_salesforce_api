@@ -6,7 +6,7 @@ class LoginController < ApplicationController
 
   def create
     user = User.find_by(username: params[:login][:username])
-    unless user.is_admin?
+    unless user&.is_admin?
       flash.now[:notice] = 'You must be an admin to log in'
       render 'new'
       return

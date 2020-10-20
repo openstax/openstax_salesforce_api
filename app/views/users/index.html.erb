@@ -5,16 +5,23 @@
       <th>Username</th>
       <th>Is Admin</th>
       <th>Has Access</th>
+      <th>Action</th>
     </tr>
   <% @users.each do |user| %>
       <tr>
         <td><%= link_to user.username, edit_user_path(user) %></td>
         <td><%= user.is_admin %></td>
         <td><%= user.has_access %></td>
+        <% if user != @current_user %>
+          <td><%= button_to 'Delete', user_path(user), {:onclick => "return confirm('Are you sure?')", :method => :delete, :remote => true, class: 'table-button'}%></td>
+        <% end %>
       </tr>
 
   <% end %>
   </table>
+  <div class="center-div">
+    <%= link_to "Add User", new_user_path, class: 'button' %>
+  </div>
 </div>
 
 
