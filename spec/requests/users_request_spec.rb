@@ -2,8 +2,8 @@ require 'rails_helper'
 
 RSpec.describe "Users", type: :request do
   before(:all) do
-    @no_access_user = FactoryBot.create(:user, {:username=>'authuser', :password=>'authpassword',:has_access=>false, :is_admin=>false})
-    @has_access_user = FactoryBot.create(:user, {:username=>'good_authuser', :password=>'good_authpassword',:has_access=>true, :is_admin=>true})
+    @no_access_test_user = FactoryBot.create(:user, {:username=>'authuser_test', :password=>'authpassword',:has_access=>false, :is_admin=>false})
+    @has_access_test_user = FactoryBot.create(:user, {:username=>'good_authuser_test', :password=>'good_authpassword',:has_access=>true, :is_admin=>true})
     @delete_user = FactoryBot.create(:user, {:username=>'deleteuser', :password=>'deletepassword',:has_access=>true, :is_admin=>true})
   end
 
@@ -26,7 +26,7 @@ RSpec.describe "Users", type: :request do
 
   it 'edit user' do
     login
-    patch '/users/' + @no_access_user.id.to_s, params: {
+    patch '/users/' + @no_access_test_user.id.to_s, params: {
       user: {
         username: 'authuser-edited',
         #password: 'authpassword',
@@ -58,9 +58,9 @@ RSpec.describe "Users", type: :request do
 
   def login
     post "/login", params: {
-      id: @has_access_user.id,
+      id: @has_access_test_user.id,
       login: {
-        username: 'good_authuser',
+        username: 'good_authuser_test',
         password: 'good_authpassword'
       }
     }
