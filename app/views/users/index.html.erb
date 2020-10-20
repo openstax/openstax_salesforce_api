@@ -13,7 +13,7 @@
         <td><%= user.is_admin %></td>
         <td><%= user.has_access %></td>
         <% if user != @current_user %>
-          <td><%= button_to 'Delete', user_path(user), {:onclick => "return confirm('Are you sure?')", :method => :delete, :remote => true, class: 'table-button'}%></td>
+          <td><%= button_to 'Delete', user_path(user), {:onclick => "return confirm('Delete this user?')", :method => :delete, :remote => true, class: 'table-button'}%></td>
         <% end %>
       </tr>
 

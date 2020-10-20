@@ -14,7 +14,6 @@ class LoginController < ApplicationController
     
     if user.authenticate(params[:login][:password])
       session[:username] = user.username
-      flash[:notice] = 'You are logged in'
       redirect_to users_path
       return
     else
