@@ -1,6 +1,7 @@
 require 'push_opportunity_to_salesforce'
 
 class Api::V1::OpportunitiesController < ApplicationController
+  before_action -> { verify_sso_cookie('Opportunity', params['os_accounts_id']) }
 
   # GET /opportunities
   def index

@@ -1,0 +1,6 @@
+development:
+  use_sso: false
+test:
+  use_sso: false
+production:
+  use_sso: true
