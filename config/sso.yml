@@ -1,6 +1,6 @@
 development:
   use_sso: false
 test:
-  use_sso: false
+  use_sso: true
 production:
   use_sso: true
