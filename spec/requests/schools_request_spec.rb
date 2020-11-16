@@ -8,7 +8,12 @@ RSpec.describe "Schools", type: :request do
 
   it "returns a successful response for all schools" do
     get "/api/v1/schools/"
-    expect(response).to be_successful
+    expect(response).to have_http_status(:success)
+  end
+
+  it "returns a successful response for school by name" do
+    get "/api/v1/schools/?name=" + @school.name
+    expect(response).to have_http_status(:success)
   end
 
   it "returns one school by id" do
