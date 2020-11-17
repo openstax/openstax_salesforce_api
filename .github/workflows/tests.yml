@@ -1,0 +1,37 @@
+name: Tests
+env:
+  OX_SF_DB_USER: postgres
+  OX_SF_DB_PASS: postgres
+  OX_SF_TEST_DB: ci_test
+  RAILS_ENV: test
+
+on:
+  pull_request:
+  push:
+    branches:
+      - master
+jobs:
+  tests:
+    timeout-minutes: 30
+    runs-on: ubuntu-18.04
+    services:
+      postgres:
+        image: postgres:11
+        ports:
+        - 5432:5432
+        options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
+        env:
+          POSTGRES_USER: ${{ env.OX_SF_DB_USER }}
+          POSTGRES_DB: ${{ env.OX_SF_TEST_DB }}
+          POSTGRES_PASSWORD: ${{ env.OX_SF_DB_PASS }}
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          bundler-cache: true
+      - name: Setup
+        run: |
+          bundle exec rake --trace db:create db:schema:load db:seed
+      - name: Test
+        run: |
+          bundle exec rspec --format doc
