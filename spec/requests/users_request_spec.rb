@@ -15,7 +15,7 @@ RSpec.describe "Users", type: :request do
 
   it "returns data for user in cookie" do
     headers = set_cookie
-    get "/api/v1/users", :headers => headers
+    get '/api/v1/users', :headers => headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
