@@ -7,7 +7,11 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
   before(:all) do
     @opportunity = FactoryBot.create :api_opportunity
     #adding contact so cookie check works
-    contact = FactoryBot.create(:api_contact, salesforce_id: '003U000001i3mWpIAI')
+    @contact = Contact.where(salesforce_id: '003U000001i3mWpIAI')
+    if @contact.blank?
+      @contact = FactoryBot.create(:api_contact, salesforce_id: '003U000001i3mWpIAI')
+    end
+    @headers = set_cookie
     VCR.use_cassette('OpportunitiesController/sf_setup', VCR_OPTS) do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette
@@ -15,21 +19,18 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
   end
 
   it "returns a failure response because of missing cookie" do
-    #headers = set_cookie
     get '/api/v1/opportunities/?os_accounts_id=1'
     expect(response).to have_http_status(:bad_request)
   end
 
   it "returns one opportunity" do
-    headers = set_cookie
-    get "/api/v1/opportunities/" + @opportunity.salesforce_id + '?os_accounts_id=1', :headers => headers
+    get "/api/v1/opportunities/" + @opportunity.salesforce_id + '?os_accounts_id=1', :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
 
   it "returns opportunity using os_accounts_id" do
-    headers = set_cookie
-    get "/api/v1/opportunities?os_accounts_id=" + @opportunity.os_accounts_id, :headers => headers
+    get "/api/v1/opportunities?os_accounts_id=" + @opportunity.os_accounts_id, :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end

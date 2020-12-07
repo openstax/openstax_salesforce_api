@@ -1,4 +1,5 @@
 class Api::V1::BooksController < ApplicationController
+  before_action -> { verify_sso_cookie('Book') }
 
   # GET /books
   def index

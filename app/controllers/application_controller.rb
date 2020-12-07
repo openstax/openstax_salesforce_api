@@ -1,7 +1,7 @@
 require 'openstax/auth/strategy_2'
 
 class ApplicationController < ActionController::API
-  ALLOWED_APIS = ['Opportunity']
+  ALLOWED_APIS = ['Opportunity', 'Book', 'Contact', 'Lead', 'School'].freeze
   USE_SSO = Rails.configuration.sso['use_sso']
 
   def verify_sso_cookie(sf_object)
