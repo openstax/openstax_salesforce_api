@@ -12,6 +12,11 @@ RSpec.describe "Leads", type: :request do
     expect(response).to have_http_status(:success)
   end
 
+  it 'returns a successful response for lead by os_accounts_id' do
+    get '/api/v1/leads/?os_accounts_id=' + @lead.os_accounts_id
+    expect(response).to have_http_status(:success)
+  end
+
   it "return one lead by id" do
     get "/api/v1/leads/#{@lead.id}"
     expect(JSON.parse(response.body).size).to be >= 1

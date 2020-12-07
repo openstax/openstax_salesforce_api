@@ -12,6 +12,11 @@ RSpec.describe "Books", type: :request do
     expect(response).to have_http_status(:success)
   end
 
+  it 'returns a successful response for book by name' do
+    get '/api/v1/books/?name=' + @book.name
+    expect(response).to have_http_status(:success)
+  end
+
   it "return one book by id" do
     get "/api/v1/books/#{@book.id}"
     expect(JSON.parse(response.body).size).to be >= 1
