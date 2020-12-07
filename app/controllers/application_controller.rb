@@ -21,7 +21,15 @@ class ApplicationController < ActionController::API
     end
   end
 
+  def cookie_data
+    unless USE_SSO
+      return
+    end
+
+    OpenStax::Auth::Strategy2.decrypt(request)
+  end
+
   def return_bad_request(sf_object)
-    render :json => "request_object: #{sf_object}, status: :bad_request", :status => :bad_request
+    render :json => {:request_object => "#{sf_object}", :status => "bad request"}.to_json, :status => :bad_request
   end
 end
