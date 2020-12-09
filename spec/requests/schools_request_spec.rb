@@ -5,10 +5,8 @@ RSpec.describe 'Schools', type: :request do
 
   before(:all) do
     @school = FactoryBot.create :api_school
-    @contact = Contact.where(salesforce_id: '003U000001i3mWpIAI')
-    if @contact.blank?
-      @contact = FactoryBot.create(:api_contact, salesforce_id: '003U000001i3mWpIAI')
-    end
+    # needed for cookie check
+    contact = create_contact
     @headers = set_cookie
   end
 

@@ -6,11 +6,8 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
 
   before(:all) do
     @opportunity = FactoryBot.create :api_opportunity
-    #adding contact so cookie check works
-    @contact = Contact.where(salesforce_id: '003U000001i3mWpIAI')
-    if @contact.blank?
-      @contact = FactoryBot.create(:api_contact, salesforce_id: '003U000001i3mWpIAI')
-    end
+    # needed for cookie check
+    contact = create_contact
     @headers = set_cookie
     VCR.use_cassette('OpportunitiesController/sf_setup', VCR_OPTS) do
       @proxy = SalesforceProxy.new

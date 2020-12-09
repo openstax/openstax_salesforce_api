@@ -5,10 +5,8 @@ RSpec.describe "CampaignMembers", type: :request do
 
   before(:all) do
     @campaign_member = FactoryBot.create :api_campaign_member
-    @contact = Contact.where(salesforce_id: '003U000001i3mWpIAI')
-    if @contact.blank?
-      @contact = FactoryBot.create(:api_contact, salesforce_id: '003U000001i3mWpIAI')
-    end
+    # needed for cookie check
+    contact = create_contact
     @headers = set_cookie
   end
 
