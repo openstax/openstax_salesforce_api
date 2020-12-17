@@ -1,4 +1,5 @@
 class Api::V1::ContactsController < ApplicationController
+  before_action -> { verify_sso_cookie('Contact') }
 
   # GET /contacts
   def index

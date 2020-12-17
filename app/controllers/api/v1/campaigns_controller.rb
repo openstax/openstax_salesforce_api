@@ -1,4 +1,5 @@
 class Api::V1::CampaignsController < ApplicationController
+  before_action -> { verify_sso_cookie('Campaign') }
 
   # GET /campaigns
   def index

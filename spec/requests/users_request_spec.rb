@@ -4,7 +4,8 @@ require 'spec_helper'
 RSpec.describe 'Users', type: :request do
   before(:all) do
     opportunity = FactoryBot.create :api_opportunity
-    contact = FactoryBot.create(:api_contact, salesforce_id: '0037X00000cVyfKQAS')
+    # needed for cookie check
+    contact = create_contact
     lead = FactoryBot.create :api_lead
   end
 
