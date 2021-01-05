@@ -18,8 +18,11 @@ $> bundle exec rake db:seed
 ### Running tests
 You can run the tests with `$> bundle exec rspec`
 
-#### Project Documentation
+### Project Documentation
 Documentation is in the [repo wiki](https://github.com/openstax/openstax-salesforce-api/wiki)
+
+### Note about updating secrets.example.yml file
+If a change is made to the secrets.example.yml file, a change will need to be made in the [Salesforce API Deployment](https://github.com/openstax/openstax-salesforce-api-deployment).
 
 
 

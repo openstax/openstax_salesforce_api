@@ -1,8 +1,19 @@
 class Api::V1::LeadsController < ApplicationController
+  before_action -> { verify_sso_cookie('Lead') }
 
   # GET /leads
   def index
-    @leads = Lead.paginate(page: params[:page], per_page: 20)
+    if params['os_accounts_id'].present?
+      @leads = Lead.where(os_accounts_id: params['os_accounts_id'])
+      if @leads.blank?
+        render json: {
+            os_accounts_id: params['os_accounts_id'],
+            error: 'id not found'
+        }, status: :not_found and return
+      end
+    else
+      @leads = Lead.paginate(page: params[:page], per_page: 20)
+    end
     render json: @leads
   end
 

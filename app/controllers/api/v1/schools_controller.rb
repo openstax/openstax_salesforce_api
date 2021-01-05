@@ -1,8 +1,19 @@
 class Api::V1::SchoolsController < ApplicationController
+  before_action -> { verify_sso_cookie('School') }
 
-  # GET /schools
+  # GET /schools?name=school-name
   def index
-    @schools = School.paginate(page: params[:page], per_page: 20)
+    if params['name'].present?
+        @schools = School.where(name: params['name'])
+        if @schools.blank?
+          render json: {
+              name: params['name'],
+              error: 'School not found'
+          }, status: :not_found and return
+        end
+    else
+      @schools = School.paginate(page: params[:page], per_page: 20)
+    end
     render json: @schools
   end
 

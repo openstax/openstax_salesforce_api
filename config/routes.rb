@@ -15,6 +15,7 @@ Rails.application.routes.draw do
       resources :leads
       resources :campaign_members
       resources :opportunities
+      resources :users
 
     end
   end
