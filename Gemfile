@@ -69,6 +69,8 @@ gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
 
 # Salesforce and Pardot stuff
 gem 'openstax_salesforce', '~> 4.9', '>= 4.9.0'
-gem 'ruby-pardot'
 
 gem "openstax_auth", github: 'openstax/auth-rails', ref: 'ed2d7da86ca226b93376955b9474c4cf115c611f'
+
+gem 'crack', '0.4.3'
+gem 'httparty'

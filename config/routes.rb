@@ -17,6 +17,12 @@ Rails.application.routes.draw do
       resources :opportunities
       resources :users
 
+      #Pardot list management API
+      get '/lists', to: 'pardot#available_lists'
+      get '/lists/user/:salesforce_id', to: 'pardot#pardot_user', as: 'pardot'
+      get '/lists/subscribe/:list_id/:salesforce_id', to: 'pardot#subscribe'
+      get '/lists/unsubscribe/:list_id/:salesforce_id', to: 'pardot#unsubscribe'
+
     end
   end
 end
