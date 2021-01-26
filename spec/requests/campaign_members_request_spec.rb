@@ -12,7 +12,7 @@ RSpec.describe "CampaignMembers", type: :request do
 
   it 'returns a failure response because of missing cookie' do
     get '/api/v1/campaign_members'
-    expect(response).to have_http_status(:bad_request)
+    expect(response).to have_http_status(:unauthorized)
   end
 
   it 'returns all campaign_members' do

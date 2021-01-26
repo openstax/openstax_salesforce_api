@@ -17,7 +17,7 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
 
   it "returns a failure response because of missing cookie" do
     get '/api/v1/opportunities/?os_accounts_id=1'
-    expect(response).to have_http_status(:bad_request)
+    expect(response).to have_http_status(:unauthorized)
   end
 
   it "returns one opportunity" do

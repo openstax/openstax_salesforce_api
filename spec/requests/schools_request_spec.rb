@@ -12,7 +12,7 @@ RSpec.describe 'Schools', type: :request do
 
   it 'returns a failure response because of missing cookie' do
     get '/api/v1/schools/'
-    expect(response).to have_http_status(:bad_request)
+    expect(response).to have_http_status(:unauthorized)
   end
 
   it 'returns a successful response for all schools' do

@@ -9,7 +9,7 @@ RSpec.describe "Contacts", type: :request do
 
   it "returns a failure response because of missing cookie" do
     get '/api/v1/contacts'
-    expect(response).to have_http_status(:bad_request)
+    expect(response).to have_http_status(:unauthorized)
   end
 
   it 'returns all contacts' do
