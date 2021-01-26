@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Salesforce API</title>
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag 'sfapi' %>
+
+  </head>
+
+  <body>
+    <%= image_tag "logo.svg", class: 'logo' %>
+    <h1>Salesforce API</h1>
+
+    <div>
+      <%= yield %>
+    </div>
+    <div class="sticky-footer">
+      <p><small>Copyright &copy; 2021 Rice University</small></p>
+    </div>
+
+  </body>
+</html>

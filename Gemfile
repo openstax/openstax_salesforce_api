@@ -73,3 +73,8 @@ gem 'openstax_salesforce', '~> 4.9', '>= 4.9.0'
 gem "openstax_auth", github: 'openstax/auth-rails', ref: 'ed2d7da86ca226b93376955b9474c4cf115c611f'
 
 gem 'rack-cors'
+
+gem "doorkeeper", "~> 5.4"
+
+gem 'openstax_accounts', github: 'openstax/accounts-rails', ref: '64838560b01f06c792e5e105fe3b6e03cb7269fc'
+
