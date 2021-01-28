@@ -6,7 +6,7 @@ http_interactions:
     body:
       encoding: UTF-8
       string: '{"Contact__c":"0032F00000cfZQhQAM","CloseDate":"2020-09-02","StageName":"Confirmed
-        Adoption (1)","Type":"New Business","Students__c":123,"Student_No_Status__c":"Reported","Time_Period__c":"Year","Class_Start_Date__c":"2020-09-02","AccountId":"0012F00000iPxe9QAC","LeadSource":"openstax-salesforce-api","Name":"new
+        Adoption (1)","Type":"New Business","Students__c":"123","Student_No_Status__c":"Reported","Time_Period__c":"Year","Class_Start_Date__c":"2020-09-02","AccountId":"0012F00000iPxe9QAC","LeadSource":"openstax-salesforce-api","Name":"new
         from openstax-salesforce-api"}'
     headers:
       User-Agent:
@@ -25,7 +25,7 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Thu, 28 Jan 2021 17:42:19 GMT
+      - Thu, 28 Jan 2021 20:10:24 GMT
       Strict-Transport-Security:
       - max-age=31536002; includeSubDomains
       Expect-Ct:
@@ -35,12 +35,12 @@ http_interactions:
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Set-Cookie:
-      - BrowserId=K4IM3WGQEeuCXq-PWMzyKg; domain=.salesforce.com; path=/; expires=Fri,
-        28-Jan-2022 17:42:19 GMT; Max-Age=31536000
+      - BrowserId=233WUGGkEeuodlkk4y7wAg; domain=.salesforce.com; path=/; expires=Fri,
+        28-Jan-2022 20:10:24 GMT; Max-Age=31536000
       Sforce-Limit-Info:
-      - api-usage=1676/5000000
+      - api-usage=1496/5000000
       Location:
-      - "/services/data/v37.0/sobjects/Opportunity/0062F00000CCPtMQAX"
+      - "/services/data/v37.0/sobjects/Opportunity/0062F00000CCQ5wQAH"
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -49,6 +49,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"0062F00000CCPtMQAX","success":true,"errors":[]}'
-  recorded_at: Thu, 28 Jan 2021 17:42:27 GMT
+      string: '{"id":"0062F00000CCQ5wQAH","success":true,"errors":[]}'
+  recorded_at: Thu, 28 Jan 2021 20:10:25 GMT
 recorded_with: VCR 6.0.0
