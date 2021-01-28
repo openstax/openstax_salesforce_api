@@ -5,6 +5,7 @@ RSpec.describe "Contacts", type: :request do
   before(:all) do
     @contact = create_contact
     @headers = set_cookie
+    @token_header = create_token_header
   end
 
   it "returns a failure response because of missing cookie" do
@@ -18,13 +19,30 @@ RSpec.describe "Contacts", type: :request do
     expect(response).to have_http_status(:success)
   end
 
+  it 'returns all contacts with token' do
+    get '/api/v1/contacts', :headers => @token_header
+    expect(JSON.parse(response.body).size).to be >= 1
+    expect(response).to have_http_status(:success)
+  end
+
   it "returns a successful response for contact by email" do
     get '/api/v1/contacts/?email=' + @contact.email, :headers => @headers
     expect(response).to have_http_status(:success)
   end
 
+  it "returns a successful response for contact by email with token" do
+    get '/api/v1/contacts/?email=' + @contact.email, :headers => @token_header
+    expect(response).to have_http_status(:success)
+  end
+
   it "return one contact by id" do
     get "/api/v1/contacts/#{@contact.id}", :headers => @headers
+    expect(JSON.parse(response.body).size).to be >= 1
+    expect(response).to have_http_status(:success)
+  end
+
+  it "return one contact by id with token" do
+    get "/api/v1/contacts/#{@contact.id}", :headers => @token_header
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
