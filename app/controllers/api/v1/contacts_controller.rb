@@ -20,7 +20,7 @@ class Api::V1::ContactsController < ApplicationController
   # GET /contacts/:id
   def show
     begin
-      @contact = Contact.find(params[:id])
+      @contact = Contact.where(salesforce_id: params[:id])
       render json: @contact, status: :ok
     rescue ActiveRecord::RecordNotFound => e
       render json: {

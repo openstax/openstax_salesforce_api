@@ -20,7 +20,7 @@ class Api::V1::SchoolsController < ApplicationController
   # GET /schools/:id
   def show
     begin
-      @school = School.find(params[:id])
+      @school = School.where(salesforce_id: params[:id])
       render json: @school, status: :ok
     rescue ActiveRecord::RecordNotFound => e
       render json: {

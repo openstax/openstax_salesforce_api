@@ -20,7 +20,7 @@ class Api::V1::LeadsController < ApplicationController
   # GET /leads/:id
   def show
     begin
-      @lead = Lead.find(params[:id])
+      @lead = Lead.where(salesforce_id: params[:id])
       render json: @lead, status: :ok
     rescue ActiveRecord::RecordNotFound => e
       render json: {

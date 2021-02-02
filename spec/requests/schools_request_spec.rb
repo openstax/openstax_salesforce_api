@@ -26,7 +26,7 @@ RSpec.describe 'Schools', type: :request do
   end
 
   it 'returns one school by id' do
-    get "/api/v1/schools/#{@school.id}", :headers => @headers
+    get "/api/v1/schools/#{@school.salesforce_id}", :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end

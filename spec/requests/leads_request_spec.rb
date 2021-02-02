@@ -27,7 +27,7 @@ RSpec.describe "Leads", type: :request do
   end
 
   it "return one lead by id" do
-    get "/api/v1/leads/#{@lead.id}", :headers => @headers
+    get "/api/v1/leads/#{@lead.salesforce_id}", :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
