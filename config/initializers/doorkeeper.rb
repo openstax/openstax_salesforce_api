@@ -20,15 +20,12 @@ Doorkeeper.configure do
   #
   admin_authenticator do
     authenticate_user!
-    current_user
   #   # Put your admin authentication logic here.
   #   # Example implementation:
   #
-  #   if current_user
-  #     head :forbidden unless current_user.admin?
-  #   else
-  #     redirect_to sign_in_url
-  #   end
+    if signed_in? && !current_user.is_administrator?
+      redirect_to error_path unless current_user.is_administrator?
+    end
   end
 
   # You can use your own model classes if you need to extend (or even override) default

@@ -4,6 +4,9 @@ class LoginController < ApplicationController
   before_action :authenticate_user!, except: [:new]
 
   def new
+    if signed_in? && !current_user.is_administrator?
+      redirect_to error_path
+    end
   end
 
   def create
@@ -11,7 +14,6 @@ class LoginController < ApplicationController
 
   def destroy
     session[:username] = nil
-    flash[:notice] = 'You are logged out'
     redirect_to login_path
 
   end
