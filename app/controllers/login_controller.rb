@@ -1,7 +1,7 @@
 require 'openstax_accounts'
 
 class LoginController < ApplicationController
-  before_action :authenticate_user!, except: [:new]
+  before_action :authenticate_user!, except: [:new, :destroy]
 
   def new
     if signed_in? && !current_user.is_administrator?
