@@ -1,6 +1,6 @@
 require 'pardot/pardot'
 
-class Api::V1::PardotController < ApplicationController
+class Api::V1::ListsController < ApplicationController
   include Pardot
   before_action :pardot_client
 
@@ -47,7 +47,7 @@ class Api::V1::PardotController < ApplicationController
       puts 'User already subscribed to list'
     end
 
-    redirect_to controller: 'pardot', action: 'pardot_user', salesforce_id: salesforce_id
+    redirect_to controller: 'lists', action: 'pardot_user', salesforce_id: salesforce_id
   end
 
   # /api/v1/lists/unsubscribe/<list_id>/<salesforce_id>
@@ -61,7 +61,7 @@ class Api::V1::PardotController < ApplicationController
       @client.list_memberships.delete(list_id, prospect_id)
     end
 
-    redirect_to controller: 'pardot', action: 'pardot_user', salesforce_id: salesforce_id
+    redirect_to controller: 'lists', action: 'pardot_user', salesforce_id: salesforce_id
   end
 
   protected

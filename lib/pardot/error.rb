@@ -9,11 +9,11 @@ module Pardot
     end
 
     def to_s
-      @res["__content__"]
+      @res['__content__']
     end
 
     def code
-      @res["code"].to_i
+      @res['code'].to_i
     end
 
     def inspect

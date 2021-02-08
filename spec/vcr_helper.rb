@@ -52,6 +52,13 @@ VCR.configure do |c|
     consumer_secret
   ).each { |salesforce_secret_name| c.filter_secret(['salesforce', salesforce_secret_name]) }
 
+  %w(
+    email
+    password
+    user_key
+    api_key
+  ).each { |pardot_secret_name| c.filter_secret(['pardot', pardot_secret_name]) }
+
 end
 
 VCR_OPTS = {
