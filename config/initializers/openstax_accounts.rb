@@ -1,5 +1,5 @@
 OpenStax::Accounts.configure do |config|
-  oauth_secrets = Rails.application.secrets.oauth
+  oauth_secrets = Rails.application.secrets.accounts[:oauth]
 
   config.openstax_application_id = oauth_secrets[:openstax_application_id]
   config.openstax_application_secret = oauth_secrets[:openstax_application_secret]
