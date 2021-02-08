@@ -56,7 +56,6 @@ VCR.configure do |c|
     email
     password
     user_key
-    api_key
   ).each { |pardot_secret_name| c.filter_secret(['pardot', pardot_secret_name]) }
 
 end
