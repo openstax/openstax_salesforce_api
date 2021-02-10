@@ -11,11 +11,6 @@ RSpec.describe 'Lists', type: :request, vcr: VCR_OPTS do
     end
   end
 
-  it 'lists all the users mailing list subscriptions' do
-    get '/api/v1/lists/user/0036f00003HhsOlAAJ' # this is a prod test record because we don't have a pardot sandbox
-    expect(response).to have_http_status(:success)
-  end
-
   it 'lists all available mailing lists' do
     get '/api/v1/lists'
     expect(JSON.parse(response.body).size).to be >= 1
@@ -43,15 +38,14 @@ RSpec.describe 'Lists', type: :request, vcr: VCR_OPTS do
                                                    'title' => 'Tutor Tips' })
   end
 
-  it 'allows user to subscribe to list' do
-    get '/api/v1/lists/subscribe/6391/0036f00003HhsOlAAJ'
-    expect(response).to have_http_status(302)
-    expect(response).to redirect_to('/api/v1/lists/user/0036f00003HhsOlAAJ')
-  end
-
   it 'allows a user to unsubscribe from a list' do
     get '/api/v1/lists/unsubscribe/6391/0036f00003HhsOlAAJ'
-    expect(response).to have_http_status(302)
-    expect(response).to redirect_to('/api/v1/lists/user/0036f00003HhsOlAAJ')
+    expect(response).to have_http_status(202)
   end
+
+  it 'allows user to subscribe to list' do
+    get '/api/v1/lists/subscribe/6391/0036f00003HhsOlAAJ'
+    expect(response).to have_http_status(202)
+  end
+
 end
