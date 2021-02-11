@@ -7,16 +7,8 @@ class Api::V1::ListsController < ApplicationController
   # /api/v1/lists/
   # returns all available public lists from Pardot
   def available_lists
-    lists = @client.lists.query(is_greater_than: 0)
-
-    public_lists = []
-    lists['list'].each do |list|
-      if list['is_public'] == 'true'
-        public_lists.push({ id: list['id'], title: list['title'], description: list['description'] })
-      end
-    end
-
-    render json: public_lists.to_json
+    lists = List.all
+    render json: lists.to_json
   end
 
   # /api/v1/lists/subscribe/<list_id>/<salesforce_id>
