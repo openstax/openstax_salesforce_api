@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_11_215851) do
+ActiveRecord::Schema.define(version: 2021_02_22_191818) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -151,13 +151,15 @@ ActiveRecord::Schema.define(version: 2021_02_11_215851) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "user_list_subscriptions", force: :cascade do |t|
-    t.bigint "contact_id"
-    t.bigint "list_id"
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "contact_id", null: false
+    t.bigint "list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["contact_id"], name: "index_user_list_subscriptions_on_contact_id"
-    t.index ["list_id"], name: "index_user_list_subscriptions_on_list_id"
+    t.index ["contact_id"], name: "index_subscriptions_on_contact_id"
+    t.index ["list_id"], name: "index_subscriptions_on_list_id"
   end
 
+  add_foreign_key "subscriptions", "contacts"
+  add_foreign_key "subscriptions", "lists"
 end
