@@ -12,6 +12,7 @@ class Api::V1::ListsController < ApplicationController
     contact = Contact.find_by(salesforce_id: params[:salesforce_id])
 
     Subscription.create(list: list, contact: contact)
+    SubscribeToListJob.perform_later(list.pardot_id, contact.salesforce_id)
     head :accepted
   end
 
@@ -21,6 +22,7 @@ class Api::V1::ListsController < ApplicationController
     contact = Contact.find_by(salesforce_id: params[:salesforce_id])
 
     Subscription.delete_by(list: list, contact: contact)
+    UnsubscribeToListJob.perform_later(list.pardot_id, contact.salesforce_id)
     head :accepted
   end
 end
