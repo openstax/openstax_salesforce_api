@@ -1,5 +1,3 @@
-require 'pardot/pardot'
-
 class UpdateListsFromPardot
 
   def self.call
@@ -7,9 +5,7 @@ class UpdateListsFromPardot
   end
 
   def start_update
-    pardot_secrets = Rails.application.secrets.pardot
-    @client = Pardot::Client.new pardot_secrets[:email], pardot_secrets[:password], pardot_secrets[:user_key]
-    @client.authenticate
+    @client = Pardot::Client.client
 
     lists = @client.lists.query(is_greater_than: 0)
     lists['list'].each do |list|

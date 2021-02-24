@@ -1,9 +1,4 @@
-require 'pardot/pardot'
-
 class Api::V1::UsersController < ApplicationController
-  include Pardot
-  before_action :pardot_client
-
   def index
     sso_cookie = cookie_data
     return return_bad_request('User') if sso_cookie.blank?
@@ -25,6 +20,7 @@ class Api::V1::UsersController < ApplicationController
 
     else
       #TODO: move this somewhere shared, so it can also be used in update rake task
+      @client = Pardot::Client.client
       @prospect = @client.prospects.read_by_fid(contact.salesforce_id)
 
       @prospect['lists']['list_subscription'].each do |subscription|
