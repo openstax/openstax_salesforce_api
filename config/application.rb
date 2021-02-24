@@ -34,5 +34,11 @@ module OpenstaxSalesforceApi
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = true
     config.sso = config_for(:sso)
+
+    Rails.application.config.hosts = [
+      "localhost",
+      "127.0.0.1",
+      "/(.*\.|)openstax\.org/"
+    ]
   end
 end
