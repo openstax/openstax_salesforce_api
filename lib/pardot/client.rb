@@ -21,8 +21,7 @@ module Pardot
       @user_key = user_key
       @version = version
 
-      @format = "simple"
+      @format = 'simple'
     end
-
   end
 end
