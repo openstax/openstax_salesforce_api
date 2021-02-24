@@ -38,7 +38,8 @@ module OpenstaxSalesforceApi
     Rails.application.config.hosts = [
       "localhost",
       "127.0.0.1",
-      "/(.*\.|)openstax\.org/"
+      "/(.*\.|)openstax\.org/",
+      "www.example.com" #for testing
     ]
   end
 end
