@@ -27,10 +27,4 @@ class ApplicationController < ActionController::API
   def return_bad_request(sf_object)
     render :json => {:request_object => "#{sf_object}", :status => "bad request"}.to_json, :status => :bad_request
   end
-
-  def pardot_client
-    pardot_secrets = Rails.application.secrets.pardot
-    @client = Pardot::Client.new pardot_secrets[:email], pardot_secrets[:password], pardot_secrets[:user_key]
-    @client.authenticate
-  end
 end
