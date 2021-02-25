@@ -1,0 +1,114 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pi.pardot.com/api/login/version/3
+    body:
+      encoding: UTF-8
+      string: email=<pardot_email_url>&password=<pardot_password_url>&user_key=<pardot_user_key>
+    headers:
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 25 Feb 2021 22:37:58 GMT
+      Set-Cookie:
+      - pardot=jlifilfme1d65u4tk13nb4ofg1; path=/
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Pardot-Rsp:
+      - 17/10/152
+      P3p:
+      - CP="NOI DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT", policyref="/w3c/p3p.xml"
+      Vary:
+      - Accept-Encoding,User-Agent
+      Content-Length:
+      - '142'
+      Content-Type:
+      - text/xml; charset=utf-8
+      X-Pardot-Route:
+      - 4fa993bd92d83a19a78f84f1ddd264ce
+      Server:
+      - PardotServer
+      X-Pardot-Lb:
+      - a083ac6fc1531fb089982e922db67d20
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <rsp stat="ok" version="1.0">
+           <api_key>612029395224750ed92be072c8c9fb59</api_key>
+           <version>4</version>
+        </rsp>
+  recorded_at: Thu, 25 Feb 2021 22:37:59 GMT
+- request:
+    method: post
+    uri: https://pi.pardot.com/api/prospect/version/4/do/read/fid/not-real-id?format=simple
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Pardot api_key=612029395224750ed92be072c8c9fb59, user_key=<pardot_user_key>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Thu, 25 Feb 2021 22:37:59 GMT
+      Set-Cookie:
+      - pardot=clp9vifc18b21c41lf2jcive0k; path=/
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Pardot-Rsp:
+      - 16/98/163
+      P3p:
+      - CP="NOI DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT", policyref="/w3c/p3p.xml"
+      Vary:
+      - Accept-Encoding,User-Agent
+      Content-Length:
+      - '124'
+      Content-Type:
+      - text/xml; charset=utf-8
+      X-Pardot-Route:
+      - 4fa993bd92d83a19a78f84f1ddd264ce
+      Server:
+      - PardotServer
+      X-Pardot-Lb:
+      - a083ac6fc1531fb089982e922db67d20
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <rsp stat="fail" version="1.0">
+           <err code="77">Invalid prospect fid</err>
+        </rsp>
+  recorded_at: Thu, 25 Feb 2021 22:38:00 GMT
+recorded_with: VCR 6.0.0
