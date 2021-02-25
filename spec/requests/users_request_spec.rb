@@ -19,6 +19,11 @@ RSpec.describe 'Users', type: :request, vcr: VCR_OPTS do
     get '/api/v1/users', headers: headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
+
+    expect(JSON.parse(response.body)).to include(hash_including('contact'))
+    expect(JSON.parse(response.body)).to include(hash_including('opportunity'))
+    expect(JSON.parse(response.body)).to include(hash_including('leads'))
+    expect(JSON.parse(response.body)).to include(hash_including('subscriptions'))
   end
 
 end

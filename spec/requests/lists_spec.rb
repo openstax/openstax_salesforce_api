@@ -1,13 +1,17 @@
 require 'rails_helper'
 require 'vcr_helper'
 require 'spec_helper'
+require 'rake'
 
 RSpec.describe 'Lists', type: :request, vcr: VCR_OPTS do
 
   before(:all) do
-    @contact = create_contact
+    @contact = create_contact(salesforce_id: '0036f00003HhsOlAAJ')
 
-    VCR.use_cassette('Pardot/pardot_setup', VCR_OPTS) do
+    VCR.use_cassette('Pardot/lists.yml', VCR_OPTS) do
+      # this records the pardot:update_lists command to cassettes/Pardot/lists.yml, remove this file to rerecord
+      OpenstaxSalesforceApi::Application.load_tasks
+      Rake::Task['pardot:update_lists'].invoke
     end
   end
 
@@ -15,27 +19,11 @@ RSpec.describe 'Lists', type: :request, vcr: VCR_OPTS do
     get '/api/v1/lists'
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
-    expect(JSON.parse(response.body)).to include({ 'description' => 'Monthly updates on OpenStax developments and community perspectives',
-                                                   'id' => '246',
-                                                   'title' => 'OpenStax Newsletter' },
-                                                 { 'description' => 'News about OpenStax Tutor Beta, our adaptive courseware technology',
-                                                   'id' => '6223',
-                                                   'title' => 'OpenStax Tutor Beta' },
-                                                 { 'description' => 'Important information about your OpenStax account',
-                                                   'id' => '6225',
-                                                   'title' => 'Critical Account Information' },
-                                                 { 'description' => 'Learning science research updates and opportunities to be part of a technology pilot',
-                                                   'id' => '6227',
-                                                   'title' => 'Research Updates' },
-                                                 { 'description' => 'Information on how to access additional, book-specific teaching material',
-                                                   'id' => '6229',
-                                                   'title' => 'OER Commons Hub' },
-                                                 { 'description' => 'Information about new or updated textbooks and resources',
-                                                   'id' => '6391',
-                                                   'title' => 'Textbook news and resource updates' },
-                                                 { 'description' => 'OpenStax Tutor Beta adopters ',
-                                                   'id' => '12015',
-                                                   'title' => 'Tutor Tips' })
+
+    # make sure the API response includes the fields we are expecting
+    expect(JSON.parse(response.body)).to include(hash_including('pardot_id'))
+    expect(JSON.parse(response.body)).to include(hash_including('title'))
+    expect(JSON.parse(response.body)).to include(hash_including('description'))
   end
 
   it 'allows a user to unsubscribe from a list' do
@@ -47,5 +35,4 @@ RSpec.describe 'Lists', type: :request, vcr: VCR_OPTS do
     get '/api/v1/lists/subscribe/6391/0036f00003HhsOlAAJ'
     expect(response).to have_http_status(202)
   end
-
 end
