@@ -2,7 +2,63 @@
 http_interactions:
 - request:
     method: post
-    uri: https://pi.pardot.com/api/login/version/3
+    uri: https://pi.pardot.com/api/prospect/version/4/do/read/fid/not-real-id?format=simple
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Pardot api_key=5cecbaf4e75ca23030fa3a2a1ac54023, user_key=<pardot_user_key>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 25 Feb 2021 23:00:11 GMT
+      Set-Cookie:
+      - pardot=5a0613sc4humc1d3ug6dek1rpt; path=/
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Pardot-Rsp:
+      - 16/22/251
+      P3p:
+      - CP="NOI DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT", policyref="/w3c/p3p.xml"
+      Vary:
+      - Accept-Encoding,User-Agent
+      Content-Length:
+      - '130'
+      Content-Type:
+      - text/xml; charset=utf-8
+      X-Pardot-Route:
+      - 4fa993bd92d83a19a78f84f1ddd264ce
+      Server:
+      - PardotServer
+      X-Pardot-Lb:
+      - a083ac6fc1531fb089982e922db67d20
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <rsp stat="fail" version="1.0">
+           <err code="1">Invalid API key or user key</err>
+        </rsp>
+  recorded_at: Thu, 25 Feb 2021 23:00:12 GMT
+- request:
+    method: post
+    uri: https://pi.pardot.com/api/login/version/4
     body:
       encoding: UTF-8
       string: email=<pardot_email_url>&password=<pardot_password_url>&user_key=<pardot_user_key>
@@ -19,9 +75,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 25 Feb 2021 22:37:58 GMT
+      - Thu, 25 Feb 2021 23:00:11 GMT
       Set-Cookie:
-      - pardot=jlifilfme1d65u4tk13nb4ofg1; path=/
+      - pardot=ccrocbhluo9b3sadb23rej590n; path=/
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Cache-Control:
@@ -29,7 +85,7 @@ http_interactions:
       Pragma:
       - no-cache
       X-Pardot-Rsp:
-      - 17/10/152
+      - 16/100/0
       P3p:
       - CP="NOI DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT", policyref="/w3c/p3p.xml"
       Vary:
@@ -43,7 +99,7 @@ http_interactions:
       Server:
       - PardotServer
       X-Pardot-Lb:
-      - a083ac6fc1531fb089982e922db67d20
+      - a5df88223e39cf9fcb783877fed82f24
       Connection:
       - keep-alive
     body:
@@ -54,7 +110,7 @@ http_interactions:
            <api_key>612029395224750ed92be072c8c9fb59</api_key>
            <version>4</version>
         </rsp>
-  recorded_at: Thu, 25 Feb 2021 22:37:59 GMT
+  recorded_at: Thu, 25 Feb 2021 23:00:12 GMT
 - request:
     method: post
     uri: https://pi.pardot.com/api/prospect/version/4/do/read/fid/not-real-id?format=simple
@@ -76,9 +132,9 @@ http_interactions:
       message: Bad Request
     headers:
       Date:
-      - Thu, 25 Feb 2021 22:37:59 GMT
+      - Thu, 25 Feb 2021 23:00:12 GMT
       Set-Cookie:
-      - pardot=clp9vifc18b21c41lf2jcive0k; path=/
+      - pardot=ss0rjidsft6mrr6rrpkaldk9uc; path=/
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Cache-Control:
@@ -86,7 +142,7 @@ http_interactions:
       Pragma:
       - no-cache
       X-Pardot-Rsp:
-      - 16/98/163
+      - 16/99/197
       P3p:
       - CP="NOI DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT", policyref="/w3c/p3p.xml"
       Vary:
@@ -100,7 +156,7 @@ http_interactions:
       Server:
       - PardotServer
       X-Pardot-Lb:
-      - a083ac6fc1531fb089982e922db67d20
+      - a5df88223e39cf9fcb783877fed82f24
       Connection:
       - keep-alive
     body:
@@ -110,5 +166,5 @@ http_interactions:
         <rsp stat="fail" version="1.0">
            <err code="77">Invalid prospect fid</err>
         </rsp>
-  recorded_at: Thu, 25 Feb 2021 22:38:00 GMT
+  recorded_at: Thu, 25 Feb 2021 23:00:13 GMT
 recorded_with: VCR 6.0.0
