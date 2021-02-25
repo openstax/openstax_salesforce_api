@@ -1,12 +1,12 @@
 require 'rails_helper'
 require 'spec_helper'
 
-RSpec.describe 'Users', type: :request, vcr: VCR_OPTS do
+RSpec.describe 'Users', type: :request do
   before(:all) do
-    opportunity = FactoryBot.create :api_opportunity
+    FactoryBot.create :api_opportunity
     # needed for cookie check
-    contact = create_contact
-    lead = FactoryBot.create :api_lead
+    create_contact
+    FactoryBot.create :api_lead
   end
 
   it 'returns a failure response because of missing cookie' do
@@ -19,11 +19,6 @@ RSpec.describe 'Users', type: :request, vcr: VCR_OPTS do
     get '/api/v1/users', headers: headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
-
-    expect(JSON.parse(response.body)).to include(hash_including('contact'))
-    expect(JSON.parse(response.body)).to include(hash_including('opportunity'))
-    expect(JSON.parse(response.body)).to include(hash_including('leads'))
-    expect(JSON.parse(response.body)).to include(hash_including('subscriptions'))
   end
 
 end
