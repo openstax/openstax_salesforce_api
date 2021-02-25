@@ -74,3 +74,4 @@ gem "openstax_auth", github: 'openstax/auth-rails', ref: 'ed2d7da86ca226b9337695
 
 gem 'crack', '0.4.3'
 gem 'httparty'
+gem 'rack-cors'
