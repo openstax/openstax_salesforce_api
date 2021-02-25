@@ -5,7 +5,7 @@ class Contact < ApplicationRecord
   has_many :subscriptions
   has_many :lists, through: :subscriptions
 
-  def get_list_subscriptions
+  def list_subscriptions
     subscriptions = []
     if Subscription.exists?(contact: self)
       Subscription.where(contact: self).each do |subscription|

@@ -5,7 +5,7 @@ class Api::V1::UsersController < ApplicationController
     opportunity = Opportunity.where(os_accounts_id: sso_cookie.dig('sub', 'id'))
     contact = Contact.where(salesforce_id: sso_cookie.dig('sub', 'salesforce_contact_id'))
     lead = Lead.where(os_accounts_id: sso_cookie.dig('sub', 'id'))
-    list_subscriptions = contact.get_list_subscriptions unless contact.nil?
+    list_subscriptions = contact.list_subscriptions unless contact.nil?
 
 
     render json: {
