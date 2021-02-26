@@ -19,12 +19,4 @@ RSpec.describe Contact, type: :model, vcr: VCR_OPTS do
     expect(subscriptions).to be_an_instance_of(Array)
     expect(subscriptions).to_not be_empty
   end
-
-  it 'returns empty array for invalid salesforce id' do
-    contact = create_contact(salesforce_id: 'not-real-id')
-    subscriptions = contact.list_subscriptions
-
-    expect(subscriptions).to be_an_instance_of(Array)
-    expect(subscriptions).to be_empty
-  end
 end

@@ -7,11 +7,13 @@ class Contact < ApplicationRecord
 
   def list_subscriptions
     subscriptions = []
-    if Subscription.exists?(contact: self)
-      Subscription.where(contact: self).each do |subscription|
-        subscriptions.push({ id: subscription.list.pardot_id, title: subscription.list.title, description: subscription.list.description })
-      end
-    else
+    # add all the lists to the subscriptions array, we update subscribed to true below
+    List.all.each do |list|
+      subscriptions.push({ id: list.pardot_id, title: list.title, description: list.description, subscribed: false })
+    end
+
+    unless Subscription.exists?(contact: self)
+      # no subscriptions found locally, let's update from Pardot
       @client = Pardot::Client.client
 
       begin
@@ -19,8 +21,6 @@ class Contact < ApplicationRecord
 
         @prospect['lists']['list_subscription'].each do |subscription|
           next unless subscription['list']['is_public'] == 'true'
-
-          subscriptions.push({ id: subscription['list']['id'], title: subscription['list']['name'], description: subscription['list']['description'] })
 
           list = List.where(pardot_id: subscription['list']['id']).first_or_create do |plist|
             plist.title = subscription['list']['title']
@@ -33,6 +33,13 @@ class Contact < ApplicationRecord
         Rails.logger.info 'No Pardot record for contact: ' + salesforce_id
       end
     end
+
+    Subscription.where(contact: self).each do |subscription|
+      subscriptions.each do |sub|
+        sub[:subscribed] = true if sub[:id] == subscription.list.pardot_id
+      end
+    end
+
     subscriptions
   end
 end
