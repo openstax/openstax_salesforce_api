@@ -1,0 +1,728 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "paths": {
+    "/api/v1/books": {
+      "get": {
+        "summary": "List all Books",
+        "tags": [
+          "Books"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "book",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "salesforce_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "salesforce_id",
+                "name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "books retrieved"
+          }
+        }
+      }
+    },
+    "/api/v1/books/{id}": {
+      "get": {
+        "summary": "Return one book",
+        "tags": [
+          "Books"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "book found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "salesforce_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "salesforce_id",
+                "name"
+              ]
+            }
+          },
+          "404": {
+            "description": "book not found"
+          }
+        }
+      }
+    },
+    "/api/v1/contacts": {
+      "get": {
+        "summary": "List all Contacts",
+        "tags": [
+          "Contacts"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "contact",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "salesforce_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "email_alt": {
+                  "type": "string"
+                },
+                "faculty_confirmed_date": {
+                  "type": "string"
+                },
+                "faculty_verified": {
+                  "type": "string"
+                },
+                "last_modified_at": {
+                  "type": "datetime"
+                },
+                "school_id": {
+                  "type": "string"
+                },
+                "school_type": {
+                  "type": "string"
+                },
+                "send_faculty_verification_to": {
+                  "type": "string"
+                },
+                "all_emails": {
+                  "type": "string"
+                },
+                "confirmed_emails": {
+                  "type": "string"
+                },
+                "adoption_status": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                },
+                "grant_tutor_access": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "salesforce_id",
+                "name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "contacts retrieved"
+          }
+        }
+      }
+    },
+    "/api/v1/contacts/{id}": {
+      "get": {
+        "summary": "Return one contact",
+        "tags": [
+          "Contacts"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "contact found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "salesforce_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "email_alt": {
+                  "type": "string"
+                },
+                "faculty_confirmed_date": {
+                  "type": "string"
+                },
+                "faculty_verified": {
+                  "type": "string"
+                },
+                "last_modified_at": {
+                  "type": "datetime"
+                },
+                "school_id": {
+                  "type": "string"
+                },
+                "school_type": {
+                  "type": "string"
+                },
+                "send_faculty_verification_to": {
+                  "type": "string"
+                },
+                "all_emails": {
+                  "type": "string"
+                },
+                "confirmed_emails": {
+                  "type": "string"
+                },
+                "adoption_status": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                },
+                "grant_tutor_access": {
+                  "type": "boolean"
+                }
+              },
+              "required": [
+                "salesforce_id",
+                "name"
+              ]
+            }
+          },
+          "404": {
+            "description": "contact not found"
+          }
+        }
+      }
+    },
+    "/api/v1/leads": {
+      "get": {
+        "summary": "List all Leads",
+        "tags": [
+          "Leads"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "lead",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "salesforce_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "salutation": {
+                  "type": "string"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "school": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "website": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "newsletter": {
+                  "type": "string"
+                },
+                "newsletter_opt_in": {
+                  "type": "string"
+                },
+                "adoption_status": {
+                  "type": "string"
+                },
+                "num_students": {
+                  "type": "string"
+                },
+                "os_accounts_id": {
+                  "type": "string"
+                },
+                "accounts_uuid": {
+                  "type": "string"
+                },
+                "application_source": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "who_chooses_books": {
+                  "type": "string"
+                },
+                "verification_status": {
+                  "type": "string"
+                },
+                "finalize_educator_signup": {
+                  "type": "boolean"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "salesforce_id",
+                "name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "leads retrieved"
+          }
+        }
+      }
+    },
+    "/api/v1/leads/{id}": {
+      "get": {
+        "summary": "Return one lead",
+        "tags": [
+          "Leads"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "lead found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "salesforce_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "salutation": {
+                  "type": "string"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "school": {
+                  "type": "datetime"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "website": {
+                  "type": "datetime"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "newsletter": {
+                  "type": "string"
+                },
+                "newsletter_opt_in": {
+                  "type": "string"
+                },
+                "adoption_status": {
+                  "type": "string"
+                },
+                "num_students": {
+                  "type": "integer"
+                },
+                "os_accounts_id": {
+                  "type": "string"
+                },
+                "accounts_uuid": {
+                  "type": "string"
+                },
+                "application_source": {
+                  "type": "string"
+                },
+                "role": {
+                  "type": "string"
+                },
+                "who_chooses_books": {
+                  "type": "string"
+                },
+                "verification_status": {
+                  "type": "string"
+                },
+                "finalize_educator_signup": {
+                  "type": "boolean"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "salesforce_id",
+                "name"
+              ]
+            }
+          },
+          "404": {
+            "description": "lead not found"
+          }
+        }
+      }
+    },
+    "/api/v1/lists": {
+      "get": {
+        "summary": "Retrieve all public mailing lists",
+        "tags": [
+          "Lists"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "list",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "pardot_id": {
+                  "type": "string"
+                },
+                "title": {
+                  "type": "string"
+                },
+                "description": {
+                  "type": "string"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "lists retrieved"
+          }
+        }
+      }
+    },
+    "/api/v1/schools": {
+      "get": {
+        "summary": "List all Schools",
+        "tags": [
+          "Schools"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "school",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "salesforce_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "school_type": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "is_kip": {
+                  "type": "boolean"
+                },
+                "is_child_of_kip": {
+                  "type": "boolean"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "salesforce_id",
+                "name",
+                "school_type"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "schools retrieved"
+          }
+        }
+      }
+    },
+    "/api/v1/schools/{id}": {
+      "get": {
+        "summary": "Return one school",
+        "tags": [
+          "Schools"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "school found",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "id": {
+                  "type": "int"
+                },
+                "salesforce_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "school_type": {
+                  "type": "string"
+                },
+                "location": {
+                  "type": "string"
+                },
+                "is_kip": {
+                  "type": "boolean"
+                },
+                "is_child_of_kip": {
+                  "type": "boolean"
+                },
+                "created_at": {
+                  "type": "string"
+                },
+                "updated_at": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "salesforce_id",
+                "name",
+                "school_type"
+              ]
+            }
+          },
+          "404": {
+            "description": "school not found"
+          }
+        }
+      }
+    }
+  },
+  "servers": [
+    {
+      "url": "https://salesforce.openstax.org",
+      "variables": {
+        "defaultHost": {
+          "default": "salesforce.openstax.org"
+        }
+      }
+    }
+  ],
+  "securityDefinitions": {
+    "apiToken": {
+      "description": "OpenStax SSO Cookie needed for API Calls",
+      "type": "apiKey",
+      "name": "HTTP_COOKIE",
+      "in": "header"
+    }
+  }
+}
