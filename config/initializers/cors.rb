@@ -9,22 +9,25 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
   allow do
     origins /(.*\.|)localhost\:?.*/
     resource '*',
-      headers: :any,
-      methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             headers: :any,
+             methods: [:get, :post, :put, :patch, :delete, :options, :head],
+             credentials: true
   end
 
   allow do
     origins /(.*\.|)127.0.0.1\:?.*/
     resource '*',
              headers: :any,
-             methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             methods: [:get, :post, :put, :patch, :delete, :options, :head],
+             credentials: true
   end
 
   allow do
     origins /(.*\.|)openstax\.org/
     resource '*',
              headers: :any,
-             methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             methods: [:get, :post, :put, :patch, :delete, :options, :head],
+             credentials: true
   end
 
   # for testing
@@ -32,6 +35,7 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
     origins 'www.example.com'
     resource '*',
              headers: :any,
-             methods: [:get, :post, :put, :patch, :delete, :options, :head]
+             methods: [:get, :post, :put, :patch, :delete, :options, :head],
+             credentials: true
   end
 end
