@@ -32,13 +32,13 @@ module OpenstaxSalesforceApi
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
-    config.api_only = true
+    config.api_only = false
     config.sso = config_for(:sso)
 
     Rails.application.config.hosts = [
       "localhost",
       "127.0.0.1",
-      "/(.*\.|)openstax\.org/",
+      /(.*\.|)openstax\.org/,
       "www.example.com" #for testing
     ]
   end

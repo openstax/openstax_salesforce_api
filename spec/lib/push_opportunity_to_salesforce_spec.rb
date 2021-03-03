@@ -16,35 +16,35 @@ RSpec.describe PushOpportunityToSalesforce, type: :routine, vcr: VCR_OPTS do
         'id':'',
         'term_year':'2019 - 20 Spring',
         'book_name':'Behavior',
-        'contact_id':'0037X00000cVyfIQAS',
+        'contact_id':'0032F00000cfZQhQAM',
         'new':true,
         'close_date':'2020-09-02',
         'type':"New Business",
         'number_of_students': 123,
         'class_start_date':'2020-09-02',
-        'school_id':'001U0000007gj6EIAQ',
+        'school_id':'0012F00000iPxe9QAC',
         'book_id':'zA9gH44q',
         'name': 'OS Salesforce API'
     }
     push_opportunity = PushOpportunityToSalesforce.new
     opportunity = push_opportunity.create_new_opportunity(opportunity_data)
 
-    expect(opportunity.school_id).to eq '001U0000007gj6EIAQ'
+    expect(opportunity.school_id).to eq '0012F00000iPxe9QAC'
 
   end
 
   it 'update existing opportunity' do
 
     opportunity_data = {
-        'salesforce_id':'0067X000007eQMeQAM',
+        'salesforce_id':'0062F00000BG056QAD',
         'book_name':'Behavior',
-        'contact_id':'0037X00000cVyfIQAS',
+        'contact_id':'0032F00000cfZQhQAM',
         'new':false,
         'close_date':'2020-09-02',
         'type':"Renewal - Verified",
         'number_of_students': 123,
         'class_start_date':'2020-09-02',
-        'school_id':'001U0000007gj6EIAQ',
+        'school_id': '0012F00000iPxe9QAC',
         'book_id':'zA9gH44q',
         'name': 'OS Salesforce API Update'
     }
@@ -52,7 +52,7 @@ RSpec.describe PushOpportunityToSalesforce, type: :routine, vcr: VCR_OPTS do
     push_opportunity = PushOpportunityToSalesforce.new
     opportunity = push_opportunity.update_opportunity(opportunity_data)
 
-    expect(opportunity.id).to eq '0067X000007eQMeQAM'
+    expect(opportunity.id).to eq '0062F00000BG056QAD'
 
   end
 
