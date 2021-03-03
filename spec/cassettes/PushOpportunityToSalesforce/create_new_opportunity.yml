@@ -5,8 +5,8 @@ http_interactions:
     uri: "<salesforce_instance_url>/services/data/v37.0/sobjects/Opportunity"
     body:
       encoding: UTF-8
-      string: '{"Contact__c":"0037X00000cVyfIQAS","CloseDate":"2020-09-02","StageName":"Confirmed
-        Adoption (1)","Type":"New Business","Students__c":123,"Student_No_Status__c":"Reported","Time_Period__c":"Year","Class_Start_Date__c":"2020-09-02","AccountId":"001U0000007gj6EIAQ","LeadSource":"openstax-salesforce-api","Name":"new
+      string: '{"Contact__c":"0032F00000cfZQhQAM","CloseDate":"2020-09-02","StageName":"Confirmed
+        Adoption (1)","Type":"New Business","Students__c":123,"Student_No_Status__c":"Reported","Time_Period__c":"Year","Class_Start_Date__c":"2020-09-02","AccountId":"0012F00000iPxe9QAC","LeadSource":"openstax-salesforce-api","Name":"new
         from openstax-salesforce-api"}'
     headers:
       User-Agent:
@@ -25,32 +25,22 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 23 Sep 2020 20:18:14 GMT
+      - Thu, 28 Jan 2021 17:42:19 GMT
       Strict-Transport-Security:
       - max-age=31536002; includeSubDomains
-      Public-Key-Pins-Report-Only:
-      - pin-sha256="9n0izTnSRF+W4W4JTq51avSXkWhQB8duS2bxVLfzXsY="; pin-sha256="5kJvNEMw0KjrCAu7eXY5HZdvyCS13BbA0VJG1RSP91w=";
-        pin-sha256="njN4rRG+22dNXAi+yb8e3UMypgzPUPHlv4+foULwl1g="; max-age=86400;
-        includeSubDomains; report-uri="https://a.forcesslreports.com/hpkp-report/00D7X000000Gyi2m";
       Expect-Ct:
-      - max-age=86400, report-uri="https://a.forcesslreports.com/Expect-CT-report/00D7X000000Gyi2m"
+      - max-age=86400, report-uri="https://a.forcesslreports.com/Expect-CT-report/00D2F000000F0GLm"
       X-Robots-Tag:
       - none
-      X-B3-Traceid:
-      - 3984a76169480b32
-      X-B3-Spanid:
-      - 3984a76169480b32
-      X-B3-Sampled:
-      - '0'
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Set-Cookie:
-      - BrowserId=6Mfzk_3ZEeqmug1Ud_CKLQ; domain=.salesforce.com; path=/; expires=Thu,
-        23-Sep-2021 20:18:14 GMT; Max-Age=31536000
+      - BrowserId=K4IM3WGQEeuCXq-PWMzyKg; domain=.salesforce.com; path=/; expires=Fri,
+        28-Jan-2022 17:42:19 GMT; Max-Age=31536000
       Sforce-Limit-Info:
-      - api-usage=879/5000000
+      - api-usage=1676/5000000
       Location:
-      - "/services/data/v37.0/sobjects/Opportunity/0067X000007enhgQAA"
+      - "/services/data/v37.0/sobjects/Opportunity/0062F00000CCPtMQAX"
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -59,6 +49,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"0067X000007enhgQAA","success":true,"errors":[]}'
-  recorded_at: Wed, 23 Sep 2020 20:18:15 GMT
+      string: '{"id":"0062F00000CCPtMQAX","success":true,"errors":[]}'
+  recorded_at: Thu, 28 Jan 2021 17:42:27 GMT
 recorded_with: VCR 6.0.0
