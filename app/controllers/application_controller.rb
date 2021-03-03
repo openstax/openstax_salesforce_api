@@ -18,7 +18,7 @@ class ApplicationController < ActionController::API
     OpenStax::Auth::Strategy2.decrypt(request)
   end
 
-  def return_bad_request(sf_object)
-    render json: { request_object: sf_object.to_s, status: 'bad request' }.to_json, status: :bad_request
+  def return_bad_request(object)
+    render json: { request_object: object.to_s, status: 'bad request' }.to_json, status: :bad_request
   end
 end

@@ -10,6 +10,7 @@ class Api::V1::ListsController < ApplicationController
   def subscribe
     list = List.find_by(pardot_id: params[:list_id])
     contact = Contact.find_by(salesforce_id: params[:salesforce_id])
+    return return_bad_request('Subscription') if list.blank? || contact.blank?
 
     Subscription.create(list: list, contact: contact)
     SubscribeToListJob.perform_later(list.pardot_id, contact.salesforce_id)
@@ -20,6 +21,7 @@ class Api::V1::ListsController < ApplicationController
   def unsubscribe
     list = List.find_by(pardot_id: params[:list_id])
     contact = Contact.find_by(salesforce_id: params[:salesforce_id])
+    return return_bad_request('Subscription') if list.blank? || contact.blank?
 
     Subscription.delete_by(list: list, contact: contact)
     UnsubscribeToListJob.perform_later(list.pardot_id, contact.salesforce_id)

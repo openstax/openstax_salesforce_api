@@ -119,6 +119,9 @@
         "consumes": [
           "application/json"
         ],
+        "produces": [
+          "application/json"
+        ],
         "security": [
           {
             "apiToken": [
@@ -198,6 +201,9 @@
         "responses": {
           "200": {
             "description": "contacts retrieved"
+          },
+          "400": {
+            "description": "invalid sso cookie"
           }
         }
       }
@@ -209,6 +215,9 @@
           "Contacts"
         ],
         "consumes": [
+          "application/json"
+        ],
+        "produces": [
           "application/json"
         ],
         "security": [
@@ -295,6 +304,9 @@
           },
           "404": {
             "description": "contact not found"
+          },
+          "400": {
+            "description": "invalid sso cookie"
           }
         }
       }
@@ -572,6 +584,72 @@
         }
       }
     },
+    "/api/v1/lists/subscribe/{list_id}/{salesforce_contact_id}": {
+      "parameters": [
+        {
+          "name": "list_id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "salesforce_contact_id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Subscribes to a mailing list",
+        "tags": [
+          "Lists"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "subscribe successful"
+          },
+          "400": {
+            "description": "subscribe unsuccessful"
+          }
+        }
+      }
+    },
+    "/api/v1/lists/unsubscribe/{list_id}/{salesforce_contact_id}": {
+      "parameters": [
+        {
+          "name": "list_id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        },
+        {
+          "name": "salesforce_contact_id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Unsubscribes from a mailing list",
+        "tags": [
+          "Lists"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "responses": {
+          "202": {
+            "description": "unsubscribe successful"
+          },
+          "400": {
+            "description": "unsubscribe unsuccessful"
+          }
+        }
+      }
+    },
     "/api/v1/schools": {
       "get": {
         "summary": "List all Schools",
@@ -702,6 +780,52 @@
           },
           "404": {
             "description": "school not found"
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "summary": "Get user info",
+        "tags": [
+          "Users"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "opportunity": {
+                  "type": "array"
+                },
+                "contact": {
+                  "type": "array"
+                },
+                "lead": {
+                  "type": "array"
+                },
+                "subscriptions": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user retrieved"
           }
         }
       }

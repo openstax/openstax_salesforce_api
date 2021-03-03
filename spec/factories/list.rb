@@ -2,7 +2,7 @@ require 'faker'
 
 FactoryBot.define do
   factory :list, class: List do
-    pardot_id { Faker::Number.number(digits: 5) }
+    pardot_id { '6391' }
     title { Faker::Lorem.word }
     description { Faker::Lorem.sentences(number: 1) }
   end
