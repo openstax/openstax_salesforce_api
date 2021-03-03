@@ -31,3 +31,9 @@ def create_contact(salesforce_id: '003U000001i3mWpIAI')
   contact = FactoryBot.create(:api_contact, salesforce_id: salesforce_id) if contact.blank?
   contact
 end
+
+def create_token_header
+  application =  FactoryBot.create(:application)
+  token = FactoryBot.create(:doorkeeper_access_token, application: application)
+  { 'Authorization': 'Bearer ' + token.token }
+end
