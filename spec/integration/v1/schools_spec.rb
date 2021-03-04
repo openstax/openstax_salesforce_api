@@ -1,11 +1,13 @@
 require 'swagger_helper'
 require 'rails_helper'
+require 'spec_helper'
 
 RSpec.describe 'api/v1/schools', type: :request do
 
   before(:all) do
     @school = FactoryBot.create :api_school
     @contact = create_contact
+    @token_header = create_token_header
   end
 
   path '/api/v1/schools' do
@@ -31,6 +33,21 @@ RSpec.describe 'api/v1/schools', type: :request do
       response '200', 'schools retrieved' do
         let(:school) { @school }
         let(:HTTP_COOKIE) { oxa_cookie }
+
+        run_test!
+      end
+
+      response '200', 'schools retrieved with token' do
+        let(:school) { @school }
+        let(:headers) { @token_header }
+        let(:HTTP_COOKIE) { }
+
+        run_test!
+      end
+
+      response '401', 'no cookie' do
+        let(:school) { @school }
+        let(:HTTP_COOKIE) { }
 
         run_test!
       end

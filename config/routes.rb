@@ -11,7 +11,6 @@ Rails.application.routes.draw do
       defaults: {format: :json}
     ) do
 
-      get 'schools/search', to: 'schools#search'
       resources :schools
       resources :books
       resources :campaigns

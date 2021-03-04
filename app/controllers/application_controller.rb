@@ -11,6 +11,7 @@ class ApplicationController < ActionController::Base
     decrypt = OpenStax::Auth::Strategy2.decrypt(request)
     cookie_id = decrypt.dig('sub', 'salesforce_contact_id')
     if cookie_id.blank?
+      puts '***Cookie id is blank'
       doorkeeper_authorize!
     else
       contact = Contact.where(salesforce_id: cookie_id)
@@ -33,6 +34,7 @@ class ApplicationController < ActionController::Base
   end
 
   def doorkeeper_unauthorized_render_options(error: nil)
+    puts '*** doorkeeper error: ' + error.inspect
     { json: { error: "Not authorized" } }
   end
 end
