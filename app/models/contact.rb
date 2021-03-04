@@ -1,5 +1,3 @@
-require 'pardot/pardot'
-
 class Contact < ApplicationRecord
   validates :salesforce_id, presence: true, uniqueness: true
   has_many :subscriptions

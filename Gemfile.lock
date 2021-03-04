@@ -337,6 +337,9 @@ GEM
     rswag-ui (2.4.0)
       actionpack (>= 3.1, < 7.0)
       railties (>= 3.1, < 7.0)
+    ruby-pardot (1.4.0)
+      crack (= 0.4.3)
+      httparty (= 0.18.1)
     ruby2_keywords (0.0.4)
     safe_yaml (1.0.5)
     simplecov (0.21.2)
@@ -393,13 +396,11 @@ DEPENDENCIES
   bootsnap (>= 1.4.2)
   byebug
   codecov
-  crack (= 0.4.3)
   database_cleaner-active_record
   doorkeeper (~> 5.4)
   dotenv-rails
   factory_bot_rails
   faker
-  httparty
   listen (~> 3.2)
   openstax_accounts (~> 9.6.1)
   openstax_api (~> 9.4.0)
@@ -413,6 +414,7 @@ DEPENDENCIES
   rspec-rails
   rswag
   rswag-specs
+  ruby-pardot
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)

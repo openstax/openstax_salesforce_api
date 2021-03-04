@@ -5,9 +5,7 @@ class UpdateListsFromPardot
   end
 
   def start_update
-    @client = Pardot::Client.client
-
-    lists = @client.lists.query(is_greater_than: 0)
+    lists = Pardot.client.lists.query(is_greater_than: 0)
     lists['list'].each do |list|
       next unless list['is_public'] == 'true'
 

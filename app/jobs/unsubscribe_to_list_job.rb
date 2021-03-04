@@ -2,7 +2,7 @@ class UnsubscribeToListJob < ApplicationJob
   queue_as :default
 
   def perform(list_pardot_id, contact_salesforce_id)
-    @client = Pardot::Client.client
+    @client = Pardot.client
 
     prospect_id = salesforce_to_prospect(contact_salesforce_id)
 
