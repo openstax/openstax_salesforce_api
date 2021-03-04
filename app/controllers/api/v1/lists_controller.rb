@@ -1,4 +1,7 @@
 class Api::V1::ListsController < ApplicationController
+  before_action :get_list, only: %i[subscribe unsubscribe]
+  before_action :get_contact, only: %i[subscribe unsubscribe]
+
   # /api/v1/lists/
   # returns all available public lists from Pardot
   def available_lists
@@ -8,23 +11,25 @@ class Api::V1::ListsController < ApplicationController
 
   # /api/v1/lists/subscribe/<list_id>/<salesforce_id>
   def subscribe
-    list = List.find_by(pardot_id: params[:list_id])
-    contact = Contact.find_by(salesforce_id: params[:salesforce_id])
-    return return_bad_request('Subscription') if list.blank? || contact.blank?
-
-    Subscription.create(list: list, contact: contact)
-    SubscribeToListJob.perform_later(list.pardot_id, contact.salesforce_id)
+    @subscription = Subscription.create(list: @list, contact: @contact, status: :pending)
+    SubscribeToListJob.perform_later(@subscription.id)
     head :accepted
   end
 
   # /api/v1/lists/unsubscribe/<list_id>/<salesforce_id>
   def unsubscribe
-    list = List.find_by(pardot_id: params[:list_id])
-    contact = Contact.find_by(salesforce_id: params[:salesforce_id])
-    return return_bad_request('Subscription') if list.blank? || contact.blank?
-
-    Subscription.delete_by(list: list, contact: contact)
-    UnsubscribeToListJob.perform_later(list.pardot_id, contact.salesforce_id)
+    @subscription = Subscription.find_by!(list: @list, contact: @contact)
+    UnsubscribeFromListJob.perform_later(@subscription.id)
     head :accepted
+  end
+
+  protected
+
+  def get_list
+    @list = List.find_by!(pardot_id: params[:list_id])
+  end
+
+  def get_contact
+    @contact = Contact.find_by!(salesforce_id: params[:salesforce_id])
   end
 end
