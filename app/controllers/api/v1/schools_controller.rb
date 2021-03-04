@@ -28,4 +28,12 @@ class Api::V1::SchoolsController < ApplicationController
       }, status: :not_found
     end
   end
+
+  # GET schools/search?partial=schoo
+  def search
+    if params['partial'].present?
+      @schools = School.search(params['partial'])
+      render json: @schools
+    end
+  end
 end
