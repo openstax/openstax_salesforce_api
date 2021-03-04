@@ -48,4 +48,14 @@ RSpec.describe 'Schools', type: :request do
     expect(response).to have_http_status(:success)
   end
 
+  it 'returns a successful response for school by partial name' do
+    get '/api/v1/schools/search?partial=' + @school.name[0..2], :headers => @headers
+    expect(response).to have_http_status(:success)
+  end
+
+  it 'returns a successful response for school by partial name with token' do
+    get '/api/v1/schools/search?partial=' + @school.name[0..2], :headers => @token_header
+    expect(response).to have_http_status(:success)
+  end
+
 end
