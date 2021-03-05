@@ -12,7 +12,7 @@ class Contact < ApplicationRecord
 
     unless Subscription.exists?(contact: self)
       # no subscriptions found locally, let's update from Pardot
-      @client = Pardot::Client.client
+      @client = Pardot.client
 
       begin
         @prospect = @client.prospects.read_by_fid(salesforce_id)

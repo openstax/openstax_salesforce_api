@@ -26,4 +26,10 @@ module Pardot
     pardot_secrets = Rails.application.secrets.pardot
     @client ||= Pardot::Client.new pardot_secrets[:email], pardot_secrets[:password], pardot_secrets[:user_key]
   end
+
+  def self.salesforce_to_prospect(salesforce_id)
+    client.prospects.read_by_fid(salesforce_id)['id']
+  rescue Pardot::ResponseError
+    nil
+  end
 end

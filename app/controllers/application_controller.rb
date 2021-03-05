@@ -30,5 +30,12 @@ class ApplicationController < ActionController::Base
 
   def doorkeeper_unauthorized_render_options(error: nil)
     { json: { error: "Not authorized" } }
+
+  protected
+
+  def sso_cookie_field(field_name)
+    cookie_data.dig('sub', field_name)
+  end
+
   end
 end

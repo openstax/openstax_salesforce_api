@@ -43,3 +43,9 @@ module OpenstaxSalesforceApi
     ]
   end
 end
+
+Sentry.init do |config|
+  config.dsn = 'https://b53391e012224f759ca7e71a8f2322c9@o484761.ingest.sentry.io/5662313'
+  config.breadcrumbs_logger = [:active_support_logger]
+  config.traces_sample_rate = 1.0
+end

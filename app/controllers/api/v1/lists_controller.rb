@@ -4,19 +4,19 @@ class Api::V1::ListsController < ApplicationController
 
   # /api/v1/lists/
   # returns all available public lists from Pardot
-  def available_lists
+  def index
     lists = List.all
     render json: lists.to_json
   end
 
-  # /api/v1/lists/subscribe/<list_id>/<salesforce_id>
+  # /api/v1/lists/<list_id>/subscribe/
   def subscribe
     @subscription = Subscription.create(list: @list, contact: @contact, status: :pending)
     SubscribeToListJob.perform_later(@subscription.id)
     head :accepted
   end
 
-  # /api/v1/lists/unsubscribe/<list_id>/<salesforce_id>
+  # /api/v1/lists/<list_id>/unsubscribe/
   def unsubscribe
     @subscription = Subscription.find_by!(list: @list, contact: @contact)
     UnsubscribeFromListJob.perform_later(@subscription.id)
@@ -30,6 +30,6 @@ class Api::V1::ListsController < ApplicationController
   end
 
   def get_contact
-    @contact = Contact.find_by!(salesforce_id: params[:salesforce_id])
+    @contact = Contact.find_by!(salesforce_id: sso_cookie_field('salesforce_contact_id'))
   end
 end
