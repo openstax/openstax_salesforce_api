@@ -11,8 +11,12 @@ class Api::V1::ListsController < ApplicationController
 
   # /api/v1/lists/<list_id>/subscribe/
   def subscribe
-    @subscription = Subscription.create(list: @list, contact: @contact, status: :pending)
-    SubscribeToListJob.perform_later(@subscription.id)
+    @subscription = Subscription.where(list: @list, contact: @contact).first_or_initialize
+
+    if @subscription.new_record?
+      @subscription.pending!
+      SubscribeToListJob.perform_later(@subscription.id)
+    end
     head :accepted
   end
 

@@ -4,6 +4,13 @@ module Pardot
       class ListMemberships
         def create(list_id, prospect_id, params = {})
           post "/do/create/list_id/#{list_id}/prospect_id/#{prospect_id}", params
+        rescue Pardot::ResponseError => e
+          case e.message
+          when 'That prospect is already a member of that list. Update the membership instead.'
+            nil
+          else
+            raise
+          end
         end
 
         def delete(list_id, prospect_id, params = {})
@@ -29,7 +36,5 @@ module Pardot
 
   def self.salesforce_to_prospect(salesforce_id)
     client.prospects.read_by_fid(salesforce_id)['id']
-  rescue Pardot::ResponseError
-    nil
   end
 end
