@@ -1,7 +1,7 @@
 require 'push_opportunity_to_salesforce'
 
-class Api::V1::OpportunitiesController < ApplicationController
-  before_action -> { verify_sso_cookie('Opportunity') }
+class Api::V1::OpportunitiesController < Api::V1::BaseController
+  before_action -> { verify_sso_cookie }
 
   # GET /opportunities
   def index

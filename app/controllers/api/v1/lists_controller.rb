@@ -1,4 +1,4 @@
-class Api::V1::ListsController < ApplicationController
+class Api::V1::ListsController < Api::V1::BaseController
   before_action :get_list, only: %i[subscribe unsubscribe]
   before_action :get_contact, only: %i[subscribe unsubscribe]
 

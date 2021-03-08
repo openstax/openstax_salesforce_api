@@ -1,5 +1,5 @@
-class Api::V1::SchoolsController < ApplicationController
-  before_action -> { verify_sso_cookie('School') }
+class Api::V1::SchoolsController < Api::V1::BaseController
+  before_action -> { verify_sso_cookie }
 
   # GET /schools?name=school-name
   def index

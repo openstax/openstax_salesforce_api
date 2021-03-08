@@ -3,7 +3,13 @@ require 'openstax/auth/strategy_2'
 class ApplicationController < ActionController::Base
   USE_SSO = Rails.configuration.sso['use_sso'].freeze
 
-  def verify_sso_cookie(sf_object)
+  def doorkeeper_unauthorized_render_options(error: nil)
+    { json: { error: 'Not authorized' } }
+  end
+
+  protected
+
+  def verify_sso_cookie
     return unless USE_SSO
 
     decrypt = OpenStax::Auth::Strategy2.decrypt(request)
@@ -13,7 +19,7 @@ class ApplicationController < ActionController::Base
     else
       contact = Contact.where(salesforce_id: cookie_id)
       if contact.blank?
-        return_bad_request(sf_object) unless doorkeeper_token
+        return_bad_request unless doorkeeper_token
       end
     end
   end
@@ -21,21 +27,15 @@ class ApplicationController < ActionController::Base
   def cookie_data
     return unless USE_SSO
 
-    OpenStax::Auth::Strategy2.decrypt(request)
+    @cookie_data ||= OpenStax::Auth::Strategy2.decrypt(request)
   end
-
-  def return_bad_request(object)
-    render json: { request_object: object.to_s, status: 'bad request' }.to_json, status: :bad_request
-  end
-
-  def doorkeeper_unauthorized_render_options(error: nil)
-    { json: { error: "Not authorized" } }
-
-  protected
 
   def sso_cookie_field(field_name)
     cookie_data.dig('sub', field_name)
   end
 
+  def return_bad_request
+    raise BadRequest
   end
+
 end

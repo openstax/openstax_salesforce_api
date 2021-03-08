@@ -1,5 +1,5 @@
-class Api::V1::LeadsController < ApplicationController
-  before_action -> { verify_sso_cookie('Lead') }
+class Api::V1::LeadsController < Api::V1::BaseController
+  before_action -> { verify_sso_cookie }
 
   # GET /leads
   def index
