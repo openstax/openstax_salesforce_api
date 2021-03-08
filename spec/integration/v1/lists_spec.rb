@@ -38,9 +38,8 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
     end
   end
 
-  path '/api/v1/lists/subscribe/{list_id}/{salesforce_contact_id}' do
+  path '/api/v1/lists/{list_id}/subscribe' do
     parameter name: :list_id, in: :path, type: :string
-    parameter name: :salesforce_contact_id, in: :path, type: :string
 
     get 'Subscribes to a mailing list' do
       tags 'Lists'
@@ -48,21 +47,13 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
 
       response '202', 'subscribe successful' do
         let(:list_id) { @list.pardot_id }
-        let(:salesforce_contact_id) { @contact.salesforce_id }
-        run_test!
-      end
-
-      response '400', 'subscribe unsuccessful' do
-        let(:list_id) { 'invalid' }
-        let(:salesforce_contact_id) { 'invalid' }
         run_test!
       end
     end
   end
 
-  path '/api/v1/lists/unsubscribe/{list_id}/{salesforce_contact_id}' do
+  path '/api/v1/lists/{list_id}/unsubscribe' do
     parameter name: :list_id, in: :path, type: :string
-    parameter name: :salesforce_contact_id, in: :path, type: :string
 
     get 'Unsubscribes from a mailing list' do
       tags 'Lists'
@@ -70,13 +61,6 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
 
       response '202', 'unsubscribe successful' do
         let(:list_id) { @list.pardot_id }
-        let(:salesforce_contact_id) { @contact.salesforce_id }
-        run_test!
-      end
-
-      response '400', 'unsubscribe unsuccessful' do
-        let(:list_id) { 'invalid' }
-        let(:salesforce_contact_id) { 'invalid' }
         run_test!
       end
     end
