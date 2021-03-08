@@ -37,19 +37,27 @@ RSpec.describe 'api/v1/schools', type: :request do
         run_test!
       end
 
-      response '200', 'schools retrieved with token' do
-        let(:school) { @school }
-        let(:headers) { @token_header }
-        let(:HTTP_COOKIE) { }
-
-        run_test!
-      end
-
       response '401', 'no cookie' do
         let(:school) { @school }
         let(:HTTP_COOKIE) { }
 
         run_test!
+      end
+
+      get 'Return school by name' do
+        tags 'Schools'
+        consumes 'application/json'
+        security [apiToken: []]
+
+        parameter name: :name, in: :query, type: :string
+
+        response '200', 'school found' do
+
+          let(:name) { @school.name }
+          let(:HTTP_COOKIE) { oxa_cookie }
+
+          run_test!
+        end
       end
     end
   end
