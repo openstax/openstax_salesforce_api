@@ -44,9 +44,11 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
     get 'Subscribes to a mailing list' do
       tags 'Lists'
       consumes 'application/json'
+      security [apiToken: []]
 
       response '202', 'subscribe successful' do
         let(:list_id) { @list.pardot_id }
+        let(:HTTP_COOKIE) { oxa_cookie }
         run_test!
       end
     end
@@ -58,9 +60,11 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
     get 'Unsubscribes from a mailing list' do
       tags 'Lists'
       consumes 'application/json'
+      security [apiToken: []]
 
       response '202', 'unsubscribe successful' do
         let(:list_id) { @list.pardot_id }
+        let(:HTTP_COOKIE) { oxa_cookie }
         run_test!
       end
     end
