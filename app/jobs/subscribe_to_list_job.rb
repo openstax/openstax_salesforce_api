@@ -8,6 +8,6 @@ class SubscribeToListJob < ApplicationJob
     return unless prospect_id = Pardot.salesforce_to_prospect(subscription.contact.salesforce_id)
 
     @client.list_memberships.create(subscription.list.pardot_id, prospect_id)
-    subscription.status = 'complete'
+    subscription.complete!
   end
 end
