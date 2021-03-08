@@ -29,10 +29,12 @@ class ApplicationController < ActionController::Base
   end
 
   def return_bad_request(sf_object)
+    Rails.logger.warn('[APP CONTROLLER] Bad request for ' + sf_object)
     render :json => {:request_object => "#{sf_object}", :status => "bad request"}.to_json, :status => :bad_request
   end
 
   def doorkeeper_unauthorized_render_options(error: nil)
+    Rails.logger.warn('[APP CONTROLLER] Doorkeeper Not Authorized')
     { json: { error: "Not authorized" } }
   end
 end
