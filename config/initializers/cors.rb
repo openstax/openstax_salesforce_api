@@ -38,4 +38,12 @@ Rails.application.config.middleware.insert_before 0, Rack::Cors do
              methods: [:get, :post, :put, :patch, :delete, :options, :head],
              credentials: true
   end
+
+  # for ping from healthcheck
+  allow do
+    origins '*'
+    resource '/ping',
+             headers: :any,
+             methods: :any
+  end
 end
