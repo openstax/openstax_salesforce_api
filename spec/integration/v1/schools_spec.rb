@@ -7,7 +7,7 @@ RSpec.describe 'api/v1/schools', type: :request do
   before(:all) do
     @school = FactoryBot.create :api_school
     @contact = create_contact
-    @token_header = create_token_header
+    @dk_token = doorkeeper_token
   end
 
   path '/api/v1/schools' do
@@ -97,6 +97,53 @@ RSpec.describe 'api/v1/schools', type: :request do
         let(:HTTP_COOKIE) { oxa_cookie }
         
         run_test!
+      end
+    end
+  end
+
+  path '/api/v1/schools' do
+    before(:each) do |example|
+      puts '***Request:' + example.metadata[:request].inspect
+    end
+
+    get 'List all Schools using token' do
+      tags 'Schools'
+      consumes 'application/json'
+      security [oauth2: []]
+
+      parameter name: :school, in: :body, schema: {
+        type: :object,
+        properties: {
+          salesforce_id: { type: :string },
+          name: { type: :string },
+          school_type: { type: :string },
+          location: { type: :string },
+          is_kip: { type: :boolean },
+          is_child_of_kip: { type: :boolean },
+          created_at: { type: :string },
+          updated_at: { type: :string }
+        },
+        required: %w[salesforce_id name school_type]
+      }
+
+      response '200', 'schools retrieved' do
+        let(:school) { @school }
+        let(:HTTP_COOKIE) { }
+        let(:Authorization) { "Bearer #{@dk_token}" }
+
+        run_test! do |response|
+          puts '*** Real Response Code: ' + response.code.to_s
+        end
+      end
+
+      response '401', 'no token' do
+        let(:school) { @school }
+        let(:HTTP_COOKIE) { }
+        let(:Authorization) { }
+
+        run_test! do |response|
+          puts '*** 401 Real Response Code: ' + response.code.to_s
+        end
       end
     end
   end
