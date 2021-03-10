@@ -25,7 +25,7 @@ gem 'will_paginate', '~> 3.1.0'
 gem 'bootsnap', '>= 1.4.2', require: false
 
 # Gives 200 OK from /ping
-gem 'openstax_healthcheck'
+gem 'openstax_healthcheck', '~> 1.0.0'
 
 # For installing secrets on deploy
 gem 'aws-sdk-ssm'

@@ -224,7 +224,7 @@ GEM
       roar
       roar-rails
       uber
-    openstax_healthcheck (0.0.3)
+    openstax_healthcheck (1.0.0)
       rails (>= 3.0)
     openstax_salesforce (4.9.0)
       openstax_active_force
@@ -396,7 +396,7 @@ DEPENDENCIES
   openstax_accounts (~> 9.6.1)
   openstax_api (~> 9.4.0)
   openstax_auth!
-  openstax_healthcheck
+  openstax_healthcheck (~> 1.0.0)
   openstax_salesforce (~> 4.9, >= 4.9.0)
   pg (>= 0.18, < 2.0)
   puma (~> 4.1)
