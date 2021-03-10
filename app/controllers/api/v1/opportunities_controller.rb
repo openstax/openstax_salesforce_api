@@ -2,6 +2,7 @@ require 'push_opportunity_to_salesforce'
 
 class Api::V1::OpportunitiesController < Api::V1::BaseController
   before_action -> { verify_sso_cookie }
+  protect_from_forgery with: :null_session
 
   # GET /opportunities
   def index
