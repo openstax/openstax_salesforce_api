@@ -26,6 +26,8 @@ class Contact < ApplicationRecord
           end
 
           Subscription.create list: list, contact: self
+        rescue TypeError => e
+          puts e
         end
       rescue Pardot::ResponseError
         Rails.logger.info 'No Pardot record for contact: ' + salesforce_id
