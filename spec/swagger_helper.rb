@@ -38,12 +38,6 @@ RSpec.configure do |config|
           type: :apiKey,
           name: 'HTTP_COOKIE',
           in: :header
-        },
-        doorkeeperToken: {
-          description: 'Doorkeeper OAuth token for API Calls',
-          type: :oauth2,
-          name: 'Authorization',
-          in: :header
         }
       }
     }
