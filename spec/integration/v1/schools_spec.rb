@@ -86,6 +86,14 @@ RSpec.describe 'api/v1/schools', type: :request do
 
         run_test!
       end
+
+      response '200', 'school found using partial name' do
+
+        let(:name) { @school.name[0..2] }
+        let(:HTTP_COOKIE) { oxa_cookie }
+
+        run_test!
+      end
     end
 
     get 'Return school by name using token' do
@@ -104,6 +112,13 @@ RSpec.describe 'api/v1/schools', type: :request do
 
       response '200', 'school found' do
         let(:name) { @school.name }
+        let(:Authorization) { "Bearer #{@dk_token}" }
+
+        run_test!
+      end
+
+      response '200', 'school found using partial name' do
+        let(:name) { @school.name[0..2] }
         let(:Authorization) { "Bearer #{@dk_token}" }
 
         run_test!
