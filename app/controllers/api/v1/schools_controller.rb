@@ -3,17 +3,11 @@ class Api::V1::SchoolsController < Api::V1::BaseController
 
   # GET /schools?name=school-name
   def index
-    if params['name'].present?
-        @schools = School.where(name: params['name'])
-        if @schools.blank?
-          render json: {
-              name: params['name'],
-              error: 'School not found'
-          }, status: :not_found and return
-        end
-    else
-      @schools = School.paginate(page: params[:page], per_page: 20)
-    end
+    @schools = if params['name'].present?
+                 School.search(params['name'])
+               else
+                 School.paginate(page: params[:page], per_page: 20)
+               end
     render json: @schools
   end
 
