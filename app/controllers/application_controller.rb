@@ -12,8 +12,7 @@ class ApplicationController < ActionController::Base
   def verify_sso_cookie
     return unless USE_SSO
 
-    decrypt = OpenStax::Auth::Strategy2.decrypt(request)
-    cookie_id = decrypt.dig('sub', 'salesforce_contact_id')
+    cookie_id = sso_cookie_field('salesforce_contact_id')
     if cookie_id.blank?
       doorkeeper_authorize!
     else
