@@ -202,7 +202,7 @@
           "200": {
             "description": "contacts retrieved"
           },
-          "400": {
+          "401": {
             "description": "invalid sso cookie"
           }
         }
@@ -305,7 +305,7 @@
           "404": {
             "description": "contact not found"
           },
-          "400": {
+          "401": {
             "description": "invalid sso cookie"
           }
         }
@@ -584,16 +584,10 @@
         }
       }
     },
-    "/api/v1/lists/subscribe/{list_id}/{salesforce_contact_id}": {
+    "/api/v1/lists/{list_id}/subscribe": {
       "parameters": [
         {
           "name": "list_id",
-          "in": "path",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "salesforce_contact_id",
           "in": "path",
           "type": "string",
           "required": true
@@ -607,26 +601,24 @@
         "consumes": [
           "application/json"
         ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
         "responses": {
           "202": {
             "description": "subscribe successful"
-          },
-          "400": {
-            "description": "subscribe unsuccessful"
           }
         }
       }
     },
-    "/api/v1/lists/unsubscribe/{list_id}/{salesforce_contact_id}": {
+    "/api/v1/lists/{list_id}/unsubscribe": {
       "parameters": [
         {
           "name": "list_id",
-          "in": "path",
-          "type": "string",
-          "required": true
-        },
-        {
-          "name": "salesforce_contact_id",
           "in": "path",
           "type": "string",
           "required": true
@@ -640,19 +632,23 @@
         "consumes": [
           "application/json"
         ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
         "responses": {
           "202": {
             "description": "unsubscribe successful"
-          },
-          "400": {
-            "description": "unsubscribe unsuccessful"
           }
         }
       }
     },
     "/api/v1/schools": {
       "get": {
-        "summary": "List all Schools",
+        "summary": "Return school by name using token",
         "tags": [
           "Schools"
         ],
@@ -668,54 +664,31 @@
         ],
         "parameters": [
           {
-            "name": "school",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "salesforce_id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "school_type": {
-                  "type": "string"
-                },
-                "location": {
-                  "type": "string"
-                },
-                "is_kip": {
-                  "type": "boolean"
-                },
-                "is_child_of_kip": {
-                  "type": "boolean"
-                },
-                "created_at": {
-                  "type": "string"
-                },
-                "updated_at": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "salesforce_id",
-                "name",
-                "school_type"
-              ]
-            }
+            "name": "name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "type": "string",
+            "name": "Authorization",
+            "required": true,
+            "description": "Doorkeeper token"
           }
         ],
         "responses": {
           "200": {
-            "description": "schools retrieved"
+            "description": "school found using partial name"
+          },
+          "401": {
+            "description": "no token"
           }
         }
       }
     },
     "/api/v1/schools/{id}": {
       "get": {
-        "summary": "Return one school",
+        "summary": "Return one school using token",
         "tags": [
           "Schools"
         ],
@@ -735,6 +708,13 @@
             "in": "path",
             "type": "string",
             "required": true
+          },
+          {
+            "in": "header",
+            "type": "string",
+            "name": "Authorization",
+            "required": true,
+            "description": "Doorkeeper token"
           }
         ],
         "responses": {
@@ -826,6 +806,9 @@
         "responses": {
           "200": {
             "description": "user retrieved"
+          },
+          "401": {
+            "description": "invalid cookie"
           }
         }
       }

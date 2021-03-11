@@ -6,7 +6,7 @@ RSpec.describe "Leads", type: :request do
   before(:all) do
     @lead = FactoryBot.create :api_lead
     # needed for cookie check
-    contact = create_contact
+    contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')
     @headers = set_cookie
     @token_header = create_token_header
   end

@@ -19,7 +19,7 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 10 Mar 2021 22:24:01 GMT
+      - Thu, 11 Mar 2021 21:36:15 GMT
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
@@ -29,8 +29,8 @@ http_interactions:
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Set-Cookie:
-      - BrowserId=ULyBfoHvEeucPN9rGFaqbQ; domain=.salesforce.com; path=/; expires=Thu,
-        10-Mar-2022 22:24:01 GMT; Max-Age=31536000
+      - BrowserId=zsC1c4KxEeu1UnFuox8fjw; domain=.salesforce.com; path=/; expires=Fri,
+        11-Mar-2022 21:36:15 GMT; Max-Age=31536000
       Expires:
       - Thu, 01 Jan 1970 00:00:00 GMT
       X-Readonlymode:
@@ -43,8 +43,8 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"00D0v0000005T7U!AQQAQI2aDKNek0bWnoi38WbeRgJ4RdMJ2KJnrQAl7Gp.RndSaFmOjwfPtFkNcChp0tOyY5wuexGi2A_2FrkvLDjCKVmQek7e","instance_url":"https://openstax--tutorqa.my.salesforce.com","id":"https://test.salesforce.com/id/00D0v0000005T7UEAU/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1615415041810","signature":"c32uzh89FoZdTLBG3fvI2tvIKEpngrRWwE+36BwKiP8="}'
-  recorded_at: Wed, 10 Mar 2021 22:24:01 GMT
+      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1615498575803","signature":"kMhm/S6ojG9A8NuFfF3i8CJTqA0YxtrtSO1d6E0dvHw="}'
+  recorded_at: Thu, 11 Mar 2021 21:36:15 GMT
 - request:
     method: get
     uri: https://pi.demo.pardot.com/api/list/version/4/do/query?format=simple&is_greater_than=0
@@ -53,7 +53,7 @@ http_interactions:
       string: ''
     headers:
       Authorization:
-      - Bearer 00D0v0000005T7U!AQQAQI2aDKNek0bWnoi38WbeRgJ4RdMJ2KJnrQAl7Gp.RndSaFmOjwfPtFkNcChp0tOyY5wuexGi2A_2FrkvLDjCKVmQek7e
+      - Bearer <salesforce_access_token>
       Pardot-Business-Unit-Id:
       - 0Uv0v0000004C9mCAE
       Accept-Encoding:
@@ -68,9 +68,9 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Wed, 10 Mar 2021 22:24:02 GMT
+      - Thu, 11 Mar 2021 21:36:16 GMT
       Set-Cookie:
-      - pardot=t7pr8ougvjstko2j11bqnljbsu; path=/
+      - pardot=9tcuj4a32hk62n4jv0s1kl110m; path=/
       Expires:
       - Thu, 19 Nov 1981 08:52:00 GMT
       Cache-Control:
@@ -78,7 +78,7 @@ http_interactions:
       Pragma:
       - no-cache
       X-Pardot-Rsp:
-      - 25/13/203
+      - 25/78/160
       P3p:
       - CP="NOI DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT", policyref="/w3c/p3p.xml"
       Vary:
@@ -159,5 +159,52 @@ http_interactions:
               </list>
            </result>
         </rsp>
-  recorded_at: Wed, 10 Mar 2021 22:24:02 GMT
+  recorded_at: Thu, 11 Mar 2021 21:36:16 GMT
+- request:
+    method: post
+    uri: https://test.salesforce.com/services/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password_url><salesforce_security_token>
+    headers:
+      User-Agent:
+      - Faraday v1.3.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 11 Mar 2021 21:36:16 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=z3dakYKxEeu1r9nEefrhWQ; domain=.salesforce.com; path=/; expires=Fri,
+        11-Mar-2022 21:36:16 GMT; Max-Age=31536000
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Readonlymode:
+      - 'false'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1615498576807","signature":"<salesforce_signature>"}'
+  recorded_at: Thu, 11 Mar 2021 21:36:16 GMT
 recorded_with: VCR 6.0.0

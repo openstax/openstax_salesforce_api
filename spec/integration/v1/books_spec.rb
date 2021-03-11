@@ -3,7 +3,7 @@ require 'swagger_helper'
 RSpec.describe 'api/v1/books', type: :request do
   before(:all) do
     @book = FactoryBot.create :api_book
-    @contact = create_contact
+    @contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')
   end
 
   path '/api/v1/books' do
