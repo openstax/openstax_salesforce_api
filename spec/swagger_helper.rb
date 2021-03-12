@@ -56,7 +56,6 @@ RSpec.configure do |config|
   def doorkeeper_token
     application =  FactoryBot.create(:application)
     token = FactoryBot.create(:doorkeeper_access_token, application: application)
-    puts '***Token: ' + token.token
     token.token
   end
 end
