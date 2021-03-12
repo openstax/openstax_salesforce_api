@@ -10,6 +10,12 @@ class ApplicationController < ActionController::Base
 
     decrypt = OpenStax::Auth::Strategy2.decrypt(request)
     cookie_id = decrypt.dig('sub', 'salesforce_contact_id')
+    cookie_uuid = decrypt.dig('sub', 'uuid')
+    puts '***UUID: ' + cookie_uuid.inspect
+    results = OpenStax::Accounts::Api.search_accounts("uuid:0c490f72-ef4c-4716-ba7a-f3bea3987900", options = {})
+    contact_id = results.body
+    puts '*** Contact Id: ' + contact_id.inspect
+    puts '***Results: ' + results.inspect
     if cookie_id.blank?
       doorkeeper_authorize!
     else
