@@ -157,7 +157,7 @@ RSpec.describe 'api/v1/schools', type: :request do
                },
                required: %w[salesforce_id name school_type]
 
-        let(:id) { @school.id }
+        let(:id) { @school.salesforce_id }
         let(:HTTP_COOKIE) { oxa_cookie }
 
         run_test!
@@ -186,7 +186,7 @@ RSpec.describe 'api/v1/schools', type: :request do
                 })
 
       response '200', 'school found' do
-        let(:id) { @school.id }
+        let(:id) { @school.salesforce_id }
         let(:Authorization) { "Bearer #{@dk_token}" }
 
         run_test!
