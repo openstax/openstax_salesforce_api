@@ -31,6 +31,8 @@ class ApplicationController < ActionController::Base
 
   def sso_cookie_field(field_name)
     cookie_data.dig('sub', field_name)
+  rescue NoMethodError
+    nil
   end
 
   def return_bad_request
