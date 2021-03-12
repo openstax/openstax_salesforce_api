@@ -39,7 +39,7 @@ RSpec.describe 'api/v1/schools', type: :request do
 
       response '401', 'no cookie' do
         let(:school) { @school }
-        let(:HTTP_COOKIE) { 'invalid' }
+        let(:HTTP_COOKIE) {}
 
         run_test!
       end
@@ -64,7 +64,7 @@ RSpec.describe 'api/v1/schools', type: :request do
       end
 
       response '401', 'no token' do
-        let(:Authorization) { }
+        let(:Authorization) {}
 
         run_test!
       end
@@ -126,7 +126,7 @@ RSpec.describe 'api/v1/schools', type: :request do
 
       response '401', 'no token' do
         let(:name) { @school.name }
-        let(:Authorization) { }
+        let(:Authorization) {}
 
         run_test!
       end
@@ -166,7 +166,7 @@ RSpec.describe 'api/v1/schools', type: :request do
       response '404', 'school not found' do
         let(:id) { 'invalid' }
         let(:HTTP_COOKIE) { oxa_cookie }
-        
+
         run_test!
       end
     end
