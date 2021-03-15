@@ -11,13 +11,7 @@ class Api::V1::SchoolsController < Api::V1::BaseController
 
   # GET /schools/:id
   def show
-    begin
-      @school = School.find(params[:id])
-      render json: @school, status: :ok
-    rescue ActiveRecord::RecordNotFound => e
-      render json: {
-          error: e.to_s
-      }, status: :not_found
-    end
+    @school = School.find_by!(salesforce_id: params[:id])
+    render json: @school, status: :ok
   end
 end
