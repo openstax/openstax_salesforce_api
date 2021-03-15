@@ -1,4 +1,6 @@
 class Api::V1::BaseController < ApplicationController
+  before_action :verify_sso_cookie
+
   include RescueFromUnlessLocal
 
   rescue_from_unless_local StandardError, send_to_sentry: true do |ex|

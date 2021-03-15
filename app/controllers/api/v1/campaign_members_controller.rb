@@ -1,6 +1,4 @@
 class Api::V1::CampaignMembersController < Api::V1::BaseController
-  before_action -> { verify_sso_cookie }
-
   # GET /campaign_members
   def index
     @campaign_members = CampaignMember.paginate(page: params[:page], per_page: 20)

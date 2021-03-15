@@ -1,6 +1,4 @@
 class Api::V1::LeadsController < Api::V1::BaseController
-  before_action -> { verify_sso_cookie }
-
   # GET /leads
   def index
     if params['os_accounts_id'].present?

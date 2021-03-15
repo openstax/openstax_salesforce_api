@@ -1,6 +1,4 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  before_action -> { verify_sso_cookie }
-
   def index
     opportunities = Opportunity.where(os_accounts_id: sso_cookie_field('id'))
     contact = Contact.find_by(salesforce_id: sso_cookie_field('salesforce_contact_id'))

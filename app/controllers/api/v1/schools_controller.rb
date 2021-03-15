@@ -1,6 +1,4 @@
 class Api::V1::SchoolsController < Api::V1::BaseController
-  before_action -> { verify_sso_cookie }
-
   # GET /schools?name=school-name
   def index
     @schools = if params['name'].present?
