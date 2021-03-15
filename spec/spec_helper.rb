@@ -27,9 +27,8 @@ def set_cookie
 end
 
 def create_contact(salesforce_id: '003U000001i3mWpIAI')
-  contact = Contact.where(salesforce_id: salesforce_id).first
-  contact = FactoryBot.create(:api_contact, salesforce_id: salesforce_id) if contact.blank?
-  contact
+  Contact.where(salesforce_id: salesforce_id).first ||
+    FactoryBot.create(:api_contact, salesforce_id: salesforce_id)
 end
 
 def create_token_header
