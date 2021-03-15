@@ -18,7 +18,7 @@ class ApplicationController < ActionController::Base
     else
       contact = Contact.where(salesforce_id: cookie_id)
       if contact.blank?
-        return_bad_request unless doorkeeper_token
+        raise BadRequest unless doorkeeper_token
       end
     end
   end
@@ -33,10 +33,6 @@ class ApplicationController < ActionController::Base
     cookie_data.dig('sub', field_name)
   rescue NoMethodError
     nil
-  end
-
-  def return_bad_request
-    raise BadRequest
   end
 
 end
