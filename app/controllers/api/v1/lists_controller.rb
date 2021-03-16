@@ -15,7 +15,7 @@ class Api::V1::ListsController < Api::V1::BaseController
 
     if @subscription.new_record?
       @subscription.pending!
-      @list.subscribe(@subscription.id)
+      @list.subscribe(@subscription)
     end
     head :accepted
   end
@@ -23,7 +23,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   # /api/v1/lists/<list_id>/unsubscribe/
   def unsubscribe
     @subscription = Subscription.find_by!(list: @list, contact: @contact)
-    @list.unsubscribe(@subscription.id)
+    @list.unsubscribe(@subscription)
     head :accepted
   end
 
