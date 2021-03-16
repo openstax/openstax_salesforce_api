@@ -34,10 +34,11 @@ module Pardot
   end
 
   def self.client
-    pardot_secrets = Rails.application.secrets.pardot
-    salesforce_client = Salesforce::Client.new
-
-    @client ||= Pardot::Client.new nil, nil, nil, 4, salesforce_client.access_token, pardot_secrets[:business_unit_id]
+    @client ||= begin
+        pardot_secrets = Rails.application.secrets.pardot
+        salesforce_client = Salesforce::Client.new
+        Pardot::Client.new nil, nil, nil, 4, salesforce_client.access_token, pardot_secrets[:business_unit_id]
+      end
   end
 
   def self.salesforce_to_prospect(salesforce_id)
