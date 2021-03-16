@@ -22,6 +22,7 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
     get 'Retrieve all public mailing lists' do
       tags 'Lists'
       consumes 'application/json'
+      security [apiToken: []]
       parameter name: :list, in: :body, schema: {
         type: :object,
         properties: {
@@ -33,7 +34,8 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
         }
       }
       response '200', 'lists retrieved' do
-        let(:list) { @list }
+        let(:HTTP_COOKIE) { oxa_cookie }
+	      let(:list) { @list }
         run_test! do |response|
           expect(JSON.parse(response.body)).to include(hash_including('pardot_id'))
           expect(JSON.parse(response.body)).to include(hash_including('title'))
