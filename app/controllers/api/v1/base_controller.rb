@@ -15,7 +15,18 @@ class Api::V1::BaseController < ApplicationController
     render json: { error: 'Bad request' }, status: :bad_request
   end
 
-  rescue_from NotAuthorized do |ex|
-    head :unauthorized
+  rescue_from_unless_local NotAuthorized do |ex|
+    render json: { error: ex.message }, status: :unauthorized
   end
+
+  protected
+
+  def current_contact
+    @contact = Contact.find_by(salesforce_id: sso_cookie_field('salesforce_contact_id'))
+  end
+
+  def current_contact!
+    current_contact || raise CannotFindUserContact
+  end
+
 end

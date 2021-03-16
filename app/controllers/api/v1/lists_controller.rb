@@ -1,6 +1,5 @@
 class Api::V1::ListsController < Api::V1::BaseController
   before_action :get_list, only: %i[subscribe unsubscribe]
-  before_action :get_contact, only: %i[subscribe unsubscribe]
 
   # /api/v1/lists/
   # returns all available public lists from Pardot
@@ -11,7 +10,7 @@ class Api::V1::ListsController < Api::V1::BaseController
 
   # /api/v1/lists/<list_id>/subscribe/
   def subscribe
-    @subscription = Subscription.where(list: @list, contact: @contact).first_or_initialize
+    @subscription = Subscription.where(list: @list, contact: current_contact!).first_or_initialize
 
     if @subscription.new_record?
       @subscription.pending_create!
@@ -22,7 +21,7 @@ class Api::V1::ListsController < Api::V1::BaseController
 
   # /api/v1/lists/<list_id>/unsubscribe/
   def unsubscribe
-    @subscription = Subscription.find_by!(list: @list, contact: @contact)
+    @subscription = Subscription.find_by!(list: @list, contact: current_contact!)
     @subscription.pending_destroy!
     UnsubscribeFromListJob.perform_later(@subscription)
     head :accepted
@@ -32,9 +31,5 @@ class Api::V1::ListsController < Api::V1::BaseController
 
   def get_list
     @list = List.find_by!(pardot_id: params[:list_id])
-  end
-
-  def get_contact
-    @contact = Contact.find_by!(salesforce_id: sso_cookie_field('salesforce_contact_id'))
   end
 end
