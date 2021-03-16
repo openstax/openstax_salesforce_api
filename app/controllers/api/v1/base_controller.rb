@@ -26,7 +26,7 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def current_contact!
-    current_contact || raise CannotFindUserContact
+    current_contact || raise(CannotFindUserContact)
   end
 
 end
