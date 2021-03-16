@@ -13,7 +13,7 @@ module Salesforce
                                         client_id: salesforce_secrets[:consumer_key],
                                         client_secret: salesforce_secrets[:consumer_secret],
                                         host: salesforce_secrets[:login_domain],
-                                        api_version: '41.0')
+                                        api_version: '51.0')
       @client = salesforce_client.authenticate!
     end
 
