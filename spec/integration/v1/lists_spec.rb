@@ -17,6 +17,10 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
     end
   end
 
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
+
   path '/api/v1/lists' do
     get 'Retrieve all public mailing lists' do
       tags 'Lists'
