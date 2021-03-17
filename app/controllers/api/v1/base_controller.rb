@@ -19,6 +19,10 @@ class Api::V1::BaseController < ApplicationController
     render json: { error: ex.message }, status: :unauthorized
   end
 
+  rescue_from_unless_local ActiveRecord::RecordNotFound, send_to_sentry: false do |ex|
+    render json: { error: ex.message }, status: :not_found
+  end
+
   protected
 
   def current_contact
