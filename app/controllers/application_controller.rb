@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   USE_SSO = Rails.configuration.sso['use_sso'].freeze
 
   def doorkeeper_unauthorized_render_options(error: nil)
-    { json: { error: 'Not authorized' } }
+    raise NotAuthorized
   end
 
   protected
@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
 
     if sso_cookie_field('salesforce_contact_id').blank?
       doorkeeper_authorize!
-      raise BadRequest unless doorkeeper_token
+      raise NotAuthorized unless doorkeeper_token
     end
   end
 
