@@ -1,9 +1,12 @@
+require 'sidekiq/web'
+
 Rails.application.routes.draw do
   root 'login#new'
   use_doorkeeper
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   mount OpenStax::Accounts::Engine, at: '/accounts'
+  mount Sidekiq::Web => '/jobs'
   namespace :api do
     api_version(
       module: 'V1',

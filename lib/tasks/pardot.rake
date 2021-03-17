@@ -7,4 +7,10 @@ namespace :pardot do
     UpdateListsFromPardot.call
     puts 'update_lists task: completed'
   end
+
+  desc 'Sync subscriptions with Pardot'
+  task 'sync_subscriptions' => :environment do
+    puts 'subscription sync started in background'
+    SyncPardotProspectsAndSubscriptionsJob.perform_later
+  end
 end

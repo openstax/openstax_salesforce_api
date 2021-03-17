@@ -21,6 +21,7 @@ gem 'rspec-rails'
 gem 'rswag'
 gem 'ruby-pardot'
 gem 'sentry-ruby'
+gem 'sidekiq'
 gem 'versionist'
 gem 'will_paginate', '~> 3.1.0'
 
