@@ -12,14 +12,9 @@ class ApplicationController < ActionController::Base
   def verify_sso_cookie
     return unless USE_SSO
 
-    cookie_id = sso_cookie_field('salesforce_contact_id')
-    if cookie_id.blank?
+    if sso_cookie_field('salesforce_contact_id').blank?
       doorkeeper_authorize!
-    else
-      contact = Contact.where(salesforce_id: cookie_id)
-      if contact.blank?
-        raise BadRequest unless doorkeeper_token
-      end
+      raise BadRequest unless doorkeeper_token
     end
   end
 
@@ -30,9 +25,7 @@ class ApplicationController < ActionController::Base
   end
 
   def sso_cookie_field(field_name)
-    cookie_data.dig('sub', field_name)
-  rescue NoMethodError
-    nil
+    cookie_data&.dig('sub', field_name)
   end
 
 end
