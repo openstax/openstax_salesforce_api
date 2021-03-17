@@ -3,6 +3,10 @@ require 'swagger_helper'
 require 'vcr_helper'
 
 RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
+
   before(:all) do
     @list = FactoryBot.create :list
     @contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')

@@ -3,6 +3,9 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe 'api/v1/schools', type: :request do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
 
   before(:all) do
     @school = FactoryBot.create :api_school

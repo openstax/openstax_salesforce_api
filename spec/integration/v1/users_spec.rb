@@ -3,6 +3,10 @@ require 'vcr_helper'
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
+  
   before(:all) do
     @opportunity = FactoryBot.create :api_opportunity
     @lead = FactoryBot.create :api_lead
