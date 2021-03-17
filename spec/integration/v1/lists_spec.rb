@@ -14,10 +14,6 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
     VCR.use_cassette('Pardot/lists.yml', record: :none,
                                          allow_unused_http_interactions: true,
                                          match_requests_on: %i[method]) do
-      OpenstaxSalesforceApi::Application.load_tasks
-      Rake::Task['pardot:update_lists'].invoke
-
-
     end
   end
 
