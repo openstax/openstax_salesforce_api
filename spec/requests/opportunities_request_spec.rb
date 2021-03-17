@@ -3,6 +3,9 @@ require 'vcr_helper'
 require 'spec_helper'
 
 RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
 
   before(:all) do
     @opportunity = FactoryBot.create :api_opportunity

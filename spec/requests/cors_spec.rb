@@ -1,6 +1,10 @@
 require "rails_helper"
 
 RSpec.describe "CORS", type: :request do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
+
   it "allows the request" do
     headers = { "HTTP_ORIGIN" => "http://www.example.com" }
     post "/api/v1/opportunities", :headers => headers

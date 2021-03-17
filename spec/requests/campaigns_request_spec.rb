@@ -2,6 +2,9 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe "Campaigns", type: :request do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
 
   before(:all) do
     @campaign = FactoryBot.create :api_campaign
