@@ -20,6 +20,10 @@ RSpec.configure do |config|
   # config.profile_examples = 10
 
   #config.order = :random
+
+  config.before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
 end
 
 def set_cookie
@@ -32,7 +36,7 @@ def create_contact(salesforce_id: '003U000001i3mWpIAI')
 end
 
 def create_token_header
-  application =  FactoryBot.create(:application)
+  application = FactoryBot.create(:application)
   token = FactoryBot.create(:doorkeeper_access_token, application: application)
   { 'Authorization': 'Bearer ' + token.token }
 end
