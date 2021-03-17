@@ -4,18 +4,15 @@ class Contact < ApplicationRecord
   has_many :lists, through: :subscriptions
 
   def list_subscriptions
-    subscriptions = []
+    @list_subscriptions = []
     # add all the lists to the subscriptions array, we update subscribed to true below
+    # this reduces calls to the API by providing all available lists in the users API
     List.all.each do |list|
-      subscriptions.push({ id: list.pardot_id, title: list.title, description: list.description, subscribed: false })
+      @list_subscriptions.push({ id: list.pardot_id,
+                                 title: list.title,
+                                 description: list.description,
+                                 subscribed: subscriptions.any? { |subscription| subscription.list == list } })
     end
-
-    Subscription.where(contact: self).each do |subscription|
-      subscriptions.each do |sub|
-        sub[:subscribed] = true if sub[:id] == subscription.list.pardot_id
-      end
-    end
-
-    subscriptions
+    @list_subscriptions
   end
 end
