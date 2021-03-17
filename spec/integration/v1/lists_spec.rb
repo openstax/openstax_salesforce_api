@@ -13,8 +13,7 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
       OpenstaxSalesforceApi::Application.load_tasks
       Rake::Task['pardot:update_lists'].invoke
 
-      @proxy = SalesforceProxy.new
-      @proxy.setup_cassette
+
     end
   end
 
@@ -35,7 +34,7 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
       }
       response '200', 'lists retrieved' do
         let(:HTTP_COOKIE) { oxa_cookie }
-	      let(:list) { @list }
+        let(:list) { @list }
         run_test! do |response|
           expect(JSON.parse(response.body)).to include(hash_including('pardot_id'))
           expect(JSON.parse(response.body)).to include(hash_including('title'))
@@ -58,6 +57,12 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
         let(:HTTP_COOKIE) { oxa_cookie }
         run_test!
       end
+
+      response '404', 'contact not found' do
+        let(:list_id) { @list.pardot_id }
+        let(:HTTP_COOKIE) { invalid_user_cookie }
+        run_test!
+      end
     end
   end
 
@@ -74,6 +79,12 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
 
         let(:list_id) { @list.pardot_id }
         let(:HTTP_COOKIE) { oxa_cookie }
+        run_test!
+      end
+
+      response '404', 'contact not found' do
+        let(:list_id) { @list.pardot_id }
+        let(:HTTP_COOKIE) { invalid_user_cookie }
         run_test!
       end
     end

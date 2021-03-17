@@ -7,8 +7,8 @@ class Api::V1::BaseController < ApplicationController
     render json: { error: ex.message }, status: 500
   end
 
-  rescue_from_unless_local CannotFindUserContact, send_to_sentry: true do |ex|
-    render json: { error: 'Cannot find Salesforce User' }, status: 404
+  rescue_from_unless_local CannotFindUserContact, send_to_sentry: false do |ex|
+    render json: { error: 'Cannot find Salesforce User' }, status: :not_found
   end
 
   rescue_from_unless_local BadRequest, send_to_sentry: true do |ex|
