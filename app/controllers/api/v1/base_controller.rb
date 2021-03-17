@@ -1,5 +1,5 @@
 class Api::V1::BaseController < ApplicationController
-  before_action :verify_sso_cookie
+  before_action :authorized_for_api
 
   include RescueFromUnlessLocal
 
@@ -32,5 +32,4 @@ class Api::V1::BaseController < ApplicationController
   def current_contact!
     current_contact || raise(CannotFindUserContact)
   end
-
 end

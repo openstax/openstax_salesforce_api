@@ -20,10 +20,6 @@ RSpec.configure do |config|
   # config.profile_examples = 10
 
   #config.order = :random
-
-  config.before do
-    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
-  end
 end
 
 def set_cookie

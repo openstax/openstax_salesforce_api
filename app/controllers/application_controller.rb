@@ -1,7 +1,6 @@
 require 'openstax/auth/strategy_2'
 
 class ApplicationController < ActionController::Base
-  USE_SSO = Rails.configuration.sso['use_sso'].freeze
 
   def doorkeeper_unauthorized_render_options(error: nil)
     raise NotAuthorized
@@ -9,8 +8,11 @@ class ApplicationController < ActionController::Base
 
   protected
 
-  def verify_sso_cookie
-    return unless USE_SSO
+  def authorized_for_api
+    # this bypasses using the sso cookie or doorkeeper for local development
+    # comment this line out to use production-like auth in development
+    # which will require a local accounts install for setting the cookie
+    !Rails.env.development?
 
     if sso_cookie_field('salesforce_contact_id').blank?
       doorkeeper_authorize!
@@ -18,14 +20,12 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def cookie_data
-    return unless USE_SSO
-
-    @cookie_data ||= OpenStax::Auth::Strategy2.decrypt(request)
+  def sso_cookie
+    @sso_cookie ||= OpenStax::Auth::Strategy2.decrypt(request)
   end
 
   def sso_cookie_field(field_name)
-    cookie_data&.dig('sub', field_name)
+    sso_cookie&.dig('sub', field_name)
   end
 
 end
