@@ -1,5 +1,5 @@
 class SyncPardotProspectsAndSubscriptionsJob < ApplicationJob
-  queue_as :large_jobs
+  queue_as :default
   sidekiq_options retry: 2
 
   def perform()

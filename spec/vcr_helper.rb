@@ -60,5 +60,6 @@ end
 
 VCR_OPTS = {
   record: ENV.fetch('VCR_OPTS_RECORD', :none).to_sym, # This should default to :none
+  record: ENV.fetch('VCR_OPTS_RECORD', :new_episodes).to_sym, # This should default to :none
   allow_unused_http_interactions: true
 }.freeze
