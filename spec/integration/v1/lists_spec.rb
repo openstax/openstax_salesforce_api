@@ -56,7 +56,13 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
       response '202', 'subscribe successful' do
         let(:list_id) { @list.pardot_id }
         let(:HTTP_COOKIE) { oxa_cookie }
-        run_test!
+
+        run_test! do |response|
+          expect(response).to have_http_status(:accepted)
+
+          @subscription = Subscription.where(list: @list, contact: @contact)
+          expect(@subscription.exists?).to eq(true)
+        end
       end
 
       response '404', 'contact not found' do
