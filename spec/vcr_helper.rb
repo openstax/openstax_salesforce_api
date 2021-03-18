@@ -52,6 +52,13 @@ VCR.configure do |c|
     consumer_secret
   ).each { |salesforce_secret_name| c.filter_secret(['salesforce', salesforce_secret_name]) }
 
+  %w(
+    openstax_application_id
+    openstax_application_secret
+    openstax_accounts_url
+    openstax_enable_stubbing
+  ).each { |oauth_secret_name| c.filter_secret(['oauth', oauth_secret_name]) }
+
 end
 
 VCR_OPTS = {

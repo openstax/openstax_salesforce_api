@@ -9,7 +9,7 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
     @contact = create_contact
     @lead = FactoryBot.create :api_lead
     @opportunity = FactoryBot.create :api_lead
-    VCR.use_cassette('UsersController/sf_setup', VCR_OPTS) do
+    VCR.use_cassette('UsersController/users', VCR_OPTS) do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette
     end
