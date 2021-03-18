@@ -43,8 +43,11 @@ module Pardot
 
   def self.salesforce_to_prospect(salesforce_id)
     client.prospects.read_by_fid(salesforce_id)['id']
-  rescue Pardot::ResponseError
-    nil
+  rescue Pardot::ResponseError => e
+    case e.message
+    when 'Invalid prospect fid'
+      raise CannotFindProspect
+    end
   end
 
 end

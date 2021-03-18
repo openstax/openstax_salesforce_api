@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
     # which will require a local accounts install for setting the cookie
     !Rails.env.development?
 
-    if sso_cookie_field('salesforce_contact_id').blank?
+    if sso_cookie_field('uuid').blank?
       doorkeeper_authorize!
       raise NotAuthorized unless doorkeeper_token
     end
