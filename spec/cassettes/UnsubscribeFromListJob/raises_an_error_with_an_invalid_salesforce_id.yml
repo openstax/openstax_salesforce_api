@@ -1,0 +1,61 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pi.demo.pardot.com/api/prospect/version/4/do/read/fid/0030v00000XxX0xXXX?format=simple
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <salesforce_access_token>
+      Pardot-Business-Unit-Id:
+      - 0Uv0v0000004C9mCAE
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Thu, 18 Mar 2021 20:07:37 GMT
+      Set-Cookie:
+      - pardot=7qlm36no6kuqdaqfg738dgqda8; path=/
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Pardot-Rsp:
+      - 25/15/252
+      P3p:
+      - CP="NOI DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT", policyref="/w3c/p3p.xml"
+      Vary:
+      - Accept-Encoding,User-Agent
+      Content-Length:
+      - '124'
+      Content-Type:
+      - text/xml; charset=utf-8
+      X-Pardot-Route:
+      - 4fa993bd92d83a19a78f84f1ddd264ce
+      Server:
+      - PardotServer
+      X-Pardot-Lb:
+      - 81ef3179da45557cd28f9ba13d8805bd
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <rsp stat="fail" version="1.0">
+           <err code="77">Invalid prospect fid</err>
+        </rsp>
+  recorded_at: Thu, 18 Mar 2021 20:07:37 GMT
+recorded_with: VCR 6.0.0

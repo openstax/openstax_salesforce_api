@@ -7,7 +7,6 @@ RSpec.describe SubscribeToListJob, type: :job, vcr: VCR_OPTS do
   before(:all) do
     @valid_list = FactoryBot.create :list, pardot_id: 5355
     @valid_contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')
-    @valid_subscription = FactoryBot.create :subscription, contact: @valid_contact, list: @valid_list
 
     @invalid_prospect_list = FactoryBot.create :list, pardot_id: 0
     @invalid_prospect_contact = create_contact(salesforce_id: '0030v00000XxX0xXXX')
