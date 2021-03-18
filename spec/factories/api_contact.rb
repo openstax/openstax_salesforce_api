@@ -1,7 +1,7 @@
 require 'faker'
 
 FactoryBot.define do
-  factory :api_contact, class: Contact do
+  factory :api_contact, class: Contact, aliases: [:contact] do
     salesforce_id {Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3)}
     name {Faker::Name.name }
     first_name { Faker::Name.first_name }

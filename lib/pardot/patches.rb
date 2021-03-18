@@ -43,6 +43,8 @@ module Pardot
 
   def self.salesforce_to_prospect(salesforce_id)
     client.prospects.read_by_fid(salesforce_id)['id']
+  rescue Pardot::ResponseError
+    nil
   end
 
 end

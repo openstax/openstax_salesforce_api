@@ -35,15 +35,15 @@ end
 
 group :test do
   gem 'codecov', require: false
+  gem 'rspec-sidekiq'
   gem 'simplecov', require: false
 end
 
 group :development, :test do
-  gem 'listen', '~> 3.2'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'database_cleaner-active_record'
   gem 'factory_bot_rails'
   gem 'faker'
+  gem 'listen', '~> 3.2'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 end

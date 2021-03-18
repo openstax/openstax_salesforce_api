@@ -325,6 +325,9 @@ GEM
       rspec-expectations (~> 3.10)
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
+    rspec-sidekiq (3.1.0)
+      rspec-core (~> 3.0, >= 3.0.0)
+      sidekiq (>= 2.4.0)
     rspec-support (3.10.2)
     rswag (2.4.0)
       rswag-api (= 2.4.0)
@@ -426,6 +429,7 @@ DEPENDENCIES
   rails (~> 6.0.3, >= 6.0.3.2)
   restforce (~> 5.0.5)
   rspec-rails
+  rspec-sidekiq
   rswag
   rswag-specs
   ruby-pardot

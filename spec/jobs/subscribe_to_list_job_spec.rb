@@ -1,12 +1,7 @@
 require 'rails_helper'
+Sidekiq::Testing.inline!
 
 RSpec.describe SubscribeToListJob, type: :job do
-  describe '#perform_later' do
-    it 'subscribes to a list' do
-      ActiveJob::Base.queue_adapter = :test
-      expect {
-        SubscribeToListJob.perform_later(1)
-      }.to have_enqueued_job
-    end
-  end
+  it { is_expected.to be_processed_in :subscriptions }
+  it { is_expected.to be_retryable 5 }
 end

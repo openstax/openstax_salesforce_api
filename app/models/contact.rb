@@ -5,8 +5,8 @@ class Contact < ApplicationRecord
 
   def list_subscriptions
     @list_subscriptions = []
-    # add all the lists to the subscriptions array, we update subscribed to true below
-    # this reduces calls to the API by providing all available lists in the users API
+    # Add all the lists to the subscriptions array, we update subscribed to true below if the user is subscribed.
+    # This reduces calls to the API by providing all available lists in the users API.
     List.all.each do |list|
       @list_subscriptions.push({ id: list.pardot_id,
                                  title: list.title,

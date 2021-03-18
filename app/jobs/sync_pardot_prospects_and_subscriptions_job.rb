@@ -1,5 +1,6 @@
 class SyncPardotProspectsAndSubscriptionsJob < ApplicationJob
   queue_as :large_jobs
+  sidekiq_options retry: 2
 
   def perform()
     Contact.all.each do |contact|

@@ -1,5 +1,5 @@
 class SubscribeToListJob < ApplicationJob
-  queue_as :default
+  queue_as :subscriptions
   sidekiq_options retry: 5
 
   def perform(subscription)
