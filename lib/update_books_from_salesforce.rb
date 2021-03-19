@@ -22,5 +22,19 @@ class UpdateBooksFromSalesforce
 
       book_to_update.save if book_to_update.changed?
     end
+    delete_books_removed_from_salesforce(sf_books)
+  end
+
+  def delete_books_removed_from_salesforce(sf_books)
+    sfapi_books = Book.all
+
+    sfapi_books.each do |sfapi_book|
+      found = false
+      sf_books.each do |sf_book|
+        found = true if sf_book.id == sfapi_book.salesforce_id
+        break if found
+      end
+      Book.destroy(sfapi_book.id) unless found
+    end
   end
 end

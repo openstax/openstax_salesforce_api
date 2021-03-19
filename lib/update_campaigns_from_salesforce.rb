@@ -23,5 +23,19 @@ class UpdateCampaignsFromSalesforce
 
       campaign_to_update.save if campaign_to_update.changed?
     end
+    delete_campaigns_removed_from_salesforce(sf_campaigns)
+  end
+
+  def delete_campaigns_removed_from_salesforce(sf_campaigns)
+    sfapi_campaigns = Campaign.all
+
+    sfapi_campaigns.each do |sfapi_campaign|
+      found = false
+      sf_campaigns.each do |sf_campaign|
+        found = true if sf_campaign.id == sfapi_campaign.salesforce_id
+        break if found
+      end
+      Campaign.destroy(sfapi_campaign.id) unless found
+    end
   end
 end

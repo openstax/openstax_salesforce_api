@@ -26,5 +26,19 @@ class UpdateSchoolsFromSalesforce
 
       school_to_update.save if school_to_update.changed?
     end
+    delete_schools_removed_from_salesforce(sf_schools)
+  end
+
+  def delete_schools_removed_from_salesforce(sf_schools)
+    sfapi_schools = School.all
+
+    sfapi_schools.each do |sfapi_school|
+      found = false
+      sf_schools.each do |sf_school|
+        found = true if sf_school.id == sfapi_school.salesforce_id
+        break if found
+      end
+      School.destroy(sfapi_school.id) unless found
+    end
   end
 end

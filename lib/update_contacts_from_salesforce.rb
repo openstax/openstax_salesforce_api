@@ -17,6 +17,7 @@ class UpdateContactsFromSalesforce
   end
 
   def update_contacts(sf_contacts)
+    sfapi_contacts = Contact.all
     sf_contacts.each do |sf_contact|
       contact_to_update = Contact.find_or_initialize_by(salesforce_id: sf_contact.id)
       contact_to_update.salesforce_id = sf_contact.id
@@ -37,6 +38,20 @@ class UpdateContactsFromSalesforce
       contact_to_update.grant_tutor_access = sf_contact.grant_tutor_access
 
       contact_to_update.save if contact_to_update.changed?
+    end
+    delete_contacts_removed_from_salesforce(sf_contacts)
+  end
+
+  def delete_contacts_removed_from_salesforce(sf_contacts)
+    sfapi_contacts = Contact.all
+
+    sfapi_contacts.each do |sfapi_contact|
+      found = false
+      sf_contacts.each do |sf_contact|
+        found = true if sf_contact.id == sfapi_contact.salesforce_id
+        break if found
+      end
+      Contact.destroy(sfapi_contact.id) unless found
     end
   end
 end

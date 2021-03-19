@@ -50,5 +50,19 @@ class UpdateCampaignMembersFromSalesforce
 
       campaign_member_to_update.save if campaign_member_to_update.changed?
     end
+    delete_campaign_members_removed_from_salesforce(sf_campaign_members)
+  end
+
+  def delete_campaign_members_removed_from_salesforce(sf_campaign_members)
+    sfapi_campaign_members = CampaignMember.all
+
+    sfapi_campaign_members.each do |sfapi_campaign_member|
+      found = false
+      sf_campaign_members.each do |sf_campaign_member|
+        found = true if sf_campaign_member.id == sfapi_campaign_member.salesforce_id
+        break if found
+      end
+      CampaignMember.destroy(sfapi_campaign_member.id) unless found
+    end
   end
 end

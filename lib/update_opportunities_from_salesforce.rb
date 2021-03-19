@@ -39,5 +39,19 @@ class UpdateOpportunitiesFromSalesforce
 
       opportunity_to_update.save if opportunity_to_update.changed?
     end
+    delete_opportunities_removed_from_salesforce(sf_opportunities)
+  end
+
+  def delete_opportunities_removed_from_salesforce(sf_opportunities)
+    sfapi_opportunities = Opportunity.all
+
+    sfapi_opportunities.each do |sfapi_opportunity|
+      found = false
+      sf_opportunities.each do |sf_opportunity|
+        found = true if sf_opportunity.id == sfapi_opportunity.salesforce_id
+        break if found
+      end
+      Opportunity.destroy(sfapi_opportunity.id) unless found
+    end
   end
 end

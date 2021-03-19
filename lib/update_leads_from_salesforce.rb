@@ -20,7 +20,7 @@ class UpdateLeadsFromSalesforce
 
   def update_leads(sf_leads)
 
-
+    sfapi_leads = Lead.all
     sf_leads.each do |sf_lead|
       lead_to_update = Lead.find_or_initialize_by(salesforce_id: sf_lead.id)
       lead_to_update.salesforce_id = sf_lead.id
@@ -48,6 +48,20 @@ class UpdateLeadsFromSalesforce
       lead_to_update.finalize_educator_signup = sf_lead.finalize_educator_signup
 
       lead_to_update.save if lead_to_update.changed?
+    end
+    delete_leads_removed_from_salesforce(sf_leads)
+  end
+
+  def delete_leads_removed_from_salesforce(sf_leads)
+    sfapi_leads = Lead.all
+
+    sfapi_leads.each do |sfapi_lead|
+      found = false
+      sf_leads.each do |sf_lead|
+        found = true if sf_lead.id == sfapi_lead.salesforce_id
+        break if found
+      end
+      Lead.destroy(sfapi_lead.id) unless found
     end
   end
 end
