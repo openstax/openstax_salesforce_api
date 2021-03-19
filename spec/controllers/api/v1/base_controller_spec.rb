@@ -11,6 +11,10 @@ RSpec.describe Api::V1::BaseController, type: :controller do
       raise CannotFindUserContact
     end
 
+    def cannot_find_prospect
+      raise CannotFindProspect
+    end
+
     def bad_request
       raise BadRequest
     end
@@ -39,6 +43,13 @@ RSpec.describe Api::V1::BaseController, type: :controller do
 
     request.headers.merge! set_cookie
     expect { get :cannot_find_user_contact }.to raise_error(CannotFindUserContact)
+  end
+
+  it '#cannot_find_prospect' do
+    routes.draw { get 'cannot_find_prospect' => 'api/v1/base#cannot_find_prospect' }
+
+    request.headers.merge! set_cookie
+    expect { get :cannot_find_prospect }.to raise_error(CannotFindProspect)
   end
 
   it '#not_authorized' do

@@ -6,7 +6,7 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
   before do
     allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
   end
-  
+
   before(:all) do
     @opportunity = FactoryBot.create :api_opportunity
     @lead = FactoryBot.create :api_lead
@@ -33,8 +33,10 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
       response '200', 'user retrieved' do
         let(:HTTP_COOKIE) { oxa_cookie }
         run_test! do |response|
-          expect(JSON.parse(response.body).size).to be >= 1
+          json_response = JSON.parse(response.body)
+          expect(json_response.size).to be >= 1
           expect(response).to have_http_status(:success)
+          expect(json_response.keys).to contain_exactly('contact', 'lead', 'opportunity', 'subscriptions')
         end
       end
 
