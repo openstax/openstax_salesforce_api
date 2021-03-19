@@ -25,8 +25,14 @@ class Api::V1::BaseController < ApplicationController
 
   protected
 
+  def current_accounts_user
+    JSON.parse(OpenStax::Accounts::Api.search_accounts("uuid:#{sso_cookie_field('uuid')}", options = {}).body)
+  end
+
   def current_contact
-    @contact = Contact.find_by(salesforce_id: sso_cookie_field('salesforce_contact_id'))
+    return if current_accounts_user.blank?
+
+    @contact = Contact.find_by(salesforce_id: current_accounts_user['items'][0]['salesforce_contact_id'])
   end
 
   def current_contact!
