@@ -14,10 +14,10 @@ class ApplicationController < ActionController::Base
     # which will require a local accounts install for setting the cookie
     !Rails.env.development?
 
-    if sso_cookie_field('uuid').blank?
-      doorkeeper_authorize!
-      raise NotAuthorized unless doorkeeper_token
-    end
+    return unless sso_cookie_field('uuid').blank?
+
+    doorkeeper_authorize!
+    raise NotAuthorized unless doorkeeper_token
   end
 
   def sso_cookie
@@ -27,5 +27,4 @@ class ApplicationController < ActionController::Base
   def sso_cookie_field(field_name)
     sso_cookie&.dig('sub', field_name)
   end
-
 end

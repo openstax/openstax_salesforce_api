@@ -36,3 +36,7 @@ def create_token_header
   token = FactoryBot.create(:doorkeeper_access_token, application: application)
   { 'Authorization': 'Bearer ' + token.token }
 end
+
+def search_accounts_result
+  {:total_count=>1, :items=>[{:id=>1, :name=>"Ed Woodward", :first_name=>"Ed", :last_name=>"Woodward", :full_name=>"Ed Woodward", :uuid=>"57bbe3d3-d630-4e9c-bc22-f86b701381a0", :support_identifier=>"cs_76415f3f", :is_test=>false, :opt_out_of_cookies=>false, :using_openstax=>false, :salesforce_contact_id=>"0030v00000UlMyeAAF", :faculty_status=>"no_faculty_info", :is_newflow=>true, :is_instructor_verification_stale=>false, :needs_complete_edu_profile=>true, :self_reported_role=>"student", :school_type=>"unknown_school_type", :school_location=>"unknown_school_location", :is_kip=>false, :is_administrator=>true, :grant_tutor_access=>false, :contact_infos=>[{:id=>1, :type=>"EmailAddress", :value=>"ecw1@rice.edu", :is_verified=>true, :is_guessed_preferred=>true}], :applications=>[]}]}.to_json
+end

@@ -11,9 +11,6 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
     @opportunity = FactoryBot.create :api_opportunity
     @lead = FactoryBot.create :api_lead
     @contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')
-
-    VCR.use_cassette('Users/user.yml', VCR_OPTS) do
-    end
   end
 
   path '/api/v1/users' do
@@ -31,6 +28,9 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
         }
       }
       response '200', 'user retrieved' do
+        before do
+          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:57bbe3d3-d630-4e9c-bc22-f86b701381a0', options = {}).and_return Hashie::Mash.new('body' => search_accounts_result)
+        end
         let(:HTTP_COOKIE) { oxa_cookie }
         run_test! do |response|
           json_response = JSON.parse(response.body)
