@@ -29,7 +29,7 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
       }
       response '200', 'user retrieved' do
         before do
-          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:57bbe3d3-d630-4e9c-bc22-f86b701381a0', options = {}).and_return Hashie::Mash.new('body' => search_accounts_result)
+          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => search_accounts_result)
         end
         let(:HTTP_COOKIE) { oxa_cookie }
         run_test! do |response|

@@ -43,7 +43,7 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"00D0v0000005T7U!AQQAQCN3Zk4hHGPmJlD3k1Exvf9YvSN8SNVMDgflfSfsqPOIP7Lnjgqq0vi1NfAqWg_ApTKUDBqdeYG8zXG.R5kPY4oNloTB","instance_url":"https://openstax--tutorqa.my.salesforce.com","id":"https://test.salesforce.com/id/00D0v0000005T7UEAU/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1615487612248","signature":"bDJswCZ7hGgFcYeB0koT2YiOp25jzl1XH5NjTnYIlh4="}'
+      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"https://test.salesforce.com/id/00D0v0000005T7UEAU/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1615487612248","signature":"bDJswCZ7hGgFcYeB0koT2YiOp25jzl1XH5NjTnYIlh4="}'
   recorded_at: Thu, 11 Mar 2021 18:33:32 GMT
 - request:
     method: post
