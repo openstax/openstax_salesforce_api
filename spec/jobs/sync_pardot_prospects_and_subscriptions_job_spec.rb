@@ -35,6 +35,6 @@ RSpec.describe SyncPardotProspectsAndSubscriptionsJob, type: :job, vcr: VCR_OPTS
     Subscription.create(contact: @multiple_subscriptions_contact, list: @list)
     SyncPardotProspectsAndSubscriptionsJob.new.perform(@multiple_subscriptions_contact.salesforce_id)
 
-    expect(Subscription.where(contact: @multiple_subscriptions_contact).count).to be 2
+    expect(Subscription.where(contact: @multiple_subscriptions_contact).count).to be 3
   end
 end
