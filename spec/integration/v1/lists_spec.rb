@@ -70,10 +70,10 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
 
       response '404', 'contact not found' do
         before do
-          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => search_accounts_result)
+          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => invalid_search_accounts_result)
         end
         let(:list_id) { @list.pardot_id }
-        let(:HTTP_COOKIE) { invalid_user_cookie }
+        let(:HTTP_COOKIE) { oxa_cookie }
         run_test!
       end
     end
@@ -100,10 +100,10 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
 
       response '404', 'contact not found' do
         before do
-          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => search_accounts_result)
+          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => invalid_search_accounts_result)
         end
         let(:list_id) { @list.pardot_id }
-        let(:HTTP_COOKIE) { invalid_user_cookie }
+        let(:HTTP_COOKIE) { oxa_cookie }
         run_test!
       end
     end
