@@ -22,7 +22,6 @@ RSpec.describe SubscribeToListJob, type: :job, vcr: VCR_OPTS do
 
   it 'subscription status is updated by job' do
     subscription = Subscription.create(list: @valid_list, contact: @valid_contact)
-    expect(subscription.pending_create?).to eq(true)
     SubscribeToListJob.new.perform(subscription)
     expect(subscription.created?).to eq(true)
   end
