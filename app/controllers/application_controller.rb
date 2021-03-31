@@ -17,7 +17,6 @@ class ApplicationController < ActionController::Base
     return unless sso_cookie_field('uuid').blank?
 
     doorkeeper_authorize!
-    raise NotAuthorized unless doorkeeper_token
   end
 
   def sso_cookie
