@@ -2,7 +2,7 @@ require 'rails_helper'
 require 'swagger_helper'
 
 RSpec.describe Api::V1::BaseController, type: :controller do
-  controller(Api::V1::BaseController) do
+  controller do
     def standard_error
       raise StandardError
     end
@@ -24,38 +24,42 @@ RSpec.describe Api::V1::BaseController, type: :controller do
     end
   end
 
-  it '#standard_error' do
-    routes.draw { get 'standard_error' => 'api/v1/base#standard_error' }
+  context 'in development' do
+    before do
+      allow(Rails.application.config).to receive(:consider_all_requests_local) { true }
+    end
 
-    request.headers.merge! set_cookie
-    expect { get :standard_error }.to raise_error(StandardError)
+    it { expect_exception(:cannot_find_user_contact, CannotFindUserContact) }
+    it { expect_exception(:not_authorized, NotAuthorized) }
+    it { expect_exception(:cannot_find_prospect, CannotFindProspect) }
+    it { expect_exception(:bad_request, BadRequest) }
+    it { expect_exception(:standard_error, StandardError) }
   end
 
-  it '#bad_request' do
-    routes.draw { get 'bad_request' => 'api/v1/base#bad_request' }
+  context 'in production' do
+    before do
+      allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+    end
 
-    request.headers.merge! set_cookie
-    expect { get :bad_request }.to raise_error(BadRequest)
+    it { expect_json(:cannot_find_user_contact, /Cannot find Salesforce User/, :not_found) }
+    it { expect_json(:not_authorized, "NotAuthorized", :unauthorized) }
+    it { expect_json(:cannot_find_prospect, /Cannot find Pardot prospect with that Salesforce ID/, :not_found) }
+    it { expect_json(:bad_request, "BadRequest", :bad_request) }
   end
 
-  it '#cannot_find_user_contact' do
-    routes.draw { get 'cannot_find_user_contact' => 'api/v1/base#cannot_find_user_contact' }
+  def expect_exception(action, exception)
+    routes.draw { get action.to_s => "api/v1/base##{action}" }
 
     request.headers.merge! set_cookie
-    expect { get :cannot_find_user_contact }.to raise_error(CannotFindUserContact)
+    expect { get action }.to raise_error(exception)
   end
 
-  it '#cannot_find_prospect' do
-    routes.draw { get 'cannot_find_prospect' => 'api/v1/base#cannot_find_prospect' }
+  def expect_json(action, message, status)
+    routes.draw { get action.to_s => "api/v1/base##{action}" }
 
     request.headers.merge! set_cookie
-    expect { get :cannot_find_prospect }.to raise_error(CannotFindProspect)
-  end
-
-  it '#not_authorized' do
-    routes.draw { get 'not_authorized' => 'api/v1/base#not_authorized' }
-
-    request.headers.merge! set_cookie
-    expect { get :not_authorized }.to raise_error(NotAuthorized)
+    get action
+    expect(response).to have_http_status(status)
+    expect(response.body).to match(message)
   end
 end
