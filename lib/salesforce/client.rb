@@ -14,11 +14,11 @@ module Salesforce
                                         client_secret: salesforce_secrets[:consumer_secret],
                                         host: salesforce_secrets[:login_domain],
                                         api_version: '51.0')
-      @client = salesforce_client.authenticate!
+      @client_data = salesforce_client.authenticate!
     end
 
     def access_token
-      @client.access_token
+      @client_data.access_token
     end
   end
 end
