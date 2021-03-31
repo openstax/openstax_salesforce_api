@@ -26,7 +26,7 @@ class Api::V1::BaseController < ApplicationController
   protected
 
   def current_accounts_user
-    JSON.parse(OpenStax::Accounts::Api.search_accounts("uuid:#{sso_cookie_field('uuid')}", options = {}).body)['items'][0]
+    @current_accounts_user ||= JSON.parse(OpenStax::Accounts::Api.search_accounts("uuid:#{sso_cookie_field('uuid')}", options = {}).body)['items'][0]
   end
 
   def current_contact
