@@ -5,7 +5,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   # returns all available public lists from Pardot
   def index
     lists = List.all
-    render json: lists.to_json
+    render json: lists
   end
 
   # /api/v1/lists/<list_id>/subscribe/
