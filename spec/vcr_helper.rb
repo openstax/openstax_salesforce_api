@@ -36,6 +36,10 @@ VCR.configure do |c|
   c.configure_rspec_metadata!
   c.allow_http_connections_when_no_cassette = false
   c.ignore_localhost = true
+
+  # useful for debugging cassettes
+  #c.debug_logger = $stderr
+
   # To avoid issues with the gem `webdrivers`, we must ignore the driver hosts
   # See https://github.com/titusfortner/webdrivers/wiki/Using-with-VCR-or-WebMock
   # driver_hosts = Webdrivers::Common.subclasses.map { |driver| URI(driver.base_url).host }
@@ -55,11 +59,9 @@ VCR.configure do |c|
     password
     user_key
   ].each { |pardot_secret_name| c.filter_secret(['pardot', pardot_secret_name]) }
-
 end
 
 VCR_OPTS = {
   record: ENV.fetch('VCR_OPTS_RECORD', :none).to_sym, # This should default to :none
-  record: ENV.fetch('VCR_OPTS_RECORD', :new_episodes).to_sym, # This should default to :none
   allow_unused_http_interactions: true
 }.freeze

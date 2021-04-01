@@ -23,6 +23,7 @@ class SyncPardotJob < ApplicationJob
       List.destroy_by(pardot_id: existing_list_pardot_id) unless new_lists.include? existing_list_pardot_id
     end
 
+    # next, we create local records for the users subscriptions
     # without an argument, this processes all contacts - else you can specify an array of salesforce_ids to process
     query = salesforce_ids.empty? ? Contact.all : Contact.where(salesforce_id: salesforce_ids)
 
@@ -31,25 +32,32 @@ class SyncPardotJob < ApplicationJob
       existing_subscriptions = Subscription.includes(:list).where(contact: contact)
       new_subscriptions = []
 
-      prospect = Pardot.client.prospects.read_by_fid(contact.salesforce_id)
-      next unless prospect['lists']
-
-      prospect['lists']['list_subscription'].each do |list|
-        if list.include?('list')
-          # Returns an array if it only has one subscription, but a hash otherwise. O_o This seems to handle it nicely.
-          list = if list.is_a?(Array)
-                   list[1]
-                 else
-                   list['list']
-                 end
-
-          next unless list['is_public'] == 'true'
-
-          new_subscriptions.append(list['id'].to_i)
-          Subscription.where(list: List.where(pardot_id: list['id']), contact: contact).first_or_create
+      # check Pardot for the prospect by salesforce_id, if it doesn't exist move to the next one
+      begin
+        prospect = Pardot.client.prospects.read_by_fid(contact.salesforce_id)
+      rescue Pardot::ResponseError => e
+        case e.message
+        when 'Invalid prospect fid'
+          next
         end
-      rescue Pardot::ResponseError
-        Rails.logger.info 'No Pardot record for contact: ' + contact.salesforce_id
+      end
+
+      next unless prospect['lists'] # no lists on prospect == no subscriptions
+
+      prospect['lists']['list_subscription'].each do |list_subscription|
+        next unless list_subscription.include?('list')
+
+        # Returns an array if it only has one subscription, but a hash otherwise. O_o This seems to handle it nicely.
+        list_subscription = if list_subscription.is_a?(Array)
+                              list_subscription[1]
+                            else
+                              list_subscription['list']
+                            end
+
+        next unless list_subscription['is_public'] == 'true' # we only care about public mailing lists
+
+        new_subscriptions.append(list_subscription['id'].to_i) # append id to list so we can remove them below
+        Subscription.where(list: List.find_by!(pardot_id: list_subscription['id']), contact: contact).first_or_create
       end
 
       # remove local subscription records that no longer exist in pardot

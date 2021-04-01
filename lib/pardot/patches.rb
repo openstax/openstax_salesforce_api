@@ -36,8 +36,10 @@ module Pardot
   def self.client
     @client ||= begin
         pardot_secrets = Rails.application.secrets.pardot
-        salesforce_client = Salesforce::Client.new
-        Pardot::Client.new nil, nil, nil, 4, salesforce_client.access_token, pardot_secrets[:business_unit_id]
+        salesforce_client = OpenStax::Salesforce::Client.new
+        salesforce_client_data = salesforce_client.authenticate!
+
+        Pardot::Client.new nil, nil, nil, 4, salesforce_client_data[:access_token], pardot_secrets[:business_unit_id]
       end
   end
 
