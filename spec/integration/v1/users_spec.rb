@@ -2,7 +2,10 @@ require 'rails_helper'
 require 'vcr_helper'
 require 'swagger_helper'
 
-RSpec.describe 'api/v1/users', type: :request do
+RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
 
   before(:all) do
     @opportunity = FactoryBot.create :api_opportunity
@@ -20,25 +23,27 @@ RSpec.describe 'api/v1/users', type: :request do
         properties: {
           opportunity: { type: :array },
           contact: { type: :array },
-          lead: { type: :array }
+          lead: { type: :array },
+          subscriptions: { type: :array }
         }
       }
-
       response '200', 'user retrieved' do
         before do
-          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:57bbe3d3-d630-4e9c-bc22-f86b701381a0', options = {}).and_return Hashie::Mash.new('body' => search_accounts_result)
+          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => search_accounts_result)
         end
         let(:HTTP_COOKIE) { oxa_cookie }
         run_test! do |response|
-          expect(JSON.parse(response.body).size).to be >= 1
+          json_response = JSON.parse(response.body)
+          expect(json_response.size).to be >= 1
           expect(response).to have_http_status(:success)
+          expect(json_response.keys).to contain_exactly('contact', 'lead', 'opportunity', 'subscriptions')
         end
       end
 
-      response '400', 'invalid cookie' do
+      response '401', 'invalid cookie' do
         let(:HTTP_COOKIE) { 'invalid' }
         run_test! do |response|
-          expect(response).to have_http_status(:bad_request)
+          expect(response).to have_http_status(:unauthorized)
         end
       end
     end

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_01_215138) do
+ActiveRecord::Schema.define(version: 2021_03_08_151229) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -109,6 +109,15 @@ ActiveRecord::Schema.define(version: 2021_02_01_215138) do
     t.datetime "updated_at", precision: 6, null: false
     t.string "salesforce_id"
     t.string "name"
+  end
+
+  create_table "lists", force: :cascade do |t|
+    t.integer "pardot_id"
+    t.string "title"
+    t.string "description"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["pardot_id"], name: "index_lists_on_pardot_id"
   end
 
   create_table "oauth_access_grants", force: :cascade do |t|
@@ -222,15 +231,18 @@ ActiveRecord::Schema.define(version: 2021_02_01_215138) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "users", force: :cascade do |t|
-    t.string "username"
-    t.string "password_digest"
-    t.boolean "has_access"
-    t.boolean "is_admin"
+  create_table "subscriptions", force: :cascade do |t|
+    t.bigint "contact_id", null: false
+    t.bigint "list_id", null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "status"
+    t.index ["contact_id"], name: "index_subscriptions_on_contact_id"
+    t.index ["list_id"], name: "index_subscriptions_on_list_id"
   end
 
   add_foreign_key "oauth_access_grants", "oauth_applications", column: "application_id"
   add_foreign_key "oauth_access_tokens", "oauth_applications", column: "application_id"
+  add_foreign_key "subscriptions", "contacts"
+  add_foreign_key "subscriptions", "lists"
 end

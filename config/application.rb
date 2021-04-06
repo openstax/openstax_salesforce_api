@@ -33,7 +33,8 @@ module OpenstaxSalesforceApi
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
     config.api_only = false
-    config.sso = config_for(:sso)
+
+    config.active_job.queue_adapter = :sidekiq
 
     Rails.application.config.hosts = [
       "localhost",
@@ -42,4 +43,10 @@ module OpenstaxSalesforceApi
       "www.example.com" #for testing
     ]
   end
+end
+
+Sentry.init do |config|
+  config.dsn = Rails.application.secrets.sentry[:dsn]
+  config.breadcrumbs_logger = [:active_support_logger]
+  config.traces_sample_rate = 1.0
 end

@@ -1,15 +1,19 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/contacts', type: :request do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
 
   before(:all) do
-    @contact = create_contact
+    @contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')
   end
 
   path '/api/v1/contacts' do
     get 'List all Contacts' do
       tags 'Contacts'
       consumes 'application/json'
+      produces 'application/json'
       security [apiToken: []]
 
       parameter name: :contact, in: :body, schema: {
@@ -42,6 +46,15 @@ RSpec.describe 'api/v1/contacts', type: :request do
 
         run_test!
       end
+
+      response '401', 'invalid sso cookie' do
+        let(:contact) { @contact }
+        let(:HTTP_COOKIE) { 'invalid' }
+
+        run_test! do  |response|
+          expect(response).to have_http_status(:unauthorized)
+        end
+      end
     end
   end
 
@@ -50,6 +63,7 @@ RSpec.describe 'api/v1/contacts', type: :request do
     get 'Return one contact' do
       tags 'Contacts'
       consumes 'application/json'
+      produces 'application/json'
       security [apiToken: []]
       parameter name: :id, in: :path, type: :string
 
@@ -83,9 +97,18 @@ RSpec.describe 'api/v1/contacts', type: :request do
       end
 
       response '404', 'contact not found' do
-        let(:id) { 25 }
+        let(:id) { 0 }
         let(:HTTP_COOKIE) { oxa_cookie }
         run_test!
+      end
+
+      response '401', 'invalid sso cookie' do
+        let(:id) { @contact.id }
+        let(:HTTP_COOKIE) { 'invalid' }
+
+        run_test! do  |response|
+          expect(response).to have_http_status(:unauthorized)
+        end
       end
     end
   end

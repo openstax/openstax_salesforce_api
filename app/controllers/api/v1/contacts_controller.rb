@@ -1,6 +1,4 @@
-class Api::V1::ContactsController < ApplicationController
-  before_action -> { verify_sso_cookie('Contact') }
-
+class Api::V1::ContactsController < Api::V1::BaseController
   # GET /contacts
   def index
     if params['email'].present?

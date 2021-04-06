@@ -1,6 +1,9 @@
 require 'swagger_helper'
 
 RSpec.describe 'api/v1/campaigns', type: :request do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
 
   before(:all) do
     @campaign = FactoryBot.create :api_campaign

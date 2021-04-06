@@ -2,11 +2,14 @@ require 'rails_helper'
 require 'spec_helper'
 
 RSpec.describe "Books", type: :request do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
 
   before(:all) do
     @book = FactoryBot.create :api_book
     # needed for cookie check
-    contact = create_contact
+    contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')
     @headers = set_cookie
     @token_header = create_token_header
   end

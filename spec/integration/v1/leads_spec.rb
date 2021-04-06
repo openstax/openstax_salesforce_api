@@ -2,10 +2,13 @@ require 'swagger_helper'
 require 'rails_helper'
 
 RSpec.describe 'api/v1/leads', type: :request do
+  before do
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
+  end
 
   before(:all) do
     @lead = FactoryBot.create :api_lead
-    @contact = create_contact
+    @contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')
   end
 
   path '/api/v1/leads' do

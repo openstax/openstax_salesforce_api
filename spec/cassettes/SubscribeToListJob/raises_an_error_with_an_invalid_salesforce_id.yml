@@ -1,0 +1,108 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://pi.demo.pardot.com/api/prospect/version/4/do/read/fid/0030v00000XxX0xXXX?format=simple
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      Authorization:
+      - Bearer <salesforce_access_token>
+      Pardot-Business-Unit-Id:
+      - 0Uv0v0000004C9mCAE
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+      User-Agent:
+      - Ruby
+  response:
+    status:
+      code: 400
+      message: Bad Request
+    headers:
+      Date:
+      - Thu, 18 Mar 2021 19:20:12 GMT
+      Set-Cookie:
+      - pardot=tl044deo7m48fgi9ptrbkftsmi; path=/
+      Expires:
+      - Thu, 19 Nov 1981 08:52:00 GMT
+      Cache-Control:
+      - no-store, no-cache, must-revalidate
+      Pragma:
+      - no-cache
+      X-Pardot-Rsp:
+      - 25/13/203
+      P3p:
+      - CP="NOI DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT", policyref="/w3c/p3p.xml"
+      Vary:
+      - Accept-Encoding,User-Agent
+      Content-Length:
+      - '124'
+      Content-Type:
+      - text/xml; charset=utf-8
+      X-Pardot-Route:
+      - 4fa993bd92d83a19a78f84f1ddd264ce
+      Server:
+      - PardotServer
+      X-Pardot-Lb:
+      - 01f6d1eb96c2e46c10f3ecf450ddabd0
+      Connection:
+      - keep-alive
+    body:
+      encoding: ASCII-8BIT
+      string: |
+        <?xml version="1.0" encoding="UTF-8"?>
+        <rsp stat="fail" version="1.0">
+           <err code="77">Invalid prospect fid</err>
+        </rsp>
+  recorded_at: Thu, 18 Mar 2021 19:20:12 GMT
+- request:
+    method: post
+    uri: https://test.salesforce.com/services/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password_url><salesforce_security_token>
+    headers:
+      User-Agent:
+      - Faraday v1.3.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Wed, 31 Mar 2021 19:10:07 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=tNdQ7pJUEeuiZ12Zy7VHJw; domain=.salesforce.com; path=/; expires=Thu,
+        31-Mar-2022 19:10:07 GMT; Max-Age=31536000
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Readonlymode:
+      - 'false'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"00D0v0000005T7U!AQQAQKOtEhUanX33ResHWfll_bn4OSOEZ624B2zhqjYr0ZBLF_ZkJQfojAg09wdDFMgV8h35nmPASIXu43u4LQXjA7MaJ3Jw","instance_url":"https://openstax--tutorqa.my.salesforce.com","id":"https://test.salesforce.com/id/00D0v0000005T7UEAU/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1617217807729","signature":"uYPxGvvqLwEz36nwYp0YqWuj9PhYeweTD7G7Ywm9rKY="}'
+  recorded_at: Wed, 31 Mar 2021 19:10:07 GMT
+recorded_with: VCR 6.0.0

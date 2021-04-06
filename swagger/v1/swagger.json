@@ -119,6 +119,9 @@
         "consumes": [
           "application/json"
         ],
+        "produces": [
+          "application/json"
+        ],
         "security": [
           {
             "apiToken": [
@@ -198,6 +201,9 @@
         "responses": {
           "200": {
             "description": "contacts retrieved"
+          },
+          "401": {
+            "description": "invalid sso cookie"
           }
         }
       }
@@ -209,6 +215,9 @@
           "Contacts"
         ],
         "consumes": [
+          "application/json"
+        ],
+        "produces": [
           "application/json"
         ],
         "security": [
@@ -295,6 +304,9 @@
           },
           "404": {
             "description": "contact not found"
+          },
+          "401": {
+            "description": "invalid sso cookie"
           }
         }
       }
@@ -572,9 +584,71 @@
         }
       }
     },
+    "/api/v1/lists/{list_id}/subscribe": {
+      "parameters": [
+        {
+          "name": "list_id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Subscribes to a mailing list",
+        "tags": [
+          "Lists"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "subscribe successful"
+          }
+        }
+      }
+    },
+    "/api/v1/lists/{list_id}/unsubscribe": {
+      "parameters": [
+        {
+          "name": "list_id",
+          "in": "path",
+          "type": "string",
+          "required": true
+        }
+      ],
+      "get": {
+        "summary": "Unsubscribes from a mailing list",
+        "tags": [
+          "Lists"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "unsubscribe successful"
+          }
+        }
+      }
+    },
     "/api/v1/schools": {
       "get": {
-        "summary": "List all Schools",
+        "summary": "Return school by name using token",
         "tags": [
           "Schools"
         ],
@@ -590,54 +664,31 @@
         ],
         "parameters": [
           {
-            "name": "school",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "salesforce_id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "school_type": {
-                  "type": "string"
-                },
-                "location": {
-                  "type": "string"
-                },
-                "is_kip": {
-                  "type": "boolean"
-                },
-                "is_child_of_kip": {
-                  "type": "boolean"
-                },
-                "created_at": {
-                  "type": "string"
-                },
-                "updated_at": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "salesforce_id",
-                "name",
-                "school_type"
-              ]
-            }
+            "name": "name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "in": "header",
+            "type": "string",
+            "name": "Authorization",
+            "required": true,
+            "description": "Doorkeeper token"
           }
         ],
         "responses": {
           "200": {
-            "description": "schools retrieved"
+            "description": "school found using partial name"
+          },
+          "401": {
+            "description": "no token"
           }
         }
       }
     },
     "/api/v1/schools/{id}": {
       "get": {
-        "summary": "Return one school",
+        "summary": "Return one school using token",
         "tags": [
           "Schools"
         ],
@@ -657,6 +708,13 @@
             "in": "path",
             "type": "string",
             "required": true
+          },
+          {
+            "in": "header",
+            "type": "string",
+            "name": "Authorization",
+            "required": true,
+            "description": "Doorkeeper token"
           }
         ],
         "responses": {
@@ -702,6 +760,55 @@
           },
           "404": {
             "description": "school not found"
+          }
+        }
+      }
+    },
+    "/api/v1/users": {
+      "get": {
+        "summary": "Get user info",
+        "tags": [
+          "Users"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "user",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "opportunity": {
+                  "type": "array"
+                },
+                "contact": {
+                  "type": "array"
+                },
+                "lead": {
+                  "type": "array"
+                },
+                "subscriptions": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "user retrieved"
+          },
+          "401": {
+            "description": "invalid cookie"
           }
         }
       }

@@ -1,6 +1,4 @@
-class Api::V1::BooksController < ApplicationController
-  before_action -> { verify_sso_cookie('Book') }
-
+class Api::V1::BooksController < Api::V1::BaseController
   # GET /books
   def index
     if params['name'].present?

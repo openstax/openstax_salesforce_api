@@ -1,9 +1,6 @@
 require 'push_opportunity_to_salesforce'
 
-class Api::V1::OpportunitiesController < ApplicationController
-  before_action -> { verify_sso_cookie('Opportunity') }
-  protect_from_forgery with: :null_session
-
+class Api::V1::OpportunitiesController < Api::V1::BaseController
   # GET /opportunities
   def index
     if params['os_accounts_id'].present?
