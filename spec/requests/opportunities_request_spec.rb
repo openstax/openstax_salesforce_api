@@ -38,13 +38,13 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
   end
 
   it "returns opportunity using os_accounts_id" do
-    get "/api/v1/opportunities?os_accounts_id=" + @opportunity.os_accounts_id, :headers => @headers
+    get "/api/v1/opportunities/search?os_accounts_id=" + @opportunity.os_accounts_id, :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
 
   it "returns opportunity using os_accounts_id with token" do
-    get "/api/v1/opportunities?os_accounts_id=" + @opportunity.os_accounts_id, :headers => @token_header
+    get "/api/v1/opportunities/search?os_accounts_id=" + @opportunity.os_accounts_id, :headers => @token_header
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end

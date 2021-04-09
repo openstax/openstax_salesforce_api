@@ -12,13 +12,34 @@ Rails.application.routes.draw do
       defaults: { format: :json }
     ) do
 
-      resources :schools
-      resources :books
+      resources :schools do
+        collection do
+          get 'search'
+        end
+      end
+      resources :books do
+        collection do
+          get 'search'
+        end
+      end
+
       resources :campaigns
-      resources :contacts
-      resources :leads
+      resources :contacts do
+        collection do
+          get 'search'
+        end
+      end
+      resources :leads do
+        collection do
+          get 'search'
+        end
+      end
       resources :campaign_members
-      resources :opportunities
+      resources :opportunities do
+        collection do
+          get 'search'
+        end
+      end
       resources :users
 
       resources :lists, only: [:index] do

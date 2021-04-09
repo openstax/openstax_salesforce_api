@@ -51,7 +51,7 @@ RSpec.describe 'api/v1/books', type: :request do
                },
                required: %w[salesforce_id name]
 
-        let(:id) { @book.id }
+        let(:id) { @book.salesforce_id }
         let(:HTTP_COOKIE) { oxa_cookie }
         run_test!
       end

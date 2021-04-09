@@ -32,13 +32,13 @@ RSpec.describe "Campaigns", type: :request do
   end
 
   it "return one campaign" do
-    get "/api/v1/campaigns/#{@campaign.id}", :headers => @headers
+    get "/api/v1/campaigns/#{@campaign.salesforce_id}", :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
 
   it "return one campaign with token" do
-    get "/api/v1/campaigns/#{@campaign.id}", :headers => @token_header
+    get "/api/v1/campaigns/#{@campaign.salesforce_id}", :headers => @token_header
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end

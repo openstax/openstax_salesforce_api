@@ -7,13 +7,7 @@ class Api::V1::CampaignsController < Api::V1::BaseController
 
   # GET /campaigns/:id
   def show
-    begin
-      @campaign = Campaign.find(params[:id])
-      render json: @campaign, status: :ok
-    rescue ActiveRecord::RecordNotFound => e
-      render json: {
-          error: e.to_s
-      }, status: :not_found
-    end
+    @campaign = Campaign.find_by!(salesforce_id: params[:id])
+    render json: @campaign, status: :ok
   end
 end
