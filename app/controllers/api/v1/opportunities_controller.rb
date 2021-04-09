@@ -20,15 +20,8 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
 
   # GET /opportunities/:id
   def show
-    begin
-      @opportunity = Opportunity.where(salesforce_id: params[:id])
-      render json: @opportunity, status: :ok
-    rescue ActiveRecord::RecordNotFound => e
-      render json: {
-        opportunity_id: params[:id],
-        error: e.to_s
-      }, status: :not_found
-    end
+    @opportunity = Opportunity.where(salesforce_id: params[:id])
+    render json: @opportunity, status: :ok
   end
 
   # POST /opportunities(.:format)

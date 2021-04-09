@@ -17,13 +17,7 @@ class Api::V1::BooksController < Api::V1::BaseController
 
   # GET /books/:id
   def show
-    begin
-      @book = Book.find(params[:id])
-      render json: @book, status: :ok
-    rescue ActiveRecord::RecordNotFound => e
-      render json: {
-          error: e.to_s
-      }, status: :not_found
-    end
+    @book = Book.find_by!(salesforce_id: params[:id])
+    render json: @book, status: :ok
   end
 end

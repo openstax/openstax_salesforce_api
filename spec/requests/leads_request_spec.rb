@@ -41,15 +41,20 @@ RSpec.describe "Leads", type: :request do
     expect(response).to have_http_status(:success)
   end
 
-  it "return one lead by id" do
-    get "/api/v1/leads/#{@lead.id}", :headers => @headers
+  it "return one lead by salesforce id" do
+    get "/api/v1/leads/#{@lead.salesforce_id}", :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
 
-  it "return one lead by id with token" do
-    get "/api/v1/leads/#{@lead.id}", :headers => @token_header
+  it "return one lead by Salesforce id with token" do
+    get "/api/v1/leads/#{@lead.salesforce_id}", :headers => @token_header
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
+  end
+
+  it "return failure by invalid salesforce id" do
+    get "/api/v1/leads/invalid", :headers => @headers
+    expect(response).to have_http_status(:not_found)
   end
 end

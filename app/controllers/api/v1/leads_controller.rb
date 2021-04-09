@@ -17,13 +17,7 @@ class Api::V1::LeadsController < Api::V1::BaseController
 
   # GET /leads/:id
   def show
-    begin
-      @lead = Lead.find(params[:id])
-      render json: @lead, status: :ok
-    rescue ActiveRecord::RecordNotFound => e
-      render json: {
-          error: e.to_s
-      }, status: :not_found
-    end
+    @lead = Lead.find_by!(salesforce_id: params[:id])
+    render json: @lead, status: :ok
   end
 end

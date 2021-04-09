@@ -96,7 +96,7 @@ RSpec.describe 'api/v1/leads', type: :request do
                },
                required: %w[salesforce_id name]
 
-        let(:id) { @lead.id }
+        let(:id) { @lead.salesforce_id }
         let(:HTTP_COOKIE) { oxa_cookie }
 
         run_test!

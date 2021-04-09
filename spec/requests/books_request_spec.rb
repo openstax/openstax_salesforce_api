@@ -41,15 +41,20 @@ RSpec.describe "Books", type: :request do
     expect(response).to have_http_status(:success)
   end
 
-  it "return one book by id" do
-    get "/api/v1/books/#{@book.id}", :headers => @headers
+  it "return one book by Salesforce id" do
+    get "/api/v1/books/#{@book.salesforce_id}", :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
 
-  it "return one book by id using token" do
-    get "/api/v1/books/#{@book.id}", :headers => @token_header
+  it "return one book by Salesforce id using token" do
+    get "/api/v1/books/#{@book.salesforce_id}", :headers => @token_header
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
+  end
+
+  it "return failure because of invalid Salesforce id" do
+    get "/api/v1/books/invalid", :headers => @headers
+    expect(response).to have_http_status(:not_found)
   end
 end

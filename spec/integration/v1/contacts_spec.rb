@@ -91,7 +91,7 @@ RSpec.describe 'api/v1/contacts', type: :request do
                },
                required: %w[salesforce_id name]
 
-        let(:id) { @contact.id }
+        let(:id) { @contact.salesforce_id }
         let(:HTTP_COOKIE) { oxa_cookie }
         run_test!
       end

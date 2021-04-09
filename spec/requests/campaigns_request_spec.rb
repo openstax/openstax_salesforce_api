@@ -31,15 +31,20 @@ RSpec.describe "Campaigns", type: :request do
     expect(response).to have_http_status(:success)
   end
 
-  it "return one campaign" do
-    get "/api/v1/campaigns/#{@campaign.id}", :headers => @headers
+  it "return one campaign using Salesforce id" do
+    get "/api/v1/campaigns/#{@campaign.salesforce_id}", :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
 
-  it "return one campaign with token" do
-    get "/api/v1/campaigns/#{@campaign.id}", :headers => @token_header
+  it "return one campaign using Salesforce id with token" do
+    get "/api/v1/campaigns/#{@campaign.salesforce_id}", :headers => @token_header
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
+  end
+
+  it "return failure response for one campaign using invalid Salesforce id" do
+    get "/api/v1/campaigns/invalid", :headers => @headers
+    expect(response).to have_http_status(:not_found)
   end
 end
