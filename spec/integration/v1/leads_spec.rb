@@ -9,6 +9,7 @@ RSpec.describe 'api/v1/leads', type: :request do
   before(:all) do
     @lead = FactoryBot.create :api_lead
     @contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')
+    @dk_token = doorkeeper_token
   end
 
   path '/api/v1/leads' do
@@ -105,6 +106,46 @@ RSpec.describe 'api/v1/leads', type: :request do
       response '404', 'lead not found' do
         let(:id) { 'invalid' }
         let(:HTTP_COOKIE) { oxa_cookie }
+
+        run_test!
+      end
+    end
+  end
+
+  path '/api/v1/leads/search' do
+    get 'Return lead by os_accounts_id' do
+      tags 'Leads'
+      consumes 'application/json'
+      security [apiToken: []]
+
+      parameter name: :os_accounts_id, in: :query, type: :string
+
+      response '200', 'lead found' do
+
+        let(:os_accounts_id) { @lead.os_accounts_id }
+        let(:HTTP_COOKIE) { oxa_cookie }
+
+        run_test!
+      end
+    end
+
+    get 'Return lead by os_accounts_id using token' do
+      tags 'Leads'
+      consumes 'application/json'
+
+      parameter name: :os_accounts_id, in: :query, type: :string
+
+      parameter({
+                  in: :header,
+                  type: :string,
+                  name: :Authorization,
+                  required: true,
+                  description: 'Doorkeeper token'
+                })
+
+      response '200', 'lead found' do
+        let(:os_accounts_id) { @lead.os_accounts_id }
+        let(:Authorization) { "Bearer #{@dk_token}" }
 
         run_test!
       end
