@@ -1,29 +1,19 @@
 class Api::V1::ContactsController < Api::V1::BaseController
   # GET /contacts
   def index
-    if params['email'].present?
-        @contacts = Contact.where(email: params['email'])
-        if @contacts.blank?
-          render json: {
-              email: params['email'],
-              error: 'email not found'
-          }, status: :not_found and return
-        end
-    else
-      @contacts = Contact.paginate(page: params[:page], per_page: 20)
-    end
+    @contacts = Contact.paginate(page: params[:page], per_page: 20)
     render json: @contacts
   end
 
   # GET /contacts/:id
   def show
-    begin
-      @contact = Contact.find(params[:id])
-      render json: @contact, status: :ok
-    rescue ActiveRecord::RecordNotFound => e
-      render json: {
-          error: e.to_s
-      }, status: :not_found
-    end
+    @contact = Contact.find_by!(salesforce_id: params[:id])
+    render json: @contact, status: :ok
+  end
+
+  # GET /contacts/search?email
+  def search
+    @contact = Contact.search(params[:email])
+    render json: @contact, status: :ok
   end
 end
