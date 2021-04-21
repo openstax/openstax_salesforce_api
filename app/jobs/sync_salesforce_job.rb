@@ -40,6 +40,7 @@ class SyncSalesforceJob < ApplicationJob
       else
         puts 'object not found.'
       end
+      delete_objects_not_in_salesforce(object, objs)
     end
     
   end
@@ -195,5 +196,9 @@ class SyncSalesforceJob < ApplicationJob
 
       school_to_update.save if school_to_update.changed?
     end
+  end
+
+  def delete_objects_not_in_salesforce(object, objs)
+    object.constantize.where.not(salesforce_id: objs.map(&:id)).delete_all
   end
 end
