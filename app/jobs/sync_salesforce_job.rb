@@ -14,31 +14,28 @@ class SyncSalesforceJob < ApplicationJob
 
   def update_objects(object_names)
     object_names.each do |name|
-      sf_objs = retrieve_salesforce_data(name)
+      begin
+        sf_objs = retrieve_salesforce_data(name)
+      rescue NameError
+        next
+      end
       case name
       when 'Book'
-        puts "update_books: started"
         update_books(sf_objs)
       when 'CampaignMember'
-        puts "update_campaign_members: started"
         update_campaign_members(sf_objs)
       when 'Campaign'
-        puts "update_campaigns: started"
         update_campaigns(sf_objs)
       when 'Contact'
-        puts "update_contacts: started"
         update_contacts(sf_objs)
       when 'Lead'
-        puts "update_leads: started"
         update_leads(sf_objs)
       when 'Opportunity'
-        puts "update_opportunities: started"
         update_opportunities(sf_objs)
       when 'School'
-        puts "update_schools: started"
         update_schools(sf_objs)
       else
-        puts 'object not found.'
+        next
       end
       delete_objects_not_in_salesforce(name, sf_objs)
     end
