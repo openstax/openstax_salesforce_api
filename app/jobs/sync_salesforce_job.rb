@@ -13,40 +13,40 @@ class SyncSalesforceJob < ApplicationJob
   end
 
   def update_objects(object_names)
-    object_names.each do |object|
-      objs = retrieve_salesforce_data(object)
-      case object
+    object_names.each do |name|
+      sf_objs = retrieve_salesforce_data(name)
+      case name
       when 'Book'
         puts "update_books: started"
-        update_books(objs)
+        update_books(sf_objs)
       when 'CampaignMember'
         puts "update_campaign_members: started"
-        update_campaign_members(objs)
+        update_campaign_members(sf_objs)
       when 'Campaign'
         puts "update_campaigns: started"
-        update_campaigns(objs)
+        update_campaigns(sf_objs)
       when 'Contact'
         puts "update_contacts: started"
-        update_contacts(objs)
+        update_contacts(sf_objs)
       when 'Lead'
         puts "update_leads: started"
-        update_leads(objs)
+        update_leads(sf_objs)
       when 'Opportunity'
         puts "update_opportunities: started"
-        update_opportunities(objs)
+        update_opportunities(sf_objs)
       when 'School'
         puts "update_schools: started"
-        update_schools(objs)
+        update_schools(sf_objs)
       else
         puts 'object not found.'
       end
-      delete_objects_not_in_salesforce(object, objs)
+      delete_objects_not_in_salesforce(name, sf_objs)
     end
     
   end
 
-  def retrieve_salesforce_data(object)
-    class_name = SF_PACKAGE + object
+  def retrieve_salesforce_data(name)
+    class_name = SF_PACKAGE + name
     class_name.constantize.all
   end
 
@@ -198,7 +198,7 @@ class SyncSalesforceJob < ApplicationJob
     end
   end
 
-  def delete_objects_not_in_salesforce(object, objs)
-    object.constantize.where.not(salesforce_id: objs.map(&:id)).delete_all
+  def delete_objects_not_in_salesforce(name, sf_objs)
+    name.constantize.where.not(salesforce_id: sf_objs.map(&:id)).delete_all
   end
 end
