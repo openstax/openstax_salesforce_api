@@ -7,6 +7,7 @@ RSpec.describe 'api/v1/contacts', type: :request do
 
   before(:all) do
     @contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')
+    @dk_token = doorkeeper_token
   end
 
   path '/api/v1/contacts' do
@@ -91,7 +92,7 @@ RSpec.describe 'api/v1/contacts', type: :request do
                },
                required: %w[salesforce_id name]
 
-        let(:id) { @contact.id }
+        let(:id) { @contact.salesforce_id }
         let(:HTTP_COOKIE) { oxa_cookie }
         run_test!
       end
@@ -109,6 +110,46 @@ RSpec.describe 'api/v1/contacts', type: :request do
         run_test! do  |response|
           expect(response).to have_http_status(:unauthorized)
         end
+      end
+    end
+  end
+
+  path '/api/v1/contacts/search' do
+    get 'Return contact by email' do
+      tags 'Contacts'
+      consumes 'application/json'
+      security [apiToken: []]
+
+      parameter name: :email, in: :query, type: :string
+
+      response '200', 'contact found' do
+
+        let(:email) { @contact.email }
+        let(:HTTP_COOKIE) { oxa_cookie }
+
+        run_test!
+      end
+    end
+
+    get 'Return contact by email using token' do
+      tags 'Contacts'
+      consumes 'application/json'
+
+      parameter name: :email, in: :query, type: :string
+
+      parameter({
+                  in: :header,
+                  type: :string,
+                  name: :Authorization,
+                  required: true,
+                  description: 'Doorkeeper token'
+                })
+
+      response '200', 'contact found' do
+        let(:email) { @contact.email }
+        let(:Authorization) { "Bearer #{@dk_token}" }
+
+        run_test!
       end
     end
   end

@@ -3,32 +3,14 @@ require 'push_opportunity_to_salesforce'
 class Api::V1::OpportunitiesController < Api::V1::BaseController
   # GET /opportunities
   def index
-    if params['os_accounts_id'].present?
-      begin
-        @opportunities = Opportunity.where(os_accounts_id: params['os_accounts_id'])
-      rescue ActiveRecord::RecordNotFound => e
-        render json: {
-          os_accounts_id: params['os_accounts_id'],
-          error: e.to_s
-        }, status: :not_found
-      end
-    else
-      @opportunities = Opportunity.paginate(page: params[:page], per_page: 20)
-    end
+    @opportunities = Opportunity.paginate(page: params[:page], per_page: 20)
     render json: @opportunities
   end
 
   # GET /opportunities/:id
   def show
-    begin
-      @opportunity = Opportunity.where(salesforce_id: params[:id])
-      render json: @opportunity, status: :ok
-    rescue ActiveRecord::RecordNotFound => e
-      render json: {
-        opportunity_id: params[:id],
-        error: e.to_s
-      }, status: :not_found
-    end
+    @opportunity = Opportunity.where(salesforce_id: params[:id])
+    render json: @opportunity, status: :ok
   end
 
   # POST /opportunities(.:format)
@@ -72,6 +54,12 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     else
       render json: { opportunity_id: opportunity_params[:salesforce_id], status: 'Opportunity update status: Failure. Opportunity not found in SFAPI.' }
     end
+  end
+
+  # GET /opportunities/search?os_accounts_id
+  def search
+    @opportunity = Opportunity.search(params[:os_accounts_id])
+    render json: @opportunity, status: :ok
   end
 
   private

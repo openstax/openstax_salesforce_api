@@ -74,7 +74,7 @@ RSpec.describe 'api/v1/schools', type: :request do
     end
   end
 
-  path '/api/v1/schools' do
+  path '/api/v1/schools/search' do
     get 'Return school by name' do
       tags 'Schools'
       consumes 'application/json'

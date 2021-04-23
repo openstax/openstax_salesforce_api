@@ -32,23 +32,23 @@ RSpec.describe "Leads", type: :request do
   end
 
   it 'returns a successful response for lead by os_accounts_id' do
-    get '/api/v1/leads/?os_accounts_id=' + @lead.os_accounts_id, :headers => @headers
+    get '/api/v1/leads/search?os_accounts_id=' + @lead.os_accounts_id, :headers => @headers
     expect(response).to have_http_status(:success)
   end
 
   it 'returns a successful response for lead by os_accounts_id with token' do
-    get '/api/v1/leads/?os_accounts_id=' + @lead.os_accounts_id, :headers => @token_header
+    get '/api/v1/leads/search?os_accounts_id=' + @lead.os_accounts_id, :headers => @token_header
     expect(response).to have_http_status(:success)
   end
 
   it "return one lead by id" do
-    get "/api/v1/leads/#{@lead.id}", :headers => @headers
+    get "/api/v1/leads/#{@lead.salesforce_id}", :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end
 
   it "return one lead by id with token" do
-    get "/api/v1/leads/#{@lead.id}", :headers => @token_header
+    get "/api/v1/leads/#{@lead.salesforce_id}", :headers => @token_header
     expect(JSON.parse(response.body).size).to be >= 1
     expect(response).to have_http_status(:success)
   end

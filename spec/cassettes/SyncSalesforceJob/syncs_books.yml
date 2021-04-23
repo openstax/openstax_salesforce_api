@@ -1,0 +1,128 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: https://test.salesforce.com/services/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password_url><salesforce_security_token>
+    headers:
+      User-Agent:
+      - Faraday v1.3.0
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 22 Apr 2021 18:06:54 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=hSBn3KOVEeuQXo3Gx4xQaw; domain=.salesforce.com; path=/; expires=Fri,
+        22-Apr-2022 18:06:54 GMT; Max-Age=31536000
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Readonlymode:
+      - 'false'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"00D0v0000005T7U!AQQAQAm3KBamPOwA69AfEJrwox_Ik1wBvAZ009d4eP3scOyIDkNl_LE231EEXCh4sSWyT2xcGaOWlNYn12sVOvpc27AaDtc8","instance_url":"https://openstax--tutorqa.my.salesforce.com","id":"https://test.salesforce.com/id/00D0v0000005T7UEAU/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1619114814682","signature":"wZG0Vksx00l6vGRsaoRCE9Q9h8tus/lwGIptAth3W7E="}'
+  recorded_at: Thu, 22 Apr 2021 18:06:54 GMT
+- request:
+    method: get
+    uri: https://openstax--tutorqa.my.salesforce.com/services/data/v37.0/query?q=SELECT%20Id,%20Name%20FROM%20Book__c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.3.0
+      Authorization:
+      - OAuth 00D0v0000005T7U!AQQAQAm3KBamPOwA69AfEJrwox_Ik1wBvAZ009d4eP3scOyIDkNl_LE231EEXCh4sSWyT2xcGaOWlNYn12sVOvpc27AaDtc8
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 22 Apr 2021 18:06:55 GMT
+      Strict-Transport-Security:
+      - max-age=31536002; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=hZjMCaOVEeu5xKF2CElnnw; domain=.salesforce.com; path=/; expires=Fri,
+        22-Apr-2022 18:06:55 GMT; Max-Age=31536000
+      Sforce-Limit-Info:
+      - api-usage=914/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":49,"done":true,"records":[{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhATEA0"},"Id":"a0Z0v000002VhATEA0","Name":"College
+        Algebra with Corequisite Support"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAUEA0"},"Id":"a0Z0v000002VhAUEA0","Name":"AP
+        History"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAiEAK"},"Id":"a0Z0v000002VhAiEAK","Name":"Business
+        Law I Essentials"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAVEA0"},"Id":"a0Z0v000002VhAVEA0","Name":"Career
+        Readiness"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAWEA0"},"Id":"a0Z0v000002VhAWEA0","Name":"College
+        Success"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAXEA0"},"Id":"a0Z0v000002VhAXEA0","Name":"Basic
+        College Math"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAYEA0"},"Id":"a0Z0v000002VhAYEA0","Name":"Elementary
+        Algebra"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAZEA0"},"Id":"a0Z0v000002VhAZEA0","Name":"Other"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAaEAK"},"Id":"a0Z0v000002VhAaEAK","Name":"HS
+        Physics"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAbEAK"},"Id":"a0Z0v000002VhAbEAK","Name":"Finite
+        Algebra"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAcEAK"},"Id":"a0Z0v000002VhAcEAK","Name":"Introduction
+        to Spanish"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAdEAK"},"Id":"a0Z0v000002VhAdEAK","Name":"AP
+        Micro Econ"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAeEAK"},"Id":"a0Z0v000002VhAeEAK","Name":"Prealgebra"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAfEAK"},"Id":"a0Z0v000002VhAfEAK","Name":"Intermediate
+        Algebra"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAgEAK"},"Id":"a0Z0v000002VhAgEAK","Name":"HS
+        Statistics"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAhEAK"},"Id":"a0Z0v000002VhAhEAK","Name":"Entrepreneurship"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAjEAK"},"Id":"a0Z0v000002VhAjEAK","Name":"Calculus"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAkEAK"},"Id":"a0Z0v000002VhAkEAK","Name":"Economics"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAlEAK"},"Id":"a0Z0v000002VhAlEAK","Name":"Financial
+        Accounting"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAmEAK"},"Id":"a0Z0v000002VhAmEAK","Name":"Algebra
+        and Trigonometry"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBCEA0"},"Id":"a0Z0v000002VhBCEA0","Name":"Anatomy
+        & Physiology"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBDEA0"},"Id":"a0Z0v000002VhBDEA0","Name":"Astronomy"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBEEA0"},"Id":"a0Z0v000002VhBEEA0","Name":"College
+        Algebra"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBFEA0"},"Id":"a0Z0v000002VhBFEA0","Name":"Macro
+        Econ"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBGEA0"},"Id":"a0Z0v000002VhBGEA0","Name":"Micro
+        Econ"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBHEA0"},"Id":"a0Z0v000002VhBHEA0","Name":"American
+        Government"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBIEA0"},"Id":"a0Z0v000002VhBIEA0","Name":"AP
+        Macro Econ"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBJEA0"},"Id":"a0Z0v000002VhBJEA0","Name":"LLPH"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAsEAK"},"Id":"a0Z0v000002VhAsEAK","Name":"Biology"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAtEAK"},"Id":"a0Z0v000002VhAtEAK","Name":"Chemistry"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAuEAK"},"Id":"a0Z0v000002VhAuEAK","Name":"College
+        Physics (Algebra)"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAvEAK"},"Id":"a0Z0v000002VhAvEAK","Name":"Concepts
+        of Bio (non-majors)"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAwEAK"},"Id":"a0Z0v000002VhAwEAK","Name":"Introduction
+        to Business"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAxEAK"},"Id":"a0Z0v000002VhAxEAK","Name":"Introduction
+        to Sociology"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAyEAK"},"Id":"a0Z0v000002VhAyEAK","Name":"Introductory
+        Statistics"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhAzEAK"},"Id":"a0Z0v000002VhAzEAK","Name":"Management"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhB0EAK"},"Id":"a0Z0v000002VhB0EAK","Name":"Microbiology"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhB1EAK"},"Id":"a0Z0v000002VhB1EAK","Name":"Precalc"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhB2EAK"},"Id":"a0Z0v000002VhB2EAK","Name":"Psychology"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhB3EAK"},"Id":"a0Z0v000002VhB3EAK","Name":"University
+        Physics (Calc)"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhB4EAK"},"Id":"a0Z0v000002VhB4EAK","Name":"US
+        History"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhB5EAK"},"Id":"a0Z0v000002VhB5EAK","Name":"AP
+        Bio"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhB6EAK"},"Id":"a0Z0v000002VhB6EAK","Name":"Managerial
+        Accounting"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhB7EAK"},"Id":"a0Z0v000002VhB7EAK","Name":"AP
+        Physics"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhB8EAK"},"Id":"a0Z0v000002VhB8EAK","Name":"Chem:
+        Atoms First"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhB9EAK"},"Id":"a0Z0v000002VhB9EAK","Name":"Business
+        Ethics"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBAEA0"},"Id":"a0Z0v000002VhBAEA0","Name":"Organizational
+        Behavior"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBBEA0"},"Id":"a0Z0v000002VhBBEA0","Name":"Business
+        Statistics"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002Oq7lEAC"},"Id":"a0Z0v000002Oq7lEAC","Name":"Physics"}]}'
+  recorded_at: Thu, 22 Apr 2021 18:06:54 GMT
+recorded_with: VCR 6.0.0
