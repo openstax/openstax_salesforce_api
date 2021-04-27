@@ -199,3 +199,7 @@ class SyncSalesforceJob < ApplicationJob
     name.constantize.where.not(salesforce_id: sf_objs.map(&:id)).delete_all
   end
 end
+
+if Sidekiq.server?
+  Sidekiq::Cron::Job.create(name: 'Salesforce sync - every 3 hour', cron: '* */3 * * *', class: 'SyncSalesforceJob')
+end

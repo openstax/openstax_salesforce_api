@@ -1,4 +1,13 @@
 GIT
+  remote: https://github.com/ondrejbartas/sidekiq-cron.git
+  revision: 6a0aeff6c900f3b7246734282f6869c61e1d5b4e
+  ref: 6a0aeff6c900f3b7246734282f6869c61e1d5b4e
+  specs:
+    sidekiq-cron (1.2.0)
+      fugit (~> 1.1)
+      sidekiq (>= 4.2.1)
+
+GIT
   remote: https://github.com/openstax/auth-rails.git
   revision: ed2d7da86ca226b93376955b9474c4cf115c611f
   ref: ed2d7da86ca226b93376955b9474c4cf115c611f
@@ -118,6 +127,8 @@ GEM
       dotenv (= 2.7.6)
       railties (>= 3.2)
     erubi (1.10.0)
+    et-orbi (1.2.4)
+      tzinfo
     exception_notification (4.4.3)
       actionmailer (>= 4.0, < 7)
       activesupport (>= 4.0, < 7)
@@ -138,6 +149,9 @@ GEM
     faraday_middleware (1.0.0)
       faraday (~> 1.0)
     ffi (1.15.0)
+    fugit (1.4.5)
+      et-orbi (~> 1.1, >= 1.1.8)
+      raabro (~> 1.4)
     globalid (0.4.2)
       activesupport (>= 4.2.0)
     hashdiff (1.0.1)
@@ -250,6 +264,7 @@ GEM
     public_suffix (4.0.6)
     puma (4.3.7)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.5.2)
     rack (2.2.3)
     rack-cors (1.1.1)
@@ -436,6 +451,7 @@ DEPENDENCIES
   ruby-pardot
   sentry-ruby
   sidekiq
+  sidekiq-cron!
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
