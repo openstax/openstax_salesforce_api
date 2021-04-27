@@ -68,3 +68,5 @@ class SyncPardotJob < ApplicationJob
     end
   end
 end
+
+Sidekiq::Cron::Job.create(name: 'Pardot sync - every 3 hours', cron: '* */3 * * *', class: 'SyncPardotJob')
