@@ -1,5 +1,5 @@
 class Api::V1::SchoolsController < Api::V1::BaseController
-  # GET /schools?name=school-name
+  # GET /schools
   def index
     @schools = School.paginate(page: params[:page], per_page: 20)
     render json: @schools
@@ -11,9 +11,9 @@ class Api::V1::SchoolsController < Api::V1::BaseController
     render json: @school, status: :ok
   end
 
-  # GET /schools/search?name
+  # GET /schools/search?name='school'&limit=150
   def search
-    @schools = School.search(params[:name])
+    @schools = School.search(params[:name], params[:limit])
     render json: @schools, status: :ok
   end
 end
