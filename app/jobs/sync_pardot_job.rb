@@ -70,5 +70,5 @@ class SyncPardotJob < ApplicationJob
 end
 
 if Sidekiq.server?
-  Sidekiq::Cron::Job.create(name: 'Pardot sync - every 3 hours', cron: '* */3 * * *', class: 'SyncPardotJob')
+  Sidekiq::Cron::Job.create(name: 'Pardot sync - every 3 hours', cron: '45 */3 * * *', class: 'SyncPardotJob')
 end
