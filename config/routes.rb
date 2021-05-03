@@ -7,7 +7,7 @@ Rails.application.routes.draw do
   mount Rswag::Api::Engine => '/api-docs'
   mount OpenStax::Accounts::Engine, at: '/accounts'
   mount Sidekiq::Web => '/jobs', :constraints => AdminConstraint.new
-  get 'jobs', to: 'login#new'
+  get 'jobs', to: 'redirect#index'
   namespace :api do
     api_version(
       module: 'V1',
