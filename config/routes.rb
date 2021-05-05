@@ -1,10 +1,13 @@
+require "admin_constraint"
+
 Rails.application.routes.draw do
   root 'login#new'
   use_doorkeeper
   mount Rswag::Ui::Engine => '/api-docs'
   mount Rswag::Api::Engine => '/api-docs'
   mount OpenStax::Accounts::Engine, at: '/accounts'
-  mount Sidekiq::Web => '/jobs'
+  mount Sidekiq::Web => '/jobs', :constraints => AdminConstraint.new
+  get 'jobs', to: 'redirect#index'
   namespace :api do
     api_version(
       module: 'V1',
