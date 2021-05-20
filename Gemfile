@@ -13,7 +13,7 @@ gem 'openstax_auth', github: 'openstax/auth-rails', ref: 'ed2d7da86ca226b9337695
 gem 'openstax_healthcheck', '~> 1.0.0'
 gem 'openstax_salesforce'
 gem 'pg', '>= 0.18', '< 2.0'
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 gem 'rack-cors'
 gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
 gem 'restforce', '~> 5.0.5'

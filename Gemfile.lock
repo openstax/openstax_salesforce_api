@@ -262,7 +262,7 @@ GEM
       request_store
     pg (1.2.3)
     public_suffix (4.0.6)
-    puma (4.3.7)
+    puma (4.3.8)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.5.2)
@@ -442,7 +442,7 @@ DEPENDENCIES
   openstax_healthcheck (~> 1.0.0)
   openstax_salesforce
   pg (>= 0.18, < 2.0)
-  puma (~> 4.1)
+  puma (~> 4.3)
   rack-cors
   rails (~> 6.0.3, >= 6.0.3.2)
   restforce (~> 5.0.5)
