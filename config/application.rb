@@ -44,9 +44,3 @@ module OpenstaxSalesforceApi
     ]
   end
 end
-
-Sentry.init do |config|
-  config.dsn = Rails.application.secrets.sentry[:dsn]
-  config.breadcrumbs_logger = [:active_support_logger]
-  config.traces_sample_rate = 1.0
-end
