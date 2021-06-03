@@ -19,18 +19,15 @@ class Api::V1::ContactsController < Api::V1::BaseController
 
   # PATCH/PUT /contacts/:contact_id/:school_id
   def add_school
-    @contact = Contact.find_by!(salesforce_id: params[:contact_id])
-    @school = School.find_by!(salesforce_id: params[:school_id])
-    relation = OpenStax::Salesforce::Remote::AccountContactRelation.new(
-      contact_id: @contact.salesforce_id,
-      school_id: @school.salesforce_id
-    )
-    relation.save
+    AccountContactRelation.new(
+      contact_id: params[:contact_id],
+      school_id: params[:school_id]
+    ).save
 
-    if relation.errors.any?
-      Rails.logger.warn('Error creating school/contact relation in salesforce:' + relation.errors.inspect)
-    end
-
+    OpenStax::Salesforce::Remote::AccountContactRelation.new(
+      contact_id: params[:contact_id],
+      school_id: params[:school_id]
+    ).save
   end
 
   # DELETE /contacts/:relation_id
