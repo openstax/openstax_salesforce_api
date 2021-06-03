@@ -17,23 +17,23 @@ class Api::V1::ContactsController < Api::V1::BaseController
     render json: @contact, status: :ok
   end
 
-  # PATCH/PUT /contacts/:contact_id/:school_id
+  # POST /contacts/:contact_id/:school_id
   def add_school
-    AccountContactRelation.new(
+    relation = AccountContactRelation.new(
       contact_id: params[:contact_id],
       school_id: params[:school_id]
-    ).save
+    ).save!
 
-    OpenStax::Salesforce::Remote::AccountContactRelation.new(
-      contact_id: params[:contact_id],
-      school_id: params[:school_id]
-    ).save
+    SyncContactSchoolsToSalesforceJob.perform_later(relation)
   end
 
   # DELETE /contacts/:relation_id
   def remove_school
-    OpenStax::Salesforce::Remote::AccountContactRelation.destory(
-      id: params[:relation_id]
-    )
+    relation = AccountContactRelation.find_by!(
+      contact_id: params[:contact_id],
+      school_id: params[:school_id]
+    ).destroy!
+
+    #SyncContactSchoolsToSalesforceJob.perform_later(relation)
   end
 end
