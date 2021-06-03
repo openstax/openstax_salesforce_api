@@ -30,6 +30,8 @@ Rails.application.routes.draw do
       resources :contacts do
         collection do
           get 'search'
+          post 'add_school'
+          delete 'remove_school'
         end
       end
       resources :leads do
