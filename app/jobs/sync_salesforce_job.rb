@@ -2,7 +2,7 @@ class SyncSalesforceJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: 1
   SF_PACKAGE = 'OpenStax::Salesforce::Remote::'.freeze
-  SF_OBJECTS = %w[Book CampaignMember Campaign Contact Lead Opportunity School].freeze
+  SF_OBJECTS = %w[AccountContactRelation Book CampaignMember Campaign Contact Lead Opportunity School].freeze
 
   def perform(objects = [])
     if objects.empty?
@@ -20,6 +20,8 @@ class SyncSalesforceJob < ApplicationJob
         next
       end
       case name
+      when 'AccountContactRelation'
+        update_account_contact_relations(sf_objs)
       when 'Book'
         update_books(sf_objs)
       when 'CampaignMember'
@@ -45,6 +47,20 @@ class SyncSalesforceJob < ApplicationJob
   def retrieve_salesforce_data(name)
     class_name = SF_PACKAGE + name
     class_name.constantize.all
+  end
+
+  def update_account_contact_relations(account_contact_relations)
+    puts(account_contact_relations)
+    account_contact_relations.each do |relation|
+      puts(relation.inspect)
+      relation_to_update = AccountContactRelation.find_or_initialize_by(salesforce_id: relation.id)
+      relation_to_update.salesforce_id = relation.id
+      relation_to_update.contact_id = relation.contact_id
+      relation_to_update.school_id = relation.school_id
+      relation_to_update.primary = relation.primary
+      relation_to_update.save if relation_to_update.changed?
+    end
+    puts(AccountContactRelation.all)
   end
 
   def update_books(sf_books)
