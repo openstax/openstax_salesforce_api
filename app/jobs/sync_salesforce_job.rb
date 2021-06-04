@@ -49,18 +49,15 @@ class SyncSalesforceJob < ApplicationJob
     class_name.constantize.all
   end
 
-  def update_account_contact_relations(account_contact_relations)
-    puts(account_contact_relations)
-    account_contact_relations.each do |relation|
-      puts(relation.inspect)
-      relation_to_update = AccountContactRelation.find_or_initialize_by(salesforce_id: relation.id)
-      relation_to_update.salesforce_id = relation.id
-      relation_to_update.contact_id = relation.contact_id
-      relation_to_update.school_id = relation.school_id
-      relation_to_update.primary = relation.primary
+  def update_account_contact_relations(sf_relations)
+    sf_relations.each do |sf_relation|
+      relation_to_update = AccountContactRelation.find_or_initialize_by(contact_id: sf_relation.contact_id, school_id: sf_relation.school_id)
+      relation_to_update.salesforce_id = sf_relation.id
+      relation_to_update.contact_id = sf_relation.contact_id
+      relation_to_update.school_id = sf_relation.school_id
+      relation_to_update.primary = sf_relation.primary
       relation_to_update.save if relation_to_update.changed?
     end
-    puts(AccountContactRelation.all)
   end
 
   def update_books(sf_books)
