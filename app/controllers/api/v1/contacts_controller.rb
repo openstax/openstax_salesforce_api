@@ -17,23 +17,24 @@ class Api::V1::ContactsController < Api::V1::BaseController
     render json: @contact, status: :ok
   end
 
-  # POST /contacts/:contact_id/:school_id
+  # POST /contacts/add_school/:contact_id/:school_id
   def add_school
     relation = AccountContactRelation.new(
       contact_id: params[:contact_id],
       school_id: params[:school_id]
-    ).save!
+    )
+    relation.save!
 
-    SyncContactSchoolsToSalesforceJob.perform_later(relation)
+    SyncContactSchoolsToSalesforceJob.perform_later(relation, 'add')
   end
 
-  # DELETE /contacts/:relation_id
+  # DELETE /contacts/remove_school/:contact_id/:school_id
   def remove_school
     relation = AccountContactRelation.find_by!(
       contact_id: params[:contact_id],
       school_id: params[:school_id]
-    ).destroy!
+    )
 
-    #SyncContactSchoolsToSalesforceJob.perform_later(relation)
+    SyncContactSchoolsToSalesforceJob.perform_later(relation, 'remove')
   end
 end
