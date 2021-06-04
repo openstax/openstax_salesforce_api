@@ -15,10 +15,11 @@ class SyncContactSchoolsToSalesforceJob < ApplicationJob
       end
 
     elsif action == 'remove'
-      OpenStax::Salesforce::Remote::AccountContactRelation.find_by(
+      sf_relation = OpenStax::Salesforce::Remote::AccountContactRelation.find_by(
         contact_id: relation.contact_id,
         school_id: relation.school_id
-      ).destroy
+      )
+      sf_relation&.destroy
 
       relation.destroy!
     end

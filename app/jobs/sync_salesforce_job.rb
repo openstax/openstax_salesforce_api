@@ -58,6 +58,7 @@ class SyncSalesforceJob < ApplicationJob
       relation_to_update.primary = sf_relation.primary
       relation_to_update.save if relation_to_update.changed?
     end
+    AccountContactRelation.where(salesforce_id: nil).destroy_all
   end
 
   def update_books(sf_books)
