@@ -12,7 +12,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   def subscribe
     @subscription = Subscription.where(list: @list, contact: current_contact!).first_or_initialize
 
-    if @subscription.new_record?
+    if @subscription.new_record? || @subscription.pending_destroy?
       @subscription.pending_create!
       SubscribeToListJob.perform_later(@subscription)
     end
