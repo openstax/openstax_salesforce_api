@@ -23,6 +23,7 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
         properties: {
           opportunity: { type: :array },
           contact: { type: :array },
+          schools: { type: :array },
           lead: { type: :array },
           subscriptions: { type: :array }
         }
@@ -36,7 +37,7 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
           json_response = JSON.parse(response.body)
           expect(json_response.size).to be >= 1
           expect(response).to have_http_status(:success)
-          expect(json_response.keys).to contain_exactly('contact', 'lead', 'opportunity', 'subscriptions')
+          expect(json_response.keys).to contain_exactly('contact', 'lead', 'schools', 'opportunity', 'subscriptions')
         end
       end
 

@@ -55,7 +55,6 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
     headers["ACCEPT"] = "application/json"
     post "/api/v1/opportunities", :params => opportunity_data, :headers => headers
 
-    expect(response.content_type).to eq("application/json; charset=utf-8")
     expect(response).to have_http_status(:success)
   end
 
@@ -65,7 +64,6 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
     headers["ACCEPT"] = "application/json"
     post "/api/v1/opportunities", :params => opportunity_data, :headers => headers
 
-    expect(response.content_type).to eq("application/json; charset=utf-8")
     expect(response).to have_http_status(:success)
   end
 
@@ -77,7 +75,6 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
     headers["ACCEPT"] = "application/json"
     put "/api/v1/opportunities/" + @opportunity.id.to_s, :params => opportunity_data, :headers => headers
 
-    expect(response.content_type).to eq("application/json; charset=utf-8")
     expect(response).to have_http_status(:success)
   end
 
@@ -89,7 +86,6 @@ RSpec.describe "Opportunities", type: :request, vcr: VCR_OPTS do
     headers["ACCEPT"] = "application/json"
     put "/api/v1/opportunities/" + @opportunity.id.to_s, :params => opportunity_data, :headers => headers
 
-    expect(response.content_type).to eq("application/json; charset=utf-8")
     expect(response).to have_http_status(:success)
   end
 
