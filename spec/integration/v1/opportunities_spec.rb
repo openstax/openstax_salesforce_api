@@ -5,7 +5,7 @@ require 'spec_helper'
 
 RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
   before do
-    allow(Rails.application.config).to receive(:consider_all_requests_local) { true }
+    allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
   end
 
   before(:all) do
