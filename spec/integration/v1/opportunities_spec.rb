@@ -9,12 +9,13 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
   end
 
   before(:all) do
-    @opportunity = FactoryBot.create :api_opportunity
     # needed for cookie check
     contact = create_contact
     @headers = set_cookie
     @token_header = create_token_header
     @opportunity = FactoryBot.create(:api_opportunity, { salesforce_id: '0062F00000BG056QAD', contact_id: '0032F00000cfZQhQAM', school_id: '0012F00000iPxe9QAC' })
+    #@book = Book.new(salesforce_id: 'a0Z7h000001a79WEAQ', name: 'College Algebra')
+    @book = FactoryBot.create :api_book
     VCR.use_cassette('OpportunitiesIntegration/sf_setup', VCR_OPTS) do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette
@@ -95,7 +96,7 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
             'number_of_students': 123,
             'class_start_date': DateTime.now.strftime('%Y-%m-%d'),
             'school_id': '0017h00000YMwc1AAD',
-            'book_id': 'a0Z7h000001a79WEAQ'
+            'book_name': @book.name
           }
         end
         let(:HTTP_COOKIE) { oxa_cookie }
@@ -151,14 +152,14 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
       response '200', 'opportunity updated' do
 
         opportunity_data = {
-          'term_year':'2019 - 20 Spring',
-          'contact_id':'0032F00000cfZQhQAM',
-          'close_date':DateTime.now.strftime('%Y-%m-%d'),
-          'type':"New Business",
+          'term_year': '2019 - 20 Spring',
+          'contact_id': '0032F00000cfZQhQAM',
+          'close_date': DateTime.now.strftime('%Y-%m-%d'),
+          'type': "New Business",
           'number_of_students': 123,
-          'class_start_date':DateTime.now.strftime('%Y-%m-%d'),
-          'school_id':'0017h00000YMwc1AAD',
-          'book_id':'a0Z7h000001a79WEAQ',
+          'class_start_date': DateTime.now.strftime('%Y-%m-%d'),
+          'school_id': '0017h00000YMwc1AAD',
+          'book_name': 'College Algebra',
           'name': 'temp'
         }
         push_opportunity = OpenStax::Salesforce::Remote::Opportunity.new(opportunity_data)
@@ -171,7 +172,7 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
             'number_of_students': 1234,
             'class_start_date': DateTime.now.strftime('%Y-%m-%d'),
             'school_id': '0017h00000YMwc1AAD',
-            'book_id': 'a0Z7h000001a79WEAQ'
+            'book_name': 'College Algebra'
           }
         end
         let(:HTTP_COOKIE) { oxa_cookie }
