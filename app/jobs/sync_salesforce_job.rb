@@ -41,7 +41,6 @@ class SyncSalesforceJob < ApplicationJob
       end
       delete_objects_not_in_salesforce(name, sf_objs)
     end
-    
   end
 
   def retrieve_salesforce_data(name)

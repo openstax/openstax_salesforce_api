@@ -3,6 +3,10 @@ require 'vcr_helper'
 Sidekiq::Testing.inline!
 
 RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
+  before(:each) do
+    Sidekiq::Worker.clear_all
+  end
+
   it { is_expected.to be_processed_in :default }
   it { is_expected.to be_retryable 1 }
 
