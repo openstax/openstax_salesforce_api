@@ -2,6 +2,8 @@ class PushOpportunityToSalesforceJob < ApplicationJob
   queue_as :default
 
   def perform(opportunity_data)
+    book = Book.find_by!(name: opportunity_data[:book_name])
+
     begin
       if opportunity_data[:salesforce_id]
         opportunity = OpenStax::Salesforce::Remote::Opportunity.find(opportunity_data[:salesforce_id])
@@ -15,7 +17,7 @@ class PushOpportunityToSalesforceJob < ApplicationJob
           time_period: 'Year',
           class_start_date: opportunity_data[:class_start_date],
           school_id: opportunity_data[:school_id],
-          book_id: opportunity_data[:book_id],
+          book_id: book.salesforce_id,
           lead_source: 'Web'
         )
       else
@@ -30,7 +32,7 @@ class PushOpportunityToSalesforceJob < ApplicationJob
           time_period: 'Year',
           class_start_date: opportunity_data[:class_start_date],
           school_id: opportunity_data[:school_id],
-          book_id: opportunity_data[:book_id],
+          book_id: book.salesforce_id,
           lead_source: 'Web'
         )
         opportunity.save
