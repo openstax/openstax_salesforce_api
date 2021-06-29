@@ -12,11 +12,10 @@ RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
     expect(Book.count).to be > 1
   end
 
-  it 'syncs campaigns and campaign members' do
-    SyncSalesforceJob.new.perform(['Campaign', 'CampaignMember'])
+  it 'syncs contacts' do
+    SyncSalesforceJob.new.perform(['Contact'])
 
-    expect(Campaign.count).to be > 1
-    expect(CampaignMember.count).to be > 1
+    expect(Contact.count).to be > 1
   end
 
   it 'handles wrong parameter by doing nothing' do

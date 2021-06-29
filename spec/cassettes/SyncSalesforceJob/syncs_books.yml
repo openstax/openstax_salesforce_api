@@ -1,53 +1,6 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://test.salesforce.com/services/oauth2/token
-    body:
-      encoding: US-ASCII
-      string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password_url><salesforce_security_token>
-    headers:
-      User-Agent:
-      - Faraday v1.3.0
-      Content-Type:
-      - application/x-www-form-urlencoded
-      Accept-Encoding:
-      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
-      Accept:
-      - "*/*"
-  response:
-    status:
-      code: 200
-      message: OK
-    headers:
-      Date:
-      - Thu, 22 Apr 2021 18:06:54 GMT
-      Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains
-      X-Content-Type-Options:
-      - nosniff
-      X-Xss-Protection:
-      - 1; mode=block
-      Cache-Control:
-      - no-cache,must-revalidate,max-age=0,no-store,private
-      Set-Cookie:
-      - BrowserId=hSBn3KOVEeuQXo3Gx4xQaw; domain=.salesforce.com; path=/; expires=Fri,
-        22-Apr-2022 18:06:54 GMT; Max-Age=31536000
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 GMT
-      X-Readonlymode:
-      - 'false'
-      Content-Type:
-      - application/json;charset=UTF-8
-      Vary:
-      - Accept-Encoding
-      Transfer-Encoding:
-      - chunked
-    body:
-      encoding: ASCII-8BIT
-      string: '{"access_token":"00D0v0000005T7U!AQQAQAm3KBamPOwA69AfEJrwox_Ik1wBvAZ009d4eP3scOyIDkNl_LE231EEXCh4sSWyT2xcGaOWlNYn12sVOvpc27AaDtc8","instance_url":"https://openstax--tutorqa.my.salesforce.com","id":"https://test.salesforce.com/id/00D0v0000005T7UEAU/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1619114814682","signature":"wZG0Vksx00l6vGRsaoRCE9Q9h8tus/lwGIptAth3W7E="}'
-  recorded_at: Thu, 22 Apr 2021 18:06:54 GMT
-- request:
     method: get
     uri: https://openstax--tutorqa.my.salesforce.com/services/data/v37.0/query?q=SELECT%20Id,%20Name%20FROM%20Book__c
     body:
@@ -125,4 +78,130 @@ http_interactions:
         Behavior"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002VhBBEA0"},"Id":"a0Z0v000002VhBBEA0","Name":"Business
         Statistics"},{"attributes":{"type":"Book__c","url":"/services/data/v37.0/sobjects/Book__c/a0Z0v000002Oq7lEAC"},"Id":"a0Z0v000002Oq7lEAC","Name":"Physics"}]}'
   recorded_at: Thu, 22 Apr 2021 18:06:54 GMT
+- request:
+    method: post
+    uri: https://test.salesforce.com/services/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password_url><salesforce_security_token>
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 29 Jun 2021 19:02:08 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=gE7hh9kMEeuNz80wxiyxjw; domain=.salesforce.com; path=/; expires=Wed,
+        29-Jun-2022 19:02:08 GMT; Max-Age=31536000
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Readonlymode:
+      - 'false'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"00D7h0000004fCa!ARYAQFc8aN6lQP5WProC1qz2S1n8IH3vllSGDFQzANJOvMCFF4ZjmaRJ6GZFvq_eCSBRITf1tFaFEE0H0BUujSIFgbPZM4K_","instance_url":"https://openstax--dev.my.salesforce.com","id":"https://test.salesforce.com/id/00D7h0000004fCaEAI/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1624993328343","signature":"9NDLG/x530NX+ae8wPBc1e4H98ThCV1eaZb8xb0APXg="}'
+  recorded_at: Tue, 29 Jun 2021 19:02:08 GMT
+- request:
+    method: get
+    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20Annualization_number__c%20FROM%20Book__c
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Authorization:
+      - OAuth 00D7h0000004fCa!ARYAQFc8aN6lQP5WProC1qz2S1n8IH3vllSGDFQzANJOvMCFF4ZjmaRJ6GZFvq_eCSBRITf1tFaFEE0H0BUujSIFgbPZM4K_
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 29 Jun 2021 19:02:08 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=gL0zQNkMEeul0gsfU3QB3Q; domain=.salesforce.com; path=/; expires=Wed,
+        29-Jun-2022 19:02:08 GMT; Max-Age=31536000
+      Sforce-Limit-Info:
+      - api-usage=326/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":49,"done":true,"records":[{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79DEAQ"},"Id":"a0Z7h000001a79DEAQ","Name":"AP
+        History","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79EEAQ"},"Id":"a0Z7h000001a79EEAQ","Name":"Business
+        Ethics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79FEAQ"},"Id":"a0Z7h000001a79FEAQ","Name":"Business
+        Statistics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79GEAQ"},"Id":"a0Z7h000001a79GEAQ","Name":"Career
+        Readiness","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79HEAQ"},"Id":"a0Z7h000001a79HEAQ","Name":"Entrepreneurship","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79IEAQ"},"Id":"a0Z7h000001a79IEAQ","Name":"Organizational
+        Behavior","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79JEAQ"},"Id":"a0Z7h000001a79JEAQ","Name":"College
+        Success","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79KEAQ"},"Id":"a0Z7h000001a79KEAQ","Name":"Financial
+        Accounting","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79LEAQ"},"Id":"a0Z7h000001a79LEAQ","Name":"Business
+        Law I Essentials","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79MEAQ"},"Id":"a0Z7h000001a79MEAQ","Name":"LLPH","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79NEAQ"},"Id":"a0Z7h000001a79NEAQ","Name":"College
+        Algebra with Corequisite Support","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79OEAQ"},"Id":"a0Z7h000001a79OEAQ","Name":"Introduction
+        to Intellectual Property","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79PEAQ"},"Id":"a0Z7h000001a79PEAQ","Name":"Algebra
+        and Trigonometry","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79QEAQ"},"Id":"a0Z7h000001a79QEAQ","Name":"Anatomy
+        & Physiology","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79REAQ"},"Id":"a0Z7h000001a79REAQ","Name":"Astronomy","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79SEAQ"},"Id":"a0Z7h000001a79SEAQ","Name":"Basic
+        College Math","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79TEAQ"},"Id":"a0Z7h000001a79TEAQ","Name":"Biology","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79UEAQ"},"Id":"a0Z7h000001a79UEAQ","Name":"Calculus","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79VEAQ"},"Id":"a0Z7h000001a79VEAQ","Name":"Chemistry","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79WEAQ"},"Id":"a0Z7h000001a79WEAQ","Name":"College
+        Algebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79XEAQ"},"Id":"a0Z7h000001a79XEAQ","Name":"College
+        Physics (Algebra)","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79YEAQ"},"Id":"a0Z7h000001a79YEAQ","Name":"Concepts
+        of Bio (non-majors)","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79ZEAQ"},"Id":"a0Z7h000001a79ZEAQ","Name":"Economics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79aEAA"},"Id":"a0Z7h000001a79aEAA","Name":"Elementary
+        Algebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79bEAA"},"Id":"a0Z7h000001a79bEAA","Name":"Intermediate
+        Algebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79cEAA"},"Id":"a0Z7h000001a79cEAA","Name":"Introduction
+        to Business","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79dEAA"},"Id":"a0Z7h000001a79dEAA","Name":"Introduction
+        to Sociology","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79eEAA"},"Id":"a0Z7h000001a79eEAA","Name":"Introductory
+        Statistics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79fEAA"},"Id":"a0Z7h000001a79fEAA","Name":"Macro
+        Econ","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79gEAA"},"Id":"a0Z7h000001a79gEAA","Name":"Management","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79hEAA"},"Id":"a0Z7h000001a79hEAA","Name":"Micro
+        Econ","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79iEAA"},"Id":"a0Z7h000001a79iEAA","Name":"Microbiology","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79jEAA"},"Id":"a0Z7h000001a79jEAA","Name":"Other","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79kEAA"},"Id":"a0Z7h000001a79kEAA","Name":"Precalc","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79lEAA"},"Id":"a0Z7h000001a79lEAA","Name":"Psychology","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79mEAA"},"Id":"a0Z7h000001a79mEAA","Name":"University
+        Physics (Calc)","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79nEAA"},"Id":"a0Z7h000001a79nEAA","Name":"US
+        History","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79oEAA"},"Id":"a0Z7h000001a79oEAA","Name":"American
+        Government","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79pEAA"},"Id":"a0Z7h000001a79pEAA","Name":"HS
+        Physics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79qEAA"},"Id":"a0Z7h000001a79qEAA","Name":"AP
+        Bio","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79rEAA"},"Id":"a0Z7h000001a79rEAA","Name":"Finite
+        Algebra","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79sEAA"},"Id":"a0Z7h000001a79sEAA","Name":"Managerial
+        Accounting","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79tEAA"},"Id":"a0Z7h000001a79tEAA","Name":"Introduction
+        to Spanish","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79uEAA"},"Id":"a0Z7h000001a79uEAA","Name":"AP
+        Physics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79vEAA"},"Id":"a0Z7h000001a79vEAA","Name":"AP
+        Micro Econ","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79wEAA"},"Id":"a0Z7h000001a79wEAA","Name":"Prealgebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79xEAA"},"Id":"a0Z7h000001a79xEAA","Name":"AP
+        Macro Econ","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79yEAA"},"Id":"a0Z7h000001a79yEAA","Name":"HS
+        Statistics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79zEAA"},"Id":"a0Z7h000001a79zEAA","Name":"Chem:
+        Atoms First","Annualization_number__c":1.4}]}'
+  recorded_at: Tue, 29 Jun 2021 19:02:08 GMT
 recorded_with: VCR 6.0.0
