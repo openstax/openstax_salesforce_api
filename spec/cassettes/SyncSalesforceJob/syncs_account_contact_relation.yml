@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://test.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20ContactId,%20IsDirect,%20AccountId%20FROM%20AccountContactRelation
+    uri: https://example.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20ContactId,%20IsDirect,%20AccountId%20FROM%20AccountContactRelation
     body:
       encoding: US-ASCII
       string: ''
