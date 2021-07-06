@@ -13,13 +13,13 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
 
   # POST /opportunities(.:format)
   def create
-    PushOpportunityToSalesforceJob.perform_now(opportunity_params)
+    PushOpportunityToSalesforceJob.perform_later(opportunity_params)
     head :accepted
   end
 
   # PATCH/PUT /opportunities/:id(.:format)
   def update
-    PushOpportunityToSalesforceJob.perform_now(opportunity_params)
+    PushOpportunityToSalesforceJob.perform_later(opportunity_params)
     head :accepted
   end
 
