@@ -1,0 +1,46 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20ContactId,%20IsDirect,%20AccountId%20FROM%20AccountContactRelation
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Authorization:
+      - OAuth 00D7h0000004fCa!ARYAQOlFuh.YwYAh4m2ICW0GeD0quoeAozYwZU_nXNHA.D0cxmesIaZJcZtgEq.oJDNwRP5UyZHVDpM252BkLeGx5PN_TC.C
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 06 Jul 2021 18:41:27 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=xgCprt6JEeu59n9Z26AnMg; domain=.salesforce.com; path=/; expires=Wed,
+        06-Jul-2022 18:41:27 GMT; Max-Age=31536000
+      Sforce-Limit-Info:
+      - api-usage=298/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":17,"done":true,"records":[{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000DNFgcAAH"},"Id":"07k7h00000DNFgcAAH","ContactId":"0037h00000SDIPmAAP","IsDirect":true,"AccountId":"0017h00000YMwbzAAD"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000DNFh7AAH"},"Id":"07k7h00000DNFh7AAH","ContactId":"0037h00000SDIbFAAX","IsDirect":true,"AccountId":"0017h00000YMwbzAAD"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000DNFjqAAH"},"Id":"07k7h00000DNFjqAAH","ContactId":"0037h00000SDJFfAAP","IsDirect":true,"AccountId":"0017h00000YMwbzAAD"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000DO6iGAAT"},"Id":"07k7h00000DO6iGAAT","ContactId":"0037h00000SEXNqAAP","IsDirect":true,"AccountId":"0017h00000YXEBzAAP"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000Duk90AAB"},"Id":"07k7h00000Duk90AAB","ContactId":"0037h00000TCARSAA5","IsDirect":true,"AccountId":"0017h00000YXEBzAAP"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000DwFf0AAF"},"Id":"07k7h00000DwFf0AAF","ContactId":"0037h00000SDIPmAAP","IsDirect":false,"AccountId":"0017h00000YXEBzAAP"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000DwHiIAAV"},"Id":"07k7h00000DwHiIAAV","ContactId":"0037h00000TPcT0AAL","IsDirect":true,"AccountId":"0017h00000Z83kCAAR"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000DwJ0MAAV"},"Id":"07k7h00000DwJ0MAAV","ContactId":"0037h00000TPe5YAAT","IsDirect":true,"AccountId":"0017h00000Z87DyAAJ"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000DwJAmAAN"},"Id":"07k7h00000DwJAmAAN","ContactId":"0037h00000SDJFfAAP","IsDirect":false,"AccountId":"0017h00000Z83kCAAR"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000DwJFxAAN"},"Id":"07k7h00000DwJFxAAN","ContactId":"0037h00000SDJFfAAP","IsDirect":false,"AccountId":"0017h00000Z87DyAAJ"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000EHNKZAA5"},"Id":"07k7h00000EHNKZAA5","ContactId":"0037h00000TPe5YAAT","IsDirect":false,"AccountId":"0017h00000Z83kCAAR"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000EHNinAAH"},"Id":"07k7h00000EHNinAAH","ContactId":"0037h00000TCARSAA5","IsDirect":false,"AccountId":"0017h00000Z83kCAAR"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000EHNisAAH"},"Id":"07k7h00000EHNisAAH","ContactId":"0037h00000TCARSAA5","IsDirect":false,"AccountId":"0017h00000YMwbzAAD"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000EHNrQAAX"},"Id":"07k7h00000EHNrQAAX","ContactId":"0037h00000SEXNqAAP","IsDirect":false,"AccountId":"0017h00000Z7xEJAAZ"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000EHR1SAAX"},"Id":"07k7h00000EHR1SAAX","ContactId":"0037h00000SEXNqAAP","IsDirect":false,"AccountId":"0017h00000YMwc2AAD"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000EHR1rAAH"},"Id":"07k7h00000EHR1rAAH","ContactId":"0037h00000TPmnMAAT","IsDirect":true,"AccountId":"0017h00000YMwc1AAD"},{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000EIEWJAA5"},"Id":"07k7h00000EIEWJAA5","ContactId":"0037h00000TQjwbAAD","IsDirect":true,"AccountId":"0017h00000Z7xEJAAZ"}]}'
+  recorded_at: Tue, 06 Jul 2021 18:41:27 GMT
+recorded_with: VCR 6.0.0

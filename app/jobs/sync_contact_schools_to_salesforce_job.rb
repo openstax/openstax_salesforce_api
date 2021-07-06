@@ -13,6 +13,9 @@ class SyncContactSchoolsToSalesforceJob < ApplicationJob
       rescue Restforce::ErrorCode::DuplicateValue => e
         Rails.logger.warn 'This contact already belongs to this school'
         relation.destroy!
+      rescue Restforce::ErrorCode::RequiredFieldMissing => e
+        Rails.logger.warn 'Missing required information to create relation.'
+        relation.destroy!
       end
 
     elsif action == 'remove'

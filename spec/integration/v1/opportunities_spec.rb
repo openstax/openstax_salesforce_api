@@ -75,16 +75,20 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
       security [apiToken: []]
 
       parameter name: :opportunity_data, in: :body, schema: {
-        book_name: { type: :string },
-        contact_id: { type: :string },
-        new: { type: :boolean },
-        close_date: { type: :string },
-        number_of_students: { type: :string },
-        class_start_date: { type: :string },
-        school_id: { type: :string },
-        book_id: { type: :string },
-        name: { type: :string },
-        stage_name: { type: :string }
+        type: :object,
+        properties: {
+          book_name: { type: :string },
+          contact_id: { type: :string },
+          new: { type: :boolean },
+          close_date: { type: :string },
+          number_of_students: { type: :string },
+          class_start_date: { type: :string },
+          school_id: { type: :string },
+          book_id: { type: :string },
+          name: { type: :string },
+          stage_name: { type: :string }
+        },
+        required: %w[book_name contact_id close_date number_of_students school_id stage_name]
       }
 
       response '202', 'opportunity created' do

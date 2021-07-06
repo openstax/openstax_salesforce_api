@@ -205,4 +205,51 @@ http_interactions:
         Statistics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z7h000001a79zEAA"},"Id":"a0Z7h000001a79zEAA","Name":"Chem:
         Atoms First","Annualization_number__c":1.4}]}'
   recorded_at: Tue, 29 Jun 2021 19:22:02 GMT
+- request:
+    method: post
+    uri: https://test.salesforce.com/services/oauth2/token
+    body:
+      encoding: US-ASCII
+      string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password_url><salesforce_security_token>
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Content-Type:
+      - application/x-www-form-urlencoded
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 06 Jul 2021 18:41:26 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Content-Type-Options:
+      - nosniff
+      X-Xss-Protection:
+      - 1; mode=block
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=xW6i6t6JEeuXz9_XRs-_NA; domain=.salesforce.com; path=/; expires=Wed,
+        06-Jul-2022 18:41:26 GMT; Max-Age=31536000
+      Expires:
+      - Thu, 01 Jan 1970 00:00:00 GMT
+      X-Readonlymode:
+      - 'false'
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"access_token":"00D7h0000004fCa!ARYAQOlFuh.YwYAh4m2ICW0GeD0quoeAozYwZU_nXNHA.D0cxmesIaZJcZtgEq.oJDNwRP5UyZHVDpM252BkLeGx5PN_TC.C","instance_url":"https://openstax--dev.my.salesforce.com","id":"https://test.salesforce.com/id/00D7h0000004fCaEAI/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1625596887180","signature":"0S8jbALk+DDvXqs/EMBqaWCnX2npwl+RPCcxdMaqg40="}'
+  recorded_at: Tue, 06 Jul 2021 18:41:27 GMT
 recorded_with: VCR 6.0.0

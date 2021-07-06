@@ -870,6 +870,76 @@
             "description": "no cookie"
           }
         }
+      },
+      "post": {
+        "summary": "Create an opportunity",
+        "tags": [
+          "Opportunity"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "opportunity_data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "book_name": {
+                  "type": "string"
+                },
+                "contact_id": {
+                  "type": "string"
+                },
+                "new": {
+                  "type": "boolean"
+                },
+                "close_date": {
+                  "type": "string"
+                },
+                "number_of_students": {
+                  "type": "string"
+                },
+                "class_start_date": {
+                  "type": "string"
+                },
+                "school_id": {
+                  "type": "string"
+                },
+                "book_id": {
+                  "type": "string"
+                },
+                "name": {
+                  "type": "string"
+                },
+                "stage_name": {
+                  "type": "string"
+                }
+              },
+              "required": [
+                "book_name",
+                "contact_id",
+                "close_date",
+                "number_of_students",
+                "school_id",
+                "stage_name"
+              ]
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "opportunity created"
+          }
+        }
       }
     },
     "/api/v1/opportunities/search": {

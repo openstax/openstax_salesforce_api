@@ -16,6 +16,12 @@ RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
     expect(Book.count).to be > 1
   end
 
+  it 'syncs account contact relation' do
+    SyncSalesforceJob.new.perform(['AccountContactRelation'])
+
+    expect(AccountContactRelation.count).to be > 1
+  end
+
   it 'syncs contacts' do
     SyncSalesforceJob.new.perform(['Contact'])
 
