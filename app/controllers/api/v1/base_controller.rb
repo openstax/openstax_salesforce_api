@@ -1,7 +1,6 @@
 class Api::V1::BaseController < ApplicationController
   before_action :authorized_for_api
   protect_from_forgery with: :null_session
-  skip_before_action :verify_authenticity_token
 
   include RescueFromUnlessLocal
 
@@ -34,6 +33,7 @@ class Api::V1::BaseController < ApplicationController
   def current_contact
     @current_contact ||= begin
       raise(CannotFindUserContact) if current_accounts_user.blank?
+
       Contact.find_by(salesforce_id: current_accounts_user['salesforce_contact_id'])
     end
   end
