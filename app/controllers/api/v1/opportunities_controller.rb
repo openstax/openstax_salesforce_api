@@ -7,20 +7,28 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
 
   # GET /opportunities/:id
   def show
-    @opportunity = Opportunity.where(salesforce_id: params[:id])
+    @opportunity = Opportunity.find_by!(salesforce_id: params[:id])
     render json: @opportunity, status: :ok
   end
 
   # POST /opportunities(.:format)
   def create
-    PushOpportunityToSalesforceJob.perform_later(opportunity_params)
-    head :accepted
+    puts opportunity_params
+    @opportunity = Opportunity.new(opportunity_params)
+    @opportunity.save!
+
+    PushOpportunityToSalesforceJob.perform_later(@opportunity)
+    render json: @opportunity, status: :accepted
   end
 
   # PATCH/PUT /opportunities/:id(.:format)
   def update
-    PushOpportunityToSalesforceJob.perform_later(opportunity_params)
-    head :accepted
+    @opportunity = Opportunity.find_by!(salesforce_id: params[:id])
+    @opportunity.attributes = opportunity_params
+    @opportunity.save!
+
+    PushOpportunityToSalesforceJob.perform_later(@opportunity)
+    render json: @opportunity, status: :accepted
   end
 
   # GET /opportunities/search?os_accounts_id

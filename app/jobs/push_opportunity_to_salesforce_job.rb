@@ -1,41 +1,52 @@
 class PushOpportunityToSalesforceJob < ApplicationJob
   queue_as :default
+  sidekiq_options retry: 5
 
-  def perform(opportunity_data)
-    book = Book.find_by!(name: opportunity_data[:book_name])
+  def perform(opp)
+    book = Book.find_by!(name: opp.book_name)
 
     begin
-      if opportunity_data[:salesforce_id]
-        opportunity = OpenStax::Salesforce::Remote::Opportunity.find(opportunity_data[:salesforce_id])
+      if opp.salesforce_id
+        opportunity = OpenStax::Salesforce::Remote::Opportunity.find(opp.salesforce_id)
         opportunity.update(
-          contact_id: opportunity_data[:contact_id],
-          close_date: opportunity_data[:close_date],
+          contact_id: opp.contact_id,
+          close_date: opp.close_date,
           stage_name: 'Confirmed Adoption Won',
           type: 'Renewal - Verified',
-          number_of_students: opportunity_data[:number_of_students],
+          number_of_students: opp.number_of_students,
           student_number_status: 'Reported',
           time_period: 'Year',
-          class_start_date: opportunity_data[:class_start_date],
-          school_id: opportunity_data[:school_id],
-          book_id: book.salesforce_id,
-          lead_source: 'Web'
-        )
-      else
-        opportunity = OpenStax::Salesforce::Remote::Opportunity.new(
-          name: 'new from openstax-salesforce-api',
-          contact_id: opportunity_data[:contact_id],
-          close_date: opportunity_data[:close_date],
-          stage_name: 'Confirmed Adoption Won',
-          type: 'New Business',
-          number_of_students: opportunity_data[:number_of_students],
-          student_number_status: 'Reported',
-          time_period: 'Year',
-          class_start_date: opportunity_data[:class_start_date],
-          school_id: opportunity_data[:school_id],
+          class_start_date: opp.class_start_date,
+          school_id: opp.school_id,
           book_id: book.salesforce_id,
           lead_source: 'Web'
         )
         opportunity.save
+      else
+        opportunity = OpenStax::Salesforce::Remote::Opportunity.new(
+          name: 'new from openstax-salesforce-api',
+          contact_id: opp.contact_id,
+          close_date: opp.close_date.strftime('%Y-%m-%d'),
+          stage_name: 'Confirmed Adoption Won',
+          type: 'New Business',
+          number_of_students: opp.number_of_students,
+          student_number_status: 'Reported',
+          time_period: 'Year',
+          class_start_date: opp.class_start_date.strftime('%Y-%m-%d'),
+          school_id: opp.school_id,
+          book_id: book.salesforce_id,
+          lead_source: 'Web'
+        )
+        opportunity.save
+
+        # update the local opportunity with data from salesforce
+        opp.book_id = book.salesforce_id
+        opp.update_type = opportunity.type
+        opp.salesforce_id = opportunity.id
+        opp.save
+
+        puts opp.inspect
+        puts opportunity.inspect
       end
     rescue => e
       Rails.logger.warn(e)
