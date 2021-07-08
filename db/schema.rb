@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_06_30_152111) do
+ActiveRecord::Schema.define(version: 2021_07_08_135906) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -253,7 +253,6 @@ ActiveRecord::Schema.define(version: 2021_06_30_152111) do
     t.string "school_id"
     t.string "book_id"
     t.string "lead_source"
-    t.boolean "salesforce_updated", default: true
     t.string "os_accounts_id"
     t.string "name"
   end
