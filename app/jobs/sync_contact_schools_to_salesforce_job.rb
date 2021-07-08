@@ -16,6 +16,9 @@ class SyncContactSchoolsToSalesforceJob < ApplicationJob
       rescue Restforce::ErrorCode::RequiredFieldMissing => e
         Rails.logger.warn 'Missing required information to create relation.'
         relation.destroy!
+      rescue NoMethodError => e
+        Rails.logger.warn 'Missing or invalid information information'
+        relation.destroy!
       end
 
     elsif action == 'remove'
