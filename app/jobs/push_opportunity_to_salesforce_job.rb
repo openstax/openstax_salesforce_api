@@ -44,9 +44,6 @@ class PushOpportunityToSalesforceJob < ApplicationJob
         opp.update_type = opportunity.type
         opp.salesforce_id = opportunity.id
         opp.save
-
-        puts opp.inspect
-        puts opportunity.inspect
       end
     rescue => e
       Rails.logger.warn(e)
