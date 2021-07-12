@@ -130,6 +130,22 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
   end
 
   path '/api/v1/opportunities/{id}' do
+    get 'Get one opportunity' do
+      tags 'Opportunity'
+      consumes 'application/json'
+      produces 'application/json'
+      security [apiToken: []]
+
+      parameter name: :id, in: :path, type: :string
+
+      response '200', 'opportunity updated' do
+        let(:id) { @opportunity.salesforce_id.to_s }
+        let(:HTTP_COOKIE) { oxa_cookie }
+
+        run_test!
+      end
+    end
+
     patch 'Update an opportunity' do
       tags 'Opportunity'
       consumes 'application/json'
