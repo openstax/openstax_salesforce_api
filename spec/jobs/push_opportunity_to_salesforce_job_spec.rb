@@ -17,5 +17,6 @@ RSpec.describe PushOpportunityToSalesforceJob, type: :job do
   it 'pushes an opportunity' do
     PushOpportunityToSalesforceJob.new.perform(@opportunity)
     expect(@opportunity.salesforce_id).to_not be_nil
+    expect(@opportunity.lead_source).to eq('Web')
   end
 end
