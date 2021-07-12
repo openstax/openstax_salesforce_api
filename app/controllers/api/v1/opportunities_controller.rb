@@ -13,7 +13,6 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
 
   # POST /opportunities(.:format)
   def create
-    puts opportunity_params
     @opportunity = Opportunity.new(opportunity_params)
     @opportunity.save!
 
