@@ -31,7 +31,7 @@ jobs:
           bundler-cache: true
       - name: Setup
         run: |
-          bundle exec rake --trace db:create db:migrate db:schema:load db:seed
+          bundle exec rake --trace db:drop db:create db:migrate db:schema:load db:seed
       - name: Test
         run: |
           bundle exec rspec --format doc
