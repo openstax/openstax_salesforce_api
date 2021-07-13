@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '3.0.1'
 
 gem 'aws-sdk-ssm'
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -19,6 +19,7 @@ gem 'rails', '~> 6.1'
 gem 'restforce', '~> 5.0.5'
 gem 'rspec-rails'
 gem 'rswag'
+gem 'rexml'
 gem 'ruby-pardot'
 gem 'sentry-rails'
 gem 'sentry-ruby'

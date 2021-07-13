@@ -27,8 +27,8 @@ module OpenstaxSalesforceApi
     config.active_job.queue_adapter = :sidekiq
 
     Rails.application.config.hosts = [
-      "localhost",
-      "127.0.0.1",
+      /(.*\.|)localhost\:?.*/,
+      /(.*\.|)127.0.0.1\:?.*/,
       /(.*\.|)openstax\.org/,
       "www.example.com" #for testing
     ]
