@@ -19,17 +19,17 @@ class Api::V1::ContactsController < Api::V1::BaseController
 
   # POST /contacts/add_school/:contact_id/:school_id
   def add_school
-    begin
-      relation = AccountContactRelation.new(
-        contact_id: params[:contact_id],
-        school_id: params[:school_id]
-      )
-      relation.save!
+    relation = AccountContactRelation.new(
+      contact_id: params[:contact_id],
+      school_id: params[:school_id]
+    )
+    relation.save!
 
-      SyncContactSchoolsToSalesforceJob.perform_later(relation, 'add')
-    rescue ActiveRecord::RecordInvalid
-      head(:unprocessable_entity)
-    end
+    SyncContactSchoolsToSalesforceJob.perform_later(relation, 'add')
+    head(:accepted)
+  rescue ActiveRecord::RecordInvalid
+    head(:unprocessable_entity)
+
   end
 
   # DELETE /contacts/remove_school/:contact_id/:school_id
