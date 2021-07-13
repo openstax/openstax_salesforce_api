@@ -2,7 +2,7 @@ class SyncSalesforceJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: 1
   SF_PACKAGE = 'OpenStax::Salesforce::Remote::'.freeze
-  SF_OBJECTS = %w[Book CampaignMember Campaign Contact Lead Opportunity School].freeze
+  SF_OBJECTS = %w[AccountContactRelation Book CampaignMember Campaign Contact Lead Opportunity School].freeze
 
   def perform(objects = [])
     if objects.empty?
@@ -20,6 +20,8 @@ class SyncSalesforceJob < ApplicationJob
         next
       end
       case name
+      when 'AccountContactRelation'
+        update_account_contact_relations(sf_objs)
       when 'Book'
         update_books(sf_objs)
       when 'CampaignMember'
@@ -39,12 +41,23 @@ class SyncSalesforceJob < ApplicationJob
       end
       delete_objects_not_in_salesforce(name, sf_objs)
     end
-    
   end
 
   def retrieve_salesforce_data(name)
     class_name = SF_PACKAGE + name
     class_name.constantize.all
+  end
+
+  def update_account_contact_relations(sf_relations)
+    sf_relations.each do |sf_relation|
+      relation_to_update = AccountContactRelation.find_or_initialize_by(contact_id: sf_relation.contact_id, school_id: sf_relation.school_id)
+      relation_to_update.salesforce_id = sf_relation.id
+      relation_to_update.contact_id = sf_relation.contact_id
+      relation_to_update.school_id = sf_relation.school_id
+      relation_to_update.primary = sf_relation.primary
+      relation_to_update.save if relation_to_update.changed?
+    end
+    AccountContactRelation.where(salesforce_id: nil).destroy_all
   end
 
   def update_books(sf_books)
@@ -196,7 +209,7 @@ class SyncSalesforceJob < ApplicationJob
   end
 
   def delete_objects_not_in_salesforce(name, sf_objs)
-    name.constantize.where.not(salesforce_id: sf_objs.map(&:id)).delete_all
+    name.constantize.where.not(salesforce_id: sf_objs.map(&:id)).destroy_all
   end
 end
 

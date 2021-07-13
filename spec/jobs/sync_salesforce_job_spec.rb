@@ -3,6 +3,10 @@ require 'vcr_helper'
 Sidekiq::Testing.inline!
 
 RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
+  before(:each) do
+    Sidekiq::Worker.clear_all
+  end
+
   it { is_expected.to be_processed_in :default }
   it { is_expected.to be_retryable 1 }
 
@@ -12,11 +16,16 @@ RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
     expect(Book.count).to be > 1
   end
 
-  it 'syncs campaigns and campaign members' do
-    SyncSalesforceJob.new.perform(['Campaign', 'CampaignMember'])
+  it 'syncs account contact relation' do
+    SyncSalesforceJob.new.perform(['AccountContactRelation'])
 
-    expect(Campaign.count).to be > 1
-    expect(CampaignMember.count).to be > 1
+    expect(AccountContactRelation.count).to be > 1
+  end
+
+  it 'syncs contacts' do
+    SyncSalesforceJob.new.perform(['Contact'])
+
+    expect(Contact.count).to be > 1
   end
 
   it 'handles wrong parameter by doing nothing' do

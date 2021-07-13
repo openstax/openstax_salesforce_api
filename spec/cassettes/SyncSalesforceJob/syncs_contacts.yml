@@ -1,0 +1,213 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://example.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20Faculty_Verified__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Authorization:
+      - OAuth 00D7h0000004fCa!ARYAQFc8aN6lQP5WProC1qz2S1n8IH3vllSGDFQzANJOvMCFF4ZjmaRJ6GZFvq_eCSBRITf1tFaFEE0H0BUujSIFgbPZM4K_
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 29 Jun 2021 19:15:02 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=TbBIANkOEeuuzwvFF6YgbA; domain=.salesforce.com; path=/; expires=Wed,
+        29-Jun-2022 19:15:02 GMT; Max-Age=31536000
+      Sforce-Limit-Info:
+      - api-usage=336/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":10,"done":true,"records":[{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TPcT0AAL"},"Id":"0037h00000TPcT0AAL","Name":"Kyle
+        Glass","FirstName":"Kyle","LastName":"Glass","Email":"be12+278@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-06-02","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-02T20:09:27.000+0000","AccountId":"0017h00000Z83kCAAR","School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"be12+278@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TQjwbAAD"},"Id":"0037h00000TQjwbAAD","Name":"Michael
+        Faculty","FirstName":"Michael","LastName":"Faculty","Email":"mwharrison+fac@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-06-28","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-28T19:35:09.000+0000","AccountId":"0017h00000Z7xEJAAZ","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+fac@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDIbFAAX"},"Id":"0037h00000SDIbFAAX","Name":"Michael
+        Harrison2","FirstName":"Michael","LastName":"Harrison2","Email":"mwharrison+dev2@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-05-05T20:33:33.000+0000","AccountId":"0017h00000YMwbzAAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev2@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDJFfAAP"},"Id":"0037h00000SDJFfAAP","Name":"Michael
+        Harrison3","FirstName":"Michael","LastName":"Harrison3","Email":"mwharrison+dev3@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-05-05T20:47:11.000+0000","AccountId":"0017h00000YMwbzAAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev3@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDJTSAA5"},"Id":"0037h00000SDJTSAA5","Name":"Michael
+        Harrison4","FirstName":"Michael","LastName":"Harrison4","Email":"mwharrison+dev4@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-05-05T21:03:23.000+0000","AccountId":null,"School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev4@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SEXNqAAP"},"Id":"0037h00000SEXNqAAP","Name":"Roy
+        Johnsomething","FirstName":"Roy","LastName":"Johnsomething","Email":"rej2+mos1@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-06-04T16:50:45.000+0000","AccountId":"0017h00000YXEBzAAP","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"rej2+mos1@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TCARSAA5"},"Id":"0037h00000TCARSAA5","Name":"Educator02Dev
+        Trinity","FirstName":"Educator02Dev","LastName":"Trinity","Email":"mwharrison+edu02dev@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-05-21","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-05-21T22:51:34.000+0000","AccountId":"0017h00000YXEBzAAP","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+edu02dev@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDIPmAAP"},"Id":"0037h00000SDIPmAAP","Name":"Michael
+        Harrison","FirstName":"Michael","LastName":"Harrison","Email":"mwharrison+dev1@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-05-05","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-03T16:55:39.000+0000","AccountId":"0017h00000YMwbzAAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev1@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TPe5YAAT"},"Id":"0037h00000TPe5YAAT","Name":"Jack
+        Black","FirstName":"Jack","LastName":"Black","Email":"be12+280@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-06-03","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-03T16:04:20.000+0000","AccountId":"0017h00000Z87DyAAJ","School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"be12+280@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TPmnMAAT"},"Id":"0037h00000TPmnMAAT","Name":"Test
+        Tesster","FirstName":"Test","LastName":"Tesster","Email":"ch49+222245@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-08T20:23:09.000+0000","AccountId":"0017h00000YMwc1AAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"ch49+222245@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false}]}'
+  recorded_at: Tue, 29 Jun 2021 19:15:02 GMT
+- request:
+    method: get
+    uri: https://example.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20Faculty_Verified__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Authorization:
+      - OAuth 00D7h0000004fCa!ARYAQFc8aN6lQP5WProC1qz2S1n8IH3vllSGDFQzANJOvMCFF4ZjmaRJ6GZFvq_eCSBRITf1tFaFEE0H0BUujSIFgbPZM4K_
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 29 Jun 2021 19:22:03 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=SNqH9tkPEeuT5PlC1P7x6Q; domain=.salesforce.com; path=/; expires=Wed,
+        29-Jun-2022 19:22:03 GMT; Max-Age=31536000
+      Sforce-Limit-Info:
+      - api-usage=339/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":10,"done":true,"records":[{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TPcT0AAL"},"Id":"0037h00000TPcT0AAL","Name":"Kyle
+        Glass","FirstName":"Kyle","LastName":"Glass","Email":"be12+278@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-06-02","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-02T20:09:27.000+0000","AccountId":"0017h00000Z83kCAAR","School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"be12+278@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TQjwbAAD"},"Id":"0037h00000TQjwbAAD","Name":"Michael
+        Faculty","FirstName":"Michael","LastName":"Faculty","Email":"mwharrison+fac@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-06-28","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-28T19:35:09.000+0000","AccountId":"0017h00000Z7xEJAAZ","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+fac@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDIbFAAX"},"Id":"0037h00000SDIbFAAX","Name":"Michael
+        Harrison2","FirstName":"Michael","LastName":"Harrison2","Email":"mwharrison+dev2@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-05-05T20:33:33.000+0000","AccountId":"0017h00000YMwbzAAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev2@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDJFfAAP"},"Id":"0037h00000SDJFfAAP","Name":"Michael
+        Harrison3","FirstName":"Michael","LastName":"Harrison3","Email":"mwharrison+dev3@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-05-05T20:47:11.000+0000","AccountId":"0017h00000YMwbzAAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev3@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDJTSAA5"},"Id":"0037h00000SDJTSAA5","Name":"Michael
+        Harrison4","FirstName":"Michael","LastName":"Harrison4","Email":"mwharrison+dev4@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-05-05T21:03:23.000+0000","AccountId":null,"School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev4@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SEXNqAAP"},"Id":"0037h00000SEXNqAAP","Name":"Roy
+        Johnsomething","FirstName":"Roy","LastName":"Johnsomething","Email":"rej2+mos1@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-06-04T16:50:45.000+0000","AccountId":"0017h00000YXEBzAAP","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"rej2+mos1@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TCARSAA5"},"Id":"0037h00000TCARSAA5","Name":"Educator02Dev
+        Trinity","FirstName":"Educator02Dev","LastName":"Trinity","Email":"mwharrison+edu02dev@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-05-21","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-05-21T22:51:34.000+0000","AccountId":"0017h00000YXEBzAAP","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+edu02dev@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDIPmAAP"},"Id":"0037h00000SDIPmAAP","Name":"Michael
+        Harrison","FirstName":"Michael","LastName":"Harrison","Email":"mwharrison+dev1@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-05-05","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-03T16:55:39.000+0000","AccountId":"0017h00000YMwbzAAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev1@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TPe5YAAT"},"Id":"0037h00000TPe5YAAT","Name":"Jack
+        Black","FirstName":"Jack","LastName":"Black","Email":"be12+280@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-06-03","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-03T16:04:20.000+0000","AccountId":"0017h00000Z87DyAAJ","School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"be12+280@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TPmnMAAT"},"Id":"0037h00000TPmnMAAT","Name":"Test
+        Tesster","FirstName":"Test","LastName":"Tesster","Email":"ch49+222245@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-08T20:23:09.000+0000","AccountId":"0017h00000YMwc1AAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"ch49+222245@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false}]}'
+  recorded_at: Tue, 29 Jun 2021 19:22:03 GMT
+- request:
+    method: get
+    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20Faculty_Verified__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.4.2
+      Authorization:
+      - OAuth 00D7h0000004fCa!ARYAQOlFuh.YwYAh4m2ICW0GeD0quoeAozYwZU_nXNHA.D0cxmesIaZJcZtgEq.oJDNwRP5UyZHVDpM252BkLeGx5PN_TC.C
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 06 Jul 2021 18:51:06 GMT
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Set-Cookie:
+      - BrowserId=HqbLx96LEeubSMe8wUNvaA; domain=.salesforce.com; path=/; expires=Wed,
+        06-Jul-2022 18:51:06 GMT; Max-Age=31536000
+      Sforce-Limit-Info:
+      - api-usage=301/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":10,"done":true,"records":[{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TPcT0AAL"},"Id":"0037h00000TPcT0AAL","Name":"Kyle
+        Glass","FirstName":"Kyle","LastName":"Glass","Email":"be12+278@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-06-02","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-02T20:09:27.000+0000","AccountId":"0017h00000Z83kCAAR","School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"be12+278@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TQjwbAAD"},"Id":"0037h00000TQjwbAAD","Name":"Michael
+        Faculty","FirstName":"Michael","LastName":"Faculty","Email":"mwharrison+fac@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-07-05","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-07-05T19:05:12.000+0000","AccountId":"0017h00000Z7xEJAAZ","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+fac@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDIbFAAX"},"Id":"0037h00000SDIbFAAX","Name":"Michael
+        Harrison2","FirstName":"Michael","LastName":"Harrison2","Email":"mwharrison+dev2@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-05-05T20:33:33.000+0000","AccountId":"0017h00000YMwbzAAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev2@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDJFfAAP"},"Id":"0037h00000SDJFfAAP","Name":"Michael
+        Harrison3","FirstName":"Michael","LastName":"Harrison3","Email":"mwharrison+dev3@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-05-05T20:47:11.000+0000","AccountId":"0017h00000YMwbzAAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev3@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDJTSAA5"},"Id":"0037h00000SDJTSAA5","Name":"Michael
+        Harrison4","FirstName":"Michael","LastName":"Harrison4","Email":"mwharrison+dev4@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-05-05T21:03:23.000+0000","AccountId":null,"School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev4@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SEXNqAAP"},"Id":"0037h00000SEXNqAAP","Name":"Roy
+        Johnsomething","FirstName":"Roy","LastName":"Johnsomething","Email":"rej2+mos1@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":null,"LastModifiedDate":"2021-06-04T16:50:45.000+0000","AccountId":"0017h00000YXEBzAAP","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"rej2+mos1@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TCARSAA5"},"Id":"0037h00000TCARSAA5","Name":"Educator02Dev
+        Trinity","FirstName":"Educator02Dev","LastName":"Trinity","Email":"mwharrison+edu02dev@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-05-21","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-30T20:28:39.000+0000","AccountId":"0017h00000YXEBzAAP","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+edu02dev@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000SDIPmAAP"},"Id":"0037h00000SDIPmAAP","Name":"Michael
+        Harrison","FirstName":"Michael","LastName":"Harrison","Email":"mwharrison+dev1@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-05-05","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-03T16:55:39.000+0000","AccountId":"0017h00000YMwbzAAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+dev1@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TPe5YAAT"},"Id":"0037h00000TPe5YAAT","Name":"Jack
+        Black","FirstName":"Jack","LastName":"Black","Email":"be12+280@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-06-03","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-03T16:04:20.000+0000","AccountId":"0017h00000Z87DyAAJ","School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"be12+280@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false},{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000TPmnMAAT"},"Id":"0037h00000TPmnMAAT","Name":"Test
+        Tesster","FirstName":"Test","LastName":"Tesster","Email":"ch49+222245@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-06-08T20:23:09.000+0000","AccountId":"0017h00000YMwc1AAD","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"ch49+222245@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false}]}'
+  recorded_at: Tue, 06 Jul 2021 18:51:06 GMT
+recorded_with: VCR 6.0.0

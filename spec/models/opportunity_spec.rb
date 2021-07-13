@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe Opportunity, type: :model do
-  subject(:opportunity) {FactoryBot.create :api_opportunity}
-  it { is_expected.to be_valid}
+  subject(:opportunity) { FactoryBot.create :api_opportunity }
+  it { is_expected.to be_valid }
 
   context "with opportunity" do
     it "creates opportunity" do

@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
-ruby '2.7.1'
+ruby '3.0.1'
 
 gem 'aws-sdk-ssm'
 gem 'bootsnap', '>= 1.4.2', require: false
@@ -15,10 +15,11 @@ gem 'openstax_salesforce'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'puma', '~> 4.3'
 gem 'rack-cors'
-gem 'rails', '~> 6.0.3', '>= 6.0.3.2'
+gem 'rails', '~> 6.1'
 gem 'restforce', '~> 5.0.5'
 gem 'rspec-rails'
 gem 'rswag'
+gem 'rexml'
 gem 'ruby-pardot'
 gem 'sentry-rails'
 gem 'sentry-ruby'
@@ -26,7 +27,7 @@ gem 'sidekiq'
 gem 'sidekiq-cron', github: 'ondrejbartas/sidekiq-cron', ref: '6a0aeff6c900f3b7246734282f6869c61e1d5b4e'
 gem 'sidekiq-failures'
 gem 'versionist'
-gem 'will_paginate', '~> 3.1.0'
+gem 'will_paginate', '~> 3.3.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
