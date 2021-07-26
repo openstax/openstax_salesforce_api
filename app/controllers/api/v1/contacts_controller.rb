@@ -28,7 +28,7 @@ class Api::V1::ContactsController < Api::V1::BaseController
     SyncContactSchoolsToSalesforceJob.perform_later(relation, 'add')
     head(:accepted)
   rescue ActiveRecord::RecordInvalid
-    head(:unprocessable_entity)
+    head(:method_not_allowed)
 
   end
 
@@ -38,6 +38,10 @@ class Api::V1::ContactsController < Api::V1::BaseController
       contact_id: params[:contact_id],
       school_id: params[:school_id]
     )
+
+    if relation.primary? # cannot delete primary school
+      head(:method_not_allowed)
+    end
 
     SyncContactSchoolsToSalesforceJob.perform_later(relation, 'remove')
   end
