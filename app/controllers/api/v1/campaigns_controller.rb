@@ -1,8 +1,7 @@
 class Api::V1::CampaignsController < Api::V1::BaseController
   # GET /campaigns
   def index
-    @campaigns = Campaign.paginate(page: params[:page], per_page: 20)
-    render json: @campaigns
+    head(:unprocessable_entity)
   end
 
   # GET /campaigns/:id

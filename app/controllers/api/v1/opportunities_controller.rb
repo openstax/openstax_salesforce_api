@@ -1,8 +1,7 @@
 class Api::V1::OpportunitiesController < Api::V1::BaseController
   # GET /opportunities
   def index
-    @opportunities = Opportunity.paginate(page: params[:page], per_page: 20)
-    render json: @opportunities
+    head(:unprocessable_entity)
   end
 
   # GET /opportunities/:id

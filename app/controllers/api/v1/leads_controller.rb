@@ -1,8 +1,7 @@
 class Api::V1::LeadsController < Api::V1::BaseController
   # GET /leads
   def index
-    @leads = Lead.paginate(page: params[:page], per_page: 20)
-    render json: @leads
+    head(:unprocessable_entity)
   end
 
   # GET /leads/:id

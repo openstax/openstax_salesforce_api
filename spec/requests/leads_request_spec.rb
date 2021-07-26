@@ -19,18 +19,6 @@ RSpec.describe "Leads", type: :request do
     expect(response).to have_http_status(:unauthorized)
   end
 
-  it 'returns all leads' do
-    get '/api/v1/leads', :headers => @headers
-    expect(JSON.parse(response.body).size).to be >= 1
-    expect(response).to have_http_status(:success)
-  end
-
-  it 'returns all leads with token' do
-    get '/api/v1/leads', :headers => @token_header
-    expect(JSON.parse(response.body).size).to be >= 1
-    expect(response).to have_http_status(:success)
-  end
-
   it 'returns a successful response for lead by os_accounts_id' do
     get '/api/v1/leads/search?os_accounts_id=' + @lead.os_accounts_id, :headers => @headers
     expect(response).to have_http_status(:success)

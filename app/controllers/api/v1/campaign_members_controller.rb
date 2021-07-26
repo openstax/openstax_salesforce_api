@@ -1,8 +1,7 @@
 class Api::V1::CampaignMembersController < Api::V1::BaseController
   # GET /campaign_members
   def index
-    @campaign_members = CampaignMember.paginate(page: params[:page], per_page: 20)
-    render json: @campaign_members
+    head(:unprocessable_entity)
   end
 
   # GET /campaign_members/:id

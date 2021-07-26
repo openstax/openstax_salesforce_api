@@ -19,18 +19,6 @@ RSpec.describe "Campaigns", type: :request do
     expect(response).to have_http_status(:unauthorized)
   end
 
-  it 'returns all campaigns' do
-    get '/api/v1/campaigns', :headers => @headers
-    expect(JSON.parse(response.body).size).to be >= 1
-    expect(response).to have_http_status(:success)
-  end
-
-  it 'returns all campaigns with token' do
-    get '/api/v1/campaigns', :headers => @token_header
-    expect(JSON.parse(response.body).size).to be >= 1
-    expect(response).to have_http_status(:success)
-  end
-
   it "return one campaign" do
     get "/api/v1/campaigns/#{@campaign.salesforce_id}", :headers => @headers
     expect(JSON.parse(response.body).size).to be >= 1

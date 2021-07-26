@@ -10,55 +10,6 @@ RSpec.describe 'api/v1/contacts', type: :request do
     @dk_token = doorkeeper_token
   end
 
-  path '/api/v1/contacts' do
-    get 'List all Contacts' do
-      tags 'Contacts'
-      consumes 'application/json'
-      produces 'application/json'
-      security [apiToken: []]
-
-      parameter name: :contact, in: :body, schema: {
-        type: :object,
-        properties: {
-          salesforce_id: { type: :string },
-          name: { type: :string },
-          first_name: { type: :string },
-          last_name: { type: :string },
-          email: { type: :string },
-          email_alt: { type: :string },
-          faculty_confirmed_date: { type: :string },
-          faculty_verified: { type: :string },
-          last_modified_at: { type: :datetime },
-          school_id: { type: :string },
-          school_type: { type: :string },
-          send_faculty_verification_to: { type: :string },
-          all_emails: { type: :string },
-          confirmed_emails: { type: :string },
-          adoption_status: { type: :string },
-          created_at: { type: :string },
-          updated_at: { type: :string },
-          grant_tutor_access: { type: :boolean }
-        },
-        required: %w[salesforce_id name]
-      }
-      response '200', 'contacts retrieved' do
-        let(:contact) { @contact }
-        let(:HTTP_COOKIE) { oxa_cookie }
-
-        run_test!
-      end
-
-      response '401', 'invalid sso cookie' do
-        let(:contact) { @contact }
-        let(:HTTP_COOKIE) { 'invalid' }
-
-        run_test! do  |response|
-          expect(response).to have_http_status(:unauthorized)
-        end
-      end
-    end
-  end
-
   path '/api/v1/contacts/{id}' do
 
     get 'Return one contact' do

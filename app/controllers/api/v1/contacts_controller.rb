@@ -1,8 +1,7 @@
 class Api::V1::ContactsController < Api::V1::BaseController
   # GET /contacts
   def index
-    @contacts = Contact.paginate(page: params[:page], per_page: 20)
-    render json: @contacts
+    head(:unprocessable_entity)
   end
 
   # GET /contacts/:id
