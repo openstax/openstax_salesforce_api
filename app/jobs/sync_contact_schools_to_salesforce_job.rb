@@ -11,13 +11,13 @@ class SyncContactSchoolsToSalesforceJob < ApplicationJob
         )
         sf_relation.save!
       rescue Restforce::ErrorCode::DuplicateValue => e
-        Rails.logger.warn 'This contact already belongs to this school'
+        Sentry.capture_message 'This contact already belongs to this school'
         relation.destroy!
       rescue Restforce::ErrorCode::RequiredFieldMissing => e
-        Rails.logger.warn 'Missing required information to create relation.'
+        Sentry.capture_message 'Missing required information to create relation.'
         relation.destroy!
       rescue NoMethodError => e
-        Rails.logger.warn 'Missing or invalid information information'
+        Sentry.capture_message 'Missing or invalid information information'
         relation.destroy!
       end
 

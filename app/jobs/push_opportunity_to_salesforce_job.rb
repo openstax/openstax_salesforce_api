@@ -46,7 +46,7 @@ class PushOpportunityToSalesforceJob < ApplicationJob
         opp.save
       end
     rescue => e
-      Rails.logger.warn(e)
+      Sentry.capture_exception(e)
     end
 
     opportunity
