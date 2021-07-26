@@ -16,7 +16,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     @opportunity = Opportunity.new(opportunity_params)
     @opportunity.save!
 
-    PushOpportunityToSalesforceJob.perform_later(@opportunity)
+    PushOpportunityToSalesforceJob.perform_later(@opportunity.id)
     render json: @opportunity, status: :processing
   end
 
@@ -26,7 +26,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     @opportunity.attributes = opportunity_params
     @opportunity.save!
 
-    PushOpportunityToSalesforceJob.perform_later(@opportunity)
+    PushOpportunityToSalesforceJob.perform_later(@opportunity.id)
     render json: @opportunity, status: :processing
   end
 
