@@ -274,70 +274,7 @@
         ],
         "responses": {
           "200": {
-            "description": "contact found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "salesforce_id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "first_name": {
-                  "type": "string"
-                },
-                "last_name": {
-                  "type": "string"
-                },
-                "email": {
-                  "type": "string"
-                },
-                "email_alt": {
-                  "type": "string"
-                },
-                "faculty_confirmed_date": {
-                  "type": "string"
-                },
-                "faculty_verified": {
-                  "type": "string"
-                },
-                "last_modified_at": {
-                  "type": "datetime"
-                },
-                "school_id": {
-                  "type": "string"
-                },
-                "school_type": {
-                  "type": "string"
-                },
-                "send_faculty_verification_to": {
-                  "type": "string"
-                },
-                "all_emails": {
-                  "type": "string"
-                },
-                "confirmed_emails": {
-                  "type": "string"
-                },
-                "adoption_status": {
-                  "type": "string"
-                },
-                "created_at": {
-                  "type": "string"
-                },
-                "updated_at": {
-                  "type": "string"
-                },
-                "grant_tutor_access": {
-                  "type": "boolean"
-                }
-              },
-              "required": [
-                "salesforce_id",
-                "name"
-              ]
-            }
+            "description": "contact found"
           },
           "404": {
             "description": "contact not found"
@@ -381,6 +318,46 @@
         "responses": {
           "200": {
             "description": "contact found"
+          }
+        }
+      }
+    },
+    "/api/v1/contacts/add_school/{contact_id}/{school_id}": {
+      "post": {
+        "summary": "Add a school to a contact",
+        "tags": [
+          "Contacts"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "contact_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "school_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "school added to contact"
           }
         }
       }
@@ -727,7 +704,7 @@
           }
         ],
         "responses": {
-          "202": {
+          "102": {
             "description": "subscribe successful"
           },
           "404": {
@@ -761,7 +738,7 @@
           }
         ],
         "responses": {
-          "202": {
+          "102": {
             "description": "unsubscribe successful"
           },
           "404": {
@@ -936,7 +913,7 @@
           }
         ],
         "responses": {
-          "202": {
+          "102": {
             "description": "opportunity created"
           }
         }
@@ -968,6 +945,114 @@
         "responses": {
           "200": {
             "description": "opportunity found"
+          }
+        }
+      }
+    },
+    "/api/v1/opportunities/{id}": {
+      "get": {
+        "summary": "Get one opportunity",
+        "tags": [
+          "Opportunity"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "opportunity found"
+          }
+        }
+      },
+      "patch": {
+        "summary": "Update an opportunity",
+        "tags": [
+          "Opportunity"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "opportunity_data",
+            "in": "body",
+            "schema": {
+              "salesforce_id": {
+                "type": "string"
+              },
+              "term_year": {
+                "type": "string"
+              },
+              "book_name": {
+                "type": "string"
+              },
+              "contact_id": {
+                "type": "string"
+              },
+              "new": {
+                "type": "boolean"
+              },
+              "close_date": {
+                "type": "string"
+              },
+              "number_of_students": {
+                "type": "string"
+              },
+              "class_start_date": {
+                "type": "string"
+              },
+              "school_id": {
+                "type": "string"
+              },
+              "book_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "stage_name": {
+                "type": "string"
+              }
+            }
+          }
+        ],
+        "responses": {
+          "102": {
+            "description": "opportunity updated"
           }
         }
       }

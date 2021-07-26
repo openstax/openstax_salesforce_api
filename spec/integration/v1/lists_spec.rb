@@ -53,7 +53,7 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
       consumes 'application/json'
       security [apiToken: []]
 
-      response '202', 'subscribe successful' do
+      response '102', 'subscribe successful' do
         before do
           expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => search_accounts_result)
         end
@@ -61,7 +61,7 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
         let(:HTTP_COOKIE) { oxa_cookie }
 
         run_test! do |response|
-          expect(response).to have_http_status(:accepted)
+          expect(response).to have_http_status(:processing)
 
           @subscription = Subscription.where(list: @list, contact: @contact)
           expect(@subscription.exists?).to eq(true)
@@ -87,7 +87,7 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
       consumes 'application/json'
       security [apiToken: []]
 
-      response '202', 'unsubscribe successful' do
+      response '102', 'unsubscribe successful' do
         before do
           @subscription = Subscription.create(list: @list, contact: @contact)
           expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => search_accounts_result)
