@@ -1,11 +1,11 @@
 class SyncSalesforceJob < ApplicationJob
   queue_as :default
-  sidekiq_options retry: 1
+
   SF_PACKAGE = 'OpenStax::Salesforce::Remote::'.freeze
   SF_OBJECTS = %w[AccountContactRelation Book CampaignMember Campaign Contact Lead Opportunity School].freeze
 
   def perform(objects = [])
-    if objects.empty?
+    if objects.blank?
       update_objects(SF_OBJECTS)
     else
       update_objects(objects)

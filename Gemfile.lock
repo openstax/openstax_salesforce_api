@@ -393,6 +393,7 @@ GEM
       connection_pool (>= 2.2.2)
       rack (~> 2.0)
       redis (>= 4.2.0)
+    sidekiq-enqueuer (2.1.1)
     sidekiq-failures (1.0.0)
       sidekiq (>= 4.0.0)
     simplecov (0.21.2)
@@ -475,6 +476,7 @@ DEPENDENCIES
   sentry-sidekiq
   sidekiq
   sidekiq-cron!
+  sidekiq-enqueuer
   sidekiq-failures
   simplecov
   spring

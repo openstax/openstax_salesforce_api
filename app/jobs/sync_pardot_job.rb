@@ -1,6 +1,5 @@
 class SyncPardotJob < ApplicationJob
   queue_as :default
-  sidekiq_options retry: 2
 
   def perform(salesforce_ids = [])
     # first, let's update the lists from Pardot
