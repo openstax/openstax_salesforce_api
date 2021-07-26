@@ -16,7 +16,7 @@ class Api::V1::ListsController < Api::V1::BaseController
       @subscription.pending_create!
       SubscribeToListJob.perform_later(@subscription)
     end
-    head :accepted
+    head :processing
   end
 
   # /api/v1/lists/<list_id>/unsubscribe/
@@ -24,7 +24,7 @@ class Api::V1::ListsController < Api::V1::BaseController
     @subscription = Subscription.find_by!(list: @list, contact: current_contact!)
     @subscription.pending_destroy!
     UnsubscribeFromListJob.perform_later(@subscription)
-    head :accepted
+    head :processing
   end
 
   protected
