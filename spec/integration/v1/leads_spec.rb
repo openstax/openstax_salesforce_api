@@ -12,6 +12,19 @@ RSpec.describe 'api/v1/leads', type: :request do
     @dk_token = doorkeeper_token
   end
 
+  path '/api/v1/leads/' do
+    get 'Return 404 error for index call' do
+      tags 'Leads'
+      consumes 'application/json'
+      security [apiToken: []]
+      response '404', 'not found' do
+        let(:HTTP_COOKIE) { oxa_cookie }
+
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/leads/{id}' do
 
     get 'Return one lead' do

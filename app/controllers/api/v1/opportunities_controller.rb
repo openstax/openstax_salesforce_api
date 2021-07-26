@@ -1,7 +1,7 @@
 class Api::V1::OpportunitiesController < Api::V1::BaseController
   # GET /opportunities
   def index
-    head(:unprocessable_entity)
+    head(:not_found)
   end
 
   # GET /opportunities/:id

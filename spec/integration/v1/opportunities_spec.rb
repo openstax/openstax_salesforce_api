@@ -24,6 +24,17 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
 
   path '/api/v1/opportunities' do
 
+    get 'Return 404 error for index call' do
+      tags 'Opportunities'
+      consumes 'application/json'
+      security [apiToken: []]
+      response '404', 'not found' do
+        let(:HTTP_COOKIE) { oxa_cookie }
+
+        run_test!
+      end
+    end
+
     post 'Create an opportunity' do
       tags 'Opportunity'
       consumes 'application/json'

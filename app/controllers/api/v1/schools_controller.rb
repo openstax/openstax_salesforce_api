@@ -1,8 +1,7 @@
 class Api::V1::SchoolsController < Api::V1::BaseController
   # GET /schools
   def index
-    @schools = School.paginate(page: params[:page], per_page: 20)
-    render json: @schools
+    head(:not_found)
   end
 
   # GET /schools/:id

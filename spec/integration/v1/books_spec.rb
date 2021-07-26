@@ -12,23 +12,14 @@ RSpec.describe 'api/v1/books', type: :request do
   end
 
   path '/api/v1/books' do
-    get 'List all Books' do
+    get 'Return 404 error for index call' do
       tags 'Books'
       produces 'application/json'
       security [apiToken: []]
-      parameter name: :book, in: :body, schema: {
-        type: :object,
-        properties: {
-          salesforce_id: { type: :string },
-          name: { type: :string },
-          created_at: { type: :string },
-          updated_at: { type: :string }
-        },
-        required: %w[salesforce_id name]
-      }
-      response '200', 'books retrieved' do
-        let(:book) { @book }
+
+      response '404', 'not found' do
         let(:HTTP_COOKIE) { oxa_cookie }
+
         run_test!
       end
     end

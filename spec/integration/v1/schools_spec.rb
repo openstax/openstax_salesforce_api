@@ -13,61 +13,13 @@ RSpec.describe 'api/v1/schools', type: :request do
     @dk_token = doorkeeper_token
   end
 
-  path '/api/v1/schools' do
-    get 'List all Schools' do
+  path '/api/v1/schools/' do
+    get 'Return 404 error for index call' do
       tags 'Schools'
       consumes 'application/json'
       security [apiToken: []]
-
-      parameter name: :school, in: :body, schema: {
-        type: :object,
-        properties: {
-          salesforce_id: { type: :string },
-          name: { type: :string },
-          school_type: { type: :string },
-          location: { type: :string },
-          is_kip: { type: :boolean },
-          is_child_of_kip: { type: :boolean },
-          created_at: { type: :string },
-          updated_at: { type: :string }
-        },
-        required: %w[salesforce_id name school_type]
-      }
-      response '200', 'schools retrieved' do
-        let(:school) { @school }
+      response '404', 'not found' do
         let(:HTTP_COOKIE) { oxa_cookie }
-
-        run_test!
-      end
-
-      response '401', 'no cookie' do
-        let(:school) { @school }
-        let(:HTTP_COOKIE) {}
-
-        run_test!
-      end
-    end
-
-    get 'List all Schools using token' do
-      tags 'Schools'
-      consumes 'application/json'
-
-      parameter({
-                  in: :header,
-                  type: :string,
-                  name: :Authorization,
-                  required: true,
-                  description: 'Doorkeeper token'
-                })
-
-      response '200', 'schools retrieved' do
-        let(:Authorization) { "Bearer #{@dk_token}" }
-
-        run_test!
-      end
-
-      response '401', 'no token' do
-        let(:Authorization) {}
 
         run_test!
       end

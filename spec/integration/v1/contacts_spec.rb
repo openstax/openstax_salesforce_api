@@ -10,6 +10,19 @@ RSpec.describe 'api/v1/contacts', type: :request do
     @dk_token = doorkeeper_token
   end
 
+  path '/api/v1/contacts/' do
+    get 'Return 404 error for index call' do
+      tags 'Contacts'
+      consumes 'application/json'
+      security [apiToken: []]
+      response '404', 'not found' do
+        let(:HTTP_COOKIE) { oxa_cookie }
+
+        run_test!
+      end
+    end
+  end
+
   path '/api/v1/contacts/{id}' do
 
     get 'Return one contact' do

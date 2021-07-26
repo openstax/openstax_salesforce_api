@@ -1,7 +1,7 @@
 class Api::V1::CampaignMembersController < Api::V1::BaseController
   # GET /campaign_members
   def index
-    head(:unprocessable_entity)
+    head(:not_found)
   end
 
   # GET /campaign_members/:id

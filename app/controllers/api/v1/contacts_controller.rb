@@ -1,7 +1,7 @@
 class Api::V1::ContactsController < Api::V1::BaseController
   # GET /contacts
   def index
-    head(:unprocessable_entity)
+    head(:not_found)
   end
 
   # GET /contacts/:id

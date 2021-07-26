@@ -1,8 +1,7 @@
 class Api::V1::BooksController < Api::V1::BaseController
   # GET /books
   def index
-    @books = Book.paginate(page: params[:page], per_page: 20)
-    render json: @books
+    head(:not_found)
   end
 
   # GET /books/:id

@@ -1,7 +1,7 @@
 class Api::V1::LeadsController < Api::V1::BaseController
   # GET /leads
   def index
-    head(:unprocessable_entity)
+    head(:not_found)
   end
 
   # GET /leads/:id
