@@ -2,8 +2,7 @@ class SyncContactSchoolsToSalesforceJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: 5
 
-  def perform(relation_id, action)
-    relation = AccountContactRelation.find(relation_id)
+  def perform(relation, action)
     if action == 'add'
       begin
         sf_relation = OpenStax::Salesforce::Remote::AccountContactRelation.new(

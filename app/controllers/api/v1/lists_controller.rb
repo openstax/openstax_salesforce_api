@@ -14,7 +14,7 @@ class Api::V1::ListsController < Api::V1::BaseController
 
     if @subscription.new_record? || @subscription.pending_destroy?
       @subscription.pending_create!
-      SubscribeToListJob.perform_later(@subscription.id)
+      SubscribeToListJob.perform_later(@subscription)
     end
     head :processing
   end
@@ -23,7 +23,7 @@ class Api::V1::ListsController < Api::V1::BaseController
   def unsubscribe
     @subscription = Subscription.find_by!(list: @list, contact: current_contact!)
     @subscription.pending_destroy!
-    UnsubscribeFromListJob.perform_later(@subscription.id)
+    UnsubscribeFromListJob.perform_later(@subscription)
     head :processing
   end
 

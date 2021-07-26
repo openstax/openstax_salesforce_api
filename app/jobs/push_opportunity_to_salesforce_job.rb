@@ -2,8 +2,7 @@ class PushOpportunityToSalesforceJob < ApplicationJob
   queue_as :default
   sidekiq_options retry: 5
 
-  def perform(opp_id)
-    opp = Opportunity.find(opp_id)
+  def perform(opp)
     book = Book.find_by!(name: opp.book_name)
 
     begin
