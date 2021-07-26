@@ -14,8 +14,13 @@ RSpec.describe "Leads", type: :request do
     @token_header = create_token_header
   end
 
+  it 'returns failure for index call' do
+    get '/api/v1/leads', :headers => @headers
+    expect(response).to have_http_status(:not_found)
+  end
+
   it 'returns a failure response because of missing cookie' do
-    get '/api/v1/leads'
+    get "/api/v1/leads/#{@lead.salesforce_id}"
     expect(response).to have_http_status(:unauthorized)
   end
 

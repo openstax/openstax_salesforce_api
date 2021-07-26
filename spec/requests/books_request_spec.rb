@@ -19,16 +19,9 @@ RSpec.describe "Books", type: :request do
     expect(response).to have_http_status(:unauthorized)
   end
 
-  it 'returns all books' do
+  it 'returns failure for index call' do
     get '/api/v1/books', :headers => @headers
-    expect(JSON.parse(response.body).size).to be >= 1
-    expect(response).to have_http_status(:success)
-  end
-
-  it 'returns all books using token' do
-    get '/api/v1/books', :headers => @token_header
-    expect(JSON.parse(response.body).size).to be >= 1
-    expect(response).to have_http_status(:success)
+    expect(response).to have_http_status(:not_found)
   end
 
   it 'returns a successful response for book by name' do
