@@ -18,7 +18,7 @@ RSpec.describe SubscribeToListJob, type: :job, vcr: VCR_OPTS do
   end
 
   it { is_expected.to be_processed_in :default }
-  it { is_expected.to be_retryable 5 }
+  it { is_expected.to be_retryable true }
 
   it 'subscription status is updated by job' do
     subscription = Subscription.create(list: @valid_list, contact: @valid_contact)

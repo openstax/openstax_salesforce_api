@@ -8,7 +8,7 @@ RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
   end
 
   it { is_expected.to be_processed_in :default }
-  it { is_expected.to be_retryable 1 }
+  it { is_expected.to be_retryable true }
 
   it 'syncs books' do
     SyncSalesforceJob.new.perform(['Book'])
