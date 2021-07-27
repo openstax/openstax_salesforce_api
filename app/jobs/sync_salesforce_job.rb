@@ -2,7 +2,9 @@ class SyncSalesforceJob < ApplicationJob
   queue_as :default
 
   SF_PACKAGE = 'OpenStax::Salesforce::Remote::'.freeze
-  SF_OBJECTS = %w[AccountContactRelation Book CampaignMember Campaign Contact Lead Opportunity School].freeze
+  # this syncs all objects, except Contact which has it's own background job
+  # Contact is still in this list so it will remove stale contacts
+  SF_OBJECTS = %w[AccountContactRelation Book CampaignMember Contact Campaign Lead Opportunity School].freeze
 
   def perform(objects = [])
     if objects.blank?
@@ -28,8 +30,6 @@ class SyncSalesforceJob < ApplicationJob
         update_campaign_members(sf_objs)
       when 'Campaign'
         update_campaigns(sf_objs)
-      when 'Contact'
-        update_contacts(sf_objs)
       when 'Lead'
         update_leads(sf_objs)
       when 'Opportunity'
@@ -114,30 +114,6 @@ class SyncSalesforceJob < ApplicationJob
     end
   end
 
-  def update_contacts(sf_contacts)
-    sf_contacts.each do |sf_contact|
-      contact_to_update = Contact.find_or_initialize_by(salesforce_id: sf_contact.id)
-      contact_to_update.salesforce_id = sf_contact.id
-      contact_to_update.name = sf_contact.name
-      contact_to_update.first_name = sf_contact.first_name
-      contact_to_update.last_name = sf_contact.last_name
-      contact_to_update.email = sf_contact.email
-      contact_to_update.email_alt = sf_contact.email_alt
-      contact_to_update.faculty_confirmed_date = sf_contact.faculty_confirmed_date
-      contact_to_update.faculty_verified = sf_contact.faculty_verified
-      contact_to_update.last_modified_at = sf_contact.last_modified_at
-      contact_to_update.school_id = sf_contact.school_id
-      contact_to_update.school_type = sf_contact.school_type
-      contact_to_update.send_faculty_verification_to = sf_contact.send_faculty_verification_to
-      contact_to_update.all_emails = sf_contact.all_emails
-      contact_to_update.confirmed_emails = sf_contact.confirmed_emails
-      contact_to_update.adoption_status = sf_contact.adoption_status
-      contact_to_update.grant_tutor_access = sf_contact.grant_tutor_access
-
-      contact_to_update.save if contact_to_update.changed?
-    end
-  end
-
   def update_leads(sf_leads)
     sf_leads.each do |sf_lead|
       lead_to_update = Lead.find_or_initialize_by(salesforce_id: sf_lead.id)
@@ -214,5 +190,5 @@ class SyncSalesforceJob < ApplicationJob
 end
 
 if Sidekiq.server?
-  Sidekiq::Cron::Job.create(name: 'Salesforce sync - every 15 min', cron: '*/15 * * * *', class: 'SyncSalesforceJob')
+  Sidekiq::Cron::Job.create(name: 'Salesforce (non-contact) sync - every 1 hour', cron: '* */1 * * *', class: 'SyncSalesforceJob')
 end

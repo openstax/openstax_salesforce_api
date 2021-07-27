@@ -34,7 +34,12 @@ class Api::V1::BaseController < ApplicationController
     @current_contact ||= begin
       raise(CannotFindUserContact) if current_accounts_user.blank?
 
-      Contact.find_by(salesforce_id: current_accounts_user['salesforce_contact_id'])
+      contact = Contact.find_by(salesforce_id: current_accounts_user['salesforce_contact_id'])
+      if contact.blank?
+        contact = SyncSalesforceContactsJob.perform_now(current_accounts_user['salesforce_contact_id'])
+      end
+
+      contact
     end
   end
 
