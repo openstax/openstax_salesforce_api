@@ -3,7 +3,7 @@ class SyncSalesforceContactsJob < ApplicationJob
 
   def perform(id=nil)
     if id
-      sf_contacts = OpenStax::Salesforce::Remote::Contact.where(id=id)
+      sf_contacts = OpenStax::Salesforce::Remote::Contact.where(id:id)
     else
       sf_contacts = OpenStax::Salesforce::Remote::Contact.all
     end

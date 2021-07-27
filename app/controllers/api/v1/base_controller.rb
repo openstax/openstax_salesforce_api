@@ -32,7 +32,7 @@ class Api::V1::BaseController < ApplicationController
 
   def current_contact
     @current_contact ||= begin
-      raise(CannotFindUserContact) if current_accounts_user.blank?
+      raise(CannotFindUserContact) if current_accounts_user.blank? || current_accounts_user['salesforce_contact_id'].nil?
 
       contact = Contact.find_by(salesforce_id: current_accounts_user['salesforce_contact_id'])
       if contact.blank?
