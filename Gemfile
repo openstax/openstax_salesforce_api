@@ -28,6 +28,7 @@ gem 'sidekiq'
 gem 'sidekiq-cron', github: 'ondrejbartas/sidekiq-cron', ref: '6a0aeff6c900f3b7246734282f6869c61e1d5b4e'
 gem 'sidekiq-enqueuer'
 gem 'sidekiq-failures'
+gem 'sidekiq-status'
 gem 'versionist'
 gem 'will_paginate', '~> 3.3.0'
 

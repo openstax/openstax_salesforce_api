@@ -108,6 +108,8 @@ GEM
       msgpack (~> 1.0)
     builder (3.2.4)
     byebug (11.1.3)
+    chronic_duration (0.10.6)
+      numerizer (~> 0.1.1)
     codecov (0.5.1)
       simplecov (>= 0.15, < 0.22)
     concurrent-ruby (1.1.9)
@@ -219,6 +221,7 @@ GEM
     nokogiri (1.11.7)
       mini_portile2 (~> 2.5.0)
       racc (~> 1.4)
+    numerizer (0.1.1)
     oauth2 (1.4.4)
       faraday (>= 0.8, < 2.0)
       jwt (>= 1.0, < 3.0)
@@ -396,6 +399,9 @@ GEM
     sidekiq-enqueuer (2.1.1)
     sidekiq-failures (1.0.0)
       sidekiq (>= 4.0.0)
+    sidekiq-status (2.0.2)
+      chronic_duration
+      sidekiq (>= 5.0)
     simplecov (0.21.2)
       docile (~> 1.1)
       simplecov-html (~> 0.11)
@@ -478,6 +484,7 @@ DEPENDENCIES
   sidekiq-cron!
   sidekiq-enqueuer
   sidekiq-failures
+  sidekiq-status
   simplecov
   spring
   spring-watcher-listen (~> 2.0.0)
