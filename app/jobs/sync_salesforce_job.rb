@@ -190,5 +190,5 @@ class SyncSalesforceJob < ApplicationJob
 end
 
 if Sidekiq.server?
-  Sidekiq::Cron::Job.create(name: 'Salesforce (non-contact) sync - every 1 hour', cron: '* */1 * * *', class: 'SyncSalesforceJob')
+  Sidekiq::Cron::Job.create(name: 'Salesforce (non-contact) sync - every 1 hour', cron: '0 */1 * * *', class: 'SyncSalesforceJob')
 end
