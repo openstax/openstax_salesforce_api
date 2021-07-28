@@ -1,8 +1,6 @@
 class Api::V1::OpportunitiesController < Api::V1::BaseController
-  # GET /opportunities
-  def index
-    head(:not_found)
-  end
+  # index and show routes are excluded for this controller and the tests have been removed until the API is needed
+  # The search route has been commented out and the tests removed until the API is needed
 
   # GET /opportunities/:id
   def show

@@ -1,8 +1,5 @@
 class Api::V1::SchoolsController < Api::V1::BaseController
-  # GET /schools
-  def index
-    head(:not_found)
-  end
+  # index route is excluded for this controller and the tests have been removed until the API is needed
 
   # GET /schools/:id
   def show

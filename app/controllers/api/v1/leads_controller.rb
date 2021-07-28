@@ -1,8 +1,6 @@
 class Api::V1::LeadsController < Api::V1::BaseController
-  # GET /leads
-  def index
-    head(:not_found)
-  end
+  # routes for this controller have been commented out and tests removed until the API is needed
+  # The API is not being used.
 
   # GET /leads/:id
   def show

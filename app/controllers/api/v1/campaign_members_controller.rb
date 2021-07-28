@@ -1,8 +1,6 @@
 class Api::V1::CampaignMembersController < Api::V1::BaseController
-  # GET /campaign_members
-  def index
-    head(:not_found)
-  end
+  # routes for this controller have been commented out and tests removed until the API is needed
+  # The API is not being used.
 
   # GET /campaign_members/:id
   def show
