@@ -47,11 +47,11 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"00D4C0000008zJf!ARMAQJIgFR6rxzgYUCxTwdQlCiNfVEzwgakx1ugVhaVI9b1kPy_3MNR8qAwLM5syU6SMFoPsZ1xSLVTrp8zSwST_ZcsnTB59","instance_url":"https://openstax--dev.my.salesforce.com","id":"https://test.salesforce.com/id/00D4C0000008zJfUAI/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1627587004443","signature":"3MRAJ36AhX45ugdwy59M0+Y8HbCsy3eXISAGy2sYfyA="}'
+      string: '{"access_token":"00D4C0000008zJf!ARMAQJIgFR6rxzgYUCxTwdQlCiNfVEzwgakx1ugVhaVI9b1kPy_3MNR8qAwLM5syU6SMFoPsZ1xSLVTrp8zSwST_ZcsnTB59","instance_url":"https://test.my.salesforce.com","id":"https://test.salesforce.com/id/00D4C0000008zJfUAI/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1627587004443","signature":"3MRAJ36AhX45ugdwy59M0+Y8HbCsy3eXISAGy2sYfyA="}'
   recorded_at: Thu, 29 Jul 2021 19:30:04 GMT
 - request:
     method: get
-    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20Faculty_Verified__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact
+    uri: https://test.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20Faculty_Verified__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact
     body:
       encoding: US-ASCII
       string: ''
