@@ -1,0 +1,95 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20Faculty_Verified__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact%20WHERE%20(Id%20=%20%270034C00000T7QPQQA3%27)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth 00D4C0000008zJf!ARMAQJIgFR6rxzgYUCxTwdQlCiNfVEzwgakx1ugVhaVI9b1kPy_3MNR8qAwLM5syU6SMFoPsZ1xSLVTrp8zSwST_ZcsnTB59
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 29 Jul 2021 19:55:44 GMT
+      Set-Cookie:
+      - BrowserId=9bPxhPCmEeuw2vMlK9rE8A; domain=.salesforce.com; path=/; expires=Fri,
+        29-Jul-2022 19:55:44 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+        29-Jul-2022 19:55:44 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=451/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0034C00000T7QPQQA3"},"Id":"0034C00000T7QPQQA3","Name":"Find
+        Me","FirstName":"Find","LastName":"Me","Email":"mwharrison+findme@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2021-07-27","Faculty_Verified__c":"Confirmed","LastModifiedDate":"2021-07-27T21:32:44.000+0000","AccountId":"0014C00000ZiKgfQAF","School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"mwharrison+findme@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false}]}'
+  recorded_at: Thu, 29 Jul 2021 19:55:44 GMT
+- request:
+    method: get
+    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Contact%20WHERE%20(Id%20=%20%270034C00000T7QPQQA3%27)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth 00D4C0000008zJf!ARMAQJIgFR6rxzgYUCxTwdQlCiNfVEzwgakx1ugVhaVI9b1kPy_3MNR8qAwLM5syU6SMFoPsZ1xSLVTrp8zSwST_ZcsnTB59
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 29 Jul 2021 19:55:44 GMT
+      Set-Cookie:
+      - BrowserId=9eUTy_CmEeuziA-36yyMBw; domain=.salesforce.com; path=/; expires=Fri,
+        29-Jul-2022 19:55:44 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+        29-Jul-2022 19:55:44 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=451/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":1}]}'
+  recorded_at: Thu, 29 Jul 2021 19:55:44 GMT
+recorded_with: VCR 6.0.0
