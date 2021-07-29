@@ -10,28 +10,12 @@ RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
   it { is_expected.to be_processed_in :default }
   it { is_expected.to be_retryable true }
 
-  it 'syncs account contact relation' do
-    SyncSalesforceJob.new.perform(['AccountContactRelation'])
+  it 'syncs the salesforce data' do
+    SyncSalesforceJob.new.perform()
     expect(AccountContactRelation.count).to be > 1
-  end
-
-  it 'syncs books' do
-    SyncSalesforceJob.new.perform(['Book'])
     expect(Book.count).to be > 1
-  end
-
-  it 'syncs leads' do
-    SyncSalesforceJob.new.perform(['Lead'])
     expect(Lead.count).to be > 1
-  end
-
-  it 'syncs opportunities' do
-    SyncSalesforceJob.new.perform(['Opportunity'])
     expect(Opportunity.count).to be > 1
-  end
-
-  it 'syncs schools' do
-    SyncSalesforceJob.new.perform(['School'])
     expect(School.count).to be > 1
   end
 
