@@ -1,9 +1,5 @@
 class Api::V1::SchoolsController < Api::V1::BaseController
-  # GET /schools
-  def index
-    @schools = School.paginate(page: params[:page], per_page: 20)
-    render json: @schools
-  end
+  # index route is excluded for this controller and the tests have been removed until the API is needed
 
   # GET /schools/:id
   def show

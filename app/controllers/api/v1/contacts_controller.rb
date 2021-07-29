@@ -1,9 +1,6 @@
 class Api::V1::ContactsController < Api::V1::BaseController
-  # GET /contacts
-  def index
-    @contacts = Contact.paginate(page: params[:page], per_page: 20)
-    render json: @contacts
-  end
+  # index and show routes are excluded for this controller and the tests have been removed until the API is needed
+  # The search route has been commented out and the tests removed until the API is needed
 
   # GET /contacts/:id
   def show

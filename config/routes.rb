@@ -15,36 +15,21 @@ Rails.application.routes.draw do
       defaults: { format: :json }
     ) do
 
-      resources :schools do
-        collection do
-          get 'search'
-        end
-      end
-      resources :books do
+      resources :schools, except: :index do
         collection do
           get 'search'
         end
       end
 
-      resources :campaigns
-      resources :contacts do
+      resources :contacts, except: [:index, :show] do
         collection do
-          get 'search'
           post 'add_school'
           delete 'remove_school'
         end
       end
-      resources :leads do
-        collection do
-          get 'search'
-        end
-      end
-      resources :campaign_members
-      resources :opportunities do
-        collection do
-          get 'search'
-        end
-      end
+
+      resources :opportunities, except: [:index, :show]
+
       resources :users
 
       resources :lists, only: [:index] do
@@ -52,6 +37,24 @@ Rails.application.routes.draw do
         get :unsubscribe
       end
 
+      ##############################
+      # commented out for later use
+      # resources :books, except: :index do
+      #   collection do
+      #     get 'search'
+      #   end
+      # end
+      #
+      # resources :campaigns, except: :index
+      #
+      # resources :leads, except: :index do
+      #   collection do
+      #     get 'search'
+      #   end
+      # end
+      #
+      # resources campaign_members: :index
+      # ##################################
     end
   end
   get 'login', to: 'login#new'

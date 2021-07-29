@@ -23,51 +23,6 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
   end
 
   path '/api/v1/opportunities' do
-    get 'List all Opportunities' do
-      tags 'Opportunities'
-      consumes 'application/json'
-      security [apiToken: []]
-
-      parameter name: :opportunity, in: :body, schema: {
-        type: :object,
-        properties: {
-          salesforce_id: { type: :string },
-          term_year: { type: :string },
-          book_name: { type: :string },
-          contact_id: { type: :string },
-          new: { type: :boolean },
-          close_date: { type: :string },
-          stage_name: { type: :string },
-          update_type: { type: :string },
-          number_of_students: { type: :string },
-          student_number_status: { type: :string },
-          time_period: { type: :string },
-          class_start_date: { type: :string },
-          school_id: { type: :string },
-          book_id: { type: :string },
-          lead_source: { type: :string },
-          salesforce_updated: { type: :string },
-          os_accounts_id: { type: :string },
-          name: { type: :string },
-          created_at: { type: :string },
-          updated_at: { type: :string }
-        },
-        required: %w[salesforce_id contact_id school_id]
-      }
-      response '200', 'opportunities retrieved' do
-        let(:opportunity) { @opportunity }
-        let(:HTTP_COOKIE) { oxa_cookie }
-
-        run_test!
-      end
-
-      response '401', 'no cookie' do
-        let(:opportunity) { @opportunity }
-        let(:HTTP_COOKIE) {}
-
-        run_test!
-      end
-    end
 
     post 'Create an opportunity' do
       tags 'Opportunity'
@@ -111,40 +66,40 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
 
   end
 
-  path '/api/v1/opportunities/search' do
-    get 'Return opportunity by account id' do
-      tags 'Opportunity'
-      consumes 'application/json'
-      security [apiToken: []]
-
-      parameter name: :os_accounts_id, in: :query, type: :string
-
-      response '200', 'opportunity found' do
-
-        let(:os_accounts_id) { @opportunity.os_accounts_id.to_s }
-        let(:HTTP_COOKIE) { oxa_cookie }
-
-        run_test!
-      end
-    end
-  end
-
+  # path '/api/v1/opportunities/search' do
+  #   get 'Return opportunity by account id' do
+  #     tags 'Opportunity'
+  #     consumes 'application/json'
+  #     security [apiToken: []]
+  #
+  #     parameter name: :os_accounts_id, in: :query, type: :string
+  #
+  #     response '200', 'opportunity found' do
+  #
+  #       let(:os_accounts_id) { @opportunity.os_accounts_id.to_s }
+  #       let(:HTTP_COOKIE) { oxa_cookie }
+  #
+  #       run_test!
+  #     end
+  #   end
+  # end
+  #
   path '/api/v1/opportunities/{id}' do
-    get 'Get one opportunity' do
-      tags 'Opportunity'
-      consumes 'application/json'
-      produces 'application/json'
-      security [apiToken: []]
-
-      parameter name: :id, in: :path, type: :string
-
-      response '200', 'opportunity found' do
-        let(:id) { @opportunity.salesforce_id.to_s }
-        let(:HTTP_COOKIE) { oxa_cookie }
-
-        run_test!
-      end
-    end
+  #   get 'Get one opportunity' do
+  #     tags 'Opportunity'
+  #     consumes 'application/json'
+  #     produces 'application/json'
+  #     security [apiToken: []]
+  #
+  #     parameter name: :id, in: :path, type: :string
+  #
+  #     response '200', 'opportunity found' do
+  #       let(:id) { @opportunity.salesforce_id.to_s }
+  #       let(:HTTP_COOKIE) { oxa_cookie }
+  #
+  #       run_test!
+  #     end
+  #   end
 
     patch 'Update an opportunity' do
       tags 'Opportunity'
