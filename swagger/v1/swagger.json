@@ -748,106 +748,6 @@
       }
     },
     "/api/v1/opportunities": {
-      "get": {
-        "summary": "List all Opportunities",
-        "tags": [
-          "Opportunities"
-        ],
-        "consumes": [
-          "application/json"
-        ],
-        "security": [
-          {
-            "apiToken": [
-
-            ]
-          }
-        ],
-        "parameters": [
-          {
-            "name": "opportunity",
-            "in": "body",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "salesforce_id": {
-                  "type": "string"
-                },
-                "term_year": {
-                  "type": "string"
-                },
-                "book_name": {
-                  "type": "string"
-                },
-                "contact_id": {
-                  "type": "string"
-                },
-                "new": {
-                  "type": "boolean"
-                },
-                "close_date": {
-                  "type": "string"
-                },
-                "stage_name": {
-                  "type": "string"
-                },
-                "update_type": {
-                  "type": "string"
-                },
-                "number_of_students": {
-                  "type": "string"
-                },
-                "student_number_status": {
-                  "type": "string"
-                },
-                "time_period": {
-                  "type": "string"
-                },
-                "class_start_date": {
-                  "type": "string"
-                },
-                "school_id": {
-                  "type": "string"
-                },
-                "book_id": {
-                  "type": "string"
-                },
-                "lead_source": {
-                  "type": "string"
-                },
-                "salesforce_updated": {
-                  "type": "string"
-                },
-                "os_accounts_id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "created_at": {
-                  "type": "string"
-                },
-                "updated_at": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "salesforce_id",
-                "contact_id",
-                "school_id"
-              ]
-            }
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "opportunities retrieved"
-          },
-          "401": {
-            "description": "no cookie"
-          }
-        }
-      },
       "post": {
         "summary": "Create an opportunity",
         "tags": [
@@ -919,9 +819,9 @@
         }
       }
     },
-    "/api/v1/opportunities/search": {
-      "get": {
-        "summary": "Return opportunity by account id",
+    "/api/v1/opportunities/{id}": {
+      "patch": {
+        "summary": "Update an opportunity",
         "tags": [
           "Opportunity"
         ],
@@ -1156,56 +1056,51 @@
             "required": true
           },
           {
-            "in": "header",
-            "type": "string",
-            "name": "Authorization",
-            "required": true,
-            "description": "Doorkeeper token"
+            "name": "opportunity_data",
+            "in": "body",
+            "schema": {
+              "salesforce_id": {
+                "type": "string"
+              },
+              "term_year": {
+                "type": "string"
+              },
+              "book_name": {
+                "type": "string"
+              },
+              "contact_id": {
+                "type": "string"
+              },
+              "new": {
+                "type": "boolean"
+              },
+              "close_date": {
+                "type": "string"
+              },
+              "number_of_students": {
+                "type": "string"
+              },
+              "class_start_date": {
+                "type": "string"
+              },
+              "school_id": {
+                "type": "string"
+              },
+              "book_id": {
+                "type": "string"
+              },
+              "name": {
+                "type": "string"
+              },
+              "stage_name": {
+                "type": "string"
+              }
+            }
           }
         ],
         "responses": {
-          "200": {
-            "description": "school found",
-            "schema": {
-              "type": "object",
-              "properties": {
-                "id": {
-                  "type": "int"
-                },
-                "salesforce_id": {
-                  "type": "string"
-                },
-                "name": {
-                  "type": "string"
-                },
-                "school_type": {
-                  "type": "string"
-                },
-                "location": {
-                  "type": "string"
-                },
-                "is_kip": {
-                  "type": "boolean"
-                },
-                "is_child_of_kip": {
-                  "type": "boolean"
-                },
-                "created_at": {
-                  "type": "string"
-                },
-                "updated_at": {
-                  "type": "string"
-                }
-              },
-              "required": [
-                "salesforce_id",
-                "name",
-                "school_type"
-              ]
-            }
-          },
-          "404": {
-            "description": "school not found"
+          "202": {
+            "description": "opportunity updated"
           }
         }
       }

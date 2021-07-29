@@ -1,9 +1,6 @@
 class Api::V1::BooksController < Api::V1::BaseController
-  # GET /books
-  def index
-    @books = Book.paginate(page: params[:page], per_page: 20)
-    render json: @books
-  end
+  # routes for this controller have been commented out and tests removed until the API is needed
+  # The API is not being used.
 
   # GET /books/:id
   def show
