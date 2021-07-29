@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20Faculty_Verified__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact%20WHERE%20(Id%20=%20%270034C00000T7QPQQA3%27)
+    uri: https://example.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20Faculty_Verified__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact%20WHERE%20(Id%20=%20%270034C00000T7QPQQA3%27)
     body:
       encoding: US-ASCII
       string: ''
@@ -49,7 +49,7 @@ http_interactions:
   recorded_at: Thu, 29 Jul 2021 19:55:44 GMT
 - request:
     method: get
-    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Contact%20WHERE%20(Id%20=%20%270034C00000T7QPQQA3%27)
+    uri: https://example.salesforce.com/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Contact%20WHERE%20(Id%20=%20%270034C00000T7QPQQA3%27)
     body:
       encoding: US-ASCII
       string: ''
