@@ -4,7 +4,7 @@ class SyncSalesforceJob < ApplicationJob
   SF_PACKAGE = 'OpenStax::Salesforce::Remote::'.freeze
   # this syncs all objects, except Contact which has it's own background job
   # Contact is still in this list so it will remove stale contacts
-  SF_OBJECTS = %w[AccountContactRelation Book CampaignMember Contact Campaign Lead Opportunity School].freeze
+  SF_OBJECTS = %w[AccountContactRelation Book Contact Lead Opportunity School].freeze
 
   def perform(objects = [])
     if objects.blank?
@@ -26,10 +26,6 @@ class SyncSalesforceJob < ApplicationJob
         update_account_contact_relations(sf_objs)
       when 'Book'
         update_books(sf_objs)
-      when 'CampaignMember'
-        update_campaign_members(sf_objs)
-      when 'Campaign'
-        update_campaigns(sf_objs)
       when 'Lead'
         update_leads(sf_objs)
       when 'Opportunity'

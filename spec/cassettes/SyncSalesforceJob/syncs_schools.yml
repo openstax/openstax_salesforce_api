@@ -1,0 +1,57 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: https://example.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20BillingCity,%20BillingState,%20BillingCountry,%20Type,%20School_Location__c,%20SheerID_School_Name__c,%20K_I_P__c,%20child_of_kip__c%20FROM%20Account%20WHERE%20(RecordType.Name%20=%20%27School%27)
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth 00D4C0000008zJf!ARMAQJIgFR6rxzgYUCxTwdQlCiNfVEzwgakx1ugVhaVI9b1kPy_3MNR8qAwLM5syU6SMFoPsZ1xSLVTrp8zSwST_ZcsnTB59
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 29 Jul 2021 20:21:15 GMT
+      Set-Cookie:
+      - BrowserId=hoPnW_CqEeuiZanlvgF5gg; domain=.salesforce.com; path=/; expires=Fri,
+        29-Jul-2022 20:21:15 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+        29-Jul-2022 20:21:15 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=481/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":4,"done":true,"records":[{"attributes":{"type":"Account","url":"/services/data/v51.0/sobjects/Account/0014C00000ZiUVCQA3"},"Id":"0014C00000ZiUVCQA3","Name":"University
+        of Pennsylvania","BillingCity":"FIXME","BillingState":null,"BillingCountry":"United
+        States","Type":null,"School_Location__c":"Domestic","SheerID_School_Name__c":null,"K_I_P__c":false,"child_of_kip__c":false},{"attributes":{"type":"Account","url":"/services/data/v51.0/sobjects/Account/0014C00000ZiKgfQAF"},"Id":"0014C00000ZiKgfQAF","Name":"Princeton
+        University","BillingCity":"FIXME","BillingState":null,"BillingCountry":"United
+        States","Type":null,"School_Location__c":"Domestic","SheerID_School_Name__c":"Princeton
+        University (Princeton, NJ)","K_I_P__c":false,"child_of_kip__c":false},{"attributes":{"type":"Account","url":"/services/data/v51.0/sobjects/Account/0014C00000ZiUTkQAN"},"Id":"0014C00000ZiUTkQAN","Name":"University
+        of Richmond","BillingCity":"FIXME","BillingState":null,"BillingCountry":"United
+        States","Type":null,"School_Location__c":"Domestic","SheerID_School_Name__c":null,"K_I_P__c":false,"child_of_kip__c":false},{"attributes":{"type":"Account","url":"/services/data/v51.0/sobjects/Account/0014C00000ZicuiQAB"},"Id":"0014C00000ZicuiQAB","Name":"University
+        of Connecticut","BillingCity":"FIXME","BillingState":null,"BillingCountry":"United
+        States","Type":null,"School_Location__c":"Domestic","SheerID_School_Name__c":null,"K_I_P__c":false,"child_of_kip__c":false}]}'
+  recorded_at: Thu, 29 Jul 2021 20:21:15 GMT
+recorded_with: VCR 6.0.0
