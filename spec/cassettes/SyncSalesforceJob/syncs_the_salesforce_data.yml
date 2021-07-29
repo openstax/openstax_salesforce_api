@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: post
-    uri: https://test.salesforce.com/services/oauth2/token
+    uri: https://example.salesforce.com/services/oauth2/token
     body:
       encoding: US-ASCII
       string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password_url><salesforce_security_token>
@@ -47,11 +47,11 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"00D4C0000008zJf!ARMAQJIgFR6rxzgYUCxTwdQlCiNfVEzwgakx1ugVhaVI9b1kPy_3MNR8qAwLM5syU6SMFoPsZ1xSLVTrp8zSwST_ZcsnTB59","instance_url":"https://openstax--dev.my.salesforce.com","id":"https://test.salesforce.com/id/00D4C0000008zJfUAI/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1627591529103","signature":"6/PA4RUeIB/qmgT1WSm9bOAXHMEbqdIvEMp0RbJEaEM="}'
+      string: '{"access_token":"00D4C0000008zJf!ARMAQJIgFR6rxzgYUCxTwdQlCiNfVEzwgakx1ugVhaVI9b1kPy_3MNR8qAwLM5syU6SMFoPsZ1xSLVTrp8zSwST_ZcsnTB59","instance_url":"https://example.salesforce.com","id":"https://test.salesforce.com/id/00D4C0000008zJfUAI/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1627591529103","signature":"6/PA4RUeIB/qmgT1WSm9bOAXHMEbqdIvEMp0RbJEaEM="}'
   recorded_at: Thu, 29 Jul 2021 20:45:29 GMT
 - request:
     method: get
-    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20ContactId,%20IsDirect,%20AccountId%20FROM%20AccountContactRelation
+    uri: https://example.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20ContactId,%20IsDirect,%20AccountId%20FROM%20AccountContactRelation
     body:
       encoding: US-ASCII
       string: ''
@@ -74,7 +74,7 @@ http_interactions:
       Set-Cookie:
       - BrowserId=6Ph_mPCtEeuziA-36yyMBw; domain=.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:29 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+      - CookieConsentPolicy=0:0; domain=example.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:29 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
@@ -96,7 +96,7 @@ http_interactions:
   recorded_at: Thu, 29 Jul 2021 20:45:29 GMT
 - request:
     method: get
-    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20Annualization_number__c%20FROM%20Book__c
+    uri: https://example.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20Annualization_number__c%20FROM%20Book__c
     body:
       encoding: US-ASCII
       string: ''
@@ -119,7 +119,7 @@ http_interactions:
       Set-Cookie:
       - BrowserId=6YGFZPCtEeuSyTlG41wUnA; domain=.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:30 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+      - CookieConsentPolicy=0:0; domain=example.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:30 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
@@ -188,7 +188,7 @@ http_interactions:
   recorded_at: Thu, 29 Jul 2021 20:45:30 GMT
 - request:
     method: get
-    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20Faculty_Verified__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact
+    uri: https://example.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20Faculty_Verified__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact
     body:
       encoding: US-ASCII
       string: ''
@@ -211,7 +211,7 @@ http_interactions:
       Set-Cookie:
       - BrowserId=6dI9i_CtEeuSyTlG41wUnA; domain=.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:30 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+      - CookieConsentPolicy=0:0; domain=example.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:30 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
@@ -519,7 +519,7 @@ http_interactions:
   recorded_at: Thu, 29 Jul 2021 20:45:30 GMT
 - request:
     method: get
-    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Salutation,%20Subject__c,%20Company,%20City,%20State,%20StateCode,%20Country,%20Phone,%20Website,%20Status,%20Email,%20LeadSource,%20Newsletter__c,%20Newsletter_Opt_In__c,%20Adoption_Status__c,%20Number_of_Students__c,%20OS_Accounts_ID__c,%20accounts_uuid_c__c,%20Application_Source__c,%20Role__c,%20other_role_name__c,%20who_chooses_books__c,%20FV_Status__c,%20FV_Final__c,%20Needs_CS_Review__c,%20BRI_Marketing__c,%20Title_1_school__c,%20SheerID_School_Name__c,%20Account_ID__c,%20School__c%20FROM%20Lead
+    uri: https://example.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Salutation,%20Subject__c,%20Company,%20City,%20State,%20StateCode,%20Country,%20Phone,%20Website,%20Status,%20Email,%20LeadSource,%20Newsletter__c,%20Newsletter_Opt_In__c,%20Adoption_Status__c,%20Number_of_Students__c,%20OS_Accounts_ID__c,%20accounts_uuid_c__c,%20Application_Source__c,%20Role__c,%20other_role_name__c,%20who_chooses_books__c,%20FV_Status__c,%20FV_Final__c,%20Needs_CS_Review__c,%20BRI_Marketing__c,%20Title_1_school__c,%20SheerID_School_Name__c,%20Account_ID__c,%20School__c%20FROM%20Lead
     body:
       encoding: US-ASCII
       string: ''
@@ -542,7 +542,7 @@ http_interactions:
       Set-Cookie:
       - BrowserId=6gpkyPCtEeuocSuR_VowfA; domain=.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:31 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+      - CookieConsentPolicy=0:0; domain=example.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:31 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
@@ -1832,7 +1832,7 @@ http_interactions:
   recorded_at: Thu, 29 Jul 2021 20:45:31 GMT
 - request:
     method: get
-    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20TermYear__c,%20Book_Text__c,%20Contact__c,%20New__c,%20CloseDate,%20StageName,%20Type,%20Students__c,%20Student_No_Status__c,%20Time_Period__c,%20Class_Start_Date__c,%20AccountId,%20Book__c,%20LeadSource,%20OS_Accounts_ID__c,%20Name%20FROM%20Opportunity
+    uri: https://example.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20TermYear__c,%20Book_Text__c,%20Contact__c,%20New__c,%20CloseDate,%20StageName,%20Type,%20Students__c,%20Student_No_Status__c,%20Time_Period__c,%20Class_Start_Date__c,%20AccountId,%20Book__c,%20LeadSource,%20OS_Accounts_ID__c,%20Name%20FROM%20Opportunity
     body:
       encoding: US-ASCII
       string: ''
@@ -1855,7 +1855,7 @@ http_interactions:
       Set-Cookie:
       - BrowserId=7BwGDfCtEeuk-6faBktksQ; domain=.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:34 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+      - CookieConsentPolicy=0:0; domain=example.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:34 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
@@ -1913,7 +1913,7 @@ http_interactions:
   recorded_at: Thu, 29 Jul 2021 20:45:34 GMT
 - request:
     method: get
-    uri: https://openstax--dev.my.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20BillingCity,%20BillingState,%20BillingCountry,%20Type,%20School_Location__c,%20SheerID_School_Name__c,%20K_I_P__c,%20child_of_kip__c%20FROM%20Account%20WHERE%20(RecordType.Name%20=%20%27School%27)
+    uri: https://example.salesforce.com/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20BillingCity,%20BillingState,%20BillingCountry,%20Type,%20School_Location__c,%20SheerID_School_Name__c,%20K_I_P__c,%20child_of_kip__c%20FROM%20Account%20WHERE%20(RecordType.Name%20=%20%27School%27)
     body:
       encoding: US-ASCII
       string: ''
@@ -1936,7 +1936,7 @@ http_interactions:
       Set-Cookie:
       - BrowserId=7FuAhfCtEeuiZanlvgF5gg; domain=.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:35 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+      - CookieConsentPolicy=0:0; domain=example.salesforce.com; path=/; expires=Fri,
         29-Jul-2022 20:45:35 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
