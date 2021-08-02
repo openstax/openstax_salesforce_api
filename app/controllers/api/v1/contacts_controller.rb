@@ -5,13 +5,13 @@ class Api::V1::ContactsController < Api::V1::BaseController
   # GET /contacts/:id
   def show
     @contact = Contact.find_by!(salesforce_id: params[:id])
-    render json: @contact, status: :ok
+    render json: @contact
   end
 
   # GET /contacts/search?email
   def search
     @contact = Contact.search(params[:email])
-    render json: @contact, status: :ok
+    render json: @contact
   end
 
   # POST /contacts/add_school/:contact_id/:school_id
@@ -23,9 +23,10 @@ class Api::V1::ContactsController < Api::V1::BaseController
     relation.save!
 
     SyncContactSchoolsToSalesforceJob.perform_later(relation, 'add')
-    head(:accepted)
+    head :processing
+
   rescue ActiveRecord::RecordInvalid
-    head(:unprocessable_entity)
+    head(:method_not_allowed)
 
   end
 
@@ -36,6 +37,11 @@ class Api::V1::ContactsController < Api::V1::BaseController
       school_id: params[:school_id]
     )
 
+    if relation.primary? # cannot delete primary school
+      head(:method_not_allowed)
+    end
+
     SyncContactSchoolsToSalesforceJob.perform_later(relation, 'remove')
+    head :processing
   end
 end

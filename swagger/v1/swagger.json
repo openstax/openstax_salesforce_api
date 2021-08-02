@@ -79,11 +79,8 @@
           }
         ],
         "responses": {
-          "202": {
-            "description": "subscribe successful"
-          },
-          "404": {
-            "description": "contact not found"
+          "102": {
+            "description": "subscribe request processing"
           }
         }
       }
@@ -113,11 +110,8 @@
           }
         ],
         "responses": {
-          "202": {
-            "description": "unsubscribe successful"
-          },
-          "404": {
-            "description": "contact not found"
+          "102": {
+            "description": "unsubscribe request processing"
           }
         }
       }
@@ -188,7 +182,7 @@
           }
         ],
         "responses": {
-          "202": {
+          "102": {
             "description": "opportunity created"
           }
         }
@@ -264,7 +258,7 @@
           }
         ],
         "responses": {
-          "202": {
+          "102": {
             "description": "opportunity updated"
           }
         }

@@ -9,7 +9,7 @@ RSpec.describe SyncPardotJob, type: :job, vcr: VCR_OPTS do
   end
 
   it { is_expected.to be_processed_in :default }
-  it { is_expected.to be_retryable 2 }
+  it { is_expected.to be_retryable true }
 
   it 'creates the lists' do
     SyncPardotJob.new.perform(@contact.salesforce_id)

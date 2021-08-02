@@ -12,7 +12,7 @@ RSpec.describe PushOpportunityToSalesforceJob, type: :job do
   end
 
   it { is_expected.to be_processed_in :default }
-  it { is_expected.to be_retryable 5 }
+  it { is_expected.to be_retryable true }
 
   it 'pushes an opportunity' do
     PushOpportunityToSalesforceJob.new.perform(@opportunity)

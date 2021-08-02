@@ -6,5 +6,5 @@ RSpec.describe SyncContactSchoolsToSalesforceJob, type: :job do
   end
 
   it { is_expected.to be_processed_in :default }
-  it { is_expected.to be_retryable 5 }
+  it { is_expected.to be_retryable true }
 end
