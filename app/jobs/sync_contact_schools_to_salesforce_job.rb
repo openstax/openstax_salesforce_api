@@ -34,12 +34,6 @@ class SyncContactSchoolsToSalesforceJob < ApplicationJob
         sf_contact = OpenStax::Salesforce::Remote::Contact.find_by(id: relation.contact_id)
         sf_contact.school_id = relation.school_id
         sf_contact.save!
-        # sf_relation = OpenStax::Salesforce::Remote::AccountContactRelation.find_by(
-        #   contact_id: relation.contact_id,
-        #   school_id: relation.school_id
-        # )
-        # sf_relation.primary = true
-        # sf_relation.save!
       rescue => e
         Sentry.capture_exception e
         raise
