@@ -4,17 +4,17 @@ require 'spec_helper'
 
 Sidekiq::Testing.inline!
 
-RSpec.describe SyncContactSchoolsToSalesforceJob, type: :job do
+RSpec.describe SyncContactSchoolsToSalesforceJob, type: :job, vcr: VCR_OPTS do
   before(:each) do
     Sidekiq::Worker.clear_all
   end
 
   before(:all) do
-    VCR.use_cassette('SyncContactSchoolToSalesforceJob/sf_setup', VCR_OPTS) do
+    VCR.use_cassette('SyncContactSchoolsToSalesforceJob/sf_setup', VCR_OPTS) do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette
     end
-    @new_relation = FactoryBot.create(:api_account_contact_relation, contact_id: '0034C00000T6UZ7QAN', school_id: '0014C00000ZiKgfQAF' )
+    @new_relation = FactoryBot.create(:api_account_contact_relation, contact_id: '0034C00000T6UZEQA3', school_id: '0014C00000ZiKgfQAF' )
   end
 
 
