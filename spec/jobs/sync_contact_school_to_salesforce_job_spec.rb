@@ -14,7 +14,7 @@ RSpec.describe SyncContactSchoolsToSalesforceJob, type: :job do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette
     end
-    @new_relation = FactoryBot.create(:api_account_contact_relation, contact_id: '0034C00000T6UZ5QAN', school_id: '0014C00000ZiKgfQAF' )
+    @new_relation = FactoryBot.create(:api_account_contact_relation, contact_id: '0034C00000T6UZ7QAN', school_id: '0014C00000ZiKgfQAF' )
   end
 
 
@@ -23,7 +23,7 @@ RSpec.describe SyncContactSchoolsToSalesforceJob, type: :job do
 
   it 'school is added by job' do
     SyncContactSchoolsToSalesforceJob.new.perform(@new_relation, 'add')
-    expect(AccountContactRelation.last.contact_id).to eq(@new_relation.salesforce_id)
+    expect(AccountContactRelation.last.contact_id).to eq(@new_relation.contact_id)
   end
 
   it 'school is removed by job' do
@@ -33,6 +33,7 @@ RSpec.describe SyncContactSchoolsToSalesforceJob, type: :job do
 
   it 'school is updated by job' do
     SyncContactSchoolsToSalesforceJob.new.perform(@new_relation, 'update')
-    expect(Contact.where(school_id: @new_relation.school_id)).to exist
+    sf_contact = OpenStax::Salesforce::Remote::Contact.find_by(id: @new_relation.contact_id)
+    expect(sf_contact.school_id).to eq(@new_relation.school_id)
   end
 end
