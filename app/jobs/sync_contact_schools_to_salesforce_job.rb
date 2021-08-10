@@ -28,6 +28,16 @@ class SyncContactSchoolsToSalesforceJob < ApplicationJob
         Sentry.capture_exception e
         raise
       end
+
+    elsif action == 'update'
+      begin
+        sf_contact = OpenStax::Salesforce::Remote::Contact.find_by(id: relation.contact_id)
+        sf_contact.school_id = relation.school_id
+        sf_contact.save!
+      rescue => e
+        Sentry.capture_exception e
+        raise
+      end
     end
   end
 end

@@ -30,6 +30,33 @@ class Api::V1::ContactsController < Api::V1::BaseController
 
   end
 
+  # POST /contacts/set_primary_school/:contact_id/:school_id
+  def set_primary_school
+    old_primary = AccountContactRelation.find_by!(
+      contact_id: params[:contact_id],
+      primary: true
+    )
+    unless old_primary.blank?
+      old_primary.primary = false
+      old_primary.save!
+    end
+
+
+    relation = AccountContactRelation.find_by!(
+      contact_id: params[:contact_id],
+      school_id: params[:school_id]
+    )
+    relation.primary = true
+    relation.save!
+
+    SyncContactSchoolsToSalesforceJob.perform_later(relation, 'update')
+    head :processing
+
+  rescue ActiveRecord::RecordInvalid
+    head(:method_not_allowed)
+
+  end
+
   # DELETE /contacts/remove_school/:contact_id/:school_id
   def remove_school
     relation = AccountContactRelation.find_by!(

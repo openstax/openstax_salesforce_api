@@ -1,0 +1,52 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<salesforce_instance_url>/services/data/v51.0/sobjects/AccountContactRelation"
+    body:
+      encoding: UTF-8
+      string: '{"ContactId":"0034C00000T6UZEQA3","AccountId":"0014C00000ZiKgfQAF"}'
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Mon, 09 Aug 2021 16:09:08 GMT
+      Set-Cookie:
+      - BrowserId=IIsoJPksEeus1wlOWxEc1Q; domain=.salesforce.com; path=/; expires=Tue,
+        09-Aug-2022 16:09:08 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Tue,
+        09-Aug-2022 16:09:08 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=861/5000000
+      Location:
+      - "/services/data/v51.0/sobjects/AccountContactRelation/07k4C00000HMk4pQAD"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"07k4C00000HMk4pQAD","success":true,"errors":[]}'
+  recorded_at: Mon, 09 Aug 2021 16:09:08 GMT
+recorded_with: VCR 6.0.0

@@ -24,6 +24,7 @@ Rails.application.routes.draw do
       resources :contacts, except: [:index, :show] do
         collection do
           post 'add_school'
+          post 'set_primary_school'
           delete 'remove_school'
         end
       end
