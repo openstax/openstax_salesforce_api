@@ -21,6 +21,7 @@ class Api::V1::BaseController < ApplicationController
   end
 
   rescue_from_unless_local ActiveRecord::RecordNotFound, send_to_sentry: false do |ex|
+    Sentry.capture_exception(ex) if ex.model == 'School'
     render json: { error: ex.message }, status: :not_found
   end
 
