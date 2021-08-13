@@ -21,7 +21,7 @@ class Api::V1::BaseController < ApplicationController
   end
 
   rescue_from_unless_local ActiveRecord::RecordNotFound, send_to_sentry: true do |ex|
-    render json: { error: ex.message }, status: :not_found
+    render json: { error: "error: %{a} model: %{b} salesforce_id: %{c}" % {a: ex.message, b: ex.model, c: params[:id]} }, status: :not_found
   end
 
   protected
