@@ -14,7 +14,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     @opportunity.save!
 
     PushOpportunityToSalesforceJob.perform_later(@opportunity)
-    render json: @opportunity, status: :processing
+    render json: @opportunity, status: :accepted
   end
 
   # PATCH/PUT /opportunities/:id(.:format)
@@ -24,7 +24,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     @opportunity.save!
 
     PushOpportunityToSalesforceJob.perform_later(@opportunity)
-    render json: @opportunity, status: :processing
+    render json: @opportunity, status: :accepted
   end
 
   # GET /opportunities/search?os_accounts_id
