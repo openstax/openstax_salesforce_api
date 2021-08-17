@@ -79,7 +79,7 @@
           }
         ],
         "responses": {
-          "102": {
+          "202": {
             "description": "subscribe request processing"
           }
         }
@@ -110,7 +110,7 @@
           }
         ],
         "responses": {
-          "102": {
+          "202": {
             "description": "unsubscribe request processing"
           }
         }
@@ -182,7 +182,7 @@
           }
         ],
         "responses": {
-          "102": {
+          "202": {
             "description": "opportunity created"
           }
         }
@@ -258,7 +258,7 @@
           }
         ],
         "responses": {
-          "102": {
+          "202": {
             "description": "opportunity updated"
           }
         }

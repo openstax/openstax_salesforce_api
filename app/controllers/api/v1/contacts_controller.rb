@@ -23,7 +23,7 @@ class Api::V1::ContactsController < Api::V1::BaseController
     relation.save!
 
     SyncContactSchoolsToSalesforceJob.perform_later(relation, 'add')
-    head :processing
+    head :accepted
 
   rescue ActiveRecord::RecordInvalid
     head(:method_not_allowed)
@@ -50,7 +50,7 @@ class Api::V1::ContactsController < Api::V1::BaseController
     relation.save!
 
     SyncContactSchoolsToSalesforceJob.perform_later(relation, 'update')
-    head :processing
+    head :accepted
 
   rescue ActiveRecord::RecordInvalid
     head(:method_not_allowed)
@@ -69,6 +69,6 @@ class Api::V1::ContactsController < Api::V1::BaseController
     end
 
     SyncContactSchoolsToSalesforceJob.perform_later(relation, 'remove')
-    head :processing
+    head :accepted
   end
 end

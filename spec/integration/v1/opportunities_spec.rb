@@ -46,7 +46,7 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
         required: %w[book_name contact_id close_date number_of_students school_id stage_name]
       }
 
-      response '102', 'opportunity created' do
+      response '202', 'opportunity created' do
 
         let(:opportunity_data) do
           {
@@ -124,7 +124,7 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
         stage_name: { type: :string }
       }
 
-      response '102', 'opportunity updated' do
+      response '202', 'opportunity updated' do
         let(:id) { @opportunity.salesforce_id.to_s }
         let(:opportunity_data) do
           {
