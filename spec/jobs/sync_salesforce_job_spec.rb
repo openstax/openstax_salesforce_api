@@ -12,10 +12,8 @@ RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
 
   it 'syncs the salesforce data' do
     SyncSalesforceJob.new.perform()
-    expect(AccountContactRelation.count).to be > 1
     expect(Book.count).to be > 1
     expect(Lead.count).to be > 1
-    expect(Opportunity.count).to be > 1
     expect(School.count).to be > 1
   end
 
