@@ -7,6 +7,13 @@ RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
     Sidekiq::Worker.clear_all
   end
 
+  before(:all) do
+    VCR.use_cassette('SyncSalesforceJob/sf_setup', VCR_OPTS) do
+      @proxy = SalesforceProxy.new
+      @proxy.setup_cassette
+    end
+  end
+
   it { is_expected.to be_processed_in :default }
   it { is_expected.to be_retryable true }
 
