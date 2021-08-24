@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20ContactId,%20IsDirect,%20AccountId%20FROM%20AccountContactRelation%20WHERE%20(Id%20=%20%2707k4C00000HKmw1QAD%27)"
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20ContactId,%20IsDirect,%20AccountId%20FROM%20AccountContactRelation%20WHERE%20(ContactId%20=%20%270034C00000T6UYpQAN%27)"
     body:
       encoding: US-ASCII
       string: ''
@@ -21,12 +21,12 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Fri, 20 Aug 2021 15:11:46 GMT
+      - Tue, 24 Aug 2021 15:14:35 GMT
       Set-Cookie:
-      - BrowserId=721XqAHIEeyjnQ32yN0ugw; domain=.salesforce.com; path=/; expires=Sat,
-        20-Aug-2022 15:11:46 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Sat,
-        20-Aug-2022 15:11:46 GMT; Max-Age=31536000
+      - BrowserId=_jRAWgTtEey-jQ_Vdlcjbw; domain=.salesforce.com; path=/; expires=Wed,
+        24-Aug-2022 15:14:36 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        24-Aug-2022 15:14:36 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Robots-Tag:
@@ -34,7 +34,7 @@ http_interactions:
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Sforce-Limit-Info:
-      - api-usage=1032/5000000
+      - api-usage=1011/5000000
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -43,6 +43,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k4C00000HKmw1QAD"},"Id":"07k4C00000HKmw1QAD","ContactId":"0034C00000T6UYbQAN","IsDirect":true,"AccountId":"0014C00000ZiK4mQAF"}]}'
-  recorded_at: Fri, 20 Aug 2021 15:11:46 GMT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k4C00000HKmwFQAT"},"Id":"07k4C00000HKmwFQAT","ContactId":"0034C00000T6UYpQAN","IsDirect":true,"AccountId":"0014C00000ZiK4nQAF"}]}'
+  recorded_at: Tue, 24 Aug 2021 15:14:36 GMT
 recorded_with: VCR 6.0.0

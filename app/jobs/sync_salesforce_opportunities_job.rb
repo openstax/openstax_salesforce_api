@@ -1,9 +1,9 @@
 class SyncSalesforceOpportunitiesJob < ApplicationJob
   queue_as :default
 
-  def perform(id=nil)
-    if id
-      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(id:id)
+  def perform(contact_id=nil)
+    if contact_id
+      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(contact_id:contact_id)
     else
       sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.all
     end

@@ -1,9 +1,9 @@
 class SyncSalesforceContactSchoolRelationsJob < ApplicationJob
   queue_as :default
 
-  def perform(id=nil)
-    if id
-      sf_relations = OpenStax::Salesforce::Remote::AccountContactRelation.where(id:id)
+  def perform(contact_id=nil)
+    if contact_id
+      sf_relations = OpenStax::Salesforce::Remote::AccountContactRelation.where(contact_id:contact_id)
     else
       sf_relations = OpenStax::Salesforce::Remote::AccountContactRelation.all
     end

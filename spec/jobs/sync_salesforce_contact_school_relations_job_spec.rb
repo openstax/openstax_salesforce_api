@@ -24,8 +24,8 @@ RSpec.describe SyncSalesforceContactSchoolRelationsJob, type: :job, vcr: VCR_OPT
   end
 
   it 'syncs one contact school relation' do
-    SyncSalesforceContactSchoolRelationsJob.new.perform('07k4C00000HKmw1QAD')
+    SyncSalesforceContactSchoolRelationsJob.new.perform('0034C00000T6UYpQAN')
 
-    expect(AccountContactRelation.where(salesforce_id: '07k4C00000HKmw1QAD')).to exist
+    expect(AccountContactRelation.where(contact_id: '0034C00000T6UYpQAN')).to exist
   end
 end
