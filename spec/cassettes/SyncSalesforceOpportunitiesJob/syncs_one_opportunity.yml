@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20TermYear__c,%20Book_Text__c,%20Contact__c,%20New__c,%20CloseDate,%20StageName,%20Type,%20Students__c,%20Student_No_Status__c,%20Time_Period__c,%20Class_Start_Date__c,%20AccountId,%20Book__c,%20LeadSource,%20OS_Accounts_ID__c,%20Name%20FROM%20Opportunity%20WHERE%20(Contact__c%20=%20%270034C00000Toa6nQAB%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 24 Aug 2021 15:10:45 GMT
+      Set-Cookie:
+      - BrowserId=dSCLgwTtEey-jQ_Vdlcjbw; domain=.salesforce.com; path=/; expires=Wed,
+        24-Aug-2022 15:10:46 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        24-Aug-2022 15:10:46 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1008/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":2,"done":true,"records":[{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000DtyMIQAZ"},"Id":"0064C00000DtyMIQAZ","TermYear__c":"2021
+        - 22 Fall","Book_Text__c":null,"Contact__c":"0034C00000Toa6nQAB","New__c":true,"CloseDate":"2021-04-19","StageName":"High
+        Interest in Adopting","Type":"New Business","Students__c":25.0,"Student_No_Status__c":"Estimate","Time_Period__c":"Semester","Class_Start_Date__c":"2021-08-12","AccountId":"0014C00000aB0rnQAC","Book__c":null,"LeadSource":"OSC
+        Faculty","OS_Accounts_ID__c":"991608","Name":"- Blair Cook"},{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000DtyMJQAZ"},"Id":"0064C00000DtyMJQAZ","TermYear__c":"2021
+        - 22 Fall","Book_Text__c":"Entrepreneurship","Contact__c":"0034C00000Toa6nQAB","New__c":true,"CloseDate":"2021-04-19","StageName":"High
+        Interest in Adopting","Type":"New Business","Students__c":25.0,"Student_No_Status__c":"Estimate","Time_Period__c":"Semester","Class_Start_Date__c":"2021-08-12","AccountId":"0014C00000aB0rnQAC","Book__c":"a0Z4C000002JXWNUA4","LeadSource":"OSC
+        Faculty","OS_Accounts_ID__c":"991608","Name":"Entrepreneurship - Blair Cook"}]}'
+  recorded_at: Tue, 24 Aug 2021 15:10:46 GMT
+recorded_with: VCR 6.0.0

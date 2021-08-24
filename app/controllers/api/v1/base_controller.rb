@@ -38,6 +38,8 @@ class Api::V1::BaseController < ApplicationController
       contact = Contact.find_by(salesforce_id: current_accounts_user['salesforce_contact_id'])
       if contact.blank?
         contact = SyncSalesforceContactsJob.perform_now(current_accounts_user['salesforce_contact_id'])
+        SyncSalesforceContactSchoolRelationsJob.perform_now(current_accounts_user['salesforce_contact_id'])
+        SyncSalesforceOpportunitiesJob.perform_now(current_accounts_user['salesforce_contact_id'])
       end
 
       contact

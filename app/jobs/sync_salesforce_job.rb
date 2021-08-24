@@ -4,7 +4,7 @@ class SyncSalesforceJob < ApplicationJob
   SF_PACKAGE = 'OpenStax::Salesforce::Remote::'.freeze
   # this syncs all objects, except Contact which has it's own background job
   # Contact is still in this list so it will remove stale contacts
-  SF_OBJECTS = %w[AccountContactRelation Book Contact Lead Opportunity School].freeze
+  SF_OBJECTS = %w[Book Lead School].freeze
 
   def perform(objects = [])
     if objects.blank?
@@ -22,14 +22,10 @@ class SyncSalesforceJob < ApplicationJob
         next
       end
       case name
-      when 'AccountContactRelation'
-        update_account_contact_relations(sf_objs)
       when 'Book'
         update_books(sf_objs)
       when 'Lead'
         update_leads(sf_objs)
-      when 'Opportunity'
-        update_opportunities(sf_objs)
       when 'School'
         update_schools(sf_objs)
       else
@@ -42,18 +38,6 @@ class SyncSalesforceJob < ApplicationJob
   def retrieve_salesforce_data(name)
     class_name = SF_PACKAGE + name
     class_name.constantize.all
-  end
-
-  def update_account_contact_relations(sf_relations)
-    sf_relations.each do |sf_relation|
-      relation_to_update = AccountContactRelation.find_or_initialize_by(contact_id: sf_relation.contact_id, school_id: sf_relation.school_id)
-      relation_to_update.salesforce_id = sf_relation.id
-      relation_to_update.contact_id = sf_relation.contact_id
-      relation_to_update.school_id = sf_relation.school_id
-      relation_to_update.primary = sf_relation.primary
-      relation_to_update.save if relation_to_update.changed?
-    end
-    AccountContactRelation.where(salesforce_id: nil).destroy_all
   end
 
   def update_books(sf_books)
@@ -138,31 +122,6 @@ class SyncSalesforceJob < ApplicationJob
       lead_to_update.finalize_educator_signup = sf_lead.finalize_educator_signup
 
       lead_to_update.save if lead_to_update.changed?
-    end
-  end
-
-  def update_opportunities(sf_opportunities)
-    sf_opportunities.each do |sf_opportunity|
-      opportunity_to_update = Opportunity.find_or_initialize_by(salesforce_id: sf_opportunity.id)
-      opportunity_to_update.salesforce_id = sf_opportunity.id
-      opportunity_to_update.term_year = sf_opportunity.term_year
-      opportunity_to_update.book_name = sf_opportunity.book_name
-      opportunity_to_update.contact_id = sf_opportunity.contact_id
-      opportunity_to_update.new = sf_opportunity.new
-      opportunity_to_update.close_date = sf_opportunity.close_date
-      opportunity_to_update.stage_name = sf_opportunity.stage_name
-      opportunity_to_update.update_type = sf_opportunity.type
-      opportunity_to_update.number_of_students = sf_opportunity.number_of_students
-      opportunity_to_update.student_number_status = sf_opportunity.student_number_status
-      opportunity_to_update.time_period = sf_opportunity.time_period
-      opportunity_to_update.class_start_date = sf_opportunity.class_start_date
-      opportunity_to_update.school_id = sf_opportunity.school_id
-      opportunity_to_update.book_id = sf_opportunity.book_id
-      opportunity_to_update.lead_source = sf_opportunity.lead_source
-      opportunity_to_update.os_accounts_id = sf_opportunity.os_accounts_id
-      opportunity_to_update.name = sf_opportunity.name
-
-      opportunity_to_update.save if opportunity_to_update.changed?
     end
   end
 
