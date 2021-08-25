@@ -15,10 +15,12 @@ common: &defaults
 
 production:
   <<: *defaults
+  auto_instruments: true
 
 development:
   <<: *defaults
   monitor: false
+  dev_trace: true
 
 test:
   <<: *defaults
