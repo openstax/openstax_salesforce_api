@@ -14,8 +14,8 @@ FactoryBot.define do
     status { ['Needs School', 'Needs Contact', 'Needs Opportunity', 'Needs FV', 'Needs Partner', 'converted'].sample }
     email { Faker::Internet.safe_email }
     source { ['Customer Service Ticket', 'Phone', 'Chat', 'OSC Faculty', 'Conference'].sample }
-    newsletter { false }
-    newsletter_opt_in { false }
+    newsletter { Faker::Boolean.boolean }
+    newsletter_opt_in { Faker::Boolean.boolean }
     adoption_status { ['Confirmed Adoption Won', 'Confirmed Adoption Recommend', 'High Interest In Using', 'Not Using'].sample }
     num_students  { (1..300).to_a.sample }
     os_accounts_id { Faker::Number.number(digits: 10) }
@@ -24,6 +24,6 @@ FactoryBot.define do
     role { ['student', 'faculty', 'other', 'administrator', 'librarian', 'adjunct faculty', 'instructional designer', 'home school teacher' ].sample }
     who_chooses_books { ['instructor','committee', 'coordinator'].sample }
     verification_status { ['pending_faculty', 'confirmed_faculty', 'rejected_faculty'].sample }
-    finalize_educator_signup { false }
+    finalize_educator_signup { Faker::Boolean.boolean }
   end
 end
