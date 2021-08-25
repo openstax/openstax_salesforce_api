@@ -21,6 +21,7 @@ gem 'rspec-rails'
 gem 'rswag'
 gem 'rexml'
 gem 'ruby-pardot'
+gem 'scout_apm'
 gem 'sentry-rails'
 gem 'sentry-ruby'
 gem "sentry-sidekiq"
