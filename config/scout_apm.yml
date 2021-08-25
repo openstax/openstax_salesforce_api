@@ -1,0 +1,25 @@
+# This configuration file is used for Scout APM.
+common: &defaults
+  name: Salesforce API (<%= ENV['ENV_NAME'] %>)
+  key: <%= ENV['SCOUT_LICENSE_KEY'] %>
+
+  # log_level: Verboseness of logs.
+  # - Default: 'info'
+  # - Valid Options: debug, info, warn, error
+  # log_level: debug
+
+  monitor: true
+
+  ignore:
+    - /ping
+
+production:
+  <<: *defaults
+
+development:
+  <<: *defaults
+  monitor: false
+
+test:
+  <<: *defaults
+  monitor: false
