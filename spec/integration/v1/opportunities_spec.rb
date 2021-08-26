@@ -14,7 +14,6 @@ RSpec.describe 'api/v1/opportunities', type: :request, vcr: VCR_OPTS do
     @headers = set_cookie
     @token_header = create_token_header
     @opportunity = FactoryBot.create(:api_opportunity, { salesforce_id: '0062F00000BG056QAD', contact_id: '0032F00000cfZQhQAM', school_id: '0012F00000iPxe9QAC' })
-    #@book = Book.new(salesforce_id: 'a0Z7h000001a79WEAQ', name: 'College Algebra')
     @book = FactoryBot.create(:api_book, {salesforce_id: 'a0Z7h000001a79WEAQ', name: 'College Algebra'})
     VCR.use_cassette('OpportunitiesIntegration/sf_setup', VCR_OPTS) do
       @proxy = SalesforceProxy.new
