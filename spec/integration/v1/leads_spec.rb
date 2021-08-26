@@ -56,9 +56,9 @@ RSpec.describe 'api/v1/leads', type: :request do
 
         let(:lead_data) do
           {
-            'salesforce_id': 'new lead',
-            'first_name': "Houston",
-            'last_name': "Hayes",
+            'salesforce_id': '',
+            'first_name': "SFAPI",
+            'last_name': "Test",
             'salutation': "DO",
             'subject': "psychology",
             'school': "South New York Academy",
