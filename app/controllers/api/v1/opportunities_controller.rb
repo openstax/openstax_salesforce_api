@@ -11,6 +11,8 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
   # POST /opportunities(.:format)
   def create
     @opportunity = Opportunity.new(opportunity_params)
+    book = Book.find_by!(name: @opportunity.book_name)
+    @opportunity.book_id = book.salesforce_id
     @opportunity.save!
 
     PushOpportunityToSalesforceJob.perform_later(@opportunity)
