@@ -1,0 +1,54 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<salesforce_instance_url>/services/data/v51.0/sobjects/Opportunity"
+    body:
+      encoding: UTF-8
+      string: '{"Contact__c":"0034C00000T6UZLQA3","CloseDate":"2021-08-30","StageName":"Confirmed
+        Adoption Won","Type":"New Business","Students__c":"76","Student_No_Status__c":"Reported","Time_Period__c":"Year","Class_Start_Date__c":"2021-08-30","AccountId":"0014C00000ZiK4nQAF","Book__c":"a0Z4C000002JRFOUA4","LeadSource":"Web","Name":"new
+        from openstax-salesforce-api"}'
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Mon, 30 Aug 2021 20:14:38 GMT
+      Set-Cookie:
+      - BrowserId=50LydgnOEey62ccEbRHfeg; domain=.salesforce.com; path=/; expires=Tue,
+        30-Aug-2022 20:14:38 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Tue,
+        30-Aug-2022 20:14:38 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1385/5000000
+      Location:
+      - "/services/data/v51.0/sobjects/Opportunity/0064C00000EoSLhQAN"
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"0064C00000EoSLhQAN","success":true,"errors":[]}'
+  recorded_at: Mon, 30 Aug 2021 20:14:41 GMT
+recorded_with: VCR 6.0.0
