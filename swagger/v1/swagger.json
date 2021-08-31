@@ -5,6 +5,94 @@
     "version": "v1"
   },
   "paths": {
+    "/api/v1/leads": {
+      "post": {
+        "summary": "Create a lead",
+        "tags": [
+          "Lead"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiToken": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "lead_data",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "type": "string"
+                },
+                "first_name": {
+                  "type": "string"
+                },
+                "last_name": {
+                  "type": "string"
+                },
+                "salutation": {
+                  "type": "string"
+                },
+                "subject": {
+                  "type": "string"
+                },
+                "school": {
+                  "type": "string"
+                },
+                "phone": {
+                  "type": "string"
+                },
+                "website": {
+                  "type": "string"
+                },
+                "status": {
+                  "type": "string"
+                },
+                "email": {
+                  "type": "string"
+                },
+                "source": {
+                  "type": "string"
+                },
+                "newsletter": {
+                  "type": "boolean"
+                },
+                "newsletter_opt_in": {
+                  "type": "boolean"
+                },
+                "adoption_status": {
+                  "type": "string"
+                },
+                "num_students": {
+                  "type": "integer"
+                },
+                "os_accounts_id": {
+                  "type": "integer"
+                },
+                "accounts_uuid": {
+                  "type": "string"
+                },
+                "application_source": {
+                  "type": "string"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "202": {
+            "description": "lead created"
+          }
+        }
+      }
+    },
     "/api/v1/lists": {
       "get": {
         "summary": "Retrieve all public mailing lists",

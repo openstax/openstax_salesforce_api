@@ -1,9 +1,9 @@
 require 'swagger_helper'
 require 'rails_helper'
-#require 'vcr_helper'
+require 'vcr_helper'
 require 'spec_helper'
 
-RSpec.describe 'api/v1/leads', type: :request do
+RSpec.describe 'api/v1/leads', type: :request, vcr: VCR_OPTS do
   before do
     allow(Rails.application.config).to receive(:consider_all_requests_local) { false }
   end
@@ -13,11 +13,10 @@ RSpec.describe 'api/v1/leads', type: :request do
     contact = create_contact
     @headers = set_cookie
     @token_header = create_token_header
-    #@lead = FactoryBot.create(:api_lead, { salesforce_id: '0062F00000BG056QAD', contact_id: '0032F00000cfZQhQAM', school_id: '0012F00000iPxe9QAC' })
-    # VCR.use_cassette('LeadsIntegration/sf_setup', VCR_OPTS) do
-    #   @proxy = SalesforceProxy.new
-    #   @proxy.setup_cassette
-    # end
+    VCR.use_cassette('LeadsIntegration/sf_setup', VCR_OPTS) do
+      @proxy = SalesforceProxy.new
+      @proxy.setup_cassette
+    end
   end
 
   path '/api/v1/leads' do
