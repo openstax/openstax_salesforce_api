@@ -1,10 +1,14 @@
 require 'rails_helper'
-#require 'vcr_helper'
+require 'vcr_helper'
 Sidekiq::Testing.inline!
 
-RSpec.describe PushLeadToSalesforceJob, type: :job do
+RSpec.describe PushLeadToSalesforceJob, type: :job, vcr: VCR_OPTS do
   before(:all) do
     @lead = FactoryBot.create :api_lead
+    VCR.use_cassette('PushLeadToSalesforceJob/sf_setup', VCR_OPTS) do
+      @proxy = SalesforceProxy.new
+      @proxy.setup_cassette
+    end
   end
 
   before(:each) do
@@ -15,7 +19,6 @@ RSpec.describe PushLeadToSalesforceJob, type: :job do
   it { is_expected.to be_retryable true }
 
   it 'pushes a lead' do
-    puts @lead.inspect
     PushLeadToSalesforceJob.new.perform(@lead)
     expect(@lead.salesforce_id).to_not be_nil
     expect(@lead.website).to include('example.com')

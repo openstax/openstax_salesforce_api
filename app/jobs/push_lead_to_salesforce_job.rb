@@ -27,6 +27,9 @@ class PushLeadToSalesforceJob < ApplicationJob
       finalize_educator_signup: lead.finalize_educator_signup
       )
       sf_lead.save
+
+      lead.salesforce_id = sf_lead.id
+      lead.save
     rescue => e
       Sentry.capture_exception(e)
     end
