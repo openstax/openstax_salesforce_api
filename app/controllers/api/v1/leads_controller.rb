@@ -16,16 +16,11 @@ class Api::V1::LeadsController < Api::V1::BaseController
 
   # POST /opportunities(.:format)
   def create
-    begin
-      @lead = Lead.new(lead_params)
-      @lead.save!
+    @lead = Lead.new(lead_params)
+    @lead.save!
 
-      PushLeadToSalesforceJob.perform_later(@lead)
-      render json: @lead, status: :accepted
-    rescue => e
-      puts e.inspect
-      Sentry.capture_exception(e)
-    end
+    PushLeadToSalesforceJob.perform_later(@lead)
+    render json: @lead, status: :accepted
   end
 
   private
