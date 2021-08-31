@@ -9,13 +9,13 @@ class PushOpportunityToSalesforceJob < ApplicationJob
         opportunity = OpenStax::Salesforce::Remote::Opportunity.find(opp.salesforce_id)
         opportunity.update(
           contact_id: opp.contact_id,
-          close_date: opp.close_date,
+          close_date: Date.today.strftime('%Y-%m-%d'),
           stage_name: 'Confirmed Adoption Won',
           type: 'Renewal - Verified',
           number_of_students: opp.number_of_students,
           student_number_status: 'Reported',
           time_period: 'Year',
-          class_start_date: opp.class_start_date,
+          class_start_date: opp.class_start_date.strftime('%Y-%m-%d'),
           school_id: opp.school_id,
           book_id: book.salesforce_id,
           lead_source: 'Web'
@@ -25,7 +25,7 @@ class PushOpportunityToSalesforceJob < ApplicationJob
         opportunity = OpenStax::Salesforce::Remote::Opportunity.new(
           name: 'new from openstax-salesforce-api',
           contact_id: opp.contact_id,
-          close_date: opp.close_date.strftime('%Y-%m-%d'),
+          close_date: Date.today.strftime('%Y-%m-%d'),
           stage_name: 'Confirmed Adoption Won',
           type: 'New Business',
           number_of_students: opp.number_of_students,
