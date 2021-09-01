@@ -9,12 +9,11 @@ class SyncSalesforceOpportunitiesJob < ApplicationJob
       if contact_id
         sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(contact_id:contact_id)
       else
-        sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.group(:id).order(:id).limit(BATCH_SIZE)
-        sf_opportunities = sf_opportunities.where("id > '#{last_id}'") unless last_id.nil?
-        #sf_opportunities = sf_opportunities.to_a
-        last_id = sf_opportunities.last.id unless sf_opportunities.last.nil?
-        puts sf_opportunities.count.inspect
+        sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.order(:id).limit(BATCH_SIZE)
       end
+      sf_opportunities = sf_opportunities.where("id > '#{last_id}'") unless last_id.nil?
+      sf_opportunities = sf_opportunities.to_a
+      last_id = sf_opportunities.last.id unless sf_opportunities.last.nil?
 
       sf_opportunities.each do |sf_opportunity|
         opportunity_to_update = Opportunity.find_or_initialize_by(salesforce_id: sf_opportunity.id)
@@ -40,6 +39,12 @@ class SyncSalesforceOpportunitiesJob < ApplicationJob
       end
       break if sf_opportunities.length < BATCH_SIZE
     end
+    delete_objects_not_in_salesforce
+  end
+
+  def delete_objects_not_in_salesforce
+    sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.all
+    Opportunity.where.not(salesforce_id: sf_opportunities.map(&:id)).destroy_all
   end
 end
 
