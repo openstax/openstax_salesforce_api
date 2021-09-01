@@ -1,8 +1,6 @@
 class SyncSalesforceOpportunitiesJob < ApplicationJob
   queue_as :default
 
-  BATCH_SIZE = 250
-
   def perform(contact_id=nil)
     last_id = nil
     loop do
@@ -39,12 +37,7 @@ class SyncSalesforceOpportunitiesJob < ApplicationJob
       end
       break if sf_opportunities.length < BATCH_SIZE
     end
-    delete_objects_not_in_salesforce
-  end
-
-  def delete_objects_not_in_salesforce
-    sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.all
-    Opportunity.where.not(salesforce_id: sf_opportunities.map(&:id)).destroy_all
+    delete_objects_not_in_salesforce('Opportunity')
   end
 end
 
