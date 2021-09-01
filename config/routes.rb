@@ -31,6 +31,8 @@ Rails.application.routes.draw do
 
       resources :opportunities, except: [:index, :show]
 
+      resources :leads, except: [:index, :show, :search]
+
       resources :users
 
       resources :lists, only: [:index] do
