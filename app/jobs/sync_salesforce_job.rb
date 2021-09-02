@@ -1,9 +1,7 @@
 class SyncSalesforceJob < ApplicationJob
   queue_as :default
 
-  SF_PACKAGE = 'OpenStax::Salesforce::Remote::'.freeze
-  # this syncs all objects, except Contact which has it's own background job
-  # Contact is still in this list so it will remove stale contacts
+  # this syncs all objects that do not have their own background job
   SF_OBJECTS = %w[Book Lead School].freeze
 
   def perform(objects = [])
@@ -16,40 +14,45 @@ class SyncSalesforceJob < ApplicationJob
 
   def update_objects(object_names)
     object_names.each do |name|
-      begin
-        sf_objs = retrieve_salesforce_data(name)
-      rescue NameError
-        next
-      end
       case name
       when 'Book'
-        update_books(sf_objs)
+        update_books(name)
       when 'Lead'
-        update_leads(sf_objs)
+        update_leads(name)
       when 'School'
-        update_schools(sf_objs)
+        update_schools(name)
       else
         next
       end
-      delete_objects_not_in_salesforce(name, sf_objs)
+      delete_objects_not_in_salesforce(name)
     end
   end
 
   def retrieve_salesforce_data(name)
     class_name = SF_PACKAGE + name
-    class_name.constantize.all
+    class_name.constantize.order(:id).limit(BATCH_SIZE)
   end
 
-  def update_books(sf_books)
-    sf_books.each do |sf_book|
-      book_to_update = Book.find_or_initialize_by(salesforce_id: sf_book.id)
-      book_to_update.salesforce_id = sf_book.id
-      book_to_update.name = sf_book.name
+  def update_books(name)
+    last_id = nil
+    loop do
+      sf_books = retrieve_salesforce_data(name)
+      sf_books = sf_books.where("id > '#{last_id}'") unless last_id.nil?
+      sf_books = sf_books.to_a
+      last_id = sf_books.last.id unless sf_books.last.nil?
 
-      book_to_update.save if book_to_update.changed?
+      sf_books.each do |sf_book|
+        book_to_update = Book.find_or_initialize_by(salesforce_id: sf_book.id)
+        book_to_update.salesforce_id = sf_book.id
+        book_to_update.name = sf_book.name
+
+        book_to_update.save if book_to_update.changed?
+      end
+      break if sf_books.length < BATCH_SIZE
     end
   end
 
+  # Not in use, needs to be batched if used
   def update_campaign_members(sf_campaign_members)
     sf_campaign_members.each do |sf_campaign_member|
       campaign_member_to_update = CampaignMember.find_or_initialize_by(salesforce_id: sf_campaign_member.id)
@@ -83,6 +86,7 @@ class SyncSalesforceJob < ApplicationJob
     end
   end
 
+  # Not in use, needs to be batched if used
   def update_campaigns(sf_campaigns)
     sf_campaigns.each do |sf_campaign|
       campaign_to_update = Campaign.find_or_initialize_by(salesforce_id: sf_campaign.id)
@@ -94,53 +98,67 @@ class SyncSalesforceJob < ApplicationJob
     end
   end
 
-  def update_leads(sf_leads)
-    sf_leads.each do |sf_lead|
-      lead_to_update = Lead.find_or_initialize_by(salesforce_id: sf_lead.id)
-      lead_to_update.salesforce_id = sf_lead.id
-      lead_to_update.name = sf_lead.name
-      lead_to_update.first_name = sf_lead.first_name
-      lead_to_update.last_name = sf_lead.last_name
-      lead_to_update.salutation = sf_lead.salutation
-      lead_to_update.subject = sf_lead.subject
-      lead_to_update.school = sf_lead.school
-      lead_to_update.phone = sf_lead.phone
-      lead_to_update.website = sf_lead.website
-      lead_to_update.status = sf_lead.status
-      lead_to_update.email = sf_lead.email
-      lead_to_update.source = sf_lead.source
-      lead_to_update.newsletter = sf_lead.newsletter
-      lead_to_update.newsletter_opt_in = sf_lead.newsletter_opt_in
-      lead_to_update.adoption_status = sf_lead.adoption_status
-      lead_to_update.num_students = sf_lead.num_students
-      lead_to_update.os_accounts_id = sf_lead.os_accounts_id
-      lead_to_update.accounts_uuid = sf_lead.accounts_uuid
-      lead_to_update.application_source = sf_lead.application_source
-      lead_to_update.role = sf_lead.role
-      lead_to_update.who_chooses_books = sf_lead.who_chooses_books
-      lead_to_update.verification_status = sf_lead.verification_status
-      lead_to_update.finalize_educator_signup = sf_lead.finalize_educator_signup
+  def update_leads(name)
+    last_id = nil
+    loop do
+      sf_leads = retrieve_salesforce_data(name)
+      sf_leads = sf_leads.where("id > '#{last_id}'") unless last_id.nil?
+      sf_leads = sf_leads.to_a
+      last_id = sf_leads.last.id unless sf_leads.last.nil?
 
-      lead_to_update.save if lead_to_update.changed?
+      sf_leads.each do |sf_lead|
+        lead_to_update = Lead.find_or_initialize_by(salesforce_id: sf_lead.id)
+        lead_to_update.salesforce_id = sf_lead.id
+        lead_to_update.name = sf_lead.name
+        lead_to_update.first_name = sf_lead.first_name
+        lead_to_update.last_name = sf_lead.last_name
+        lead_to_update.salutation = sf_lead.salutation
+        lead_to_update.subject = sf_lead.subject
+        lead_to_update.school = sf_lead.school
+        lead_to_update.phone = sf_lead.phone
+        lead_to_update.website = sf_lead.website
+        lead_to_update.status = sf_lead.status
+        lead_to_update.email = sf_lead.email
+        lead_to_update.source = sf_lead.source
+        lead_to_update.newsletter = sf_lead.newsletter
+        lead_to_update.newsletter_opt_in = sf_lead.newsletter_opt_in
+        lead_to_update.adoption_status = sf_lead.adoption_status
+        lead_to_update.num_students = sf_lead.num_students
+        lead_to_update.os_accounts_id = sf_lead.os_accounts_id
+        lead_to_update.accounts_uuid = sf_lead.accounts_uuid
+        lead_to_update.application_source = sf_lead.application_source
+        lead_to_update.role = sf_lead.role
+        lead_to_update.who_chooses_books = sf_lead.who_chooses_books
+        lead_to_update.verification_status = sf_lead.verification_status
+        lead_to_update.finalize_educator_signup = sf_lead.finalize_educator_signup
+
+        lead_to_update.save if lead_to_update.changed?
+      end
+      break if sf_leads.length < BATCH_SIZE
     end
   end
 
-  def update_schools(sf_schools)
-    sf_schools.each do |sf_school|
-      school_to_update = School.find_or_initialize_by(salesforce_id: sf_school.id)
-      school_to_update.salesforce_id = sf_school.id
-      school_to_update.name = sf_school.name
-      school_to_update.school_type = sf_school.type
-      school_to_update.location = sf_school.school_location
-      school_to_update.is_kip = sf_school.is_kip
-      school_to_update.is_child_of_kip = sf_school.is_child_of_kip
+  def update_schools(name)
+    last_id = nil
+    loop do
+      sf_schools = retrieve_salesforce_data(name)
+      sf_schools = sf_schools.where("id > '#{last_id}'") unless last_id.nil?
+      sf_schools = sf_schools.to_a
+      last_id = sf_schools.last.id unless sf_schools.last.nil?
 
-      school_to_update.save if school_to_update.changed?
+      sf_schools.each do |sf_school|
+        school_to_update = School.find_or_initialize_by(salesforce_id: sf_school.id)
+        school_to_update.salesforce_id = sf_school.id
+        school_to_update.name = sf_school.name
+        school_to_update.school_type = sf_school.type
+        school_to_update.location = sf_school.school_location
+        school_to_update.is_kip = sf_school.is_kip
+        school_to_update.is_child_of_kip = sf_school.is_child_of_kip
+
+        school_to_update.save if school_to_update.changed?
+      end
+      break if sf_schools.length < BATCH_SIZE
     end
-  end
-
-  def delete_objects_not_in_salesforce(name, sf_objs)
-    name.constantize.where.not(salesforce_id: sf_objs.map(&:id)).destroy_all
   end
 end
 

@@ -1,0 +1,209 @@
+---
+http_interactions:
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20Annualization_number__c%20FROM%20Book__c%20ORDER%20BY%20id%20LIMIT%20250"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 02 Sep 2021 14:52:15 GMT
+      Set-Cookie:
+      - BrowserId=XMH45Av9Eey_MHlhsLAQwA; domain=.salesforce.com; path=/; expires=Fri,
+        02-Sep-2022 14:52:15 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+        02-Sep-2022 14:52:15 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=3351/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":74,"done":true,"records":[{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREUUA4"},"Id":"a0Z4C000002JREUUA4","Name":"AP
+        History","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREVUA4"},"Id":"a0Z4C000002JREVUA4","Name":"Business
+        Ethics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREWUA4"},"Id":"a0Z4C000002JREWUA4","Name":"Business
+        Statistics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREXUA4"},"Id":"a0Z4C000002JREXUA4","Name":"Career
+        Readiness","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREYUA4"},"Id":"a0Z4C000002JREYUA4","Name":"Entrepreneurship","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREZUA4"},"Id":"a0Z4C000002JREZUA4","Name":"Organizational
+        Behavior","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREaUAO"},"Id":"a0Z4C000002JREaUAO","Name":"College
+        Success","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREbUAO"},"Id":"a0Z4C000002JREbUAO","Name":"Financial
+        Accounting","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREcUAO"},"Id":"a0Z4C000002JREcUAO","Name":"Business
+        Law I Essentials","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREdUAO"},"Id":"a0Z4C000002JREdUAO","Name":"LLPH","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREeUAO"},"Id":"a0Z4C000002JREeUAO","Name":"College
+        Algebra with Corequisite Support","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREfUAO"},"Id":"a0Z4C000002JREfUAO","Name":"Introduction
+        to Intellectual Property","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREgUAO"},"Id":"a0Z4C000002JREgUAO","Name":"Additive
+        Manufacturing","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREhUAO"},"Id":"a0Z4C000002JREhUAO","Name":"English
+        Composition","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREiUAO"},"Id":"a0Z4C000002JREiUAO","Name":"Introduction
+        to Philosophy","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREjUAO"},"Id":"a0Z4C000002JREjUAO","Name":"Business
+        Computer Applications","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREkUAO"},"Id":"a0Z4C000002JREkUAO","Name":"Introduction
+        to Political Science","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRElUAO"},"Id":"a0Z4C000002JRElUAO","Name":"Introduction
+        to Marketing","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREmUAO"},"Id":"a0Z4C000002JREmUAO","Name":"Introduction
+        to Computer Science","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREnUAO"},"Id":"a0Z4C000002JREnUAO","Name":"World
+        History","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREoUAO"},"Id":"a0Z4C000002JREoUAO","Name":"Computer
+        Programming with Python","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREpUAO"},"Id":"a0Z4C000002JREpUAO","Name":"Contemporary
+        Math","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREqUAO"},"Id":"a0Z4C000002JREqUAO","Name":"Introduction
+        to Finance","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRErUAO"},"Id":"a0Z4C000002JRErUAO","Name":"Algebra
+        and Trigonometry","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREsUAO"},"Id":"a0Z4C000002JREsUAO","Name":"Anatomy
+        & Physiology","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREtUAO"},"Id":"a0Z4C000002JREtUAO","Name":"Astronomy","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREuUAO"},"Id":"a0Z4C000002JREuUAO","Name":"Basic
+        College Math","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREvUAO"},"Id":"a0Z4C000002JREvUAO","Name":"Biology","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREwUAO"},"Id":"a0Z4C000002JREwUAO","Name":"Calculus","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRExUAO"},"Id":"a0Z4C000002JRExUAO","Name":"Chemistry","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREyUAO"},"Id":"a0Z4C000002JREyUAO","Name":"College
+        Algebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREzUAO"},"Id":"a0Z4C000002JREzUAO","Name":"College
+        Physics (Algebra)","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF0UAO"},"Id":"a0Z4C000002JRF0UAO","Name":"Concepts
+        of Bio (non-majors)","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF1UAO"},"Id":"a0Z4C000002JRF1UAO","Name":"Economics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF2UAO"},"Id":"a0Z4C000002JRF2UAO","Name":"Elementary
+        Algebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF3UAO"},"Id":"a0Z4C000002JRF3UAO","Name":"Intermediate
+        Algebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF4UAO"},"Id":"a0Z4C000002JRF4UAO","Name":"Introduction
+        to Business","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF5UAO"},"Id":"a0Z4C000002JRF5UAO","Name":"Introduction
+        to Sociology","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF6UAO"},"Id":"a0Z4C000002JRF6UAO","Name":"Introductory
+        Statistics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF7UAO"},"Id":"a0Z4C000002JRF7UAO","Name":"Macro
+        Econ","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF8UAO"},"Id":"a0Z4C000002JRF8UAO","Name":"Management","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF9UAO"},"Id":"a0Z4C000002JRF9UAO","Name":"Micro
+        Econ","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFAUA4"},"Id":"a0Z4C000002JRFAUA4","Name":"Microbiology","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFBUA4"},"Id":"a0Z4C000002JRFBUA4","Name":"Other","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFCUA4"},"Id":"a0Z4C000002JRFCUA4","Name":"Precalc","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFDUA4"},"Id":"a0Z4C000002JRFDUA4","Name":"Psychology","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFEUA4"},"Id":"a0Z4C000002JRFEUA4","Name":"University
+        Physics (Calc)","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFFUA4"},"Id":"a0Z4C000002JRFFUA4","Name":"US
+        History","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFGUA4"},"Id":"a0Z4C000002JRFGUA4","Name":"American
+        Government","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFHUA4"},"Id":"a0Z4C000002JRFHUA4","Name":"HS
+        Physics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFIUA4"},"Id":"a0Z4C000002JRFIUA4","Name":"AP
+        Bio","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFJUA4"},"Id":"a0Z4C000002JRFJUA4","Name":"Finite
+        Algebra","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFKUA4"},"Id":"a0Z4C000002JRFKUA4","Name":"Managerial
+        Accounting","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFLUA4"},"Id":"a0Z4C000002JRFLUA4","Name":"Introduction
+        to Spanish","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFMUA4"},"Id":"a0Z4C000002JRFMUA4","Name":"AP
+        Physics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFNUA4"},"Id":"a0Z4C000002JRFNUA4","Name":"AP
+        Micro Econ","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFOUA4"},"Id":"a0Z4C000002JRFOUA4","Name":"Prealgebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFPUA4"},"Id":"a0Z4C000002JRFPUA4","Name":"AP
+        Macro Econ","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFQUA4"},"Id":"a0Z4C000002JRFQUA4","Name":"HS
+        Statistics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFRUA4"},"Id":"a0Z4C000002JRFRUA4","Name":"Chem:
+        Atoms First","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWLUA4"},"Id":"a0Z4C000002JXWLUA4","Name":"Business
+        Ethics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWMUA4"},"Id":"a0Z4C000002JXWMUA4","Name":"Business
+        Statistics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWNUA4"},"Id":"a0Z4C000002JXWNUA4","Name":"Entrepreneurship","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWOUA4"},"Id":"a0Z4C000002JXWOUA4","Name":"Financial
+        Accounting","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWPUA4"},"Id":"a0Z4C000002JXWPUA4","Name":"LLPH","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWQUA4"},"Id":"a0Z4C000002JXWQUA4","Name":"HS
+        Physics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWRUA4"},"Id":"a0Z4C000002JXWRUA4","Name":"AP
+        Bio","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWSUA4"},"Id":"a0Z4C000002JXWSUA4","Name":"Managerial
+        Accounting","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWTUA4"},"Id":"a0Z4C000002JXWTUA4","Name":"AP
+        Physics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWUUA4"},"Id":"a0Z4C000002JXWUUA4","Name":"AP
+        Micro Econ","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWVUA4"},"Id":"a0Z4C000002JXWVUA4","Name":"Prealgebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWWUA4"},"Id":"a0Z4C000002JXWWUA4","Name":"AP
+        Macro Econ","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWXUA4"},"Id":"a0Z4C000002JXWXUA4","Name":"HS
+        Statistics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWYUA4"},"Id":"a0Z4C000002JXWYUA4","Name":"Chem:
+        Atoms First","Annualization_number__c":1.4}]}'
+  recorded_at: Thu, 02 Sep 2021 14:52:15 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20Annualization_number__c%20FROM%20Book__c"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Thu, 02 Sep 2021 14:52:16 GMT
+      Set-Cookie:
+      - BrowserId=XYkYswv9Eey_MHlhsLAQwA; domain=.salesforce.com; path=/; expires=Fri,
+        02-Sep-2022 14:52:16 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
+        02-Sep-2022 14:52:16 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=3352/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":74,"done":true,"records":[{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWLUA4"},"Id":"a0Z4C000002JXWLUA4","Name":"Business
+        Ethics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWMUA4"},"Id":"a0Z4C000002JXWMUA4","Name":"Business
+        Statistics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWNUA4"},"Id":"a0Z4C000002JXWNUA4","Name":"Entrepreneurship","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWOUA4"},"Id":"a0Z4C000002JXWOUA4","Name":"Financial
+        Accounting","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWPUA4"},"Id":"a0Z4C000002JXWPUA4","Name":"LLPH","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWQUA4"},"Id":"a0Z4C000002JXWQUA4","Name":"HS
+        Physics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWRUA4"},"Id":"a0Z4C000002JXWRUA4","Name":"AP
+        Bio","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWSUA4"},"Id":"a0Z4C000002JXWSUA4","Name":"Managerial
+        Accounting","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWTUA4"},"Id":"a0Z4C000002JXWTUA4","Name":"AP
+        Physics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWUUA4"},"Id":"a0Z4C000002JXWUUA4","Name":"AP
+        Micro Econ","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWVUA4"},"Id":"a0Z4C000002JXWVUA4","Name":"Prealgebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWWUA4"},"Id":"a0Z4C000002JXWWUA4","Name":"AP
+        Macro Econ","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWXUA4"},"Id":"a0Z4C000002JXWXUA4","Name":"HS
+        Statistics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JXWYUA4"},"Id":"a0Z4C000002JXWYUA4","Name":"Chem:
+        Atoms First","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF7UAO"},"Id":"a0Z4C000002JRF7UAO","Name":"Macro
+        Econ","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF8UAO"},"Id":"a0Z4C000002JRF8UAO","Name":"Management","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF9UAO"},"Id":"a0Z4C000002JRF9UAO","Name":"Micro
+        Econ","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFAUA4"},"Id":"a0Z4C000002JRFAUA4","Name":"Microbiology","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFBUA4"},"Id":"a0Z4C000002JRFBUA4","Name":"Other","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFCUA4"},"Id":"a0Z4C000002JRFCUA4","Name":"Precalc","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFDUA4"},"Id":"a0Z4C000002JRFDUA4","Name":"Psychology","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFEUA4"},"Id":"a0Z4C000002JRFEUA4","Name":"University
+        Physics (Calc)","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFFUA4"},"Id":"a0Z4C000002JRFFUA4","Name":"US
+        History","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFGUA4"},"Id":"a0Z4C000002JRFGUA4","Name":"American
+        Government","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFHUA4"},"Id":"a0Z4C000002JRFHUA4","Name":"HS
+        Physics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFIUA4"},"Id":"a0Z4C000002JRFIUA4","Name":"AP
+        Bio","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFJUA4"},"Id":"a0Z4C000002JRFJUA4","Name":"Finite
+        Algebra","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFKUA4"},"Id":"a0Z4C000002JRFKUA4","Name":"Managerial
+        Accounting","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFLUA4"},"Id":"a0Z4C000002JRFLUA4","Name":"Introduction
+        to Spanish","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFMUA4"},"Id":"a0Z4C000002JRFMUA4","Name":"AP
+        Physics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFNUA4"},"Id":"a0Z4C000002JRFNUA4","Name":"AP
+        Micro Econ","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFOUA4"},"Id":"a0Z4C000002JRFOUA4","Name":"Prealgebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFPUA4"},"Id":"a0Z4C000002JRFPUA4","Name":"AP
+        Macro Econ","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFQUA4"},"Id":"a0Z4C000002JRFQUA4","Name":"HS
+        Statistics","Annualization_number__c":1.0},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRFRUA4"},"Id":"a0Z4C000002JRFRUA4","Name":"Chem:
+        Atoms First","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREUUA4"},"Id":"a0Z4C000002JREUUA4","Name":"AP
+        History","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREVUA4"},"Id":"a0Z4C000002JREVUA4","Name":"Business
+        Ethics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREWUA4"},"Id":"a0Z4C000002JREWUA4","Name":"Business
+        Statistics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREXUA4"},"Id":"a0Z4C000002JREXUA4","Name":"Career
+        Readiness","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREYUA4"},"Id":"a0Z4C000002JREYUA4","Name":"Entrepreneurship","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREZUA4"},"Id":"a0Z4C000002JREZUA4","Name":"Organizational
+        Behavior","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREaUAO"},"Id":"a0Z4C000002JREaUAO","Name":"College
+        Success","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREbUAO"},"Id":"a0Z4C000002JREbUAO","Name":"Financial
+        Accounting","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREcUAO"},"Id":"a0Z4C000002JREcUAO","Name":"Business
+        Law I Essentials","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREdUAO"},"Id":"a0Z4C000002JREdUAO","Name":"LLPH","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREeUAO"},"Id":"a0Z4C000002JREeUAO","Name":"College
+        Algebra with Corequisite Support","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREfUAO"},"Id":"a0Z4C000002JREfUAO","Name":"Introduction
+        to Intellectual Property","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREgUAO"},"Id":"a0Z4C000002JREgUAO","Name":"Additive
+        Manufacturing","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREhUAO"},"Id":"a0Z4C000002JREhUAO","Name":"English
+        Composition","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREiUAO"},"Id":"a0Z4C000002JREiUAO","Name":"Introduction
+        to Philosophy","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREjUAO"},"Id":"a0Z4C000002JREjUAO","Name":"Business
+        Computer Applications","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREkUAO"},"Id":"a0Z4C000002JREkUAO","Name":"Introduction
+        to Political Science","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRElUAO"},"Id":"a0Z4C000002JRElUAO","Name":"Introduction
+        to Marketing","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREmUAO"},"Id":"a0Z4C000002JREmUAO","Name":"Introduction
+        to Computer Science","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREnUAO"},"Id":"a0Z4C000002JREnUAO","Name":"World
+        History","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREoUAO"},"Id":"a0Z4C000002JREoUAO","Name":"Computer
+        Programming with Python","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREpUAO"},"Id":"a0Z4C000002JREpUAO","Name":"Contemporary
+        Math","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREqUAO"},"Id":"a0Z4C000002JREqUAO","Name":"Introduction
+        to Finance","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRErUAO"},"Id":"a0Z4C000002JRErUAO","Name":"Algebra
+        and Trigonometry","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREsUAO"},"Id":"a0Z4C000002JREsUAO","Name":"Anatomy
+        & Physiology","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREtUAO"},"Id":"a0Z4C000002JREtUAO","Name":"Astronomy","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREuUAO"},"Id":"a0Z4C000002JREuUAO","Name":"Basic
+        College Math","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREvUAO"},"Id":"a0Z4C000002JREvUAO","Name":"Biology","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREwUAO"},"Id":"a0Z4C000002JREwUAO","Name":"Calculus","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRExUAO"},"Id":"a0Z4C000002JRExUAO","Name":"Chemistry","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREyUAO"},"Id":"a0Z4C000002JREyUAO","Name":"College
+        Algebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JREzUAO"},"Id":"a0Z4C000002JREzUAO","Name":"College
+        Physics (Algebra)","Annualization_number__c":1.4},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF0UAO"},"Id":"a0Z4C000002JRF0UAO","Name":"Concepts
+        of Bio (non-majors)","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF1UAO"},"Id":"a0Z4C000002JRF1UAO","Name":"Economics","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF2UAO"},"Id":"a0Z4C000002JRF2UAO","Name":"Elementary
+        Algebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF3UAO"},"Id":"a0Z4C000002JRF3UAO","Name":"Intermediate
+        Algebra","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF4UAO"},"Id":"a0Z4C000002JRF4UAO","Name":"Introduction
+        to Business","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF5UAO"},"Id":"a0Z4C000002JRF5UAO","Name":"Introduction
+        to Sociology","Annualization_number__c":1.6},{"attributes":{"type":"Book__c","url":"/services/data/v51.0/sobjects/Book__c/a0Z4C000002JRF6UAO"},"Id":"a0Z4C000002JRF6UAO","Name":"Introductory
+        Statistics","Annualization_number__c":1.6}]}'
+  recorded_at: Thu, 02 Sep 2021 14:52:16 GMT
+recorded_with: VCR 6.0.0

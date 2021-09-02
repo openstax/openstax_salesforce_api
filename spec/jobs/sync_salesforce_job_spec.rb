@@ -17,8 +17,23 @@ RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
   it { is_expected.to be_processed_in :default }
   it { is_expected.to be_retryable true }
 
-  it 'syncs the salesforce data' do
-    SyncSalesforceJob.new.perform()
+  it 'syncs the book salesforce data' do
+    SyncSalesforceJob.new.perform ['Book']
+    expect(Book.count).to be > 1
+  end
+
+  it 'syncs the Leads salesforce data' do
+    SyncSalesforceJob.new.perform ['Lead']
+    expect(Lead.count).to be > 1
+  end
+
+  it 'syncs the School salesforce data' do
+    SyncSalesforceJob.new.perform ['School']
+    expect(School.count).to be > 1
+  end
+
+  it 'syncs all salesforce data' do
+    SyncSalesforceJob.new.perform
     expect(Book.count).to be > 1
     expect(Lead.count).to be > 1
     expect(School.count).to be > 1
