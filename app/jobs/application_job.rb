@@ -5,4 +5,7 @@ class ApplicationJob < ActiveJob::Base
 
   # Most jobs are safe to ignore if the underlying records are no longer available
   # discard_on ActiveJob::DeserializationError
+  BATCH_SIZE = 250
+  SF_PACKAGE = 'OpenStax::Salesforce::Remote::'.freeze
+
 end

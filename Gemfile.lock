@@ -16,6 +16,16 @@ GIT
       activesupport
       json-jwt
 
+GIT
+  remote: https://github.com/openstax/openstax_salesforce.git
+  revision: 6315845a55e29d6a5a0e6a58d1a0f3c58f4019ca
+  ref: 6315845a55e29d6a5a0e6a58d1a0f3c58f4019ca
+  specs:
+    openstax_salesforce (6.0.0)
+      openstax_active_force
+      rails (>= 5.0, < 7.0)
+      restforce
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -265,10 +275,6 @@ GEM
       uber
     openstax_healthcheck (1.0.0)
       rails (>= 3.0)
-    openstax_salesforce (5.4.0)
-      openstax_active_force
-      rails (>= 5.0, < 7.0)
-      restforce
     openstax_utilities (4.5.2)
       aws-sdk-autoscaling
       faraday
@@ -470,7 +476,7 @@ DEPENDENCIES
   openstax_api (~> 9.4.0)
   openstax_auth!
   openstax_healthcheck (~> 1.0.0)
-  openstax_salesforce
+  openstax_salesforce!
   pg (>= 0.18, < 2.0)
   puma (~> 4.3)
   rack-cors

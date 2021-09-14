@@ -24,8 +24,8 @@ RSpec.describe SyncSalesforceOpportunitiesJob, type: :job, vcr: VCR_OPTS do
   end
 
   it 'syncs one opportunity' do
-    SyncSalesforceOpportunitiesJob.new.perform('0034C00000Toa6nQAB')
+    SyncSalesforceOpportunitiesJob.new.perform('0034C00000ToaA5QAJ')
 
-    expect(Opportunity.where(contact_id: '0034C00000Toa6nQAB')).to exist
+    expect(Opportunity.where(contact_id: '0034C00000ToaA5QAJ')).to exist
   end
 end
