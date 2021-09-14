@@ -21,12 +21,12 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 02 Sep 2021 14:52:14 GMT
+      - Tue, 14 Sep 2021 20:59:34 GMT
       Set-Cookie:
-      - BrowserId=XDvYMAv9EeyUIJNRJQ7lRQ; domain=.salesforce.com; path=/; expires=Fri,
-        02-Sep-2022 14:52:14 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=test.salesforce.com; path=/; expires=Fri,
-        02-Sep-2022 14:52:14 GMT; Max-Age=31536000
+      - BrowserId=qmcQ2hWeEeyBLNNYKVsdQA; domain=.salesforce.com; path=/; expires=Wed,
+        14-Sep-2022 20:59:34 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:0; domain=test.salesforce.com; path=/; expires=Wed,
+        14-Sep-2022 20:59:34 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Content-Type-Options:
@@ -47,6 +47,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1630594334681","signature":"<salesforce_signature>"}'
-  recorded_at: Thu, 02 Sep 2021 14:52:14 GMT
+      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1631653175240","signature":"<salesforce_signature>"}'
+  recorded_at: Tue, 14 Sep 2021 20:59:35 GMT
 recorded_with: VCR 6.0.0

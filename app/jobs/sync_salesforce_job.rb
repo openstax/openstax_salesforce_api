@@ -24,7 +24,6 @@ class SyncSalesforceJob < ApplicationJob
       else
         next
       end
-      delete_objects_not_in_salesforce(name)
     end
   end
 

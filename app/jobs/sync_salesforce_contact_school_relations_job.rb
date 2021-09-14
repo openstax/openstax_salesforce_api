@@ -23,7 +23,6 @@ class SyncSalesforceContactSchoolRelationsJob < ApplicationJob
       end
       break if sf_relations.length < BATCH_SIZE
     end
-    delete_objects_not_in_salesforce('AccountContactRelation')
   end
 end
 

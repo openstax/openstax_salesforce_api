@@ -37,7 +37,6 @@ class SyncSalesforceOpportunitiesJob < ApplicationJob
       end
       break if sf_opportunities.length < BATCH_SIZE
     end
-    delete_objects_not_in_salesforce('Opportunity')
   end
 end
 

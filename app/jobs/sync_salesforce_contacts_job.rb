@@ -38,7 +38,6 @@ class SyncSalesforceContactsJob < ApplicationJob
       end
       break if sf_contacts.length < BATCH_SIZE
     end
-    delete_objects_not_in_salesforce('Contact')
   end
 end
 
