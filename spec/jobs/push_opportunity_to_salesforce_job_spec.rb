@@ -5,10 +5,12 @@ Sidekiq::Testing.inline!
 RSpec.describe PushOpportunityToSalesforceJob, type: :job, vcr: VCR_OPTS do
   before(:all) do
     @opportunity = FactoryBot.create :api_opportunity
+    @opportunity.stage_name = 'Previous Adoption'
+    @opportunity.save
     @new_opportunity = FactoryBot.create :api_new_opportunity
     # create books for test
-    FactoryBot.create(:api_book, { name: 'Managerial Accounting', salesforce_id: 'a0Z4C000002JXWSUA4' })
-    FactoryBot.create(:api_book, { name: 'Prealgebra', salesforce_id: 'a0Z4C000002JRFOUA4' })
+    FactoryBot.create(:api_book, { name: 'Managerial Accounting', salesforce_id: 'a0ZU000000BGyUSMA1' })
+    FactoryBot.create(:api_book, { name: 'Prealgebra', salesforce_id: 'a0ZU000000DLpEMMA1' })
     VCR.use_cassette('PushOpportunityToSalesforceJob/sf_setup', VCR_OPTS) do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette

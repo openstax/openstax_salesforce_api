@@ -5,23 +5,23 @@ class PushOpportunityToSalesforceJob < ApplicationJob
     book = Book.find_by!(name: opp.book_name)
 
     begin
-      if opp.salesforce_id
+      if !opp.salesforce_id.blank?
         opportunity = OpenStax::Salesforce::Remote::Opportunity.find(opp.salesforce_id)
         opportunity.update(
           contact_id: opp.contact_id,
           close_date: Date.today.strftime('%Y-%m-%d'),
-          stage_name: 'Confirmed Adoption Won',
+          stage_name: opp.stage_name,
           type: 'Renewal - Verified',
           number_of_students: opp.number_of_students,
           student_number_status: 'Reported',
           time_period: 'Year',
-          class_start_date: opp.class_start_date.strftime('%Y-%m-%d'),
           school_id: opp.school_id,
           book_id: book.salesforce_id,
           lead_source: 'Web'
         )
         opportunity.save
       else
+        start_date = opp.class_start_date.blank? ? Date.today.strftime('%Y-%m-%d') : opp.class_start_date.strftime('%Y-%m-%d')
         opportunity = OpenStax::Salesforce::Remote::Opportunity.new(
           name: 'new from openstax-salesforce-api',
           contact_id: opp.contact_id,
@@ -31,7 +31,7 @@ class PushOpportunityToSalesforceJob < ApplicationJob
           number_of_students: opp.number_of_students,
           student_number_status: 'Reported',
           time_period: 'Year',
-          class_start_date: opp.class_start_date.strftime('%Y-%m-%d'),
+          class_start_date: calculate_start_date,
           school_id: opp.school_id,
           book_id: book.salesforce_id,
           lead_source: 'Web'
@@ -47,7 +47,16 @@ class PushOpportunityToSalesforceJob < ApplicationJob
     rescue => e
       Sentry.capture_exception(e)
     end
-
     opportunity
+  end
+
+  def calculate_start_date
+    year = Date.today.year
+    between = Date.today.between?(Date.strptime(year.to_s + '-04-01', '%Y-%m-%d'), Date.strptime(year.to_s + '-11-01', '%Y-%m-%d'))
+    if between
+      Date.strptime(year.to_s + '-08-15', '%Y-%m-%d')
+    else
+      Date.strptime(year.to_s + '-01-06', '%Y-%m-%d')
+    end
   end
 end
