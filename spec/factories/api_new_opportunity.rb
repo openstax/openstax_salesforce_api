@@ -4,7 +4,7 @@ FactoryBot.define do
   factory :api_new_opportunity, class: Opportunity do
     term_year { [ '2019 - 20 Spring', '2019 - 20 Fall', '2018 - 19 Fall', '2018 - 19 Spring'].sample }
     book_name { 'Prealgebra' }
-    contact_id { '0034C00000T6UZLQA3' }
+    contact_id { '003U000001t59XgIAI' }
     new { [true, false].sample }
     close_date { Date.today }
     stage_name { 'Confirm Adoption Won' }
@@ -13,7 +13,7 @@ FactoryBot.define do
     student_number_status { 'Reported' }
     time_period { 'Year' }
     class_start_date { Date.today }
-    school_id { '0014C00000ZiK4nQAF' }
+    school_id { '001U000001k36GVIAY' }
     book_id { '' }
     lead_source { 'Web' }
     os_accounts_id { 1 }
