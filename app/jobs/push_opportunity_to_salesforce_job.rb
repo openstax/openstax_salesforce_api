@@ -52,11 +52,11 @@ class PushOpportunityToSalesforceJob < ApplicationJob
 
   def calculate_start_date
     year = Date.today.year
-    between = Date.today.between?(Date.strptime(year.to_s + '-04-01', '%Y-%m-%d'), Date.strptime(year.to_s + '-11-01', '%Y-%m-%d'))
-    if between
-      Date.strptime(year.to_s + '-08-15', '%Y-%m-%d')
-    else
-      Date.strptime(year.to_s + '-01-06', '%Y-%m-%d')
-    end
+    between_april_and_november = Date.today.between?(Date.strptime(year.to_s + '-04-01', '%Y-%m-%d'), Date.strptime(year.to_s + '-11-01', '%Y-%m-%d'))
+
+    fall_semester = Date.strptime(year.to_s + '-08-15', '%Y-%m-%d')
+    spring_semester = Date.strptime(year.to_s + '-01-06', '%Y-%m-%d')
+
+    between_april_and_november ? fall_semester : spring_semester
   end
 end
