@@ -1,5 +1,7 @@
-class SyncSalesforceContactSchoolRelationsJob < ApplicationJob
-  queue_as :default
+class SyncSalesforceContactSchoolRelationsJob
+  include Sidekiq::Worker
+  sidekiq_options lock: :while_executing,
+                  on_conflict: :reject
 
   def perform(contact_id=nil)
     if contact_id

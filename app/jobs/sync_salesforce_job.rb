@@ -1,5 +1,7 @@
-class SyncSalesforceJob < ApplicationJob
-  queue_as :default
+class SyncSalesforceJob
+  include Sidekiq::Worker
+  sidekiq_options lock: :while_executing,
+                  on_conflict: :reject
 
   SF_PACKAGE = 'OpenStax::Salesforce::Remote::'.freeze
   # this syncs all objects, except Contact which has it's own background job
