@@ -121,7 +121,6 @@ class SyncSalesforceJob
       lead_to_update.role = sf_lead.role
       lead_to_update.who_chooses_books = sf_lead.who_chooses_books
       lead_to_update.verification_status = sf_lead.verification_status
-      lead_to_update.finalize_educator_signup = sf_lead.finalize_educator_signup
 
       lead_to_update.save if lead_to_update.changed?
     end

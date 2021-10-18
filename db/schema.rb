@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_07_08_141832) do
+ActiveRecord::Schema.define(version: 2021_10_18_175936) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -142,7 +142,6 @@ ActiveRecord::Schema.define(version: 2021_07_08_141832) do
     t.string "role"
     t.string "who_chooses_books"
     t.string "verification_status"
-    t.boolean "finalize_educator_signup"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "salesforce_id"
@@ -276,6 +275,15 @@ ActiveRecord::Schema.define(version: 2021_07_08_141832) do
     t.integer "status"
     t.index ["contact_id"], name: "index_subscriptions_on_contact_id"
     t.index ["list_id"], name: "index_subscriptions_on_list_id"
+  end
+
+  create_table "users", force: :cascade do |t|
+    t.string "username"
+    t.string "password_digest"
+    t.boolean "has_access"
+    t.boolean "is_admin"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
