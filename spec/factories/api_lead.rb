@@ -23,6 +23,5 @@ FactoryBot.define do
     role { ['student', 'faculty', 'other', 'administrator', 'librarian', 'adjunct faculty', 'instructional designer', 'home school teacher' ].sample }
     who_chooses_books { ['instructor','committee', 'coordinator'].sample }
     verification_status { ['pending_faculty', 'confirmed_faculty', 'rejected_faculty'].sample }
-    finalize_educator_signup { Faker::Boolean.boolean }
   end
 end

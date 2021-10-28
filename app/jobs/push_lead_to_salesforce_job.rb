@@ -24,7 +24,6 @@ class PushLeadToSalesforceJob < ApplicationJob
       role: lead.role,
       who_chooses_books: lead.who_chooses_books,
       verification_status: lead.verification_status,
-      finalize_educator_signup: lead.finalize_educator_signup
       )
       sf_lead.save
 
