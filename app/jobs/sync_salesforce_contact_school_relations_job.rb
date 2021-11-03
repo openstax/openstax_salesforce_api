@@ -18,6 +18,7 @@ class SyncSalesforceContactSchoolRelationsJob
       relation_to_update.primary = sf_relation.primary
       relation_to_update.save if relation_to_update.changed?
     end
+    JobsHelper.delete_objects_not_in_salesforce('AccountContactRelation', sf_relations)
   end
 end
 

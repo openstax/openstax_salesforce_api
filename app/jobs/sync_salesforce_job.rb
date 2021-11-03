@@ -33,7 +33,7 @@ class SyncSalesforceJob
       else
         next
       end
-      delete_objects_not_in_salesforce(name, sf_objs)
+      JobsHelper.delete_objects_not_in_salesforce(name, sf_objs)
     end
   end
 
@@ -138,10 +138,6 @@ class SyncSalesforceJob
 
       school_to_update.save if school_to_update.changed?
     end
-  end
-
-  def delete_objects_not_in_salesforce(name, sf_objs)
-    name.constantize.where.not(salesforce_id: sf_objs.map(&:id)).destroy_all
   end
 end
 

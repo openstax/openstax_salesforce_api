@@ -33,6 +33,7 @@ class SyncSalesforceContactsJob
 
       return contact_to_update if sf_contacts.count == 1
     end
+    JobsHelper.delete_objects_not_in_salesforce('Contact', sf_contacts)
   end
 end
 

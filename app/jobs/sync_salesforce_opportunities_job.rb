@@ -32,6 +32,7 @@ class SyncSalesforceOpportunitiesJob
 
       opportunity_to_update.save if opportunity_to_update.changed?
     end
+    JobsHelper.delete_objects_not_in_salesforce('Opportunity', sf_opportunities)
   end
 end
 
