@@ -20,5 +20,7 @@ FactoryBot.define do
     lead_source { 'openstax-salesforce-api' }
     os_accounts_id { Faker::Number.number(digits: 10) }
     name { 'Bogus Name' }
+    record_type_name { 'Book Opp' }
+    record_type_id { '0120B000000NAH0QAO' }
   end
 end

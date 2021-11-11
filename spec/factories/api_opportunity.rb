@@ -17,5 +17,7 @@ FactoryBot.define do
     school_id { '001U000001QYuEjIAL' }
     book_id { 'a0ZU000000IgKrdMAF' }
     lead_source { 'Web' }
+    record_type_name { 'Book Opp' }
+    record_type_id { '0120B000000NAH0QAO' }
   end
 end

@@ -14,7 +14,7 @@ RSpec.describe SyncContactSchoolsToSalesforceJob, type: :job, vcr: VCR_OPTS do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette
     end
-    @new_relation = FactoryBot.create(:api_account_contact_relation, contact_id: '0034C00000T6UZEQA3', school_id: '0014C00000ZiKgfQAF' )
+    @new_relation = FactoryBot.create(:api_account_contact_relation, contact_id: '0037h00000YQoehAAD', school_id: '0017h00000doVQBAA2' )
   end
 
 

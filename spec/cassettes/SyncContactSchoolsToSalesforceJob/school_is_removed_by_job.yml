@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20ContactId,%20IsDirect,%20AccountId%20FROM%20AccountContactRelation%20WHERE%20(ContactId%20=%20%270034C00000T6UZEQA3%27)%20AND%20(AccountId%20=%20%270014C00000ZiKgfQAF%27)%20LIMIT%201"
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20ContactId,%20IsDirect,%20AccountId%20FROM%20AccountContactRelation%20WHERE%20(ContactId%20=%20%270037h00000YQoehAAD%27)%20AND%20(AccountId%20=%20%270017h00000doVQBAA2%27)%20LIMIT%201"
     body:
       encoding: US-ASCII
       string: ''
@@ -21,12 +21,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Mon, 09 Aug 2021 16:09:08 GMT
+      - Wed, 10 Nov 2021 20:32:44 GMT
       Set-Cookie:
-      - BrowserId=IM4krvksEeurX13eOuGrHQ; domain=.salesforce.com; path=/; expires=Tue,
-        09-Aug-2022 16:09:08 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Tue,
-        09-Aug-2022 16:09:08 GMT; Max-Age=31536000
+      - BrowserId=XBQx4UJlEeyjRrkHFxllKQ; domain=.salesforce.com; path=/; expires=Thu,
+        10-Nov-2022 20:32:44 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Thu,
+        10-Nov-2022 20:32:44 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Thu, 10-Nov-2022 20:32:44 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Robots-Tag:
@@ -34,7 +36,7 @@ http_interactions:
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Sforce-Limit-Info:
-      - api-usage=861/5000000
+      - api-usage=1368/5000000
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -43,11 +45,11 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k4C00000HMk4pQAD"},"Id":"07k4C00000HMk4pQAD","ContactId":"0034C00000T6UZEQA3","IsDirect":false,"AccountId":"0014C00000ZiKgfQAF"}]}'
-  recorded_at: Mon, 09 Aug 2021 16:09:09 GMT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000L7tEYAAZ"},"Id":"07k7h00000L7tEYAAZ","ContactId":"0037h00000YQoehAAD","IsDirect":false,"AccountId":"0017h00000doVQBAA2"}]}'
+  recorded_at: Wed, 10 Nov 2021 20:32:44 GMT
 - request:
     method: delete
-    uri: "<salesforce_instance_url>/services/data/v51.0/sobjects/AccountContactRelation/07k4C00000HMk4pQAD"
+    uri: "<salesforce_instance_url>/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000L7tEYAAZ"
     body:
       encoding: US-ASCII
       string: ''
@@ -66,12 +68,14 @@ http_interactions:
       message: No Content
     headers:
       Date:
-      - Mon, 09 Aug 2021 16:09:09 GMT
+      - Wed, 10 Nov 2021 20:32:45 GMT
       Set-Cookie:
-      - BrowserId=IQaaePksEeu4WD8s99y_wg; domain=.salesforce.com; path=/; expires=Tue,
-        09-Aug-2022 16:09:09 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=openstax--dev.my.salesforce.com; path=/; expires=Tue,
-        09-Aug-2022 16:09:09 GMT; Max-Age=31536000
+      - BrowserId=XF9EXkJlEeyL6zn_mZVkng; domain=.salesforce.com; path=/; expires=Thu,
+        10-Nov-2022 20:32:45 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Thu,
+        10-Nov-2022 20:32:45 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Thu, 10-Nov-2022 20:32:45 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Robots-Tag:
@@ -79,9 +83,9 @@ http_interactions:
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Sforce-Limit-Info:
-      - api-usage=861/5000000
+      - api-usage=1366/5000000
     body:
       encoding: UTF-8
       string: ''
-  recorded_at: Mon, 09 Aug 2021 16:09:09 GMT
+  recorded_at: Wed, 10 Nov 2021 20:32:45 GMT
 recorded_with: VCR 6.0.0

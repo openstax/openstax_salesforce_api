@@ -13,6 +13,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     @opportunity = Opportunity.new(opportunity_params)
     book = Book.find_by!(name: @opportunity.book_name)
     @opportunity.book_id = book.salesforce_id
+    @opportunity.record_type_id = Opportunity.first.record_type_id
     @opportunity.save!
 
     PushOpportunityToSalesforceJob.perform_later(@opportunity)
@@ -56,6 +57,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
                                           lead_source
                                           os_accounts_id
                                           name
+                                          record_type_name
                                         ])
   end
 end
