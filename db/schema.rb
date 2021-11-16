@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_18_175936) do
+ActiveRecord::Schema.define(version: 2021_11_09_221311) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -254,6 +254,8 @@ ActiveRecord::Schema.define(version: 2021_10_18_175936) do
     t.string "lead_source"
     t.string "os_accounts_id"
     t.string "name"
+    t.string "record_type_name"
+    t.string "record_type_id"
   end
 
   create_table "schools", force: :cascade do |t|

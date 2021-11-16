@@ -21,6 +21,7 @@ class PushOpportunityToSalesforceJob < ApplicationJob
         )
         opportunity.save
       else
+        db_record_type_id = Opportunity.first.record_type_id
         start_date = opp.class_start_date.blank? ? Date.today.strftime('%Y-%m-%d') : opp.class_start_date.strftime('%Y-%m-%d')
         opportunity = OpenStax::Salesforce::Remote::Opportunity.new(
           name: 'new from openstax-salesforce-api',
@@ -34,7 +35,8 @@ class PushOpportunityToSalesforceJob < ApplicationJob
           class_start_date: calculate_start_date,
           school_id: opp.school_id,
           book_id: book.salesforce_id,
-          lead_source: 'Web'
+          lead_source: 'Web',
+          record_type_id: db_record_type_id
         )
         opportunity.save
 

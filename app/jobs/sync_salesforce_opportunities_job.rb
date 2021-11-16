@@ -7,7 +7,7 @@ class SyncSalesforceOpportunitiesJob
     if contact_id
       sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(contact_id:contact_id)
     else
-      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.all
+      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(record_type_name:'Book Opp')
     end
 
     sf_opportunities.each do |sf_opportunity|
@@ -29,6 +29,8 @@ class SyncSalesforceOpportunitiesJob
       opportunity_to_update.lead_source = sf_opportunity.lead_source
       opportunity_to_update.os_accounts_id = sf_opportunity.os_accounts_id
       opportunity_to_update.name = sf_opportunity.name
+      opportunity_to_update.record_type_name = sf_opportunity.record_type_name
+      opportunity_to_update.record_type_id = sf_opportunity.record_type_id
 
       opportunity_to_update.save if opportunity_to_update.changed?
     end
