@@ -121,6 +121,8 @@ class SyncSalesforceJob
       lead_to_update.role = sf_lead.role
       lead_to_update.who_chooses_books = sf_lead.who_chooses_books
       lead_to_update.verification_status = sf_lead.verification_status
+      lead_to_update.position = sf_lead.position
+      lead_to_update.title = sf_lead.title
 
       lead_to_update.save if lead_to_update.changed?
     end
