@@ -48,7 +48,8 @@ class Api::V1::LeadsController < Api::V1::BaseController
                                           role
                                           who_chooses_books
                                           verification_status
-                                          finalize_educator_signup
+                                          position
+                                          title
                                         ])
   end
 end
