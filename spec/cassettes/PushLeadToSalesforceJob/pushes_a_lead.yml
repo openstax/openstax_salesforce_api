@@ -5,11 +5,11 @@ http_interactions:
     uri: "<salesforce_instance_url>/services/data/v51.0/sobjects/Lead"
     body:
       encoding: UTF-8
-      string: '{"FirstName":"Lane","LastName":"Champlin","Salutation":"LLD","Subject__c":"psychology","Company":"West
-        Ledner University","Phone":"927-529-5642","Website":"http://example.com/jan_bailey","Status":"converted","Email":"theodore@example.com","LeadSource":"OSC
-        Faculty","Newsletter__c":true,"Newsletter_Opt_In__c":true,"Adoption_Status__c":"Not
-        Using","Number_of_Students__c":204,"OS_Accounts_ID__c":"5935544579","accounts_uuid_c__c":"a40ea818-1c46-46ad-84c0-76a072da6b0c","Application_Source__c":"OS
-        Web","Role__c":"librarian","who_chooses_books__c":"instructor","FV_Status__c":"rejected_faculty","FV_Final__c":false}'
+      string: '{"FirstName":"Jasper","LastName":"Armstrong","Salutation":"CPA","Subject__c":"economics","Company":"Bauch
+        College","Phone":"147-563-8993","Website":"http://example.com/priscila.cremin","Status":"Needs
+        Contact","Email":"rebecka@example.com","LeadSource":"OSC Faculty","Newsletter__c":true,"Newsletter_Opt_In__c":false,"Adoption_Status__c":"Not
+        Using","Number_of_Students__c":243,"Accounts_ID__c":"8829487501","Accounts_UUID__c":"092c73db-79de-4899-83b4-2e8a38ca6763","Application_Source__c":"OS
+        Web","Role__c":"Instructor","who_chooses_books__c":"committee","FV_Status__c":"rejected_faculty"}'
     headers:
       User-Agent:
       - Faraday v1.5.1
@@ -27,12 +27,14 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Tue, 31 Aug 2021 15:26:48 GMT
+      - Wed, 17 Nov 2021 16:24:32 GMT
       Set-Cookie:
-      - BrowserId=22yh_ApvEeyInD_eeQqBeA; domain=.salesforce.com; path=/; expires=Wed,
-        31-Aug-2022 15:26:48 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
-        31-Aug-2022 15:26:48 GMT; Max-Age=31536000
+      - BrowserId=2LHwCUfCEeyWkecFMTdAJQ; domain=.salesforce.com; path=/; expires=Thu,
+        17-Nov-2022 16:24:32 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Thu,
+        17-Nov-2022 16:24:32 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Thu, 17-Nov-2022 16:24:32 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Robots-Tag:
@@ -40,9 +42,9 @@ http_interactions:
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Sforce-Limit-Info:
-      - api-usage=2501/5000000
+      - api-usage=877/5000000
       Location:
-      - "/services/data/v51.0/sobjects/Lead/00Q4C000009jYkqUAE"
+      - "/services/data/v51.0/sobjects/Lead/00Q7h0000078RwoEAE"
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -51,6 +53,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"00Q4C000009jYkqUAE","success":true,"errors":[]}'
-  recorded_at: Tue, 31 Aug 2021 15:26:50 GMT
+      string: '{"id":"00Q7h0000078RwoEAE","success":true,"errors":[]}'
+  recorded_at: Wed, 17 Nov 2021 16:24:06 GMT
 recorded_with: VCR 6.0.0

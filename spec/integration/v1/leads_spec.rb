@@ -48,7 +48,6 @@ RSpec.describe 'api/v1/leads', type: :request, vcr: VCR_OPTS do
           accounts_uuid: { type: :string },
           application_source: { type: :string },
         },
-        #required: %w[book_name contact_id close_date number_of_students school_id stage_name]
       }
 
       response '202', 'lead created' do
@@ -76,7 +75,7 @@ RSpec.describe 'api/v1/leads', type: :request, vcr: VCR_OPTS do
             'role': "faculty",
             'who_chooses_books': "instructor",
             'verification_status': "rejected_faculty",
-            'finalize_educator_signup': true
+            'position': "Faculty"
           }
         end
         let(:HTTP_COOKIE) { oxa_cookie }
