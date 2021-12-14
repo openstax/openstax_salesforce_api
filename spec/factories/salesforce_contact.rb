@@ -18,5 +18,7 @@ FactoryBot.define do
     confirmed_emails { Faker::Internet.safe_email }
     adoption_status { ['Confirmed Adoption Won', 'Confirmed Adoption Recommend', 'High Interest In Using', 'Not Using'].sample }
     grant_tutor_access { [false, true].sample }
+    accounts_uuid { 'aaa560a1-e828-48fb-b9a8-d01e9aec71d0' }
+    lead_source { 'Account Creation'}
   end
 end

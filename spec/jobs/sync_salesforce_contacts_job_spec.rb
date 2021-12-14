@@ -20,12 +20,12 @@ RSpec.describe SyncSalesforceContactsJob, type: :job, vcr: VCR_OPTS do
 	it 'syncs contacts' do
 		SyncSalesforceContactsJob.new.perform()
 
-		expect(Contact.count).to be > 1
+		expect(Contact.count).to be > 0
 	end
 
 	it 'syncs one contact' do
-		SyncSalesforceContactsJob.new.perform('0037h00000YQofJAAT')
+		SyncSalesforceContactsJob.new.perform('e93dc9b8-36b8-403b-9aa6-f8966e239490')
 
-		expect(Contact.where(salesforce_id: '0037h00000YQofJAAT')).to exist
+		expect(Contact.where(salesforce_id: '0034C00000WkwxbQAB')).to exist
 	end
 end

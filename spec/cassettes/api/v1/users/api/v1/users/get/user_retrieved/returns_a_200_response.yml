@@ -1,40 +1,42 @@
 ---
 http_interactions:
 - request:
-    method: post
-    uri: https://test.salesforce.com/services/oauth2/token?client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&grant_type=password&password=<salesforce_password>25<salesforce_security_token>&username=<salesforce_username>
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20FV_Status__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c,%20Accounts_UUID__c,%20LeadSource%20FROM%20Contact%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
     body:
-      encoding: UTF-8
+      encoding: US-ASCII
       string: ''
     headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Thu, 11 Mar 2021 18:33:32 GMT
+      - Tue, 14 Dec 2021 15:07:12 GMT
+      Set-Cookie:
+      - BrowserId=hGZ5KVzvEeyHI9_CTlPEFQ; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:12 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:12 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:12 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
-      X-Content-Type-Options:
-      - nosniff
-      X-Xss-Protection:
-      - 1; mode=block
+      X-Robots-Tag:
+      - none
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
-      Set-Cookie:
-      - BrowserId=SBFf7oKYEeu7EBV7u710fQ; domain=.salesforce.com; path=/; expires=Fri,
-        11-Mar-2022 18:33:32 GMT; Max-Age=31536000
-      Expires:
-      - Thu, 01 Jan 1970 00:00:00 GMT
-      X-Readonlymode:
-      - 'false'
+      Sforce-Limit-Info:
+      - api-usage=1685/5000000
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -43,179 +45,713 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"https://test.salesforce.com/id/00D0v0000005T7UEAU/005U0000005MXdmIAG","token_type":"Bearer","issued_at":"1615487612248","signature":"bDJswCZ7hGgFcYeB0koT2YiOp25jzl1XH5NjTnYIlh4="}'
-  recorded_at: Thu, 11 Mar 2021 18:33:32 GMT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0034C00000WsQ06QAF"},"Id":"0034C00000WsQ06QAF","Name":"Ed
+        Woodward","FirstName":"Ed","LastName":"Woodward","Email":"ecw1@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"FV_Status__c":"pending_faculty","LastModifiedDate":"2021-12-09T21:25:57.000+0000","AccountId":"0014C00000dkLkoQAE","School_Type__c":"College/University
+        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"ecw1@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false,"Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","LeadSource":"Account
+        Creation"}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:13 GMT
 - request:
-    method: post
-    uri: https://pi.demo.pardot.com/api/prospect/version/4/do/read/fid/0030v00000UlS9yAAF?format=simple
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Contact%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
     body:
       encoding: US-ASCII
       string: ''
     headers:
+      User-Agent:
+      - Faraday v1.5.1
       Authorization:
-      - Bearer 00D0v0000005T7U!AQQAQCN3Zk4hHGPmJlD3k1Exvf9YvSN8SNVMDgflfSfsqPOIP7Lnjgqq0vi1NfAqWg_ApTKUDBqdeYG8zXG.R5kPY4oNloTB
-      Pardot-Business-Unit-Id:
-      - 0Uv0v0000004C9mCAE
+      - OAuth <salesforce_access_token>
       Accept-Encoding:
       - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
       Accept:
       - "*/*"
-      User-Agent:
-      - Ruby
   response:
     status:
       code: 200
       message: OK
     headers:
       Date:
-      - Thu, 11 Mar 2021 18:33:32 GMT
+      - Tue, 14 Dec 2021 15:07:13 GMT
       Set-Cookie:
-      - pardot=ai1sbjstsi7kdhu5sq401b2eia; path=/
-      Expires:
-      - Thu, 19 Nov 1981 08:52:00 GMT
+      - BrowserId=hKuYwlzvEeyaecfZNnwHXA; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:13 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:13 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:13 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
       Cache-Control:
-      - no-store, no-cache, must-revalidate
-      Pragma:
-      - no-cache
-      X-Pardot-Rsp:
-      - 25/70/31
-      P3p:
-      - CP="NOI DSP COR CURa ADMa DEVa TAIa OUR BUS IND UNI COM NAV INT", policyref="/w3c/p3p.xml"
-      Vary:
-      - Accept-Encoding,User-Agent
-      Content-Length:
-      - '1212'
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1685/5000000
       Content-Type:
-      - text/xml; charset=utf-8
-      X-Pardot-Route:
-      - 4fa993bd92d83a19a78f84f1ddd264ce
-      Server:
-      - PardotServer
-      X-Pardot-Lb:
-      - 81ef3179da45557cd28f9ba13d8805bd
-      Connection:
-      - keep-alive
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
     body:
       encoding: ASCII-8BIT
-      string: |
-        <?xml version="1.0" encoding="UTF-8"?>
-        <rsp stat="ok" version="1.0">
-           <prospect>
-              <id>34291125</id>
-              <campaign_id>145615</campaign_id>
-              <salutation>Mr.</salutation>
-              <first_name>Michael</first_name>
-              <last_name>Harrison</last_name>
-              <email>mwharrison@rice.edu</email>
-              <password/>
-              <company>Rice University (Houston, TX)</company>
-              <website/>
-              <job_title/>
-              <department/>
-              <country>United States</country>
-              <address_one/>
-              <address_two/>
-              <city/>
-              <state/>
-              <territory/>
-              <zip/>
-              <phone>713-348-4799</phone>
-              <fax/>
-              <source/>
-              <annual_revenue/>
-              <employees/>
-              <industry/>
-              <years_in_business/>
-              <comments/>
-              <notes/>
-              <score>0</score>
-              <grade/>
-              <last_activity_at/>
-              <recent_interaction>Never active.</recent_interaction>
-              <crm_lead_fid/>
-              <crm_contact_fid>0030v00000UlS9yAAF</crm_contact_fid>
-              <crm_owner_fid>005U0000005akrEIAQ</crm_owner_fid>
-              <crm_account_fid/>
-              <salesforce_fid>0030v00000UlS9yAAF</salesforce_fid>
-              <crm_last_sync>2021-03-10 14:53:52</crm_last_sync>
-              <crm_url>https://openstax--tutorqa.my.salesforce.com/0030v00000UlS9yAAF</crm_url>
-              <is_do_not_email></is_do_not_email>
-              <is_do_not_call></is_do_not_call>
-              <opted_out></opted_out>
-              <is_reviewed>1</is_reviewed>
-              <is_starred></is_starred>
-              <created_at>2021-03-10 14:42:39</created_at>
-              <updated_at>2021-03-10 14:53:53</updated_at>
-              <campaign>
-                 <id>145615</id>
-                 <name>Sample Marketing</name>
-              </campaign>
-              <assigned_to>
-                 <user>
-                    <id>3602613</id>
-                    <email>mwharrison@rice.edu</email>
-                    <first_name>Michael</first_name>
-                    <last_name>Harrison</last_name>
-                    <job_title>Engineering Manager</job_title>
-                    <role>Administrator</role>
-                    <account>236293</account>
-                    <created_at>2021-03-05 14:50:11</created_at>
-                    <updated_at>2021-03-05 15:59:57</updated_at>
-                 </user>
-              </assigned_to>
-              <prospect_account_id>4221093</prospect_account_id>
-              <profile>
-                 <id>901</id>
-                 <name>Default</name>
-                 <profile_criteria>
-                    <id>4449</id>
-                    <name>Company Size</name>
-                    <matches>Unknown</matches>
-                 </profile_criteria>
-                 <profile_criteria>
-                    <id>4451</id>
-                    <name>Industry</name>
-                    <matches>Unknown</matches>
-                 </profile_criteria>
-                 <profile_criteria>
-                    <id>4453</id>
-                    <name>Location</name>
-                    <matches>Unknown</matches>
-                 </profile_criteria>
-                 <profile_criteria>
-                    <id>4455</id>
-                    <name>Job Title</name>
-                    <matches>Unknown</matches>
-                 </profile_criteria>
-                 <profile_criteria>
-                    <id>4457</id>
-                    <name>Department</name>
-                    <matches>Unknown</matches>
-                 </profile_criteria>
-              </profile>
-              <visitors/>
-              <visitor_activities/>
-              <lists>
-                 <list_subscription>
-                    <id>34604887</id>
-                    <did_opt_in>false</did_opt_in>
-                    <did_opt_out>false</did_opt_out>
-                    <created_at>2021-03-10 15:46:26</created_at>
-                    <updated_at>2021-03-10 15:54:31</updated_at>
-                    <list>
-                       <id>5355</id>
-                       <name>Customers</name>
-                       <is_public>true</is_public>
-                       <is_dynamic>false</is_dynamic>
-                       <title>Customer News</title>
-                       <description>This is for all customers to learn awesome new things</description>
-                       <is_crm_visible>false</is_crm_visible>
-                       <created_at>2021-03-05 14:50:08</created_at>
-                       <updated_at>2021-03-10 12:45:12</updated_at>
-                    </list>
-                 </list_subscription>
-              </lists>
-           </prospect>
-        </rsp>
-  recorded_at: Thu, 11 Mar 2021 18:33:32 GMT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":1}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:13 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20ContactId,%20IsDirect,%20AccountId%20FROM%20AccountContactRelation%20WHERE%20(ContactId%20=%20%270034C00000WsQ06QAF%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:13 GMT
+      Set-Cookie:
+      - BrowserId=hOe3OlzvEeyHI9_CTlPEFQ; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:13 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:13 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:13 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1686/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AccountContactRelation","url":"/services/data/v51.0/sobjects/AccountContactRelation/07k4C00000JteUcQAJ"},"Id":"07k4C00000JteUcQAJ","ContactId":"0034C00000WsQ06QAF","IsDirect":true,"AccountId":"0014C00000dkLkoQAE"}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:13 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20AccountContactRelation%20WHERE%20(ContactId%20=%20%270034C00000WsQ06QAF%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:14 GMT
+      Set-Cookie:
+      - BrowserId=hTddfVzvEeyEv9-gusJ9NQ; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:14 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:14 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:14 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1685/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":1}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:14 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20TermYear__c,%20Book_Text__c,%20Contact__c,%20New__c,%20CloseDate,%20StageName,%20Type,%20Students__c,%20Student_No_Status__c,%20Time_Period__c,%20Class_Start_Date__c,%20AccountId,%20Book__c,%20LeadSource,%20OS_Accounts_ID__c,%20Accounts_UUID__c,%20Name,%20Opportunity_Record_Type_Name__c,%20RecordTypeId%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:14 GMT
+      Set-Cookie:
+      - BrowserId=hXY7slzvEeyizokYO4Vsfg; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:14 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:14 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:14 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1685/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":10,"done":true,"records":[{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000G8ilJQAR"},"Id":"0064C00000G8ilJQAR","TermYear__c":"2021
+        - 22 Spring","Book_Text__c":"Calculus","Contact__c":"0034C00000WsQ06QAF","New__c":true,"CloseDate":"2021-11-30","StageName":"Confirmed
+        Adoption Won","Type":"New Business","Students__c":null,"Student_No_Status__c":null,"Time_Period__c":null,"Class_Start_Date__c":"2022-01-06","AccountId":"0014C00000dkLkoQAE","Book__c":"a0Z4C000001wagdUAA","LeadSource":"OS
+        Interest Form","OS_Accounts_ID__c":"1","Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","Name":"Calculus
+        - Ed Woodward - 2021 - 22","Opportunity_Record_Type_Name__c":"Book Opp","RecordTypeId":"0120B000000NAH0QAO"},{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000G8ilKQAR"},"Id":"0064C00000G8ilKQAR","TermYear__c":"2021
+        - 22 Spring","Book_Text__c":"College Algebra","Contact__c":"0034C00000WsQ06QAF","New__c":true,"CloseDate":"2021-11-30","StageName":"Confirmed
+        Adoption Won","Type":"New Business","Students__c":null,"Student_No_Status__c":null,"Time_Period__c":null,"Class_Start_Date__c":"2022-01-06","AccountId":"0014C00000dkLkoQAE","Book__c":"a0Z4C000001wagfUAA","LeadSource":"OS
+        Interest Form","OS_Accounts_ID__c":"1","Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","Name":"Coll
+        Algebra - Ed Woodward - 2021 - 22","Opportunity_Record_Type_Name__c":"Book
+        Opp","RecordTypeId":"0120B000000NAH0QAO"},{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000G8ilLQAR"},"Id":"0064C00000G8ilLQAR","TermYear__c":"2021
+        - 22 Spring","Book_Text__c":"Introduction to Business","Contact__c":"0034C00000WsQ06QAF","New__c":true,"CloseDate":"2021-11-30","StageName":"Confirmed
+        Adoption Won","Type":"New Business","Students__c":null,"Student_No_Status__c":null,"Time_Period__c":null,"Class_Start_Date__c":"2022-01-06","AccountId":"0014C00000dkLkoQAE","Book__c":"a0Z4C000001waglUAA","LeadSource":"OS
+        Interest Form","OS_Accounts_ID__c":"1","Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","Name":"Intro
+        to Bus. - Ed Woodward - 2021 - 22","Opportunity_Record_Type_Name__c":"Book
+        Opp","RecordTypeId":"0120B000000NAH0QAO"},{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000G8ilMQAR"},"Id":"0064C00000G8ilMQAR","TermYear__c":"2021
+        - 22 Spring","Book_Text__c":"Introductory Statistics","Contact__c":"0034C00000WsQ06QAF","New__c":true,"CloseDate":"2021-11-30","StageName":"Confirmed
+        Adoption Won","Type":"New Business","Students__c":null,"Student_No_Status__c":null,"Time_Period__c":null,"Class_Start_Date__c":"2022-01-06","AccountId":"0014C00000dkLkoQAE","Book__c":"a0Z4C000001wagnUAA","LeadSource":"OS
+        Interest Form","OS_Accounts_ID__c":"1","Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","Name":"Intro
+        Statistics - Ed Woodward - 2021 - 22","Opportunity_Record_Type_Name__c":"Book
+        Opp","RecordTypeId":"0120B000000NAH0QAO"},{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000G8ilNQAR"},"Id":"0064C00000G8ilNQAR","TermYear__c":"2021
+        - 22 Spring","Book_Text__c":"Precalc","Contact__c":"0034C00000WsQ06QAF","New__c":true,"CloseDate":"2021-11-30","StageName":"Confirmed
+        Adoption Won","Type":"New Business","Students__c":null,"Student_No_Status__c":null,"Time_Period__c":null,"Class_Start_Date__c":"2022-01-06","AccountId":"0014C00000dkLkoQAE","Book__c":"a0Z4C000001wagtUAA","LeadSource":"OS
+        Interest Form","OS_Accounts_ID__c":"1","Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","Name":"Precalc
+        - Ed Woodward - 2021 - 22","Opportunity_Record_Type_Name__c":"Book Opp","RecordTypeId":"0120B000000NAH0QAO"},{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000G8ilOQAR"},"Id":"0064C00000G8ilOQAR","TermYear__c":"2021
+        - 22 Spring","Book_Text__c":"Prealgebra","Contact__c":"0034C00000WsQ06QAF","New__c":true,"CloseDate":"2021-11-30","StageName":"Confirmed
+        Adoption Won","Type":"New Business","Students__c":null,"Student_No_Status__c":null,"Time_Period__c":null,"Class_Start_Date__c":"2022-01-06","AccountId":"0014C00000dkLkoQAE","Book__c":"a0Z4C000001waeqUAA","LeadSource":"OS
+        Interest Form","OS_Accounts_ID__c":"1","Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","Name":"PreAlg
+        - Ed Woodward - 2021 - 22","Opportunity_Record_Type_Name__c":"Book Opp","RecordTypeId":"0120B000000NAH0QAO"},{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000G8im7QAB"},"Id":"0064C00000G8im7QAB","TermYear__c":"2021
+        - 22 Spring","Book_Text__c":"Intermediate Algebra","Contact__c":"0034C00000WsQ06QAF","New__c":true,"CloseDate":"2021-11-30","StageName":"Confirmed
+        Adoption Won","Type":"New Business","Students__c":null,"Student_No_Status__c":null,"Time_Period__c":null,"Class_Start_Date__c":"2022-01-06","AccountId":"0014C00000dkLkoQAE","Book__c":"a0Z4C000001wagkUAA","LeadSource":"OS
+        Interest Form","OS_Accounts_ID__c":"1","Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","Name":"Intermediate
+        Alg. - Ed Woodward - 2021 - 22","Opportunity_Record_Type_Name__c":"Book Opp","RecordTypeId":"0120B000000NAH0QAO"},{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000G8im8QAB"},"Id":"0064C00000G8im8QAB","TermYear__c":"2021
+        - 22 Spring","Book_Text__c":"US History","Contact__c":"0034C00000WsQ06QAF","New__c":true,"CloseDate":"2021-11-30","StageName":"Confirmed
+        Adoption Won","Type":"New Business","Students__c":null,"Student_No_Status__c":null,"Time_Period__c":null,"Class_Start_Date__c":"2022-01-06","AccountId":"0014C00000dkLkoQAE","Book__c":"a0Z4C000001wagwUAA","LeadSource":"OS
+        Interest Form","OS_Accounts_ID__c":"1","Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","Name":"US
+        History - Ed Woodward - 2021 - 22","Opportunity_Record_Type_Name__c":"Book
+        Opp","RecordTypeId":"0120B000000NAH0QAO"},{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000G8im9QAB"},"Id":"0064C00000G8im9QAB","TermYear__c":"2021
+        - 22 Spring","Book_Text__c":"US History","Contact__c":"0034C00000WsQ06QAF","New__c":false,"CloseDate":"2021-11-30","StageName":"Discovery","Type":"New
+        Business","Students__c":44.0,"Student_No_Status__c":null,"Time_Period__c":null,"Class_Start_Date__c":"2022-01-06","AccountId":"0014C00000dkLkoQAE","Book__c":"a0Z4C000001wagwUAA","LeadSource":"OS
+        Interest Form","OS_Accounts_ID__c":"1","Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","Name":"Tutor
+        Open","Opportunity_Record_Type_Name__c":"Tutor Opp","RecordTypeId":"0126f000001YqpwAAC"},{"attributes":{"type":"Opportunity","url":"/services/data/v51.0/sobjects/Opportunity/0064C00000G8qJ5QAJ"},"Id":"0064C00000G8qJ5QAJ","TermYear__c":"2021
+        - 22 Spring","Book_Text__c":"Algebra and Trigonometry","Contact__c":"0034C00000WsQ06QAF","New__c":true,"CloseDate":"2021-11-30","StageName":"Confirmed
+        Adoption Won","Type":"New Business","Students__c":null,"Student_No_Status__c":null,"Time_Period__c":null,"Class_Start_Date__c":"2022-01-06","AccountId":"0014C00000dkLkoQAE","Book__c":"a0Z4C000001wagYUAQ","LeadSource":"OS
+        Interest Form","OS_Accounts_ID__c":"1","Accounts_UUID__c":"57bbe3d3-d630-4e9c-bc22-f86b701381a0","Name":"Alg
+        & Trig - Ed Woodward - 2021 - 22","Opportunity_Record_Type_Name__c":"Book
+        Opp","RecordTypeId":"0120B000000NAH0QAO"}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:14 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:15 GMT
+      Set-Cookie:
+      - BrowserId=hcoBJlzvEeyHI9_CTlPEFQ; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:15 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:15 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:15 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1687/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":10}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:15 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:15 GMT
+      Set-Cookie:
+      - BrowserId=hgP8clzvEeyzPy1DXulc0g; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:15 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:15 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:15 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1685/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":10}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:15 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:16 GMT
+      Set-Cookie:
+      - BrowserId=hkEFT1zvEey9w98yOiUtcw; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:16 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:16 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:16 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1685/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":10}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:16 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:16 GMT
+      Set-Cookie:
+      - BrowserId=hn9uJ1zvEeyzPy1DXulc0g; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:16 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:16 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:16 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1686/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":10}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:16 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:16 GMT
+      Set-Cookie:
+      - BrowserId=hr5zElzvEeyEv9-gusJ9NQ; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:16 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:16 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:16 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1686/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":10}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:16 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:17 GMT
+      Set-Cookie:
+      - BrowserId=hwR80lzvEeyOeffLOOhhgA; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:17 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:17 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:17 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1685/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":10}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:17 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:17 GMT
+      Set-Cookie:
+      - BrowserId=h0XLE1zvEeyizokYO4Vsfg; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:17 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:17 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:17 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1686/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":10}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:17 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:18 GMT
+      Set-Cookie:
+      - BrowserId=h5CQW1zvEeyOeffLOOhhgA; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:18 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:18 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:18 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1686/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":10}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:18 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:18 GMT
+      Set-Cookie:
+      - BrowserId=h9DNrlzvEeyzPy1DXulc0g; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:18 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:18 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:18 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1687/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":10}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:18 GMT
+- request:
+    method: get
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Opportunity%20WHERE%20(Accounts_UUID__c%20=%20%2757bbe3d3-d630-4e9c-bc22-f86b701381a0%27)"
+    body:
+      encoding: US-ASCII
+      string: ''
+    headers:
+      User-Agent:
+      - Faraday v1.5.1
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 200
+      message: OK
+    headers:
+      Date:
+      - Tue, 14 Dec 2021 15:07:19 GMT
+      Set-Cookie:
+      - BrowserId=iA3WRVzvEeyHI9_CTlPEFQ; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:19 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 15:07:19 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
+        expires=Wed, 14-Dec-2022 15:07:19 GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=31536000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=1688/5000000
+      Content-Type:
+      - application/json;charset=UTF-8
+      Vary:
+      - Accept-Encoding
+      Transfer-Encoding:
+      - chunked
+    body:
+      encoding: ASCII-8BIT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":10}]}'
+  recorded_at: Tue, 14 Dec 2021 15:07:19 GMT
 recorded_with: VCR 6.0.0

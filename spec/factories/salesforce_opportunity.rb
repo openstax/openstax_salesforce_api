@@ -22,5 +22,6 @@ FactoryBot.define do
     name { 'Bogus Name' }
     record_type_name { 'Book Opp' }
     record_type_id { '0120B000000NAH0QAO' }
+    accounts_uuid { 'aaa560a1-e828-48fb-b9a8-d01e9aec71d0' }
   end
 end

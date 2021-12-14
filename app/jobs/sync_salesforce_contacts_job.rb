@@ -3,9 +3,9 @@ class SyncSalesforceContactsJob
   sidekiq_options lock: :while_executing,
                   on_conflict: :reject
 
-  def perform(id=nil)
-    if id
-      sf_contacts = OpenStax::Salesforce::Remote::Contact.where(id:id)
+  def perform(uuid=nil)
+    if uuid
+      sf_contacts = OpenStax::Salesforce::Remote::Contact.where(accounts_uuid:uuid)
     else
       sf_contacts = OpenStax::Salesforce::Remote::Contact.all
     end
@@ -28,6 +28,8 @@ class SyncSalesforceContactsJob
       contact_to_update.confirmed_emails = sf_contact.confirmed_emails
       contact_to_update.adoption_status = sf_contact.adoption_status
       contact_to_update.grant_tutor_access = sf_contact.grant_tutor_access
+      contact_to_update.accounts_uuid = sf_contact.accounts_uuid
+      contact_to_update.lead_source = sf_contact.lead_source
 
       contact_to_update.save if contact_to_update.changed?
 

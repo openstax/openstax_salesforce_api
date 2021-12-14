@@ -1,7 +1,7 @@
 class Api::V1::UsersController < Api::V1::BaseController
   def index
-    opportunities = Opportunity.where(os_accounts_id: sso_cookie_field('id'))
-    leads = Lead.where(os_accounts_id: sso_cookie_field('id'))
+    opportunities = Opportunity.where(accounts_uuid: sso_cookie_field('uuid'))
+    leads = Lead.where(accounts_uuid: sso_cookie_field('uuid'))
     schools = AccountContactRelation.where(contact_id: current_contact&.salesforce_id)
 
     render json: {

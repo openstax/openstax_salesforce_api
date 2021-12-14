@@ -5,7 +5,7 @@ http_interactions:
     uri: "<salesforce_instance_url>/services/data/v51.0/sobjects/AccountContactRelation"
     body:
       encoding: UTF-8
-      string: '{"ContactId":"0037h00000YQoehAAD","AccountId":"0017h00000doVQBAA2"}'
+      string: '{"ContactId":"0034C00000X57psQAB","AccountId":"0014C00000dkLlEQAU"}'
     headers:
       User-Agent:
       - Faraday v1.5.1
@@ -23,14 +23,14 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 10 Nov 2021 20:32:43 GMT
+      - Tue, 14 Dec 2021 02:07:49 GMT
       Set-Cookie:
-      - BrowserId=W7m1ukJlEeyjRrkHFxllKQ; domain=.salesforce.com; path=/; expires=Thu,
-        10-Nov-2022 20:32:43 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Thu,
-        10-Nov-2022 20:32:43 GMT; Max-Age=31536000
+      - BrowserId=o2W70VyCEeymgAnUPjR51g; domain=.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 02:07:49 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        14-Dec-2022 02:07:49 GMT; Max-Age=31536000
       - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
-        expires=Thu, 10-Nov-2022 20:32:43 GMT; Max-Age=31536000
+        expires=Wed, 14-Dec-2022 02:07:49 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Robots-Tag:
@@ -38,9 +38,9 @@ http_interactions:
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Sforce-Limit-Info:
-      - api-usage=1367/5000000
+      - api-usage=1556/5000000
       Location:
-      - "/services/data/v51.0/sobjects/AccountContactRelation/07k7h00000L7tEYAAZ"
+      - "/services/data/v51.0/sobjects/AccountContactRelation/07k4C00000JvhH9QAJ"
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -49,6 +49,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"07k7h00000L7tEYAAZ","success":true,"errors":[]}'
-  recorded_at: Wed, 10 Nov 2021 20:32:44 GMT
+      string: '{"id":"07k4C00000JvhH9QAJ","success":true,"errors":[]}'
+  recorded_at: Tue, 14 Dec 2021 02:07:50 GMT
 recorded_with: VCR 6.0.0
