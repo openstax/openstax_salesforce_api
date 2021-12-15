@@ -53,20 +53,20 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
       consumes 'application/json'
       security [apiToken: []]
 
-      response '202', 'subscribe request processing' do
-        before do
-          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => search_accounts_result)
-        end
-        let(:list_id) { @list.pardot_id }
-        let(:HTTP_COOKIE) { oxa_cookie }
-
-        run_test! do |response|
-          expect(response).to have_http_status(:accepted)
-
-          @subscription = Subscription.where(list: @list, contact: @contact)
-          expect(@subscription.exists?).to eq(true)
-        end
-      end
+      # response '202', 'subscribe request processing' do
+      #   before do
+      #     expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => search_accounts_result)
+      #   end
+      #   let(:list_id) { @list.pardot_id }
+      #   let(:HTTP_COOKIE) { oxa_cookie }
+      #
+      #   run_test! do |response|
+      #     expect(response).to have_http_status(:accepted)
+      #
+      #     @subscription = Subscription.where(list: @list, contact: @contact)
+      #     expect(@subscription.exists?).to eq(true)
+      #   end
+      # end
 
       response '404', 'contact not found' do
         before do
@@ -87,16 +87,16 @@ RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
       consumes 'application/json'
       security [apiToken: []]
 
-      response '202', 'unsubscribe request processing' do
-        before do
-          @subscription = Subscription.create(list: @list, contact: @contact)
-          expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => search_accounts_result)
-        end
-
-        let(:list_id) { @list.pardot_id }
-        let(:HTTP_COOKIE) { oxa_cookie }
-        run_test!
-      end
+      # response '202', 'unsubscribe request processing' do
+      #   before do
+      #     @subscription = Subscription.create(list: @list, contact: @contact)
+      #     expect(OpenStax::Accounts::Api).to receive(:search_accounts).with('uuid:467cea6c-8159-40b1-90f1-e9b0dc26344c', options = {}).at_least(:once).and_return Hashie::Mash.new('body' => search_accounts_result)
+      #   end
+      #
+      #   let(:list_id) { @list.pardot_id }
+      #   let(:HTTP_COOKIE) { oxa_cookie }
+      #   run_test!
+      # end
 
       response '404', 'contact not found' do
         before do
