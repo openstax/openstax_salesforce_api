@@ -2,7 +2,7 @@
 http_interactions:
 - request:
     method: get
-    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20FV_Status__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c%20FROM%20Contact%20WHERE%20(Id%20=%20%270037h00000YQofJAAT%27)"
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20Id,%20Name,%20FirstName,%20LastName,%20Email,%20Email_alt__c,%20Faculty_Confirmed_Date__c,%20FV_Status__c,%20LastModifiedDate,%20AccountId,%20School_Type__c,%20SendFacultyVerificationTo__c,%20All_Emails__c,%20Confirmed_Emails__c,%20Adoption_Status__c,%20Grant_Tutor_Access__c,%20BRI_Marketing__c,%20Title_1_school__c,%20Accounts_UUID__c,%20LeadSource%20FROM%20Contact%20WHERE%20(Accounts_UUID__c%20=%20%27e93dc9b8-36b8-403b-9aa6-f8966e239490%27)"
     body:
       encoding: US-ASCII
       string: ''
@@ -21,14 +21,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 11 Nov 2021 15:27:05 GMT
+      - Tue, 07 Dec 2021 17:48:25 GMT
       Set-Cookie:
-      - BrowserId=08qqaEMDEeyC-cVvO_Y2uQ; domain=.salesforce.com; path=/; expires=Fri,
-        11-Nov-2022 15:27:05 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
-        11-Nov-2022 15:27:05 GMT; Max-Age=31536000
+      - BrowserId=4P_MaFeFEeyt2u0IdKk40A; domain=.salesforce.com; path=/; expires=Wed,
+        07-Dec-2022 17:48:25 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        07-Dec-2022 17:48:25 GMT; Max-Age=31536000
       - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
-        expires=Fri, 11-Nov-2022 15:27:05 GMT; Max-Age=31536000
+        expires=Wed, 07-Dec-2022 17:48:25 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Robots-Tag:
@@ -36,7 +36,7 @@ http_interactions:
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Sforce-Limit-Info:
-      - api-usage=1720/5000000
+      - api-usage=2453/5000000
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -45,14 +45,14 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0037h00000YQofJAAT"},"Id":"0037h00000YQofJAAT","Name":"teacher
-        59","FirstName":"teacher","LastName":"59","Email":"mn45+091@rice.edu","Email_alt__c":null,"Faculty_Confirmed_Date__c":null,"FV_Status__c":null,"LastModifiedDate":"2021-10-25T20:24:30.000+0000","AccountId":"0017h00000doPL5AAM","School_Type__c":"College/University
-        (4)","SendFacultyVerificationTo__c":null,"All_Emails__c":"mn45+091@rice.edu","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
-        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false}]}'
-  recorded_at: Thu, 11 Nov 2021 15:27:05 GMT
+      string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"Contact","url":"/services/data/v51.0/sobjects/Contact/0034C00000WkwxbQAB"},"Id":"0034C00000WkwxbQAB","Name":"Larry
+        Cochran","FirstName":"Larry","LastName":"Cochran","Email":"larry.cochran@ocps.net","Email_alt__c":null,"Faculty_Confirmed_Date__c":"2020-08-27","FV_Status__c":"confirmed_faculty","LastModifiedDate":"2021-11-23T20:51:04.000+0000","AccountId":null,"School_Type__c":null,"SendFacultyVerificationTo__c":null,"All_Emails__c":"larry.cochran@ocps.net","Confirmed_Emails__c":null,"Adoption_Status__c":"Not
+        Adopter","Grant_Tutor_Access__c":false,"BRI_Marketing__c":false,"Title_1_school__c":false,"Accounts_UUID__c":"e93dc9b8-36b8-403b-9aa6-f8966e239490","LeadSource":"OSC
+        Faculty"}]}'
+  recorded_at: Tue, 07 Dec 2021 17:45:09 GMT
 - request:
     method: get
-    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Contact%20WHERE%20(Id%20=%20%270037h00000YQofJAAT%27)"
+    uri: "<salesforce_instance_url>/services/data/v51.0/query?q=SELECT%20count(Id)%20FROM%20Contact%20WHERE%20(Accounts_UUID__c%20=%20%27e93dc9b8-36b8-403b-9aa6-f8966e239490%27)"
     body:
       encoding: US-ASCII
       string: ''
@@ -71,14 +71,14 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Thu, 11 Nov 2021 15:27:06 GMT
+      - Tue, 07 Dec 2021 17:48:26 GMT
       Set-Cookie:
-      - BrowserId=1BJhd0MDEeycnGuFHy7i3A; domain=.salesforce.com; path=/; expires=Fri,
-        11-Nov-2022 15:27:06 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Fri,
-        11-Nov-2022 15:27:06 GMT; Max-Age=31536000
+      - BrowserId=4UBYvleFEeyxf5EcIpUQPA; domain=.salesforce.com; path=/; expires=Wed,
+        07-Dec-2022 17:48:26 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Wed,
+        07-Dec-2022 17:48:26 GMT; Max-Age=31536000
       - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
-        expires=Fri, 11-Nov-2022 15:27:06 GMT; Max-Age=31536000
+        expires=Wed, 07-Dec-2022 17:48:26 GMT; Max-Age=31536000
       Strict-Transport-Security:
       - max-age=31536000; includeSubDomains
       X-Robots-Tag:
@@ -86,7 +86,7 @@ http_interactions:
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Sforce-Limit-Info:
-      - api-usage=1720/5000000
+      - api-usage=2453/5000000
       Content-Type:
       - application/json;charset=UTF-8
       Vary:
@@ -96,5 +96,5 @@ http_interactions:
     body:
       encoding: ASCII-8BIT
       string: '{"totalSize":1,"done":true,"records":[{"attributes":{"type":"AggregateResult"},"expr0":1}]}'
-  recorded_at: Thu, 11 Nov 2021 15:27:06 GMT
+  recorded_at: Tue, 07 Dec 2021 17:45:10 GMT
 recorded_with: VCR 6.0.0

@@ -13,7 +13,6 @@ class ApplicationController < ActionController::Base
     # comment this line out to use production-like auth in development
     # which will require a local accounts install for setting the cookie
     return if Rails.env.development?
-
     return unless sso_cookie_field('uuid').blank?
 
     doorkeeper_authorize!

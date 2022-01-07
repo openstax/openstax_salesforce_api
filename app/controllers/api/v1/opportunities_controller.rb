@@ -56,6 +56,7 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
                                           contact_id
                                           lead_source
                                           os_accounts_id
+                                          accounts_uuid
                                           name
                                           record_type_name
                                         ])

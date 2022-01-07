@@ -32,14 +32,14 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def current_contact
+    #puts '***base controller current_contact called'
     @current_contact ||= begin
-      raise(CannotFindUserContact) if current_accounts_user.blank? || current_accounts_user['salesforce_contact_id'].nil?
-
-      contact = Contact.find_by(salesforce_id: current_accounts_user['salesforce_contact_id'])
+      raise(CannotFindUserContact) if current_accounts_user.blank?
+      contact = Contact.find_by(accounts_uuid: current_accounts_user['uuid'])
       if contact.blank?
-        contact = SyncSalesforceContactsJob.new.perform(current_accounts_user['salesforce_contact_id'])
+        contact = SyncSalesforceContactsJob.new.perform(current_accounts_user['uuid'])
         SyncSalesforceContactSchoolRelationsJob.new.perform(current_accounts_user['salesforce_contact_id'])
-        SyncSalesforceOpportunitiesJob.new.perform(current_accounts_user['salesforce_contact_id'])
+        SyncSalesforceOpportunitiesJob.new.perform(current_accounts_user['uuid'])
       end
 
       contact

@@ -3,9 +3,9 @@ class SyncSalesforceOpportunitiesJob
   sidekiq_options lock: :while_executing,
                   on_conflict: :reject
 
-  def perform(contact_id=nil)
-    if contact_id
-      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(contact_id:contact_id)
+  def perform(uuid=nil)
+    if uuid
+      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(accounts_uuid:uuid)
     else
       sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(record_type_name:'Book Opp')
     end
@@ -31,8 +31,11 @@ class SyncSalesforceOpportunitiesJob
       opportunity_to_update.name = sf_opportunity.name
       opportunity_to_update.record_type_name = sf_opportunity.record_type_name
       opportunity_to_update.record_type_id = sf_opportunity.record_type_id
+      opportunity_to_update.accounts_uuid = sf_opportunity.accounts_uuid
 
       opportunity_to_update.save if opportunity_to_update.changed?
+
+      return opportunity_to_update if sf_opportunities.count == 1
     end
     JobsHelper.delete_objects_not_in_salesforce('Opportunity', sf_opportunities)
   end

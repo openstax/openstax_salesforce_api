@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_11_16_220948) do
+ActiveRecord::Schema.define(version: 2021_12_03_212103) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -119,6 +119,8 @@ ActiveRecord::Schema.define(version: 2021_11_16_220948) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "grant_tutor_access"
+    t.string "accounts_uuid"
+    t.string "lead_source"
   end
 
   create_table "leads", force: :cascade do |t|
@@ -258,6 +260,7 @@ ActiveRecord::Schema.define(version: 2021_11_16_220948) do
     t.string "name"
     t.string "record_type_name"
     t.string "record_type_id"
+    t.string "accounts_uuid"
   end
 
   create_table "schools", force: :cascade do |t|

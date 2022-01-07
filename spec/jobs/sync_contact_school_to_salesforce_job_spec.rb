@@ -14,7 +14,7 @@ RSpec.describe SyncContactSchoolsToSalesforceJob, type: :job, vcr: VCR_OPTS do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette
     end
-    @new_relation = FactoryBot.create(:api_account_contact_relation, contact_id: '0037h00000YQoehAAD', school_id: '0017h00000doVQBAA2' )
+    @new_relation = FactoryBot.create(:api_account_contact_relation, contact_id: '0034C00000X57psQAB', school_id: '0014C00000dkLlEQAU' )
   end
 
 
@@ -28,7 +28,7 @@ RSpec.describe SyncContactSchoolsToSalesforceJob, type: :job, vcr: VCR_OPTS do
 
   it 'school is removed by job' do
     SyncContactSchoolsToSalesforceJob.new.perform(@new_relation, 'remove')
-    expect(AccountContactRelation.count).to be 0
+    expect(AccountContactRelation.find_by(contact_id: @new_relation.contact_id)).to be nil
   end
 
   it 'school is updated by job' do
