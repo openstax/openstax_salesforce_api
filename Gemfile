@@ -5,6 +5,7 @@ ruby '3.0.1'
 
 gem 'aws-sdk-ssm'
 gem 'bootsnap', '>= 1.4.2', require: false
+gem 'coffee-rails'
 gem 'doorkeeper', '~> 5.4'
 gem 'dotenv-rails'
 gem 'openstax_accounts', '~> 9.6.1'
@@ -21,6 +22,7 @@ gem 'rspec-rails'
 gem 'rswag'
 gem 'rexml'
 gem 'ruby-pardot'
+gem 'sass-rails'
 gem 'scout_apm'
 gem 'sentry-rails'
 gem 'sentry-ruby'
@@ -32,6 +34,7 @@ gem 'sidekiq-failures'
 gem 'sidekiq-status'
 gem 'sidekiq-unique-jobs'
 gem 'versionist'
+gem 'uglifier'
 gem 'will_paginate', '~> 3.3.0'
 
 group :development, :test do
