@@ -219,6 +219,7 @@ GEM
       hashie
       transaction_isolation
       transaction_retry
+    libv8-node (16.10.0.0)
     listen (3.4.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -234,6 +235,8 @@ GEM
     mime-types-data (3.2021.0225)
     mini_mime (1.0.3)
     mini_portile2 (2.6.1)
+    mini_racer (0.6.1)
+      libv8-node (~> 16.10.0.0)
     minitest (5.14.4)
     msgpack (1.4.2)
     multi_json (1.15.0)
@@ -502,6 +505,7 @@ DEPENDENCIES
   factory_bot_rails
   faker
   listen (~> 3.2)
+  mini_racer
   openstax_accounts (~> 9.6.1)
   openstax_api (~> 9.4.0)
   openstax_auth!
