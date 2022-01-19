@@ -15,7 +15,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  database: '<%= ENV['OXA_TEST_DB'] || 'sfapi_test' %><%=
+  database: '<%= ENV['OX_SF_TEST_DB'] || 'sfapi_test' %><%=
                  "_#{ENV['TEST_ENV_NUMBER']}" if !ENV['TEST_ENV_NUMBER'].blank? %>'
   reaping_frequency: 0 # 0 == disabled - incompatible with our DatabaseCleaner config
 

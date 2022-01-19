@@ -27,7 +27,7 @@ module OpenstaxSalesforceApi
     config.active_job.queue_adapter = :sidekiq
 
     redis_secrets = secrets[:redis]
-    
+
     # Generate the Redis URL from the its components if unset
     redis_secrets[:url] ||= "redis#{'s' unless redis_secrets[:password].blank?}://#{
       ":#{redis_secrets[:password]}@" unless redis_secrets[:password].blank? }#{
