@@ -26,6 +26,18 @@ module OpenstaxSalesforceApi
 
     config.active_job.queue_adapter = :sidekiq
 
+    redis_secrets = secrets[:redis]
+
+    # Generate the Redis URL from the its components if unset
+    redis_secrets[:url] ||= "redis#{'s' unless redis_secrets[:password].blank?}://#{
+      ":#{redis_secrets[:password]}@" unless redis_secrets[:password].blank? }#{
+      redis_secrets[:host]}#{":#{redis_secrets[:port]}" unless redis_secrets[:port].blank?}/#{
+      "/#{redis_secrets[:db]}" unless redis_secrets[:db].blank?}"
+
+    def is_real_production?
+      %w[production prod].include? secrets.environment_name
+    end
+
     Rails.application.config.hosts = [
       /(.*\.|)localhost\:?.*/,
       /(.*\.|)127.0.0.1\:?.*/,
