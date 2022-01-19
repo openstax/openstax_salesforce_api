@@ -1,14 +1,14 @@
 default: &default
   adapter: postgresql
-  host: <%= ENV['OXA_DB_HOST'] || 'localhost' %>
-  port: <%= ENV['OXA_DB_PORT'] || 5432 %>
-  username: <%= ENV['OXA_DB_USER'] || 'sfapi' %>
-  password: <%= ENV['OXA_DB_PASS'] || 'sfapi' %>
+  host: <%= ENV['OX_SF_DB_HOST'] || 'localhost' %>
+  port: <%= ENV['OX_SF_DB_PORT'] || 5432 %>
+  username: <%= ENV['OX_SF_DB_USER'] || 'sfapi' %>
+  password: <%= ENV['OX_SF_DB_PASS'] || 'sfapi' %>
   pool: <%= ENV.fetch('RAILS_MAX_THREADS', 5).to_i %>
 
 development:
   <<: *default
-  database: <%= ENV['OXA_DEV_DB'] || 'sfapi_dev' %>
+  database: <%= ENV['OX_SF_DEV_DB'] || 'sfapi_dev' %>
 
 # Warning: The database defined as "test" will be erased and
 # re-generated from your development database when you run "rake".
