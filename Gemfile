@@ -8,7 +8,7 @@ gem 'bootsnap', '>= 1.4.2', require: false
 gem 'coffee-rails'
 gem 'doorkeeper', '~> 5.4'
 gem 'dotenv-rails'
-gem 'mini_racer'
+gem 'mini_racer', '< 0.4.0'
 gem 'openstax_accounts', '~> 9.8.0'
 gem 'openstax_api', '~> 9.4.0'
 gem 'openstax_auth', github: 'openstax/auth-rails', ref: 'ed2d7da86ca226b93376955b9474c4cf115c611f'
