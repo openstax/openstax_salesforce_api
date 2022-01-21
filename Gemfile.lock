@@ -312,7 +312,7 @@ GEM
       ast (~> 2.4.1)
     pg (1.2.3)
     public_suffix (4.0.6)
-    puma (4.3.10)
+    puma (5.5.2)
       nio4r (~> 2.0)
     raabro (1.4.0)
     racc (1.6.0)
@@ -426,6 +426,7 @@ GEM
       tilt
     scout_apm (5.1.1)
       parser
+    sd_notify (0.1.1)
     sentry-rails (4.9.2)
       railties (>= 5.0)
       sentry-ruby-core (~> 4.9.2)
@@ -529,7 +530,7 @@ DEPENDENCIES
   openstax_healthcheck (~> 1.0.0)
   openstax_salesforce!
   pg (>= 0.18, < 2.0)
-  puma (~> 4.3)
+  puma
   rack-cors
   rails (~> 6.1)
   restforce (~> 5.0.5)
@@ -541,6 +542,7 @@ DEPENDENCIES
   ruby-pardot
   sass-rails
   scout_apm
+  sd_notify
   sentry-rails
   sentry-ruby
   sentry-sidekiq
