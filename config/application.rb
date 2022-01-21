@@ -37,12 +37,6 @@ module OpenstaxSalesforceApi
     def is_real_production?
       %w[production prod].include? secrets.environment_name
     end
-
-    Rails.application.config.hosts = [
-      /(.*\.|)localhost\:?.*/,
-      /(.*\.|)127.0.0.1\:?.*/,
-      /(.*\.|)openstax\.org/,
-      "www.example.com" #for testing
-    ]
+    
   end
 end
