@@ -65,4 +65,6 @@ Rails.application.routes.draw do
   delete 'logout', to: 'login#destroy'
 
   get 'error', to: 'errors#unauthorized'
+
+  mount OpenStax::Utilities::Engine => :status
 end
