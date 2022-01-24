@@ -92,6 +92,9 @@ gem 'versionist'
 # Pagination
 gem 'will_paginate', '~> 3.3.0'
 
+# Use RSpec for tests
+gem 'rspec-rails'
+
 group :development, :test do
   # Run specs in parallel
   gem 'parallel_tests'
@@ -99,16 +102,8 @@ group :development, :test do
   # Show failing parallel specs instantly
   gem 'rspec-instafail'
 
-  # See config/initializers/04-debugger.rb
-  #
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', require: false
-  # Debug in VS Code
-  gem 'ruby-debug-ide', require: false
-  gem 'debase', require: false
-
-  # Use RSpec for tests
-  gem 'rspec-rails'
 
   # Fixture replacement
   gem 'factory_bot_rails'
