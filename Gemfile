@@ -3,7 +3,6 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.0.2'
 
-gem 'aws-sdk-ssm'
 gem 'bootsnap', '>= 1.4.2', require: false
 gem 'coffee-rails'
 gem 'doorkeeper', '~> 5.4'
@@ -21,7 +20,6 @@ gem 'puma'
 gem 'rack-cors'
 gem 'rails', '~> 6.1'
 gem 'restforce', '~> 5.0.5'
-gem 'rspec-rails'
 gem 'rswag'
 gem 'rexml'
 gem 'ruby-pardot'
@@ -44,22 +42,48 @@ gem 'will_paginate', '~> 3.3.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rswag-specs'
-  gem 'vcr'
+
+  # Use RSpec for tests
+  gem 'rspec-rails'
+
+  # Fixture replacement
+  gem 'factory_bot_rails'
+
+  # Stubs HTTP requests
   gem 'webmock'
+
+  # Records HTTP requests
+  gem 'vcr'
+
+  # Ability to create API docs from specs
+  gem 'rswag-specs'
+
+  # clean the database between test runs
+  gem 'database_cleaner-active_record'
+
+  # generate fake data for tests
+  gem 'faker'
+
+  #
+  gem 'listen', '~> 3.2'
+
+  #
+  gem 'spring'
+  gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
 group :test do
+  # codecov integration
   gem 'codecov', require: false
+
+  # be able to test sidekiq jobs
   gem 'rspec-sidekiq'
-  gem 'simplecov', require: false
 end
 
-group :development, :test do
-  gem 'database_cleaner-active_record'
-  gem 'factory_bot_rails'
-  gem 'faker'
-  gem 'listen', '~> 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+group :production do
+  # Used to fetch secrets from the AWS parameter store and secrets manager
+  gem 'aws-sdk-ssm', require: false
+
+  # Lograge for consistent logging
+  gem 'lograge'
 end
