@@ -38,7 +38,5 @@ module OpenstaxSalesforceApi
       %w[production prod].include? secrets.environment_name
     end
 
-    Rails.application.config.hosts = Rails.application.secrets[:trusted_hosts]
-
   end
 end
