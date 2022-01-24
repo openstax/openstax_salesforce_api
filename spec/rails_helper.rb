@@ -1,5 +1,4 @@
 require 'simplecov'
-require 'parallel_tests'
 require 'codecov'
 
 # Deactivate automatic result merging, because we use custom result merging code
