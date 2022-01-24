@@ -37,6 +37,8 @@ module OpenstaxSalesforceApi
     def is_real_production?
       %w[production prod].include? secrets.environment_name
     end
-    
+
+    Rails.application.config.hosts = Rails.application.secrets[:trusted_hosts]
+
   end
 end
