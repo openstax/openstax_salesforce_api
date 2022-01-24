@@ -40,6 +40,12 @@ gem 'uglifier'
 gem 'will_paginate', '~> 3.3.0'
 
 group :development, :test do
+  # Run specs in parallel
+  gem 'parallel_tests'
+
+  # Show failing parallel specs instantly
+  gem 'rspec-instafail'
+
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
 
