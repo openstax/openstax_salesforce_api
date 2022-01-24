@@ -1,39 +1,16 @@
-require 'simplecov'
-require 'parallel_tests'
-require 'codecov'
-
-# Deactivate automatic result merging, because we use custom result merging code
-SimpleCov.use_merging false
-
-# Custom result merging code to avoid the many partial merges that SimpleCov usually creates
-# and send to codecov only once
-SimpleCov.at_exit do
-  # Store the result for later merging
-  SimpleCov::ResultMerger.store_result(SimpleCov.result)
-
-  # All processes except one will exit here
-  next unless ParallelTests.last_process?
-
-  # Wait for everyone else to finish
-  ParallelTests.wait_for_other_processes_to_finish
-
-  # Send merged result to codecov only if on CI (will generate HTML report by default locally)
-  SimpleCov.formatter = SimpleCov::Formatter::Codecov if ENV['CI'] == 'true'
-
-  # Merge coverage reports (and maybe send to codecov)
-  SimpleCov::ResultMerger.merged_result.format!
-end
-
-# Start calculating code coverage
-unless ENV['NO_COVERAGE']
-  SimpleCov.start('rails') { merge_timeout 3600 }
-end
-
 ENV['RAILS_ENV'] ||= 'test'
 
-require 'spec_helper'
+require 'simplecov_helper'
 require File.expand_path('../config/environment', __dir__)
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+require 'openstax/salesforce/spec_helpers'
 require 'rspec/rails'
+require 'parallel_tests'
+require 'spec_helper'
+
+# https://github.com/colszowka/simplecov/issues/369#issuecomment-313493152
+# Load rake tasks so they can be tested.
+Rails.application.load_tasks unless defined?(Rake::Task) && Rake::Task.task_defined?('environment')
 
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?

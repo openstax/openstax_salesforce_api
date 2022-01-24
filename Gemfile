@@ -93,24 +93,63 @@ gem 'versionist'
 gem 'will_paginate', '~> 3.3.0'
 
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: %i[mri mingw x64_mingw]
-  gem 'rswag-specs'
-  gem 'vcr'
+  # Run specs in parallel
+  gem 'parallel_tests'
+
+  # Show failing parallel specs instantly
+  gem 'rspec-instafail'
+
+  # See config/initializers/04-debugger.rb
+  #
+  # Call 'debugger' anywhere in the code to stop execution and get a debugger console
+  gem 'byebug', require: false
+  # Debug in VS Code
+  gem 'ruby-debug-ide', require: false
+  gem 'debase', require: false
+
+  # Use RSpec for tests
+  gem 'rspec-rails'
+
+  # Fixture replacement
+  gem 'factory_bot_rails'
+
+  # fake data generation
+  gem 'faker'
+
+  # Codecov integration
+  gem 'codecov', require: false
+
+  # Speedup and run specs when files change
+  gem 'spring'
+  gem 'spring-commands-rspec'
+
+  # Stubs HTTP requests
   gem 'webmock'
+
+  # Records HTTP requests
+  gem 'vcr'
+
+  # rswag docs from tests
+  gem 'rswag-specs'
+
+  # Add ability to test sidekiq
+  gem 'rspec-sidekiq'
+end
+
+group :development do
+  # See updates in development to reload rails
+  gem 'listen'
 end
 
 group :test do
-  gem 'codecov', require: false
-  gem 'rspec-sidekiq'
-  gem 'simplecov', require: false
+  # Test database cleanup gem with multiple strategies
+  gem 'database_cleaner'
 end
 
-group :development, :test do
-  gem 'database_cleaner-active_record'
-  gem 'factory_bot_rails'
-  gem 'faker'
-  gem 'listen', '~> 3.2'
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
+group :production do
+  # Used to fetch secrets from the AWS parameter store and secrets manager
+  gem 'aws-sdk-ssm', require: false
+
+  # Consistent logging
+  gem 'lograge'
 end
