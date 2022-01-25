@@ -95,5 +95,5 @@ Rails.application.configure do
   config.lograge.enabled = true
   config.lograge.ignore_actions = ['static_pages#status']
 
-  Rails.application.config.hosts += Rails.application.secrets[:trusted_hosts]
+  Rails.application.config.hosts += Rails.application.secrets[:trusted_hosts] || []
 end
