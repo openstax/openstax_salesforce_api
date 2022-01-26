@@ -1,6 +1,6 @@
 [![codecov](https://codecov.io/gh/openstax/sfapi/branch/main/graph/badge.svg?token=3EZY8CK0ZE)](https://codecov.io/gh/openstax/sfapi)
 
-# SFAPI \
+# SFAPI
 The OpenStax Salesforce API - for easier access to Salesforce Org data.
 
 ### Getting Started
