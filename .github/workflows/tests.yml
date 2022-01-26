@@ -39,5 +39,3 @@ jobs:
         run: |
           bundle exec rspec --format doc
       - uses: codecov/codecov-action@v2
-        with:
-          token: ${{ secrets.CODECOV_TOKEN }}
