@@ -4,7 +4,6 @@ env:
   OX_SF_DB_PASS: sfapi
   OX_SF_TEST_DB: ci_test
   RAILS_ENV: test
-  CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
 
 on:
   pull_request:
@@ -39,3 +38,6 @@ jobs:
       - name: Test
         run: |
           bundle exec rspec --format doc
+      - uses: codecov/codecov-action@v2
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
