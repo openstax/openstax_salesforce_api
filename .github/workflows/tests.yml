@@ -5,6 +5,9 @@ env:
   OX_SF_TEST_DB: ci_test
   RAILS_ENV: test
   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
+  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
+  SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
+  SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 
 on:
   pull_request:
