@@ -1,8 +1,13 @@
 Sentry.init do |config|
-  config.dsn = Rails.application.secrets.sentry[:dsn]
-  config.release = Rails.application.secrets[:release_version]
-  config.environment = Rails.application.secrets[:environment_name]
+  secrets = Rails.application.secrets
+
+  config.dsn = secrets.sentry[:dsn]
+  config.release = secrets.release_version
+  config.environment = secrets.environment_name
+
   config.breadcrumbs_logger = %i[sentry_logger active_support_logger http_logger]
-  config.traces_sample_rate = 0.5 # might want to lower this once we get things up and running
+  config.traces_sample_rate = 0.5
+
+  # Send POST data and cookies to Sentry
   config.send_default_pii = true
-end
+end if Rails.env.production?
