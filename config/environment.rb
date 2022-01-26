@@ -6,5 +6,6 @@ require 'errors'
 require 'sidekiq/web'
 require 'sidekiq/cron/web'
 
+
 # Initialize the Rails application.
 Rails.application.initialize!
