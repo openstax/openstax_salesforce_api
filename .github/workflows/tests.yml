@@ -10,7 +10,10 @@ on:
   pull_request:
   push:
     branches:
-      - master
+      - main
+  schedule:
+    - cron: '0 0 * * 0' # weekly
+
 jobs:
   tests:
     timeout-minutes: 30
