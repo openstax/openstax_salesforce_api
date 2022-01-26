@@ -67,4 +67,5 @@ Rails.application.routes.draw do
   get 'error', to: 'errors#unauthorized'
 
   mount OpenStax::Utilities::Engine => :status
+  mount Blazer::Engine, at: "blazer"
 end

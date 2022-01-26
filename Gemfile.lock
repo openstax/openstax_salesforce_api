@@ -105,6 +105,11 @@ GEM
     aws-sigv4 (1.4.0)
       aws-eventstream (~> 1, >= 1.0.2)
     bindata (2.4.10)
+    blazer (2.5.0)
+      activerecord (>= 5)
+      chartkick (>= 3.2)
+      railties (>= 5)
+      safely_block (>= 0.1.1)
     bootsnap (1.10.2)
       msgpack (~> 1.2)
     brpoplpush-redis_script (0.1.2)
@@ -112,6 +117,7 @@ GEM
       redis (>= 1.0, <= 5.0)
     builder (3.2.4)
     byebug (11.1.3)
+    chartkick (4.1.3)
     chronic_duration (0.10.6)
       numerizer (~> 0.1.1)
     codecov (0.6.0)
@@ -144,6 +150,7 @@ GEM
     dotenv-rails (2.7.6)
       dotenv (= 2.7.6)
       railties (>= 3.2)
+    errbase (0.2.1)
     erubi (1.10.0)
     et-orbi (1.2.6)
       tzinfo
@@ -429,6 +436,8 @@ GEM
       httparty (= 0.18.1)
     ruby2_keywords (0.0.5)
     safe_yaml (1.0.5)
+    safely_block (0.3.0)
+      errbase (>= 0.1.1)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
     sassc (2.4.0)
@@ -525,6 +534,7 @@ PLATFORMS
 
 DEPENDENCIES
   aws-sdk-ssm
+  blazer
   bootsnap
   byebug
   codecov

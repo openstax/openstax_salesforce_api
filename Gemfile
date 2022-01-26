@@ -95,6 +95,9 @@ gem 'will_paginate', '~> 3.3.0'
 # Use RSpec for tests
 gem 'rspec-rails'
 
+# business intel package - database insight
+gem "blazer"
+
 group :development, :test do
   # Run specs in parallel
   gem 'parallel_tests'
