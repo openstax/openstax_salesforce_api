@@ -1,19 +1,24 @@
-[![codecov](https://codecov.io/gh/openstax/openstax-salesforce-api/branch/master/graph/badge.svg)](https://codecov.io/gh/openstax/openstax-salesforce-api)
+[![codecov](https://codecov.io/gh/openstax/sfapi/branch/main/graph/badge.svg?token=3EZY8CK0ZE)](https://codecov.io/gh/openstax/sfapi)
 
-# OpenStax Salesforce API
+# SFAPI \
+The OpenStax Salesforce API - for easier access to Salesforce Org data.
 
 ### Getting Started
-Make sure you have postgresql and ruby (>2.5) installed on your system.
- 
+_Use the following checklist to get up and running with SFAPI for local development quickly!_
+
+- [ ] Install PostgreSQL and Ruby (>3.0). It's recommended to use rbenv to manage your Ruby versions.
+- [ ] Run the following where you'd like to install SFPI
+
 ```
-$> git checkout https://github.com/openstax/openstax-salesforce-api.git
+$> git checkout https://github.com/openstax/sfapi.git
 $> gem install bundler
 $> bundle install
-$> createdb openstax_salesforce_api_development
-$> createdb openstax_salesforce_api_test
+$> createdb sfapi_dev
+$> createdb sfapi_test
 $> bundle exec rake db:migrate
-$> bundle exec rake db:seed
 ```
+
+- [ ] Copy the .env.example file to .env and fill in the secrets needed.
 
 ### Running tests
 You can run the tests with `$> bundle exec rspec`
