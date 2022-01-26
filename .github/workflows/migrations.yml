@@ -64,7 +64,7 @@ jobs:
           bundle config path vendor/bundle
           bundle install --jobs 4 --retry 3
           bundle exec rake db:create db:schema:load db:seed --trace
-          bundle exec rails runner '3.times { FactoryBot.create :user }'
+          bundle exec rails runner '3.times { FactoryBot.create :api_school }'
           git checkout --force -
 
       # Retrieve gem cache for PR merge commit
