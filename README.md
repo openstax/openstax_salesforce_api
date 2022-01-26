@@ -21,8 +21,6 @@ You can run the tests with `$> bundle exec rspec`
 ### Project Documentation
 Documentation is in the [repo wiki](https://github.com/openstax/openstax-salesforce-api/wiki)
 
-### Note about updating secrets.example.yml file
-If a change is made to the secrets.example.yml file, a change will need to be made in the [Salesforce API Deployment](https://github.com/openstax/openstax-salesforce-api-deployment).
-
-
-
+## Deployment
+To deploy SFAPI, you will need to use the [BIT Deployment Repo](https://github.com/openstax/bit-deployment).
+You can find detailed deployment instructions in [this wiki entry](https://github.com/openstax/bit-deployment/wiki/Deploying-BIT-Applications)
