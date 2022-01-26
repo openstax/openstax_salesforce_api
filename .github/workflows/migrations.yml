@@ -1,4 +1,9 @@
 name: Migrations
+env:
+  OX_SF_DB_USER: sfapi
+  OX_SF_DB_PASS: sfapi
+  OX_SF_TEST_DB: ci_test
+  RAILS_ENV: test
 
 on:
   pull_request:
@@ -19,8 +24,9 @@ jobs:
           - 5432:5432
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
         env:
-          POSTGRES_USER: postgres
-          POSTGRES_PASSWORD: postgres
+          POSTGRES_USER: ${{ env.OX_SF_DB_USER }}
+          POSTGRES_DB: ${{ env.OX_SF_TEST_DB }}
+          POSTGRES_PASSWORD: ${{ env.OX_SF_DB_PASS }}
       redis:
         image: redis
         ports:
@@ -56,8 +62,8 @@ jobs:
       # Install gems, create data to be migrated and revert to PR merge commit
       - name: Create data to be migrated
         env:
-          OX_SF_DB_USER: postgres
-          OX_SF_DB_PASS: postgres
+          OX_SF_DB_USER: ${{ env.OX_SF_DB_USER }}
+          OX_SF_DB_PASS: ${{ env.OX_SF_DB_PASS }}
           RAILS_ENV: test
         run: |
           gem install bundler
@@ -78,8 +84,8 @@ jobs:
       # Migrate the data
       - name: Migrate
         env:
-          OX_SF_DB_USER: postgres
-          OX_SF_DB_PASS: postgres
+          OX_SF_DB_USER: ${{ env.OX_SF_DB_USER }}
+          OX_SF_DB_PASS: ${{ env.OX_SF_DB_PASS }}
         run: |
           bundle install --jobs 4 --retry 3
           bundle exec rake db:migrate
