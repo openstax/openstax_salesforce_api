@@ -30,6 +30,8 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
+      - name: Sentry Release
+        uses: getsentry/action-release@v1.1.6
       - name: Setup
         run: |
           bundle exec rake --trace db:drop db:create db:migrate db:schema:load db:seed
