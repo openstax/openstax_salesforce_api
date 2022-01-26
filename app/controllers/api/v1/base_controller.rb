@@ -32,7 +32,6 @@ class Api::V1::BaseController < ApplicationController
   end
 
   def current_contact
-    #puts '***base controller current_contact called'
     @current_contact ||= begin
       raise(CannotFindUserContact) if current_accounts_user.blank?
       contact = Contact.find_by(accounts_uuid: current_accounts_user['uuid'])
@@ -41,7 +40,7 @@ class Api::V1::BaseController < ApplicationController
         SyncSalesforceContactSchoolRelationsJob.new.perform(current_accounts_user['salesforce_contact_id'])
         SyncSalesforceOpportunitiesJob.new.perform(current_accounts_user['uuid'])
       end
-
+      Sentry.set_user(current_accounts_user)
       contact
     end
   end
