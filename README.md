@@ -1,5 +1,7 @@
 [![codecov](https://codecov.io/gh/openstax/sfapi/branch/main/graph/badge.svg?token=3EZY8CK0ZE)](https://codecov.io/gh/openstax/sfapi)
 
+![](https://codebuild.us-east-1.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoid1dob2MvN0pPcFJkYzQ2VThrbnZQWDhvQXpvRW1SYW1oeHJKZGIzWDQ3QmU1MHM5Mjd6OUQ2UXZvWC9Tc1JRblNjMmZwNzZSNW5VMld2bnNpeFlpQ0lJPSIsIml2UGFyYW1ldGVyU3BlYyI6InZ4MW5tTmt1WWNIK3o2eE4iLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&branch=main)
+
 # SFAPI
 The OpenStax Salesforce API - for easier access to Salesforce Org data.
 
