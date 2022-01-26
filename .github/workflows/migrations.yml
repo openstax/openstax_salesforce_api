@@ -43,6 +43,7 @@ jobs:
       # Install ruby
       - uses: actions/setup-ruby@v1
         with:
+          ruby-version: 3.0.2
           bundler-cache: true
 
       # Retrieve gem cache for merge commit parent
