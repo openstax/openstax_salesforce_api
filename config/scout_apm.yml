@@ -5,7 +5,7 @@ development:
 test:
   monitor: false
 
-common: &defaults
+production:
   name: Salesforce API (<%= ENV['ENV_NAME'] %>)
 
   # key: Your Organization key for Scout APM. Found on the settings screen.
