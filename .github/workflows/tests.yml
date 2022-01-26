@@ -5,9 +5,6 @@ env:
   OX_SF_TEST_DB: ci_test
   RAILS_ENV: test
   CODECOV_TOKEN: ${{ secrets.CODECOV_TOKEN }}
-  SENTRY_AUTH_TOKEN: ${{ secrets.SENTRY_AUTH_TOKEN }}
-  SENTRY_ORG: ${{ secrets.SENTRY_ORG }}
-  SENTRY_PROJECT: ${{ secrets.SENTRY_PROJECT }}
 
 on:
   pull_request:
@@ -33,8 +30,6 @@ jobs:
       - uses: ruby/setup-ruby@v1
         with:
           bundler-cache: true
-      - name: Sentry Release
-        uses: getsentry/action-release@v1.1.6
       - name: Setup
         run: |
           bundle exec rake --trace db:drop db:create db:migrate db:schema:load db:seed
