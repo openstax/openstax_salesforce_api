@@ -144,9 +144,20 @@ group :test do
   gem 'database_cleaner'
 end
 
+group :production, :test do
+  # AWS SES integration
+  gem 'aws-sdk-rails'
+end
+
 group :production do
-  # Used to fetch secrets from the AWS parameter store and secrets manager
-  gem 'aws-sdk-ssm', require: false
+  # Used to backup the database before migrations
+  gem 'aws-sdk-rds', require: false
+
+  # Used to record a lifecycle action heartbeat after creating the RDS snapshot before migrating
+  gem 'aws-sdk-autoscaling', require: false
+
+  # Used to send custom delayed_job metrics to Cloudwatch
+  gem 'aws-sdk-cloudwatch', require: false
 
   # Consistent logging
   gem 'lograge'
