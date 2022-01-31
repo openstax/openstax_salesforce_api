@@ -33,7 +33,7 @@ module OpenstaxSalesforceApi
       ":#{redis_secrets[:password]}@" unless redis_secrets[:password].blank? }#{
       redis_secrets[:host]}#{":#{redis_secrets[:port]}" unless redis_secrets[:port].blank?}/#{
       "/#{redis_secrets[:db]}" unless redis_secrets[:db].blank?}"
-    
+
     config.cache_store = :redis_store, {
       url: redis_secrets[:url],
       namespace: redis_secrets[:namespaces][:cache],
