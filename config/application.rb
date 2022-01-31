@@ -39,6 +39,7 @@ module OpenstaxSalesforceApi
       error_handler: -> (exception:) {
         # Report errors to Sentry as warnings
         Sentry.capture_exception(exception)
+      }
     }
 
     def is_real_production?
