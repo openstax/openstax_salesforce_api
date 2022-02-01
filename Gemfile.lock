@@ -586,6 +586,7 @@ DEPENDENCIES
   puma_worker_killer
   rack-cors
   rails (~> 6.1)
+  redis
   restforce (~> 5.0.5)
   rexml
   rspec-instafail

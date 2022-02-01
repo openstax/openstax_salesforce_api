@@ -34,6 +34,14 @@ module OpenstaxSalesforceApi
       redis_secrets[:host]}#{":#{redis_secrets[:port]}" unless redis_secrets[:port].blank?}/#{
       "/#{redis_secrets[:db]}" unless redis_secrets[:db].blank?}"
 
+    config.cache_store = :redis_cache_store, {
+      url: redis_secrets[:url],
+      error_handler: -> (exception:) {
+        # Report errors to Sentry as warnings
+        Sentry.capture_exception(exception)
+      }
+    }
+
     def is_real_production?
       %w[production prod].include? secrets.environment_name
     end

@@ -95,6 +95,9 @@ gem 'will_paginate', '~> 3.3.0'
 # Use RSpec for tests
 gem 'rspec-rails'
 
+# Key-value store for caching
+gem 'redis'
+
 # business intel package - database insight
 gem "blazer"
 
