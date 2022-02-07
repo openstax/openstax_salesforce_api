@@ -8,6 +8,10 @@ class Api::V1::BaseController < ApplicationController
     render json: { error: 'Cannot find Salesforce User' }, status: :not_found
   end
 
+  rescue_from_unless_local NoSSOCookieSet, send_to_sentry: false do |ex|
+    render json: { error: 'No SSO Cookie Set' }, status: :not_found
+  end
+
   rescue_from_unless_local CannotFindProspect, send_to_sentry: false do |ex|
     render json: { error: 'Cannot find Pardot prospect with that Salesforce ID' }, status: :not_found
   end
@@ -29,6 +33,10 @@ class Api::V1::BaseController < ApplicationController
 
   def current_accounts_user
     @current_accounts_user ||= JSON.parse(OpenStax::Accounts::Api.search_accounts("uuid:#{sso_cookie_field('uuid')}", options = {}).body)['items'][0]
+  end
+
+  def current_accounts_user!
+    current_accounts_user || raise(NoSSOCookieSet)
   end
 
   def current_contact
