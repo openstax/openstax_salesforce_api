@@ -58,7 +58,6 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
                                           os_accounts_id
                                           accounts_uuid
                                           name
-                                          record_type_name
                                         ])
   end
 end
