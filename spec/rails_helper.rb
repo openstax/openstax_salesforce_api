@@ -8,6 +8,8 @@ require 'rspec/rails'
 require 'parallel_tests'
 require 'spec_helper'
 
+include OpenStax::Salesforce::SpecHelpers
+
 # https://github.com/colszowka/simplecov/issues/369#issuecomment-313493152
 # Load rake tasks so they can be tested.
 Rails.application.load_tasks unless defined?(Rake::Task) && Rake::Task.task_defined?('environment')
