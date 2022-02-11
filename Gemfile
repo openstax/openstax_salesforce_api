@@ -92,9 +92,6 @@ gem 'versionist'
 # Pagination
 gem 'will_paginate', '~> 3.3.0'
 
-# Use RSpec for tests
-gem 'rspec-rails'
-
 # Key-value store for caching
 gem 'redis'
 
@@ -104,9 +101,6 @@ gem "blazer"
 group :development, :test do
   # Run specs in parallel
   gem 'parallel_tests'
-
-  # Show failing parallel specs instantly
-  gem 'rspec-instafail'
 
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', require: false
@@ -135,6 +129,11 @@ group :development, :test do
 
   # Add ability to test sidekiq
   gem 'rspec-sidekiq'
+
+  # # We need the newest version of rspec to work with rails 6
+  # %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
+  #   gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
+  # end
 end
 
 group :development do
@@ -143,8 +142,17 @@ group :development do
 end
 
 group :test do
-  # Test database cleanup gem with multiple strategies
+  # Use RSpec for tests
+  gem 'rspec-rails'
+
+  # Show failing parallel specs instantly
+  gem 'rspec-instafail'
+  
   gem 'database_cleaner'
+
+  # Test database cleanup gem with multiple strategies
+  # gem 'database_cleaner-active_record'
+  # gem 'database_cleaner-redis'
 end
 
 group :production, :test do
