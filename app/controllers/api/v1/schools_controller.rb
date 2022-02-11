@@ -10,6 +10,6 @@ class Api::V1::SchoolsController < Api::V1::BaseController
   # GET /schools/search?name='school'&limit=150
   def search
     @schools = School.search(params[:name], params[:limit])
-    render json: @schools
+    render json: @schools.order(name: :asc)
   end
 end
