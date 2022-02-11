@@ -21,7 +21,6 @@ RSpec.describe SyncSalesforceJob, type: :job, vcr: VCR_OPTS do
     SyncSalesforceJob.new.perform()
     expect(Book.count).to be > 1
     expect(Lead.count).to be > 1
-    expect(School.count).to be > 1
   end
 
   it 'handles wrong parameter by doing nothing' do
