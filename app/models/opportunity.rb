@@ -1,8 +1,19 @@
 class Opportunity <ApplicationRecord
 
-  # expects an object of type OpenStax::Salesforce::Remote::Opportunity
+  VALID_OPPORTUNITY_TYPES = [
+    BOOK = 'Book Opp',
+    TUTOR = 'Tutor Opp',
+    DEPARTMENT = 'Book Dept'
+  ]
+
+  def self.search(uuid)
+    where(accounts_uuid: uuid)
+  end
+
+  # expects an object of type
+  # OpenStax::Salesforce::Remote::Opportunity
   def self.cache_opportunity(sf_opportunity)
-    opportunity = Opportunity.find_or_initialize_by(salesforce_id: sf_opportunity.id)
+    opportunity = self.find_or_initialize_by(salesforce_id: sf_opportunity.id)
     opportunity.salesforce_id = sf_opportunity.id
     opportunity.term_year = sf_opportunity.term_year
     opportunity.book_name = sf_opportunity.book_name
@@ -25,9 +36,10 @@ class Opportunity <ApplicationRecord
     opportunity.accounts_uuid = sf_opportunity.accounts_uuid
 
     opportunity.save if opportunity.changed?
+    opportunity
   end
 
-  def self.search(uuid)
-    where(accounts_uuid: uuid)
+  def sf_opportunity_by_id(salesforce_id)
+    OpenStax::Salesforce::Remote::Opportunity.find(salesforce_id)
   end
 end

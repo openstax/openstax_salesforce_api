@@ -11,7 +11,7 @@ class SyncSalesforceSchoolsJob < ApplicationJob
 
     sf_schools.each do |sf_school|
       school = School.cache_school(sf_school)
-      return school if school.count == 1
+      return school if sf_schools.count == 1
     end
     JobsHelper.delete_objects_not_in_salesforce('School', sf_schools)
   end

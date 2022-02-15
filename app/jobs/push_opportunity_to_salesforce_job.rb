@@ -6,7 +6,7 @@ class PushOpportunityToSalesforceJob < ApplicationJob
 
     begin
       if !opp.salesforce_id.blank?
-        opportunity = OpenStax::Salesforce::Remote::Opportunity.find(opp.salesforce_id)
+        opportunity = Opportunity.sf_opportunity_by_id(opp.salesforce_id)
         opportunity.update(
           contact_id: opp.contact_id,
           close_date: Date.today.strftime('%Y-%m-%d'),

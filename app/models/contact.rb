@@ -6,6 +6,7 @@ class Contact < ApplicationRecord
   has_many :account_contact_relations
 
   # expects an object of type OpenStax::Salesforce::Remote::Contact
+  # OpenStax::Salesforce::Remote::Contact
   def self.cache_contact(sf_contact)
     contact = Contact.find_or_initialize_by(salesforce_id: sf_contact.id)
     contact.name = sf_contact.name
@@ -29,12 +30,13 @@ class Contact < ApplicationRecord
     if contact.changed?
       contact.save
       # make sure they have a relation setup for the school listed on their contact
-      add_school_to_user(contact.school_id)
+      add_school_to_user(contact.salesforce_id, contact.school_id)
     end
+    @contact = contact
   end
 
-  def add_school_to_user(school_id)
-    AccountContactRelation.create_or_find_by!(contact_id: salesforce_id, school_id: school_id)
+  def self.add_school_to_user(contact_id, school_id)
+    AccountContactRelation.create_or_find_by!(contact_id: contact_id, school_id: school_id)
   end
 
   def self.search(email)

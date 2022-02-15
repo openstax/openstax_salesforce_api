@@ -7,7 +7,8 @@ class School < ApplicationRecord
     where('lower(name) LIKE ?', "%#{name}%".downcase).limit(limit)
   end
 
-  # expects an object of type OpenStax::Salesforce::Remote::School
+  # expects an object of type
+  # OpenStax::Salesforce::Remote::School
   def self.cache_school(sf_school)
     school = School.find_or_initialize_by(salesforce_id: sf_school.id)
     school.salesforce_id = sf_school.id
@@ -22,5 +23,6 @@ class School < ApplicationRecord
     school.total_school_enrollment = sf_school.total_school_enrollment
 
     school.save if school.changed?
+    school
   end
 end

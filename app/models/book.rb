@@ -11,5 +11,6 @@ class Book < ApplicationRecord
     book.name = sf_book.name
 
     book.save if book.changed?
+    book
   end
 end

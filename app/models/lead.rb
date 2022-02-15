@@ -32,6 +32,7 @@ class Lead <ApplicationRecord
 
     lead.salesforce_id = sf_lead.id
     lead.save
+    lead
   end
 
   # expects an object of type OpenStax::Salesforce::Remote::Lead
