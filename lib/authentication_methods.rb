@@ -1,10 +1,10 @@
 require 'openstax/auth/strategy_2'
+require 'byebug'
 
 module AuthenticateMethods
 
   def current_sso_user
-    @sso_cookie = OpenStax::Auth::Strategy2.decrypt(request)
-    raise NoSSOCookieSet unless @sso_cookie
+    OpenStax::Auth::Strategy2.decrypt(request)
   end
 
   def current_sso_user_field(field_name)
@@ -27,7 +27,8 @@ module AuthenticateMethods
     # this bypasses using the sso cookie for local development
     # comment this line out to use production-like auth in development
     # which will require a local accounts install for setting the cookie
-    return if Rails.env.development?
-    return head(:unauthorized) unless current_sso_user_uuid
+    # return if Rails.env.development?
+    # byebug
+    return head(:unauthorized) unless current_sso_user
   end
 end

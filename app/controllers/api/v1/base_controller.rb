@@ -1,7 +1,9 @@
+require 'byebug'
 class Api::V1::BaseController < ApplicationController
   before_action :authorized_for_api?
-  protect_from_forgery with: :null_session
+  #protect_from_forgery with: :null_session
 
+  include AuthenticateMethods
   include RescueFromUnlessLocal
 
   rescue_from_unless_local CannotFindUserContact, send_to_sentry: false do |ex|
@@ -32,7 +34,6 @@ class Api::V1::BaseController < ApplicationController
   protected
 
   def current_api_user
-    raise NoSSOCookieSet unless current_sso_user_uuid
-    User.new(current_sso_user_uuid)
+    @user = User.new(current_sso_user_uuid)
   end
 end

@@ -1,12 +1,14 @@
 class Api::V1::UsersController < Api::V1::BaseController
+  before_action :current_api_user
+
   def index
     render json: {
-      ox_uuid: @uuid,
-      opportunities: current_api_user.opportunities,
-      contact: current_api_user.contact,
-      schools: current_api_user.schools,
-      leads: current_api_user.leads,
-      subscriptions: current_api_user.subscriptions
+      ox_uuid: current_sso_user_uuid,
+      opportunities: @user&.opportunities,
+      contact: @user&.contact,
+      schools: @user&.schools,
+      leads: @user&.leads,
+      subscriptions: @user&.subscriptions
     }
   end
 end

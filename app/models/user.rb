@@ -20,7 +20,7 @@ class User
   def opportunities
     opportunities = Opportunity.where(accounts_uuid: @uuid)
     if opportunities.blank?
-      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.find_by(accounts_uuid: @uuid)
+      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(accounts_uuid: @uuid)
       sf_opportunities.each do |sf_opportunity|
         Opportunity.cache_opportunity(sf_opportunity)
       end
@@ -32,7 +32,7 @@ class User
   def leads
     leads = Lead.where(accounts_uuid: @uuid)
     unless leads.exists?
-      sf_leads = OpenStax::Salesforce::Remote::Lead.find_by(accounts_uuid: @uuid)
+      sf_leads = OpenStax::Salesforce::Remote::Lead.where(accounts_uuid: @uuid)
       sf_leads.each do |sf_lead|
         Lead.cache_lead(sf_lead)
       end

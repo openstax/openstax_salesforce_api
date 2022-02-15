@@ -32,7 +32,7 @@ class Contact < ApplicationRecord
       # make sure they have a relation setup for the school listed on their contact
       add_school_to_user(contact.salesforce_id, contact.school_id)
     end
-    @contact = contact
+    contact
   end
 
   def self.add_school_to_user(contact_id, school_id)
