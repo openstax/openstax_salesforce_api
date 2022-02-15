@@ -32,7 +32,7 @@ class Api::V1::BaseController < ApplicationController
   protected
 
   def current_api_user
-    raise NoSSOCookieSet unless current_api_user
+    raise NoSSOCookieSet unless current_sso_user_uuid
     User.new(current_sso_user_uuid)
   end
 end
