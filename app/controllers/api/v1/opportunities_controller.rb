@@ -1,7 +1,4 @@
 class Api::V1::OpportunitiesController < Api::V1::BaseController
-  # index and show routes are excluded for this controller and the tests have been removed until the API is needed
-  # The search route has been commented out and the tests removed until the API is needed
-
   # GET /opportunities/:id
   def show
     @opportunity = Opportunity.find_by!(salesforce_id: params[:id])
@@ -30,9 +27,9 @@ class Api::V1::OpportunitiesController < Api::V1::BaseController
     render json: @opportunity, status: :accepted
   end
 
-  # GET /opportunities/search?os_accounts_id
+  # GET /opportunities/search?accounts_uuid=
   def search
-    @opportunity = Opportunity.search(params[:os_accounts_id])
+    @opportunity = Opportunity.find_by!(accounts_uuid: params[:accounts_uuid])
     render json: @opportunity, status: :ok
   end
 

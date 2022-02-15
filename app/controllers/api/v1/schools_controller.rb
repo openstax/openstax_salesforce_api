@@ -1,6 +1,4 @@
 class Api::V1::SchoolsController < Api::V1::BaseController
-  # index route is excluded for this controller and the tests have been removed until the API is needed
-
   # GET /schools/:id
   def show
     @school = School.find_by!(salesforce_id: params[:id])

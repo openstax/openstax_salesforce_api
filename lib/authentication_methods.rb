@@ -2,6 +2,10 @@ require 'openstax/auth/strategy_2'
 
 module AuthenticateMethods
 
+  def current_user
+    @current_user = User(uuid: current_sso_user_uuid)
+  end
+
   def current_sso_user
     @sso_cookie = OpenStax::Auth::Strategy2.decrypt(request)
   end

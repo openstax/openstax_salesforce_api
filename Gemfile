@@ -81,7 +81,7 @@ gem 'will_paginate', '~> 3.3.0'
 gem 'redis'
 
 # business intel package - database insight
-gem "blazer"
+gem 'blazer'
 
 group :development, :test do
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console

@@ -10,7 +10,7 @@ class Api::V1::ListsController < Api::V1::BaseController
 
   # /api/v1/lists/<list_id>/subscribe/
   def subscribe
-    @subscription = Subscription.where(list: @list, contact: current_contact!).first_or_initialize
+    @subscription = Subscription.where(list: @list, contact: current_api_user.contact).first_or_initialize
 
     if @subscription.new_record? || @subscription.pending_destroy?
       @subscription.pending_create!
@@ -21,7 +21,7 @@ class Api::V1::ListsController < Api::V1::BaseController
 
   # /api/v1/lists/<list_id>/unsubscribe/
   def unsubscribe
-    @subscription = Subscription.find_by!(list: @list, contact: current_contact!)
+    @subscription = Subscription.find_by!(list: @list, contact: current_api_user.contact)
     @subscription.pending_destroy!
     UnsubscribeFromListJob.perform_later(@subscription)
     head :accepted
