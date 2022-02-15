@@ -1,7 +1,7 @@
 class Api::V1::UsersController < Api::V1::BaseController
   def index
     render json: {
-      ox_uuid: current_sso_user_uuid,
+      ox_uuid: @uuid,
       opportunities: current_api_user.opportunities,
       contact: current_api_user.contact,
       schools: current_api_user.schools,
