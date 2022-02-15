@@ -5,9 +5,7 @@ Sidekiq::Testing.inline!
 RSpec.describe PushOpportunityToSalesforceJob, type: :job, vcr: VCR_OPTS do
   before(:all) do
     @opportunity = FactoryBot.create :api_opportunity
-    @opportunity.stage_name = 'Previous Adoption'
-    @opportunity.save
-    @new_opportunity = FactoryBot.create :api_new_opportunity
+
     # create books for test
     FactoryBot.create(:api_book, { name: 'Managerial Accounting', salesforce_id: 'a0ZU000000BGyUSMA1' })
     FactoryBot.create(:api_book, { name: 'Prealgebra', salesforce_id: 'a0ZU000000DLpEMMA1' })
@@ -26,12 +24,6 @@ RSpec.describe PushOpportunityToSalesforceJob, type: :job, vcr: VCR_OPTS do
 
   it 'pushes an existing opportunity' do
     PushOpportunityToSalesforceJob.new.perform(@opportunity)
-    expect(@opportunity.salesforce_id).to_not be_nil
-    expect(@opportunity.lead_source).to eq('Web')
-  end
-
-  it 'pushes a new opportunity' do
-    PushOpportunityToSalesforceJob.new.perform(@new_opportunity)
     expect(@opportunity.salesforce_id).to_not be_nil
     expect(@opportunity.lead_source).to eq('Web')
   end

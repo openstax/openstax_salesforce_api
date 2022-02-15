@@ -1,7 +1,7 @@
 require 'faker'
 
 FactoryBot.define do
-  factory :api_lead, class: Lead do
+  factory :api_lead, class: Lead, aliases: [:lead] do
     name {Faker::Name.name }
     first_name { Faker::Name.first_name }
     last_name { Faker::Name.last_name }
