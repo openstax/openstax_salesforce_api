@@ -9,10 +9,6 @@ Sidekiq.configure_server do |config|
 	  Sentry.capture_message "Uh oh, #{job['class']} #{job["jid"]} just died with error #{ex.message}."
   end
 
-  config.sidekiq_retries_exhausted do |msg, ex|
-    Sentry.capture_exception(ex)
-  end
-
   config.client_middleware do |chain|
     chain.add SidekiqUniqueJobs::Middleware::Client
   end
