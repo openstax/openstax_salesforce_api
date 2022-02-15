@@ -2,6 +2,7 @@ class User
 
   def initialize(uuid)
     @uuid = uuid
+    Sentry.set_user(id: uuid)
   end
 
   def contact
