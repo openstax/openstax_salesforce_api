@@ -4,4 +4,12 @@ class Book < ApplicationRecord
   def self.search(name)
     where(name: name)
   end
+
+  def self.cache_book(sf_book)
+    book = Book.find_or_initialize_by(salesforce_id: sf_book.id)
+    book.salesforce_id = sf_book.id
+    book.name = sf_book.name
+
+    book.save if book.changed?
+  end
 end
