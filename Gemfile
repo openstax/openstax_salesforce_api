@@ -12,23 +12,8 @@ gem 'bootsnap', require: false
 # CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails'
 
-# OAuth provider
-gem 'doorkeeper', '~> 5.4'
-
 # Get env variables from .env file
 gem 'dotenv-rails'
-
-# JavaScript asset compiler
-gem 'mini_racer'
-
-# JavaScript asset compressor
-gem 'uglifier'
-
-# OpenStax Accounts
-gem 'openstax_accounts', '~> 9.8.0'
-
-# API versioning and documentation
-gem 'openstax_api', '~> 9.4.0'
 
 # OpenStax Accounts SSO
 gem 'openstax_auth', github: 'openstax/auth-rails', ref: 'ed2d7da86ca226b93376955b9474c4cf115c611f'
@@ -62,6 +47,7 @@ gem 'rswag'
 
 #XML Utilities
 gem 'rexml'
+gem 'multi_json'
 
 # Pardot integration
 gem 'ruby-pardot'
@@ -80,7 +66,6 @@ gem "sentry-sidekiq"
 
 # sidekiq for background jobs
 gem 'sidekiq'
-gem 'sidekiq-cron', github: 'ondrejbartas/sidekiq-cron', ref: '6a0aeff6c900f3b7246734282f6869c61e1d5b4e'
 gem 'sidekiq-enqueuer'
 gem 'sidekiq-failures'
 gem 'sidekiq-status'
@@ -99,9 +84,6 @@ gem 'redis'
 gem "blazer"
 
 group :development, :test do
-  # Run specs in parallel
-  gem 'parallel_tests'
-
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', require: false
 
@@ -117,28 +99,6 @@ group :development, :test do
   # Speedup and run specs when files change
   gem 'spring'
   gem 'spring-commands-rspec'
-
-  # Stubs HTTP requests
-  gem 'webmock'
-
-  # Records HTTP requests
-  gem 'vcr'
-
-  # rswag docs from tests
-  gem 'rswag-specs'
-
-  # Add ability to test sidekiq
-  gem 'rspec-sidekiq'
-
-  # # We need the newest version of rspec to work with rails 6
-  # %w[rspec-core rspec-expectations rspec-mocks rspec-rails rspec-support].each do |lib|
-  #   gem lib, git: "https://github.com/rspec/#{lib}.git", branch: 'main'
-  # end
-end
-
-group :development do
-  # See updates in development to reload rails
-  gem 'listen'
 end
 
 group :test do
@@ -147,12 +107,29 @@ group :test do
 
   # Show failing parallel specs instantly
   gem 'rspec-instafail'
-  
-  gem 'database_cleaner'
+
+  # Add ability to test sidekiq
+  gem 'rspec-sidekiq'
 
   # Test database cleanup gem with multiple strategies
-  # gem 'database_cleaner-active_record'
-  # gem 'database_cleaner-redis'
+  gem 'database_cleaner'
+
+  # Run specs in parallel
+  gem 'parallel_tests'
+
+  # rswag docs from tests
+  gem 'rswag-specs'
+
+  # Stubs HTTP requests
+  gem 'webmock'
+
+  # Records HTTP requests
+  gem 'vcr'
+end
+
+group :development do
+  # See updates in development to reload rails
+  gem 'listen'
 end
 
 group :production, :test do

@@ -1,7 +1,4 @@
-require 'swagger_helper'
 require 'rails_helper'
-require 'vcr_helper'
-require 'spec_helper'
 
 RSpec.describe 'api/v1/leads', type: :request, vcr: VCR_OPTS do
   before do
@@ -12,7 +9,6 @@ RSpec.describe 'api/v1/leads', type: :request, vcr: VCR_OPTS do
     # needed for cookie check
     contact = create_contact
     @headers = set_cookie
-    @token_header = create_token_header
     VCR.use_cassette('LeadsIntegration/sf_setup', VCR_OPTS) do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette

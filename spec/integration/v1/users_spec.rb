@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'vcr_helper'
-require 'swagger_helper'
 
 RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
   before do
@@ -32,15 +30,15 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
           subscriptions: { type: :array }
         }
       }
-      # response '200', 'user retrieved' do
-      #   let(:HTTP_COOKIE) { oxa_cookie }
-      #   run_test! do |response|
-      #     json_response = JSON.parse(response.body)
-      #     expect(json_response.size).to be >= 1
-      #     expect(response).to have_http_status(:success)
-      #     expect(json_response.keys).to contain_exactly('contact', 'lead', 'schools', 'opportunity', 'subscriptions')
-      #   end
-      # end
+      response '200', 'user retrieved' do
+        let(:HTTP_COOKIE) { oxa_cookie }
+        run_test! do |response|
+          json_response = JSON.parse(response.body)
+          expect(json_response.size).to be >= 1
+          expect(response).to have_http_status(:success)
+          expect(json_response.keys).to contain_exactly('ox_uuid', 'opportunities', 'contact', 'schools', 'leads', 'subscriptions')
+        end
+      end
 
       response '401', 'invalid cookie' do
         let(:HTTP_COOKIE) { 'invalid' }

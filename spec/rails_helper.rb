@@ -1,14 +1,6 @@
 ENV['RAILS_ENV'] ||= 'test'
-
-require 'simplecov_helper'
-require File.expand_path('../config/environment', __dir__)
-Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
-require 'openstax/salesforce/spec_helpers'
+require_relative '../config/environment'
 require 'rspec/rails'
-require 'parallel_tests'
-require 'spec_helper'
-
-include OpenStax::Salesforce::SpecHelpers
 
 # https://github.com/colszowka/simplecov/issues/369#issuecomment-313493152
 # Load rake tasks so they can be tested.
@@ -18,8 +10,15 @@ Rails.application.load_tasks unless defined?(Rake::Task) && Rake::Task.task_defi
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 
 # Add additional requires below this line. Rails is not loaded until this point!
+Dir[Rails.root.join("spec/support/**/*.rb")].each { |f| require f }
+require 'simplecov_helper'
+require 'openstax/salesforce/spec_helpers'
+require 'parallel_tests'
+require 'spec_helper'
+require 'swagger_helper'
+require 'vcr_helper'
+require 'database_cleaner'
 require 'support/factory_bot'
-require 'database_cleaner/active_record'
 
 require 'openstax/salesforce/spec_helpers'
 include OpenStax::Salesforce::SpecHelpers
@@ -33,11 +32,21 @@ rescue ActiveRecord::PendingMigrationError => e
 end
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
+end
 
-  # clean the database between test runs
-  DatabaseCleaner.strategy = :truncation
-  DatabaseCleaner.clean
+# Adds a convenience method to get interpret the body as JSON and convert to a hash;
+# works for both request and controller specs
+class ActionDispatch::TestResponse
+  def body_as_hash
+    @body_as_hash_cache ||= JSON.parse(body, symbolize_names: true)
+  end
+end
+
+def disable_sfdc_client
+  allow(ActiveForce)
+    .to receive(:sfdc_client)
+          .and_return(double('null object').as_null_object)
 end

@@ -1,6 +1,4 @@
 require 'rails_helper'
-require 'swagger_helper'
-require 'vcr_helper'
 
 RSpec.describe 'api/v1/lists', type: :request, vcr: VCR_OPTS do
   before do
