@@ -21,8 +21,10 @@ class SyncContactSchoolsToSalesforceJob < ApplicationJob
           contact_id: relation.contact_id,
           school_id: relation.school_id
         )
-        sf_relation&.destroy
-        relation.destroy!
+        if sf_relation.count >= 1
+          sf_relation&.destroy
+          relation.destroy!
+        end
 
       rescue => e
         Sentry.capture_exception e
