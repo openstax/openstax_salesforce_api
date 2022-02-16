@@ -1,3 +1,4 @@
+require 'byebug'
 class User
 
   def initialize(uuid)
@@ -6,15 +7,8 @@ class User
   end
 
   def contact
-    @contact ||= begin
-       contact = Contact.find_by(accounts_uuid: @uuid)
-       if contact.blank?
-         sf_contact = OpenStax::Salesforce::Remote::Contact.find_by(accounts_uuid: @uuid)
-         raise(CannotFindUserContact) unless sf_contact
-         contact = Contact.cache_local(sf_contact)
-       end
-       @contact = contact
-     end
+    #byebug
+    @contact = Contact.fetch_by_uuid(@uuid)
   end
 
   def opportunities

@@ -6,7 +6,7 @@ class Api::V1::BaseController < ApplicationController
   include AuthenticateMethods
   include RescueFromUnlessLocal
 
-  rescue_from_unless_local CannotFindUserContact, send_to_sentry: false do |ex|
+  rescue_from_unless_local CannotFindUserContact, send_to_sentry: true do |ex|
     render json: { error: 'Cannot find Salesforce User' }, status: :not_found
   end
 
@@ -16,6 +16,10 @@ class Api::V1::BaseController < ApplicationController
 
   rescue_from_unless_local CannotFindProspect, send_to_sentry: false do |ex|
     render json: { error: 'Cannot find Pardot prospect with that Salesforce ID' }, status: :not_found
+  end
+
+  rescue_from_unless_local SchoolDoesNotExistInSalesforce, send_to_sentry: true do |ex|
+    render json: { error: 'Cannot find School in Salesforce with that ID' }, status: :not_found
   end
 
   rescue_from_unless_local BadRequest, send_to_sentry: true do |ex|

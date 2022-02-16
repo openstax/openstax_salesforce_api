@@ -5,6 +5,10 @@ class Contact < ApplicationRecord
   has_many :lists, through: :subscriptions
   has_many :account_contact_relations
 
+  def self.search(email)
+    where(email: email)
+  end
+
   # expects an object of type OpenStax::Salesforce::Remote::Contact
   # OpenStax::Salesforce::Remote::Contact
   def self.cache_local(sf_contact)
@@ -28,18 +32,23 @@ class Contact < ApplicationRecord
     contact.lead_source = sf_contact.lead_source
 
     if contact.changed?
+      AccountContactRelation.find_or_create_by(contact_id: contact.salesforce_id, school_id: sf_contact.school_id)
       contact.save
-      # make sure they have a relation setup for the school listed on their contact
-      add_school_to_user(contact.salesforce_id, contact.school_id)
     end
+
+    # make sure they have a relation setup for the school listed on their contact
+    # there is probably a more rails way to do this...
+
+
     contact
   end
 
-  def self.add_school_to_user(contact_id, school_id)
-    AccountContactRelation.create_or_find_by!(contact_id: contact_id, school_id: school_id)
-  end
-
-  def self.search(email)
-    where(email: email)
+  def self.fetch_by_uuid(uuid)
+    unless contact = self.find_by(accounts_uuid: uuid)
+      sf_contact = OpenStax::Salesforce::Remote::Contact.find_by(accounts_uuid: uuid)
+      raise(CannotFindUserContact) unless sf_contact
+      contact = self.cache_local(sf_contact)
+    end
+    contact
   end
 end

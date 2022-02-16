@@ -21,7 +21,12 @@ class AccountContactRelation < ApplicationRecord
   private
 
   def ensure_school_exists_in_api
-    return if School.exists?(salesforce_id: self.salesforce_id)
-    SyncSalesforceSchoolsJob.perform_inline(school_id)
+    return if School.exists?(salesforce_id: self.school_id)
+    sf_school = OpenStax::Salesforce::Remote::School.find_by(id: self.school_id)
+    if sf_school
+      School.cache_local(sf_school)
+    else
+      raise(SchoolDoesNotExistInSalesforce)
+    end
   end
 end

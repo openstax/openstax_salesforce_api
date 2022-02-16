@@ -20,9 +20,6 @@ data_sources:
     linked_columns:
       salesforce_id: "https://openstax.lightning.force.com/lightning/r/{value}/view"
 
-    smart_columns:
-      user_id: "SELECT id, first_name last_name FROM users WHERE id IN {value}"
-
 # create audits
 # audit: true
 
@@ -33,7 +30,7 @@ data_sources:
 time_zone: "Central Time (US & Canada)"
 
 # class name of the user model
-user_class: User
+# user_class: User
 
 # method name for the current user
 # user_method: current_user
