@@ -9,6 +9,9 @@ gem 'rails', '~> 6.1'
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', require: false
 
+# CoffeeScript for .js.coffee assets and views
+gem 'coffee-rails'
+
 # Get env variables from .env file
 gem 'dotenv-rails'
 
@@ -51,6 +54,7 @@ gem 'ruby-pardot'
 
 # Support systemd Type=notify services for puma and delayed_job
 gem 'sd_notify'
+gem 'sass-rails'
 
 # Scout Integration
 gem 'scout_apm'
