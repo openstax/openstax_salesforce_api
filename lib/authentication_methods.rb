@@ -1,5 +1,4 @@
 require 'openstax/auth/strategy_2'
-require 'byebug'
 
 module AuthenticateMethods
 
@@ -28,7 +27,6 @@ module AuthenticateMethods
     # comment this line out to use production-like auth in development
     # which will require a local accounts install for setting the cookie
     # return if Rails.env.development?
-    # byebug
     return head(:unauthorized) unless current_sso_user
   end
 end

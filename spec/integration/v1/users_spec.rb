@@ -1,5 +1,5 @@
 require 'rails_helper'
-require 'byebug'
+#require 'byebug'
 
 RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
   before do
@@ -34,7 +34,7 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
           subscriptions: { type: :array }
         }
       }
-      byebug
+      #byebug
       response '200', 'user retrieved' do
         let(:HTTP_COOKIE) { set_cookie }
         run_test! do |response|
@@ -45,7 +45,7 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
         end
       end
 
-      byebug
+      #byebug
       response '401', 'invalid cookie' do
         let(:HTTP_COOKIE) { 'invalid' }
         run_test! do |response|
