@@ -1,7 +1,8 @@
 require 'byebug'
 class Api::V1::BaseController < ApplicationController
   before_action :authorized_for_api?
-  #protect_from_forgery with: :null_session
+  protect_from_forgery with: :exception, unless: -> { request.format.json? }
+
 
   include AuthenticateMethods
   include RescueFromUnlessLocal

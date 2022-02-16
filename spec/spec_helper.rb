@@ -53,7 +53,7 @@ def create_contact
 end
 
 def search_accounts_result
-  @account_result = OpenStax::Auth::Strategy2.decrypt(set_cookie)
+  @account_result = OpenStax::Auth::Strategy2.decrypt(@oxa_cookie)
 end
 
 """

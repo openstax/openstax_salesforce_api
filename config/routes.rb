@@ -50,7 +50,7 @@ Rails.application.routes.draw do
     mount Rswag::Ui::Engine => '/api-docs'
     mount Rswag::Api::Engine => '/api-docs'
     mount Sidekiq::Web => '/jobs'
-    mount Blazer::Engine, at: "blazer"
+    mount Blazer::Engine, at: "/blazer"
     mount OpenStax::Salesforce::Engine => :openstax_salesforce
   end
 

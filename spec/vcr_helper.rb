@@ -40,11 +40,6 @@ VCR.configure do |c|
   # useful for debugging cassettes
   #c.debug_logger = $stderr
 
-  # To avoid issues with the gem `webdrivers`, we must ignore the driver hosts
-  # See https://github.com/titusfortner/webdrivers/wiki/Using-with-VCR-or-WebMock
-  # driver_hosts = Webdrivers::Common.subclasses.map { |driver| URI(driver.base_url).host }
-  # c.ignore_hosts(*driver_hosts)
-
   %w[
     instance_url
     username

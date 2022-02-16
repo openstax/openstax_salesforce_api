@@ -21,9 +21,19 @@ Bundler.require(*Rails.groups)
 module OpenstaxSalesforceApi
   class Application < Rails::Application
 
-    # API settings
-    config.api_only = true
-    config.middleware.delete ::Rack::Sendfile
+    # Because we have a few gems with UIs, we can't active this - but if we setup a separate
+    # Blazer instance, we probably can - so keeping this here for ref
+    #
+    # # API settings
+    # config.api_only = true
+    #
+    # # Remove unneeded middleware
+    # config.middleware.delete ::Rack::Sendfile
+    #
+    # # We are using API only but still need cookie storage for things like Blazer & Sidekiq Web
+    # config.session_store :cookie_store, key: "_SFAPI_session_#{Rails.env}"
+    # config.middleware.use ActionDispatch::Cookies # Required for all session management
+    # config.middleware.use ActionDispatch::Session::CookieStore, config.session_options
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0

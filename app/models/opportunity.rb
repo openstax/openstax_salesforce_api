@@ -87,7 +87,7 @@ class Opportunity <ApplicationRecord
 
   # This could be better.. but for now, it's all we need
   def sobject_book_adoption_record_type_id
-    @book_adoption_record_type = OpenStax::Salesforce::Remote::RecordType.where(salesforce_object_name: 'Opportunity', name: 'Book Opp')
+    @book_adoption_record_type = OpenStax::Salesforce::Remote::RecordType.find_by(salesforce_object_name: 'Opportunity', name: 'Book Opp').id
   end
 
   def sf_opportunity_by_id(salesforce_id)
