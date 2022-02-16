@@ -1,4 +1,5 @@
 require 'rails_helper'
+require 'byebug'
 
 RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
   before do
@@ -6,10 +7,12 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
   end
 
   before(:all) do
-    @opportunity = FactoryBot.create :api_opportunity
-    @lead = FactoryBot.create :api_lead
-    @contact = create_contact(salesforce_id: '0034C00000WsQ06QAF')
-    VCR.use_cassette('api/v1/users/sf_setup', VCR_OPTS) do
+    @ox_uuid = search_accounts_result
+    @lead = FactoryBot.create :lead
+    @contact = create_contact
+    @opportunity = FactoryBot.create :opportunity, contact_id: @contact.salesforce_id
+
+    VCR.use_cassette('sfapi/sf_setup', VCR_OPTS) do
       @proxy = SalesforceProxy.new
       @proxy.setup_cassette
     end
@@ -23,15 +26,17 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
       parameter name: :user, in: :body, schema: {
         type: :object,
         properties: {
-          opportunity: { type: :array },
+          ox_uuid: { type: :string },
+          opportunities: { type: :array },
           contact: { type: :array },
           schools: { type: :array },
-          lead: { type: :array },
+          leads: { type: :array },
           subscriptions: { type: :array }
         }
       }
+      byebug
       response '200', 'user retrieved' do
-        let(:HTTP_COOKIE) { oxa_cookie }
+        let(:HTTP_COOKIE) { set_cookie }
         run_test! do |response|
           json_response = JSON.parse(response.body)
           expect(json_response.size).to be >= 1
@@ -40,6 +45,7 @@ RSpec.describe 'api/v1/users', type: :request, vcr: VCR_OPTS do
         end
       end
 
+      byebug
       response '401', 'invalid cookie' do
         let(:HTTP_COOKIE) { 'invalid' }
         run_test! do |response|
