@@ -7,16 +7,6 @@ GIT
       activesupport
       json-jwt
 
-GIT
-  remote: https://github.com/openstax/openstax_salesforce.git
-  revision: c3df2098bdc31b4373adf9c8d0dd19c65ae12c6c
-  ref: c3df2098bdc31b4373adf9c8d0dd19c65ae12c6c
-  specs:
-    openstax_salesforce (7.0.0)
-      openstax_active_force
-      rails (>= 5.0, < 7.0)
-      restforce
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -241,6 +231,8 @@ GEM
       transaction_isolation
       transaction_retry
     libv8-node (16.10.0.0)
+    libv8-node (16.10.0.0-x86_64-darwin)
+    libv8-node (16.10.0.0-x86_64-linux)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -272,6 +264,10 @@ GEM
     nokogiri (1.13.1)
       mini_portile2 (~> 2.7.0)
       racc (~> 1.4)
+    nokogiri (1.13.1-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.13.1-x86_64-linux)
+      racc (~> 1.4)
     numerizer (0.1.1)
     openstax_active_force (1.1.0)
       active_attr
@@ -279,6 +275,10 @@ GEM
       restforce
     openstax_healthcheck (1.0.1)
       rails (>= 3.0)
+    openstax_salesforce (6.5.0)
+      openstax_active_force
+      rails (>= 5.0, < 7.0)
+      restforce
     openstax_utilities (5.0.0)
       aws-sdk-autoscaling
       faraday
@@ -517,7 +517,7 @@ DEPENDENCIES
   multi_json
   openstax_auth!
   openstax_healthcheck
-  openstax_salesforce!
+  openstax_salesforce
   openstax_utilities
   parallel_tests
   pg
