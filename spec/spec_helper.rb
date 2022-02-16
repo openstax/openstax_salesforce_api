@@ -1,5 +1,3 @@
-require_relative '../lib/authentication_methods'
-
 RSpec.configure do |config|
   config.expect_with :rspec do |expectations|
     expectations.include_chain_clauses_in_custom_matcher_descriptions = true
@@ -18,6 +16,11 @@ RSpec.configure do |config|
   # config.profile_examples = 10
 
   #config.order = :random
+  #
+  config.before(:suite) do
+    mock_request
+    set_cookie
+  end
 
   # clean the database between test runs
   config.prepend_before(:suite) do
@@ -37,10 +40,10 @@ RSpec.configure do |config|
 end
 
 """
-SFAPI Helpers
+Auth Helpers
 """
-def oxa_cookie
-  @oxa_cookie = OpenStruct.new(
+def mock_request
+  OpenStruct.new(
     cookies: {
       'oxa_dev' =>
         "eyJhbGciOiJkaXIiLCJlbmMiOiJBMjU2R0NNIn0..zdpEdwgWJFxMhsSj.TlQEGSWHdrH6KHhYSR9zQvVhjFGNOuXjWWmuRbK5UUVHePTfI-W_dR-x2ObCoqVarew7FR6h1p_" \
@@ -59,12 +62,20 @@ def oxa_cookie
           "UOe8lFttQIdI9ns9DUgeE1WDMWvBPUKDO6dnYhjIMZje2sAx6DtPA5ldiIuVYN5S7D3eVgxubQn43HXJJuomhVVlOHOwbyHLjBMuUT7f3dLzXGHbLIQtnW9-sHl1xnU_R7Mcslkg" \
           "hQMmk79YPo2J6iypnVpppZba-YqvcWqxh5YLYC9JAC-_-WaRyEQ18t3JOBcBma8B0a85zICyO187-cSbFObL3ZIt02ZP7624CpFce31NMa9-Sk09ulssD31S-l0YBz148uWAtGWbbbzJh" \
           "EQdVyRtL6sSxfQQKPylE5xyjQC8BqOwZ1iMt62BTH8CQuFQgnzeJ2kC9fZMMbNs.LaO7JKdkUrINwub8EM0sTA"
-      }
+    }
   )
 end
 
+def search_accounts_result
+  @account_uuid = OpenStax::Auth::Strategy2.user_uuid(mock_request)
+end
+
+"""
+SFAPI Helpers
+"""
+
 def set_cookie
-  { 'HTTP_COOKIE' => oxa_cookie.cookies }
+  @auth_cookie = { 'HTTP_COOKIE' => mock_request.cookies }
 end
 
 def create_contact
@@ -73,10 +84,6 @@ def create_contact
   @sf_contact = @proxy.new_contact
 
   @contact = Contact.cache_local(@sf_contact)
-end
-
-def search_accounts_result
-  @account_result = OpenStax::Auth::Strategy2.decrypt(oxa_cookie)
 end
 
 """

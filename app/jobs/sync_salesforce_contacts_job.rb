@@ -19,8 +19,5 @@ class SyncSalesforceContactsJob < ApplicationJob
 end
 
 if Sidekiq.server?
-  job = Sidekiq::Cron::Job.create(name: 'Salesforce contact sync - every 30 min', cron: '0 */1 * * *', class: 'SyncSalesforceContactsJob')
-  unless job.save
-    Sentry.capture_message(job.errors)
-  end
+  Sidekiq::Cron::Job.create(name: 'Salesforce contact sync - every 30 min', cron: '0 */1 * * *', class: 'SyncSalesforceContactsJob')
 end
