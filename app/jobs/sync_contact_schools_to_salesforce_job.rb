@@ -1,7 +1,8 @@
 class SyncContactSchoolsToSalesforceJob < ApplicationJob
-  queue_as :default
+  queue_as :schools
 
-  def perform(relation, action)
+  def perform(relation_id, action)
+    relation = AccountContactRelation.find_by!(id: relation_id)
     if action == 'add'
       begin
         sf_relation = OpenStax::Salesforce::Remote::AccountContactRelation.new(

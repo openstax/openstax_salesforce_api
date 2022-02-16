@@ -1,9 +1,10 @@
 class PushLeadToSalesforceJob < ApplicationJob
-  queue_as :default
+  queue_as :leads
 
-  def perform(lead)
+  def perform(lead_id)
     begin
-      Lead.push_lead(lead)
+      lead = Lead.find(lead_id)
+      Lead.push(lead)
     rescue => e
       Sentry.capture_exception(e)
     end

@@ -20,7 +20,10 @@ Bundler.require(*Rails.groups)
 
 module OpenstaxSalesforceApi
   class Application < Rails::Application
+
+    # API settings
     config.api_only = true
+    config.middleware.delete ::Rack::Sendfile
 
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 6.0

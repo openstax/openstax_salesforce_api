@@ -11,7 +11,7 @@ class User
        if contact.blank?
          sf_contact = OpenStax::Salesforce::Remote::Contact.find_by(accounts_uuid: @uuid)
          raise(CannotFindUserContact) unless sf_contact
-         contact = Contact.cache_contact(sf_contact)
+         contact = Contact.cache_local(sf_contact)
        end
        @contact = contact
      end
@@ -22,7 +22,7 @@ class User
     if opportunities.blank?
       sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(accounts_uuid: @uuid)
       sf_opportunities.each do |sf_opportunity|
-        Opportunity.cache_opportunity(sf_opportunity)
+        Opportunity.cache_local(sf_opportunity)
       end
     end
     opportunities = Opportunity.where(accounts_uuid: @uuid)
@@ -34,7 +34,7 @@ class User
     unless leads.exists?
       sf_leads = OpenStax::Salesforce::Remote::Lead.where(accounts_uuid: @uuid)
       sf_leads.each do |sf_lead|
-        Lead.cache_lead(sf_lead)
+        Lead.cache_local(sf_lead)
       end
     end
     leads = Lead.where(accounts_uuid: @uuid)

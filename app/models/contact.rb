@@ -7,7 +7,7 @@ class Contact < ApplicationRecord
 
   # expects an object of type OpenStax::Salesforce::Remote::Contact
   # OpenStax::Salesforce::Remote::Contact
-  def self.cache_contact(sf_contact)
+  def self.cache_local(sf_contact)
     contact = Contact.find_or_initialize_by(salesforce_id: sf_contact.id)
     contact.name = sf_contact.name
     contact.first_name = sf_contact.first_name

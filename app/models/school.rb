@@ -9,9 +9,8 @@ class School < ApplicationRecord
 
   # expects an object of type
   # OpenStax::Salesforce::Remote::School
-  def self.cache_school(sf_school)
-    school = School.find_or_initialize_by(salesforce_id: sf_school.id)
-    school.salesforce_id = sf_school.id
+  def self.cache_local(sf_school)
+    school = School.find_or_initialize_by(salesforce_id: salesforce_id)
     school.name = sf_school.name
     school.city = sf_school.city
     school.state = sf_school.state

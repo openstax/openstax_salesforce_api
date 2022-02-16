@@ -1,4 +1,5 @@
 class SyncSalesforceSchoolsJob < ApplicationJob
+  queue_as :schools
   sidekiq_options lock: :while_executing,
                   on_conflict: :reject
 
@@ -10,7 +11,7 @@ class SyncSalesforceSchoolsJob < ApplicationJob
     end
 
     sf_schools.each do |sf_school|
-      school = School.cache_school(sf_school)
+      school = School.cache_local(sf_school)
       return school if sf_schools.count == 1
     end
     JobsHelper.delete_objects_not_in_salesforce('School', sf_schools)

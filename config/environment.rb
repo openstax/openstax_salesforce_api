@@ -9,8 +9,5 @@ require 'authentication_methods'
 require 'sidekiq/web'
 #require 'sidekiq/cron/web'
 
-SITE_NAME = "OpenStax Salesforce API"
-COPYRIGHT_HOLDER = "Rice University"
-
 # Initialize the Rails application.
 Rails.application.initialize!

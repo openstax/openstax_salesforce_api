@@ -1,4 +1,5 @@
 class SyncSalesforceLeadsJob < ApplicationJob
+  queue_as :leads
   sidekiq_options lock: :while_executing,
                   on_conflict: :reject
 
@@ -10,7 +11,7 @@ class SyncSalesforceLeadsJob < ApplicationJob
     end
 
     sf_leads.each do |sf_lead|
-      lead = Lead.cache_lead(sf_lead)
+      lead = Lead.cache_local(sf_lead)
       return lead if sf_leads.count == 1
     end
     JobsHelper.delete_objects_not_in_salesforce('Lead', sf_leads)

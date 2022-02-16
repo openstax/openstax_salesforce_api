@@ -5,7 +5,7 @@ class Lead <ApplicationRecord
     where(accounts_uuid: uuid)
   end
 
-  def self.push_lead(lead)
+  def self.push(lead)
     sf_lead = OpenStax::Salesforce::Remote::Lead.new(
       first_name: lead.first_name,
       last_name: lead.last_name,
@@ -36,7 +36,7 @@ class Lead <ApplicationRecord
   end
 
   # expects an object of type OpenStax::Salesforce::Remote::Lead
-  def self.cache_lead(sf_lead)
+  def self.cache_local(sf_lead)
     # This should be reasonable with lead merge - each user should only have one lead
     lead = Lead.find_or_initialize_by(accounts_uuid: sf_lead.accounts_uuid)
     lead.salesforce_id = sf_lead.id

@@ -1,4 +1,5 @@
 class SyncSalesforceBooksJob < ApplicationJob
+  queue_as :schools
   sidekiq_options lock: :while_executing,
                   on_conflict: :reject
 
@@ -6,7 +7,7 @@ class SyncSalesforceBooksJob < ApplicationJob
     sf_books = OpenStax::Salesforce::Remote::Book.all
 
     sf_books.each do |sf_book|
-      Book.cache_book(sf_book)
+      Book.cache_local(sf_book)
     end
     JobsHelper.delete_objects_not_in_salesforce('Book', sf_books)
   end

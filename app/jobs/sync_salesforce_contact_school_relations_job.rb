@@ -1,5 +1,5 @@
 class SyncSalesforceContactSchoolRelationsJob < ApplicationJob
-  include Sidekiq::Worker
+  queue_as :schools
   sidekiq_options lock: :while_executing,
                   on_conflict: :reject
 
@@ -11,15 +11,9 @@ class SyncSalesforceContactSchoolRelationsJob < ApplicationJob
     end
 
     sf_relations.each do |sf_relation|
-      school_relation = AccountContactRelation.find_or_initialize_by(contact_id: sf_relation.contact_id, school_id: sf_relation.school_id)
-      school_relation.salesforce_id = sf_relation.id
-      school_relation.contact_id = sf_relation.contact_id
-      school_relation.school_id = sf_relation.school_id
-      school_relation.primary = sf_relation.primary
+      relation = AccountContactRelation.cache_local(sf_relation)
 
-      school_relation.save if school_relation.changed?
-
-      return school_relation if sf_relations.count == 1
+      return relation if sf_relations.count == 1
     end
     JobsHelper.delete_objects_not_in_salesforce('AccountContactRelation', sf_relations)
   end

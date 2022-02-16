@@ -1,5 +1,5 @@
 class SyncPardotJob < ApplicationJob
-  queue_as :default
+  queue_as :pardot
 
   def perform(salesforce_ids = [])
     # first, let's update the lists from Pardot

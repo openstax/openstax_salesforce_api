@@ -1,4 +1,5 @@
 class SyncSalesforceContactsJob < ApplicationJob
+  queue_as :contacts
   sidekiq_options lock: :while_executing,
                   on_conflict: :reject
 
