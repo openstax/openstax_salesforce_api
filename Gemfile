@@ -89,6 +89,10 @@ gem 'redis'
 # business intel package - database insight
 gem 'blazer'
 
+# TODO: moving this outside the test group to see if it fixes an issue.. but it's probably an issue in the deployment
+# Use RSpec for tests
+gem 'rspec-rails'
+
 group :development, :test do
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', require: false
@@ -111,9 +115,6 @@ group :development, :test do
 end
 
 group :test do
-  # Use RSpec for tests
-  gem 'rspec-rails'
-
   # Show failing parallel specs instantly
   gem 'rspec-instafail'
 

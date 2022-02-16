@@ -48,7 +48,10 @@ def set_cookie
 end
 
 def create_contact
-  @sf_contact = OpenStax::Salesforce::Contact.any?
+  @proxy = SalesforceProxy.new
+  @proxy.ensure_schools_exist(['RSpec University'])
+  @sf_contact = @proxy.new_contact
+  
   @contact = Contact.cache_local(@sf_contact)
 end
 
