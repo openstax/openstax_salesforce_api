@@ -1,7 +1,7 @@
 require 'faker'
 
 FactoryBot.define do
-  factory :api_school, class: School, aliases: [:school] do
+  factory :school, class: School do
     salesforce_id { Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3) }
     name { Faker::University.name }
     city { Faker::Address.city }

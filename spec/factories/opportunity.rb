@@ -1,7 +1,7 @@
 require 'faker'
 
 FactoryBot.define do
-  factory :api_opportunity, class: Opportunity, aliases: [:opportunity] do
+  factory :opportunity, class: Opportunity do
     term_year { [ '2019 - 20 Spring', '2019 - 20 Fall', '2018 - 19 Fall', '2018 - 19 Spring'].sample }
     book_name { 'Prealgebra' }
     contact_id { '003U000001t59XgIAI' }
