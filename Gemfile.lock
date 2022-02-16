@@ -514,6 +514,7 @@ DEPENDENCIES
   rspec-sidekiq
   rswag
   rswag-specs
+  rubocop
   ruby-pardot
   sass-rails
   scout_apm
