@@ -6,7 +6,7 @@ RSpec.describe 'api/v1/contacts', type: :request do
   end
 
   before(:all) do
-    @contact = create_contact(salesforce_id: '0030v00000UlS9yAAF')
+    @contact = create_contact
   end
 
   path '/api/v1/contacts/{id}' do
