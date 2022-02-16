@@ -3,7 +3,7 @@ redis_secrets = Rails.application.secrets[:redis]
 Sidekiq.configure_server do |config|
   config.redis = { url: redis_secrets[:url], network_timeout: 5 }
 
-  config.error_handlers << proc {|ex,ctx_hash| Sentry.capture_exception(ex, ctx_hash) }
+  config.error_handlers << proc {|ex,ctx_hash| Sentry.capture_exception(ex) }
 
   config.death_handlers << ->(job, ex) do
 	  Sentry.capture_message "Uh oh, #{job['class']} #{job["jid"]} just died with error #{ex.message}."

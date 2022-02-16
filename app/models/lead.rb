@@ -35,7 +35,8 @@ class Lead <ApplicationRecord
     lead
   end
 
-  # expects an object of type OpenStax::Salesforce::Remote::Lead
+  # expects an object of type
+  # OpenStax::Salesforce::Remote::Lead
   def self.cache_local(sf_lead)
     # This should be reasonable with lead merge - each user should only have one lead
     lead = Lead.find_or_initialize_by(accounts_uuid: sf_lead.accounts_uuid)

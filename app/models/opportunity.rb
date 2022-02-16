@@ -1,10 +1,28 @@
 class Opportunity <ApplicationRecord
 
-  VALID_OPPORTUNITY_TYPES = [
-    BOOK = 'Book Opp',
-    TUTOR = 'Tutor Opp',
-    DEPARTMENT = 'Book Dept'
-  ]
+  enum record_type: {
+    book: 'Book Opp',
+    tutor: 'Tutor Opp',
+    department: 'Book Dept'
+  }, _prefix: :opportunity
+
+  enum stage_name: {
+    won: 'Confirmed Adoption Won',
+    lost: 'Closed Lost'
+  }, _prefix: :opportunity
+
+  enum type: {
+    new_business: 'New Business',
+    renewal: 'Renewal',
+    verified: 'Renewal - Verified'
+  }, _prefix: :opportunity
+
+  enum status: {
+    needs_renewal: 'Needs Renewal',
+    renewed: 'Done Renewed',
+    dropped: 'Dropped',
+    needs_check: 'Needs Check'
+  }, _prefix: :opportunity
 
   def self.search(uuid)
     where(accounts_uuid: uuid)
