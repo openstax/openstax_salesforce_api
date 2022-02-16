@@ -90,6 +90,9 @@ group :development, :test do
   # Fixture replacement
   gem 'factory_bot_rails'
 
+  # code linting
+  gem 'rubocop', require: false
+
   # fake data generation
   gem 'faker'
 

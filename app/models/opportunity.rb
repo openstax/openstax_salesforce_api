@@ -1,11 +1,5 @@
 class Opportunity <ApplicationRecord
 
-  enum record_type: {
-    book: 'Book Opp',
-    tutor: 'Tutor Opp',
-    department: 'Book Dept'
-  }, _prefix: :opportunity
-
   enum stage_name: {
     won: 'Confirmed Adoption Won',
     lost: 'Closed Lost'
@@ -28,15 +22,6 @@ class Opportunity <ApplicationRecord
     where(accounts_uuid: uuid)
   end
 
-  # This could probably be more generalized... but we only use it on opps right now
-  def self.sobject_record_types
-    @sobject_record_types = OpenStax::Salesforce::Remote::RecordType.where(object_name: 'Opportunity')
-  end
-
-  # Again.. this could be better.. but for now, it's all we need
-  def self.sobject_book_adoption_record_type_id
-    @sobject_record_types = OpenStax::Salesforce::Remote::RecordType.where(name: 'Book Opp')
-  end
 
   # expects object type of SFAPI Opportunity
   def self.push_or_update(opportunity)
@@ -51,7 +36,7 @@ class Opportunity <ApplicationRecord
     sf_opportunity.class_start_date = calculate_start_date
     sf_opportunity.school_id = School.find_by!(salesforce_id: opportunity.school_id)
     sf_opportunity.book_id = Book.find_by!(salesforce_id: opportunity.book_id)
-    sf_opportunity.record_type_id = sobject_book_adoption_record_type_id
+    sf_opportunity.record_type_id = @book_adoption_record_type
 
     if sf_opportunity.new_record? # this means it's new.. we need to do a few different things
       sf_opportunity.type = types[:new]
@@ -98,6 +83,11 @@ class Opportunity <ApplicationRecord
 
     opportunity.save if opportunity.changed?
     opportunity
+  end
+
+  # This could be better.. but for now, it's all we need
+  def sobject_book_adoption_record_type_id
+    @book_adoption_record_type = OpenStax::Salesforce::Remote::RecordType.where(salesforce_object_name: 'Opportunity', name: 'Book Opp')
   end
 
   def sf_opportunity_by_id(salesforce_id)
