@@ -1,4 +1,3 @@
-require 'byebug'
 class User
 
   def initialize(uuid)
@@ -7,7 +6,6 @@ class User
   end
 
   def contact
-    #byebug
     @contact = Contact.fetch_by_uuid(@uuid)
   end
 
