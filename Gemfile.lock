@@ -134,6 +134,13 @@ GEM
       numerizer (~> 0.1.1)
     codecov (0.6.0)
       simplecov (>= 0.15, < 0.22)
+    coffee-rails (5.0.0)
+      coffee-script (>= 2.2.0)
+      railties (>= 5.2.0)
+    coffee-script (2.4.1)
+      coffee-script-source
+      execjs
+    coffee-script-source (1.12.2)
     concurrent-ruby (1.1.9)
     connection_pool (2.2.5)
     crack (0.4.3)
@@ -245,6 +252,10 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.1)
       mini_portile2 (~> 2.7.0)
+      racc (~> 1.4)
+    nokogiri (1.13.1-x86_64-darwin)
+      racc (~> 1.4)
+    nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
     numerizer (0.1.1)
     openstax_active_force (1.1.0)
@@ -368,6 +379,16 @@ GEM
     safe_yaml (1.0.5)
     safely_block (0.3.0)
       errbase (>= 0.1.1)
+    sass-rails (6.0.0)
+      sassc-rails (~> 2.1, >= 2.1.1)
+    sassc (2.4.0)
+      ffi (~> 1.9)
+    sassc-rails (2.1.2)
+      railties (>= 4.0.0)
+      sassc (>= 2.0)
+      sprockets (> 3.0)
+      sprockets-rails
+      tilt
     scout_apm (5.1.1)
       parser
     sd_notify (0.1.1)
@@ -453,6 +474,7 @@ DEPENDENCIES
   bootsnap
   byebug
   codecov
+  coffee-rails
   database_cleaner
   dotenv-rails
   factory_bot_rails
@@ -462,7 +484,7 @@ DEPENDENCIES
   multi_json
   openstax_auth!
   openstax_healthcheck
-  openstax_salesforce
+  openstax_salesforce!
   openstax_utilities
   parallel_tests
   pg
@@ -479,6 +501,7 @@ DEPENDENCIES
   rswag
   rswag-specs
   ruby-pardot
+  sass-rails
   scout_apm
   sd_notify
   sentry-rails
