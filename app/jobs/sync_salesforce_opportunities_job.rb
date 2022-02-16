@@ -11,7 +11,7 @@ class SyncSalesforceOpportunitiesJob < ApplicationJob
     end
 
     sf_opportunities.each do |sf_opportunity|
-      opportunity = Opportunity.cache_opportunity(sf_opportunity)
+      opportunity = Opportunity.cache_local(sf_opportunity)
       return opportunity if sf_opportunities.count == 1
     end
     JobsHelper.delete_objects_not_in_salesforce('Opportunity', sf_opportunities)

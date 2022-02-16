@@ -19,7 +19,6 @@ FactoryBot.define do
     os_accounts_id { 1 }
     name { Faker::Superhero.name }
     record_type_name { 'Book Opp' }
-    record_type_id { Faker::Alphanumeric.alphanumeric(number: 10, min_alpha: 3, min_numeric: 3) }
     accounts_uuid { 'aaa560a1-e828-48fb-b9a8-d01e9aec71d0' }
   end
 end

@@ -11,6 +11,6 @@ FactoryBot.define do
     location { %w[Domestic Foreign].sample }
     is_kip { Faker::Boolean }
     is_child_of_kip { Faker::Boolean }
-    total_school_enrollment { Faker::Number.between 0, 5000 }
+    total_school_enrollment { Faker::Number.between(from:0, to:5000)}
   end
 end
