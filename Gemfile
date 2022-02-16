@@ -66,10 +66,10 @@ gem "sentry-sidekiq"
 
 # sidekiq for background jobs
 gem 'sidekiq'
-gem 'sidekiq-enqueuer'
 gem 'sidekiq-failures'
 gem 'sidekiq-status'
 gem 'sidekiq-unique-jobs'
+gem "sidekiq-cron", "~> 1.1"
 
 # Version Rails RESTful APIs
 gem 'versionist'

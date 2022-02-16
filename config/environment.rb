@@ -7,7 +7,7 @@ require 'rescue_from_unless_local'
 require 'errors'
 require 'authentication_methods'
 require 'sidekiq/web'
-#require 'sidekiq/cron/web'
+require 'sidekiq/cron/web'
 
 # Initialize the Rails application.
 Rails.application.initialize!

@@ -13,6 +13,9 @@ class SyncSalesforceBooksJob < ApplicationJob
   end
 end
 
-# if Sidekiq.server?
-#   Sidekiq::Cron::Job.create(name: 'Salesforce Book sync - every 1 day', cron: '0 0 * * *', class: 'SyncSalesforceBooksJob')
-# end
+if Sidekiq.server?
+  job = Sidekiq::Cron::Job.create(name: 'Salesforce Book sync - every 1 day', cron: '0 0 * * *', class: 'SyncSalesforceBooksJob')
+  unless job.save
+    Sentry.capture_message(job.errors)
+  end
+end

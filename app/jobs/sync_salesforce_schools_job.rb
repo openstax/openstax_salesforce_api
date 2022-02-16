@@ -18,6 +18,9 @@ class SyncSalesforceSchoolsJob < ApplicationJob
   end
 end
 
-# if Sidekiq.server?
-#   Sidekiq::Cron::Job.create(name: 'Salesforce School sync - every 1 day', cron: '0 0 * * *', class: 'SyncSalesforceSchoolsJob')
-# end
+if Sidekiq.server?
+  job = Sidekiq::Cron::Job.create(name: 'Salesforce School sync - every 1 day', cron: '0 0 * * *', class: 'SyncSalesforceSchoolsJob')
+  unless job.save
+    Sentry.capture_message(job.errors)
+  end
+end
