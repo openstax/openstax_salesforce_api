@@ -24,11 +24,8 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = true
 
-  # Do not fallback to assets pipeline if a precompiled asset is missed.
-  config.assets.compile = false
-
   # Compress JavaScripts and CSS.
-  # config.assets.js_compressor = Uglifier.new(harmony: true)
+  config.assets.js_compressor = Uglifier.new(harmony: true)
   # config.assets.css_compressor = :sass
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.

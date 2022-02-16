@@ -240,6 +240,7 @@ GEM
       hashie
       transaction_isolation
       transaction_retry
+    libv8-node (16.10.0.0)
     listen (3.7.1)
       rb-fsevent (~> 0.10, >= 0.10.3)
       rb-inotify (~> 0.9, >= 0.9.10)
@@ -260,6 +261,8 @@ GEM
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
     mini_portile2 (2.7.1)
+    mini_racer (0.6.2)
+      libv8-node (~> 16.10.0.0)
     minitest (5.15.0)
     msgpack (1.4.4)
     multi_json (1.15.0)
@@ -268,10 +271,6 @@ GEM
     nio4r (2.5.8)
     nokogiri (1.13.1)
       mini_portile2 (~> 2.7.0)
-      racc (~> 1.4)
-    nokogiri (1.13.1-x86_64-darwin)
-      racc (~> 1.4)
-    nokogiri (1.13.1-x86_64-linux)
       racc (~> 1.4)
     numerizer (0.1.1)
     openstax_active_force (1.1.0)
@@ -472,6 +471,8 @@ GEM
       transaction_isolation (>= 1.0.2)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    uglifier (4.2.0)
+      execjs (>= 0.3.0, < 3)
     unicode-display_width (2.1.0)
     vcr (6.0.0)
     versionist (2.0.1)
@@ -512,6 +513,7 @@ DEPENDENCIES
   faker
   listen
   lograge
+  mini_racer
   multi_json
   openstax_auth!
   openstax_healthcheck
@@ -546,6 +548,7 @@ DEPENDENCIES
   sidekiq-unique-jobs
   spring
   spring-commands-rspec
+  uglifier
   vcr
   versionist
   webmock

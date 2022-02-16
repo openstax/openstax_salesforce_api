@@ -15,6 +15,12 @@ gem 'coffee-rails'
 # Get env variables from .env file
 gem 'dotenv-rails'
 
+# JavaScript asset compiler
+gem 'mini_racer'
+
+# JavaScript asset compressor
+gem 'uglifier'
+
 # OpenStax Accounts SSO
 gem 'openstax_auth', github: 'openstax/auth-rails', ref: 'ed2d7da86ca226b93376955b9474c4cf115c611f'
 
