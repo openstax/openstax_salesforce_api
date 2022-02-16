@@ -7,6 +7,16 @@ GIT
       activesupport
       json-jwt
 
+GIT
+  remote: https://github.com/openstax/openstax_salesforce.git
+  revision: c3df2098bdc31b4373adf9c8d0dd19c65ae12c6c
+  ref: c3df2098bdc31b4373adf9c8d0dd19c65ae12c6c
+  specs:
+    openstax_salesforce (7.0.0)
+      openstax_active_force
+      rails (>= 5.0, < 7.0)
+      restforce
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -160,6 +170,7 @@ GEM
       railties (>= 3.2)
     errbase (0.2.2)
     erubi (1.10.0)
+    execjs (2.8.1)
     factory_bot (6.2.0)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -264,10 +275,6 @@ GEM
       restforce
     openstax_healthcheck (1.0.1)
       rails (>= 3.0)
-    openstax_salesforce (6.5.0)
-      openstax_active_force
-      rails (>= 5.0, < 7.0)
-      restforce
     openstax_utilities (5.0.0)
       aws-sdk-autoscaling
       faraday
@@ -449,6 +456,7 @@ GEM
       activesupport (>= 5.2)
       sprockets (>= 3.0.0)
     thor (1.2.1)
+    tilt (2.0.10)
     transaction_isolation (1.0.5)
       activerecord (>= 3.0.11)
     transaction_retry (1.0.3)
@@ -456,6 +464,7 @@ GEM
       transaction_isolation (>= 1.0.2)
     tzinfo (2.0.4)
       concurrent-ruby (~> 1.0)
+    unicode-display_width (2.1.0)
     vcr (6.0.0)
     versionist (2.0.1)
       activesupport (>= 3)

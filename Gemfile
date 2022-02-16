@@ -22,7 +22,7 @@ gem 'openstax_auth', github: 'openstax/auth-rails', ref: 'ed2d7da86ca226b9337695
 gem 'openstax_healthcheck'
 
 # OpenStax Salesforce helpers
-gem 'openstax_salesforce'
+gem 'openstax_salesforce', github: 'openstax/openstax_salesforce', ref: 'c3df2098bdc31b4373adf9c8d0dd19c65ae12c6c'
 
 # Ruby interface to Salesforce
 gem 'restforce', '~> 5.0.5'
