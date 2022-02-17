@@ -69,7 +69,7 @@ class Opportunity <ApplicationRecord
     opportunity.close_date = sf_opportunity.close_date
     opportunity.renewal_status = sf_opportunity.renewal_status
     opportunity.stage_name = sf_opportunity.stage_name
-    opportunity.update_type = sf_opportunity.type
+    opportunity.type = sf_opportunity.type
     opportunity.number_of_students = sf_opportunity.number_of_students
     opportunity.student_number_status = sf_opportunity.student_number_status
     opportunity.time_period = sf_opportunity.time_period
@@ -77,7 +77,6 @@ class Opportunity <ApplicationRecord
     opportunity.school_id = sf_opportunity.school_id
     opportunity.book_id = sf_opportunity.book_id
     opportunity.name = sf_opportunity.name
-    opportunity.record_type_name = sf_opportunity.record_type_name
     opportunity.record_type_id = sf_opportunity.record_type_id
     opportunity.accounts_uuid = sf_opportunity.accounts_uuid
 

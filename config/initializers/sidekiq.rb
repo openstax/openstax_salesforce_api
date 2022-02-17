@@ -6,7 +6,7 @@ Sidekiq.configure_server do |config|
   config.error_handlers << proc {|ex,ctx_hash| Sentry.capture_exception(ex) }
 
   config.death_handlers << ->(job, ex) do
-	  Sentry.capture_message "Uh oh, #{job['class']} #{job["jid"]} just died with error #{ex.message}."
+	  Sentry.capture_message "Uh oh, #{job['class']} #{job["jid"]} just died with error: #{ex.message}."
   end
 
   config.client_middleware do |chain|

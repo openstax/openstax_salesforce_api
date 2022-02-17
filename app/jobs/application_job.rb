@@ -9,11 +9,13 @@ class ApplicationJob
     Sidekiq.redis {|c| c.setex("cancelled-#{jid}", 86400, 1) }
   end
 
-  sidekiq_retry_in do |count, exception|
-    case exception
-      when OpenStax::Salesforce::Remote::Error
-        count * 0 # no reties needed on SF errors
-    end
-  end
+  # TODO: something like this seems reasonable.. except need to figure how to catch them
+  # it likely means something is wrong in SF
+  # sidekiq_retry_in do |count, exception|
+  #   case exception
+  #     when OpenStax::Salesforce::Remote::Errors
+  #       count * 0 # no reties needed on SF errors
+  #   end
+  # end
 
 end
