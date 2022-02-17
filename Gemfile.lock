@@ -7,6 +7,12 @@ GIT
       activesupport
       json-jwt
 
+GIT
+  remote: https://github.com/umbrellio/sidekiq-enqueuer.git
+  revision: cf8f2ff5b025781e8a6743adce38c4085fb83eb5
+  specs:
+    sidekiq-enqueuer (2.2.1)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -543,6 +549,7 @@ DEPENDENCIES
   sentry-sidekiq
   sidekiq
   sidekiq-cron (~> 1.1)
+  sidekiq-enqueuer!
   sidekiq-failures
   sidekiq-status
   sidekiq-unique-jobs

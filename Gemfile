@@ -76,6 +76,7 @@ gem 'sidekiq-failures'
 gem 'sidekiq-status'
 gem 'sidekiq-unique-jobs'
 gem "sidekiq-cron", "~> 1.1"
+gem "sidekiq-enqueuer", github: "umbrellio/sidekiq-enqueuer"
 
 # Version Rails RESTful APIs
 gem 'versionist'
