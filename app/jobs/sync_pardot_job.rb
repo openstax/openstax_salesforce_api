@@ -10,6 +10,8 @@ class SyncPardotJob < ApplicationJob
 
     # first, let's update the lists from Pardot
     existing_lists = List.pluck(:pardot_id)
+    store existing_list_count: existing_lists.count
+
     new_lists = []
 
     lists = Pardot.client.lists.query(is_greater_than: 0)
@@ -22,6 +24,8 @@ class SyncPardotJob < ApplicationJob
         plist.description = list['description']
       end
     end
+
+    store new_list_count: new_lists.count
 
     # remove lists if they no longer exist in Pardot
     existing_lists.each do |existing_list_pardot_id|
