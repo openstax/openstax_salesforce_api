@@ -1,4 +1,7 @@
-require "sidekiq/enqueuer"
+require 'sidekiq'
+require 'sidekiq/enqueuer'
+require 'sidekiq-status'
+
 redis_secrets = Rails.application.secrets[:redis]
 
 Sidekiq.configure_server do |config|

@@ -10,6 +10,8 @@ class SyncSalesforceLeadsJob < ApplicationJob
       sf_leads = OpenStax::Salesforce::Remote::Lead.all
     end
 
+    store leads_syncing: sf_leads.count
+
     sf_leads.each do |sf_lead|
       lead = Lead.cache_local(sf_lead)
       return lead if sf_leads.count == 1

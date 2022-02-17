@@ -10,6 +10,8 @@ class SyncSalesforceContactSchoolRelationsJob < ApplicationJob
       sf_relations = OpenStax::Salesforce::Remote::AccountContactRelation.all
     end
 
+    store relations_syncing: sf_relations.count
+
     sf_relations.each do |sf_relation|
       relation = AccountContactRelation.cache_local(sf_relation)
 

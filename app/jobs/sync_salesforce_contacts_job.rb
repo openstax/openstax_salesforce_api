@@ -10,6 +10,8 @@ class SyncSalesforceContactsJob < ApplicationJob
       sf_contacts = OpenStax::Salesforce::Remote::Contact.all
     end
 
+    store contacts_syncing: sf_contacts.count
+
     sf_contacts.each do |sf_contact|
       Contact.cache_local(sf_contact)
     end

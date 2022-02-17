@@ -7,8 +7,11 @@ class SyncSalesforceOpportunitiesJob < ApplicationJob
     if uuid
       sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(accounts_uuid:uuid)
     else
+      # TODO: change this to use the record type from the Opportunity model
       sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(record_type_name:'Book Opp')
     end
+
+    store num_opps_syncing: sf_opportunities.count
 
     sf_opportunities.each do |sf_opportunity|
       Opportunity.cache_local(sf_opportunity)

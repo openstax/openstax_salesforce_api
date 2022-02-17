@@ -1,5 +1,6 @@
 class ApplicationJob
   include Sidekiq::Worker
+  include Sidekiq::Status::Worker
 
   def cancelled?
     Sidekiq.redis {|c| c.exists("cancelled-#{jid}") } # Use c.exists? on Redis >= 4.2.0

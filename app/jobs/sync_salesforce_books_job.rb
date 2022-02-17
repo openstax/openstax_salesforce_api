@@ -6,6 +6,8 @@ class SyncSalesforceBooksJob < ApplicationJob
   def perform(*args)
     sf_books = OpenStax::Salesforce::Remote::Book.all
 
+    store books_syncing: sf_books.count
+
     sf_books.each do |sf_book|
       Book.cache_local(sf_book)
     end
