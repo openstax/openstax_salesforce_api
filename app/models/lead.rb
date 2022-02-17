@@ -30,16 +30,15 @@ class Lead <ApplicationRecord
       )
     sf_lead.save
 
-    lead.salesforce_id = sf_lead.id
-    lead.save
-    lead
+    self.salesforce_id = sf_lead.id
+    self.save
   end
 
   # expects an object of type
   # OpenStax::Salesforce::Remote::Lead
   def self.cache_local(sf_lead)
     # This should be reasonable with lead merge - each user should only have one lead
-    lead = Lead.find_or_initialize_by(accounts_uuid: sf_lead.accounts_uuid)
+    lead = find_or_initialize_by(accounts_uuid: sf_lead.accounts_uuid)
     lead.salesforce_id = sf_lead.id
     lead.name = sf_lead.name
     lead.first_name = sf_lead.first_name
@@ -66,5 +65,16 @@ class Lead <ApplicationRecord
     lead.title = sf_lead.title
 
     lead.save if lead.changed?
+  end
+
+  def self.find_or_fetch_by_uuid(uuid)
+    leads = where(accounts_uuid: uuid)
+    unless leads.exists?
+      sf_leads = OpenStax::Salesforce::Remote::Lead.where(accounts_uuid: uuid)
+      sf_leads.each do |sf_lead|
+        cache_local(sf_lead)
+      end
+    end
+    where(accounts_uuid: @uuid)
   end
 end

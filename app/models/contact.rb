@@ -12,7 +12,7 @@ class Contact < ApplicationRecord
   # expects an object of type OpenStax::Salesforce::Remote::Contact
   # OpenStax::Salesforce::Remote::Contact
   def self.cache_local(sf_contact)
-    contact = Contact.find_or_initialize_by(salesforce_id: sf_contact.id)
+    contact = self.find_or_initialize_by(salesforce_id: sf_contact.id)
     contact.name = sf_contact.name
     contact.first_name = sf_contact.first_name
     contact.last_name = sf_contact.last_name
@@ -35,20 +35,16 @@ class Contact < ApplicationRecord
       AccountContactRelation.find_or_create_by(contact_id: contact.salesforce_id, school_id: sf_contact.school_id)
       contact.save
     end
-
-    # make sure they have a relation setup for the school listed on their contact
-    # there is probably a more rails way to do this...
-
-
     contact
   end
 
-  def self.fetch_by_uuid(uuid)
-    unless contact = self.find_by(accounts_uuid: uuid)
+  def self.find_or_fetch_by_uuid(uuid)
+    contact = find_by(accounts_uuid: uuid)
+    if contact.nil?
       sf_contact = OpenStax::Salesforce::Remote::Contact.find_by(accounts_uuid: uuid)
       raise(CannotFindUserContact) unless sf_contact
-      contact = self.cache_local(sf_contact)
+      cache_local(sf_contact)
     end
-    contact
+    find_by(accounts_uuid: uuid)
   end
 end

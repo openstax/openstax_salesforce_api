@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_15_231905) do
+ActiveRecord::Schema.define(version: 2022_02_17_163908) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -198,10 +198,9 @@ ActiveRecord::Schema.define(version: 2022_02_15_231905) do
     t.string "name"
     t.string "record_type_id"
     t.string "accounts_uuid"
-    t.integer "record_type"
-    t.integer "stage_name"
-    t.integer "type"
-    t.integer "renewal_status"
+    t.string "record_type"
+    t.string "stage_name"
+    t.string "type"
   end
 
   create_table "schools", force: :cascade do |t|

@@ -38,6 +38,6 @@ class Api::V1::BaseController < ApplicationController
   protected
 
   def current_api_user
-    @user = User.new(current_sso_user_uuid)
+    @user = User.new(@current_sso_user_uuid)
   end
 end

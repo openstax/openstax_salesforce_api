@@ -11,38 +11,42 @@ class Opportunity <ApplicationRecord
     verified: 'Renewal - Verified'
   }, _prefix: :opportunity
 
-  enum status: {
-    needs_renewal: 'Needs Renewal',
-    renewed: 'Done Renewed',
-    dropped: 'Dropped',
-    needs_check: 'Needs Check'
-  }, _prefix: :opportunity
-
   def self.search(uuid)
     where(accounts_uuid: uuid)
   end
 
-
   # expects object type of SFAPI Opportunity
   def self.push_or_update(opportunity)
-    sf_opportunity = sf_opportunity_by_uuid(opportunity.accounts_uuid)
+    if opportunity.salesforce_id
+      # if the opportunity has a salesforce id, we are processing a renewal
+      sf_opportunity = sf_opportunity_by_id(salesforce_id)
+    else
+      sf_opportunity = OpenStax::Salesforce::Remote::Opportunity.find_or_initialize_by(accounts_uuid: uuid)
+    end
+
 
     # The common stuff we need for an opp to be created or updated
     sf_opportunity.close_date = Date.today.strftime('%Y-%m-%d')
-    sf_opportunity.stage_name = stage_names[:won]
-    sf_opportunity.number_of_students = self.number_of_students
-    sf_opportunity.time_period = 'Year' # TODO: what are the options for this?
-    sf_opportunity.student_number_status = 'Reported' # TODO: what are the options for this?
-    sf_opportunity.class_start_date = calculate_start_date
+    sf_opportunity.number_of_students = number_of_students
+
+    # TODO: what are the options for this?
+    sf_opportunity.time_period = 'Year'
+    # TODO: what are the options for this?
+    sf_opportunity.student_number_status = 'Reported'
+    # TODO: this will cause problems if not in SF
     sf_opportunity.school_id = School.find_by!(salesforce_id: opportunity.school_id)
+    # TODO: this will cause problems if not in SF
     sf_opportunity.book_id = Book.find_by!(salesforce_id: opportunity.book_id)
+
     sf_opportunity.record_type_id = @book_adoption_record_type
 
     if sf_opportunity.new_record? # this means it's new.. we need to do a few different things
-      sf_opportunity.type = types[:new]
       sf_opportunity.name = '[FOR REVIEW FROM SFAPI]'
+      sf_opportunity.class_start_date = calculate_start_date
+      sf_opportunity.type = types[:new]
     else # this means it already exists.. so we are renewing it
       sf_opportunity.type = types[:renewed]
+      sf_opportunity.renewal_class_start_date = Date.today.strftime('%Y-%m-%d')
     end
 
     unless sf_opportunity.save
@@ -50,12 +54,12 @@ class Opportunity <ApplicationRecord
       raise("Error processing opportunity (id:#{self.id}) to Salesforce: #{sf_opportunity.errors}")
     end
 
-    opportunity.book_id = sf_opportunity.salesforce_id
-    opportunity.update_type = sf_opportunity.type
+    opportunity.book_id = sf_opportunity.book_id
+    opportunity.type = sf_opportunity.type
     opportunity.salesforce_id = sf_opportunity.id
     opportunity.save
 
-    return opportunity
+    return @opportunity = opportunity
   end
 
   # expects an object of type
@@ -67,7 +71,6 @@ class Opportunity <ApplicationRecord
     opportunity.book_name = sf_opportunity.book_name
     opportunity.contact_id = sf_opportunity.contact_id
     opportunity.close_date = sf_opportunity.close_date
-    opportunity.renewal_status = sf_opportunity.renewal_status
     opportunity.stage_name = sf_opportunity.stage_name
     opportunity.type = sf_opportunity.type
     opportunity.number_of_students = sf_opportunity.number_of_students
@@ -90,11 +93,18 @@ class Opportunity <ApplicationRecord
   end
 
   def sf_opportunity_by_id(salesforce_id)
-    OpenStax::Salesforce::Remote::Opportunity.find(salesforce_id)
+    @sf_opportunity = OpenStax::Salesforce::Remote::Opportunity.find(salesforce_id)
   end
 
-  def sf_opportunity_by_uuid(uuid)
-    OpenStax::Salesforce::Remote::Opportunity.find_by!(accounts_uuid: uuid)
+  def self.find_or_fetch_by_uuid(uuid)
+    opportunities = where(accounts_uuid: uuid)
+    if opportunities.nil?
+      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(accounts_uuid: uuid)
+      sf_opportunities.each do |sf_opportunity|
+        cache_local(sf_opportunity)
+      end
+    end
+    where(accounts_uuid: uuid)
   end
 
   private
