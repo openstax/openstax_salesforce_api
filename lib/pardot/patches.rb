@@ -34,6 +34,9 @@ module Pardot
   end
 
   def self.client
+    # we don't have pardot setup on all sandboxes, we can't setup the client for these environments
+    warn('No pardot business unit id') && return if Rails.application.secrets.pardot[:business_unit_id]
+
     @client ||= begin
         pardot_secrets = Rails.application.secrets.pardot
         salesforce_client = OpenStax::Salesforce::Client.new
