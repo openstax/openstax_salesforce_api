@@ -5,7 +5,7 @@ class Opportunity <ApplicationRecord
     lost: 'Closed Lost'
   }, _prefix: :opportunity
 
-  enum type: {
+  enum update_type: {
     new_business: 'New Business',
     renewal: 'Renewal',
     verified: 'Renewal - Verified'
@@ -43,9 +43,9 @@ class Opportunity <ApplicationRecord
     if sf_opportunity.new_record? # this means it's new.. we need to do a few different things
       sf_opportunity.name = '[FOR REVIEW FROM SFAPI]'
       sf_opportunity.class_start_date = calculate_start_date
-      sf_opportunity.type = types[:new]
+      sf_opportunity.update_type = update_type[:new]
     else # this means it already exists.. so we are renewing it
-      sf_opportunity.type = types[:renewed]
+      sf_opportunity.update_type = update_type[:renewed]
       sf_opportunity.renewal_class_start_date = Date.today.strftime('%Y-%m-%d')
     end
 
@@ -55,7 +55,7 @@ class Opportunity <ApplicationRecord
     end
 
     opportunity.book_id = sf_opportunity.book_id
-    opportunity.type = sf_opportunity.type
+    opportunity.update_type = sf_opportunity.type
     opportunity.salesforce_id = sf_opportunity.id
     opportunity.save
 
@@ -72,7 +72,7 @@ class Opportunity <ApplicationRecord
     opportunity.contact_id = sf_opportunity.contact_id
     opportunity.close_date = sf_opportunity.close_date
     opportunity.stage_name = sf_opportunity.stage_name
-    opportunity.type = sf_opportunity.type
+    opportunity.update_type = sf_opportunity.type
     opportunity.number_of_students = sf_opportunity.number_of_students
     opportunity.student_number_status = sf_opportunity.student_number_status
     opportunity.time_period = sf_opportunity.time_period
