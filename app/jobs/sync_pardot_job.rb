@@ -3,7 +3,10 @@ class SyncPardotJob < ApplicationJob
 
   def perform(salesforce_ids = [])
     # we don't have pardot setup on all sandboxes, we don't need to try syncing without a business id set
-    return if Rails.application.secrets.pardot[:business_unit_id]
+    if Rails.application.secrets.pardot[:business_unit_id]
+      store failure_state: 'Pardot business unit not set'
+      return
+    end
 
     # first, let's update the lists from Pardot
     existing_lists = List.pluck(:pardot_id)
