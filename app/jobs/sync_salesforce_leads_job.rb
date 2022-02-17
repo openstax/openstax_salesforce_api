@@ -13,8 +13,7 @@ class SyncSalesforceLeadsJob < ApplicationJob
     store leads_syncing: sf_leads.count
 
     sf_leads.each do |sf_lead|
-      lead = Lead.cache_local(sf_lead)
-      return lead if sf_leads.count == 1
+      Lead.cache_local(sf_lead)
     end
     JobsHelper.delete_objects_not_in_salesforce('Lead', sf_leads)
   end

@@ -13,9 +13,7 @@ class SyncSalesforceContactSchoolRelationsJob < ApplicationJob
     store relations_syncing: sf_relations.count
 
     sf_relations.each do |sf_relation|
-      relation = AccountContactRelation.cache_local(sf_relation)
-
-      return relation if sf_relations.count == 1
+      AccountContactRelation.cache_local(sf_relation)
     end
     JobsHelper.delete_objects_not_in_salesforce('AccountContactRelation', sf_relations)
   end
