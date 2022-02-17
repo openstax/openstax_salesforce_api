@@ -26,6 +26,7 @@ class AccountContactRelation < ApplicationRecord
     if sf_school
       School.cache_local(sf_school)
     else
+      # TODO: Let's just make the school...? Although this should not be happening unless it's a cross-env issue
       raise(SchoolDoesNotExistInSalesforce)
     end
   end
