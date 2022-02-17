@@ -11,8 +11,7 @@ class SyncSalesforceContactsJob < ApplicationJob
     end
 
     sf_contacts.each do |sf_contact|
-      contact = Contact.cache_local(sf_contact)
-      return contact if sf_contacts.count == 1
+      Contact.cache_local(sf_contact)
     end
     JobsHelper.delete_objects_not_in_salesforce('Contact', sf_contacts)
   end

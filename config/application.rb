@@ -61,6 +61,10 @@ module OpenstaxSalesforceApi
       %w[production prod].include? secrets.environment_name
     end
 
+    def is_staging?
+      secrets.environment_name == 'staging'
+    end
+
     config.active_record.belongs_to_required_by_default = false
     config.autoload_paths += %W(#{config.root}/lib)
 
