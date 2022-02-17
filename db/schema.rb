@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_02_17_193406) do
+ActiveRecord::Schema.define(version: 2022_02_17_221217) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "citext"
@@ -123,16 +123,11 @@ ActiveRecord::Schema.define(version: 2022_02_17_193406) do
     t.string "name"
     t.string "first_name"
     t.string "last_name"
-    t.string "email"
-    t.string "email_alt"
     t.datetime "faculty_confirmed_date"
     t.string "faculty_verified"
     t.datetime "last_modified_at"
     t.string "school_id"
     t.string "school_type"
-    t.string "send_faculty_verification_to"
-    t.string "all_emails"
-    t.string "confirmed_emails"
     t.string "adoption_status"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
