@@ -8,6 +8,16 @@ GIT
       json-jwt
 
 GIT
+  remote: https://github.com/openstax/openstax_salesforce.git
+  revision: ca4bde2d833e78bf5ebad10f441a543adf4a6956
+  ref: ca4bde2d833e78bf5ebad10f441a543adf4a6956
+  specs:
+    openstax_salesforce (7.1.0)
+      openstax_active_force
+      rails (>= 5.0, < 7.0)
+      restforce
+
+GIT
   remote: https://github.com/umbrellio/sidekiq-enqueuer.git
   revision: cf8f2ff5b025781e8a6743adce38c4085fb83eb5
   specs:
@@ -176,7 +186,7 @@ GEM
       railties (>= 5.0.0)
     faker (2.19.0)
       i18n (>= 1.6, < 2)
-    faraday (1.9.3)
+    faraday (1.10.0)
       faraday-em_http (~> 1.0)
       faraday-em_synchrony (~> 1.0)
       faraday-excon (~> 1.1)
@@ -281,10 +291,6 @@ GEM
       restforce
     openstax_healthcheck (1.0.1)
       rails (>= 3.0)
-    openstax_salesforce (7.0.0)
-      openstax_active_force
-      rails (>= 5.0, < 7.0)
-      restforce
     openstax_utilities (5.0.0)
       aws-sdk-autoscaling
       faraday
@@ -523,7 +529,7 @@ DEPENDENCIES
   multi_json
   openstax_auth!
   openstax_healthcheck
-  openstax_salesforce
+  openstax_salesforce!
   openstax_utilities
   parallel_tests
   pg

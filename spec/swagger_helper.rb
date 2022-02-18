@@ -16,36 +16,24 @@ RSpec.configure do |config|
   # the root example_group in your specs, e.g. describe '...', swagger_doc: 'v2/swagger.json'
   config.swagger_docs = {
     'v1/swagger.json' => {
-      swagger: '2.0',
+      openapi: '3.0.1',
       info: {
-        title: 'API V1',
+        title: 'OpenStax Salesforce API V1',
         version: 'v1'
       },
-      paths: {},
       servers: [
         {
-          url: 'https://salesforce.openstax.org',
-          variables: {
-            defaultHost: {
-              default: 'salesforce.openstax.org'
-            }
-          }
+          url: "https://salesforce.openstax.org"
         }
       ],
       securityDefinitions: {
-        apiToken: {
-          description: 'OpenStax SSO Cookie needed for API Calls',
+        cookieAuth: {
           type: :apiKey,
-          name: 'HTTP_COOKIE',
-          in: :header
+          description: "OpenStax SSO Token",
+          in: :cookies,
+          name: 'oxa_dev'
         }
       }
     }
   }
-
-  # Specify the format of the output Swagger file when running 'rswag:specs:swaggerize'.
-  # The swagger_docs configuration option has the filename including format in
-  # the key, this may want to be changed to avoid putting yaml in json files.
-  # Defaults to json. Accepts ':json' and ':yaml'.
-  config.swagger_format = :json
 end

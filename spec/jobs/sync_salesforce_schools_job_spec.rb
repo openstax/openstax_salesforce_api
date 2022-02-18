@@ -1,10 +1,8 @@
 require 'rails_helper'
 
-RSpec.describe SyncSalesforceSchoolsJob, type: :job, vcr: VCR_OPTS do
-  before(:each) do
-    Sidekiq::Worker.clear_all
-  end
+Sidekiq::Testing.inline!
 
+RSpec.describe SyncSalesforceSchoolsJob, type: :job, vcr: VCR_OPTS do
   before(:all) do
     VCR.use_cassette('SyncSalesforceSchoolsJob/sf_setup', VCR_OPTS) do
       @proxy = SalesforceProxy.new
@@ -12,12 +10,15 @@ RSpec.describe SyncSalesforceSchoolsJob, type: :job, vcr: VCR_OPTS do
     end
   end
 
-  it { is_expected.to be_processed_in :default }
+  before(:each) do
+    Sidekiq::Worker.clear_all
+  end
+
+  it { is_expected.to be_processed_in :schools }
   it { is_expected.to be_retryable true }
 
   it 'syncs schools' do
     SyncSalesforceSchoolsJob.new.perform()
-
     expect(School.count).to be > 0
   end
 end

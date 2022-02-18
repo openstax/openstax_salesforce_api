@@ -28,7 +28,7 @@ gem 'openstax_auth', github: 'openstax/auth-rails', ref: 'ed2d7da86ca226b9337695
 gem 'openstax_healthcheck'
 
 # OpenStax Salesforce helpers
-gem 'openstax_salesforce'
+gem 'openstax_salesforce', github: 'openstax/openstax_salesforce', ref: 'ca4bde2d833e78bf5ebad10f441a543adf4a6956'
 
 # Ruby interface to Salesforce
 gem 'restforce', '~> 5.0.5'
@@ -47,9 +47,6 @@ gem 'puma_worker_killer'
 
 # CORS for local testing/dev
 gem 'rack-cors'
-
-# Generate API Docs
-gem 'rswag'
 
 #XML Utilities
 gem 'rexml'
@@ -90,6 +87,9 @@ gem 'redis'
 # business intel package - database insight
 gem 'blazer'
 
+# swagger for API docs
+gem 'rswag'
+
 # TODO: moving this outside the test group to see if it fixes an issue.. but it's probably an issue in the deployment
 # Use RSpec for tests
 gem 'rspec-rails'
@@ -113,9 +113,10 @@ group :development, :test do
   # Speedup and run specs when files change
   gem 'spring'
   gem 'spring-commands-rspec'
-end
 
-group :test do
+  # swagger api docs
+  gem 'rswag-specs'
+
   # Show failing parallel specs instantly
   gem 'rspec-instafail'
 
@@ -127,9 +128,6 @@ group :test do
 
   # Run specs in parallel
   gem 'parallel_tests'
-
-  # rswag docs from tests
-  gem 'rswag-specs'
 
   # Stubs HTTP requests
   gem 'webmock'

@@ -9,7 +9,7 @@ FactoryBot.define do
     faculty_confirmed_date { Faker::Date.between(from: '2016-09-23', to: '2019-09-25') }
     faculty_verified { Faker::Boolean }
     last_modified_at { Faker::Date.between(from: '2016-09-23', to: '2020-03-25') }
-    school_id { (FactoryBot.create :book).id }
+    school_id { (FactoryBot.create :school).salesforce_id }
     school_type { ['High School','College/University (4)', 'K-12 School', 'Technical/Community College (2)', 'Career School/For-Profit (2)'].sample }
     adoption_status { ['Confirmed Adoption Won', 'Confirmed Adoption Recommend', 'High Interest In Using', 'Not Using'].sample }
     grant_tutor_access { [false, true].sample }

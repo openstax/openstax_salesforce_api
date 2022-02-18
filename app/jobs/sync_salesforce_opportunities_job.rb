@@ -7,12 +7,12 @@ class SyncSalesforceOpportunitiesJob < ApplicationJob
     if uuid
       sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(accounts_uuid:uuid)
     else
-      # TODO: change this to use the fetched ID from Opportunity model
-      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(record_type_name: 'Book Opp')
+      book_opportunity_type_id = OpenStax::Salesforce::Remote::RecordType.find_by(salesforce_object_name: 'Opportunity', name: 'Book Opp').id
+      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(record_type_id: book_opportunity_type_id)
     end
 
-    processed += 1
-    total processed
+    processed = 0
+    total sf_opportunities.count
 
     sf_opportunities.each do |sf_opportunity|
       Opportunity.cache_local(sf_opportunity)
