@@ -1,12 +1,14 @@
 require "sidekiq/enqueuer"
 
-Sidekiq::Enqueuer.configure do |config|
-  config.jobs = [SyncSalesforceSchoolsJob,
-                 SyncSalesforceContactsJob,
-                 SyncSalesforceLeadsJob,
-                 SyncSalesforceBooksJob,
-                 SyncPardotJob,
-                 SyncSalesforceOpportunitiesJob,
-                 SyncContactSchoolsToSalesforceJob,
-                 SyncSalesforceContactSchoolRelationsJob]
+Rails.application.reloader.to_prepare do
+  Sidekiq::Enqueuer.configure do |config|
+    config.jobs = [SyncSalesforceSchoolsJob,
+                   SyncSalesforceContactsJob,
+                   SyncSalesforceLeadsJob,
+                   SyncSalesforceBooksJob,
+                   SyncPardotJob,
+                   SyncSalesforceOpportunitiesJob,
+                   SyncContactSchoolsToSalesforceJob,
+                   SyncSalesforceContactSchoolRelationsJob]
+  end
 end

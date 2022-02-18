@@ -10,10 +10,13 @@ class SyncSalesforceLeadsJob < ApplicationJob
       sf_leads = OpenStax::Salesforce::Remote::Lead.all
     end
 
-    store leads_syncing: sf_leads.count
+    total sf_contacts.count
+    processed = 0
 
     sf_leads.each do |sf_lead|
       Lead.cache_local(sf_lead)
+      processed += 1
+      total processed
     end
     JobsHelper.delete_objects_not_in_salesforce('Lead', sf_leads)
   end

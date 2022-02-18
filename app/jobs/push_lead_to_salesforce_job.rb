@@ -1,6 +1,11 @@
 class PushLeadToSalesforceJob < ApplicationJob
   queue_as :leads
 
+  # keep the status in the database for a day, in case we need to inspect
+  def expiration
+    @expiration ||= 60 * 60 * 24 # 1 days
+  end
+
   def perform(lead_id)
     lead = Lead.find(lead_id)
 

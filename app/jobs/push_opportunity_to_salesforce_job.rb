@@ -1,17 +1,22 @@
 class PushOpportunityToSalesforceJob < ApplicationJob
   queue_as :opportunities
 
-  def perform(salesforce_id)
-    opportunity = Opportunity.find_by_salesforce_id(salesforce_id)
+  # keep the status in the database for a day, in case we need to inspect
+  def expiration
+    @expiration ||= 60 * 60 * 24 # 1 days
+  end
+
+  def perform(uuid)
+    opportunity = Opportunity.find_by(accounts_uuid: uuid)
 
     if opportunity.salesforce_id
       # if the opportunity has a salesforce id, we are processing a renewal
       sf_opportunity = sf_opportunity_by_id(salesforce_id)
     else
-      sf_opportunity = OpenStax::Salesforce::Remote::Opportunity.find_or_initialize_by(accounts_uuid: opportunity.accounts_uuid)
+      sf_opportunity = OpenStax::Salesforce::Remote::Opportunity.find_or_initialize_by(accounts_uuid: uuid)
     end
 
-    store opportunity_uuid: opportunity.accounts_uuid
+    store opportunity_uuid: uuid
 
     # The common stuff we need for an opp to be created or updated
     sf_opportunity.close_date = Date.today.strftime('%Y-%m-%d')

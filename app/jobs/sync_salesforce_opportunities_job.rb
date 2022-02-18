@@ -7,13 +7,17 @@ class SyncSalesforceOpportunitiesJob < ApplicationJob
     if uuid
       sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(accounts_uuid:uuid)
     else
-      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(record_type_id: Opportunity.book_adoption_record_id)
+      # TODO: change this to use the fetched ID from Opportunity model
+      sf_opportunities = OpenStax::Salesforce::Remote::Opportunity.where(record_type_name: 'Book Opp')
     end
 
-    store num_opps_syncing: sf_opportunities.count
+    processed += 1
+    total processed
 
     sf_opportunities.each do |sf_opportunity|
       Opportunity.cache_local(sf_opportunity)
+      processed += 1
+      at processed, "#{processed} processed"
     end
     JobsHelper.delete_objects_not_in_salesforce('Opportunity', sf_opportunities)
   end

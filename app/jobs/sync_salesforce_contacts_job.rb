@@ -10,10 +10,13 @@ class SyncSalesforceContactsJob < ApplicationJob
       sf_contacts = OpenStax::Salesforce::Remote::Contact.all
     end
 
-    store contacts_syncing: sf_contacts.count
+    total sf_contacts.count
+    processed = 0
 
     sf_contacts.each do |sf_contact|
       Contact.cache_local(sf_contact)
+      processed += 1
+      at processed, "#{processed} processed"
     end
     JobsHelper.delete_objects_not_in_salesforce('Contact', sf_contacts)
   end
