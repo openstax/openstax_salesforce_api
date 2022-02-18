@@ -20,8 +20,12 @@ require 'vcr_helper'
 require 'database_cleaner'
 require 'support/factory_bot'
 
+include SFAPISupport
+
 require 'openstax/salesforce/spec_helpers'
 include OpenStax::Salesforce::SpecHelpers
+
+Sidekiq::Testing.inline!
 
 # Checks for pending migrations and applies them before tests are run.
 begin

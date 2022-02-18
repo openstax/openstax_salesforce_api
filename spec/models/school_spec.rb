@@ -1,12 +1,10 @@
 require 'rails_helper'
 
 RSpec.describe School, type: :model do
-  subject(:school) {FactoryBot.create :api_school}
-  it { is_expected.to be_valid}
+  it "creates school" do
+    school = FactoryBot.create :school
+    expect(school).to be_valid
 
-  context "with school" do
-    it "creates school" do
-      expect(School.count).not_to be_an_zero
-    end
+    expect(School.count).not_to be_an_zero
   end
 end
