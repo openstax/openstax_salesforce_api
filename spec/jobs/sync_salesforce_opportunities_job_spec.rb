@@ -13,7 +13,7 @@ RSpec.describe SyncSalesforceOpportunitiesJob, type: :job, vcr: VCR_OPTS do
   before(:each) do
     Sidekiq::Worker.clear_all
   end
-  
+
   describe 'testing worker' do
     it 'ActionItemWorker jobs are enqueued in the scheduled queue' do
       described_class.perform_async
