@@ -1,6 +1,4 @@
 class Api::V1::ContactsController < Api::V1::BaseController
-  # index and show routes are excluded for this controller and the tests have been removed until the API is needed
-  # The search route has been commented out and the tests removed until the API is needed
 
   # GET /contacts/:id
   def show
@@ -8,10 +6,14 @@ class Api::V1::ContactsController < Api::V1::BaseController
     render json: @contact
   end
 
-  # GET /contacts/search?email
+  # # GET /contacts/search?uuid=
   def search
-    @contact = Contact.search(params[:email])
-    render json: @contact
+    if params[:uuid]
+      @contact = Contact.search(params[:uuid])
+      render json: @contact
+    end
+
+    head(:not_found)
   end
 
   # POST /contacts/add_school/:contact_id/:school_id

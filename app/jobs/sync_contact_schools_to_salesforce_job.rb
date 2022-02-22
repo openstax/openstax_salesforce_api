@@ -1,7 +1,8 @@
 class SyncContactSchoolsToSalesforceJob < ApplicationJob
-  queue_as :default
+  queue_as :schools
 
-  def perform(relation, action)
+  def perform(relation_id, action)
+    relation = AccountContactRelation.find_by!(id: relation_id)
     if action == 'add'
       begin
         sf_relation = OpenStax::Salesforce::Remote::AccountContactRelation.new(
@@ -21,8 +22,10 @@ class SyncContactSchoolsToSalesforceJob < ApplicationJob
           contact_id: relation.contact_id,
           school_id: relation.school_id
         )
-        sf_relation&.destroy
-        relation.destroy!
+        if sf_relation.count >= 1
+          sf_relation&.destroy
+          relation.destroy!
+        end
 
       rescue => e
         Sentry.capture_exception e

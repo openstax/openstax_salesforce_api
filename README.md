@@ -1,3 +1,4 @@
+[![Ruby Style Guide](https://img.shields.io/badge/code_style-rubocop-brightgreen.svg)](https://github.com/rubocop/rubocop)
 [![Tests](https://github.com/openstax/accounts/workflows/Tests/badge.svg)](https://github.com/openstax/accounts/actions?query=workflow:Tests)
 [![Coverage Status](https://codecov.io/gh/openstax/sfapi/branch/main/graph/badge.svg?token=3EZY8CK0ZE)](https://codecov.io/gh/openstax/sfapi)
 

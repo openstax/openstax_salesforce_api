@@ -8,7 +8,7 @@ http_interactions:
       string: grant_type=password&client_id=<salesforce_consumer_key>&client_secret=<salesforce_consumer_secret>&username=<salesforce_username_url>&password=<salesforce_password_url><salesforce_security_token>
     headers:
       User-Agent:
-      - Faraday v1.5.1
+      - Faraday v1.10.0
       Content-Type:
       - application/x-www-form-urlencoded
       Accept-Encoding:
@@ -21,16 +21,15 @@ http_interactions:
       message: OK
     headers:
       Date:
-      - Tue, 07 Dec 2021 19:09:50 GMT
+      - Fri, 18 Feb 2022 23:07:53 GMT
       Set-Cookie:
-      - BrowserId=QEIWT1eREeyq6-kdyuouiw; domain=.salesforce.com; path=/; expires=Wed,
-        07-Dec-2022 19:09:50 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:0; domain=test.salesforce.com; path=/; expires=Wed,
-        07-Dec-2022 19:09:50 GMT; Max-Age=31536000
-      - LSKey-c$CookieConsentPolicy=0:0; domain=test.salesforce.com; path=/; expires=Wed,
-        07-Dec-2022 19:09:50 GMT; Max-Age=31536000
+      - BrowserId=mar_OpEPEey8A4c22sk4yg; domain=.salesforce.com; path=/; expires=Sat,
+        18-Feb-2023 23:07:53 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:0; path=/; expires=Sat, 18-Feb-2023 23:07:53 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:0; path=/; expires=Sat, 18-Feb-2023 23:07:53
+        GMT; Max-Age=31536000
       Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains
+      - max-age=63072000; includeSubDomains
       X-Content-Type-Options:
       - nosniff
       X-Xss-Protection:
@@ -49,6 +48,6 @@ http_interactions:
       - chunked
     body:
       encoding: ASCII-8BIT
-      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1638904190488","signature":"<salesforce_signature>"}'
-  recorded_at: Tue, 07 Dec 2021 19:09:50 GMT
+      string: '{"access_token":"<salesforce_access_token>","instance_url":"<salesforce_instance_url>","id":"<salesforce_id>","token_type":"Bearer","issued_at":"1645225673304","signature":"<salesforce_signature>"}'
+  recorded_at: Fri, 18 Feb 2022 23:07:53 GMT
 recorded_with: VCR 6.0.0

@@ -5,14 +5,13 @@ http_interactions:
     uri: "<salesforce_instance_url>/services/data/v51.0/sobjects/Lead"
     body:
       encoding: UTF-8
-      string: '{"FirstName":"Jasper","LastName":"Armstrong","Salutation":"CPA","Subject__c":"economics","Company":"Bauch
-        College","Phone":"147-563-8993","Website":"http://example.com/priscila.cremin","Status":"Needs
-        Contact","Email":"rebecka@example.com","LeadSource":"OSC Faculty","Newsletter__c":true,"Newsletter_Opt_In__c":false,"Adoption_Status__c":"Not
-        Using","Number_of_Students__c":243,"Accounts_ID__c":"8829487501","Accounts_UUID__c":"092c73db-79de-4899-83b4-2e8a38ca6763","Application_Source__c":"OS
-        Web","Role__c":"Instructor","who_chooses_books__c":"committee","FV_Status__c":"rejected_faculty"}'
+      string: '{"FirstName":"Brenda","LastName":"Upton","Salutation":"DVM","Subject__c":"psychology","Company":"Eastern
+        Ferry","Phone":"198-604-7742","Website":"http://example.com/rubin.rogahn","Status":"Needs
+        FV","Email":"mertie_schuppe@example.com","LeadSource":"SFAPI","Newsletter__c":true,"Newsletter_Opt_In__c":true,"Adoption_Status__c":"High
+        Interest In Using","Number_of_Students__c":251,"Accounts_ID__c":"2881036543","Accounts_UUID__c":"ae0b46a4-c9ea-4afe-87b1-09736712164a","Application_Source__c":"SFAPI","Role__c":"Student","who_chooses_books__c":"coordinator","FV_Status__c":"confirmed_faculty"}'
     headers:
       User-Agent:
-      - Faraday v1.5.1
+      - Faraday v1.10.0
       Content-Type:
       - application/json
       Authorization:
@@ -27,32 +26,37 @@ http_interactions:
       message: Created
     headers:
       Date:
-      - Wed, 17 Nov 2021 16:24:32 GMT
+      - Fri, 18 Feb 2022 22:34:47 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
       Set-Cookie:
-      - BrowserId=2LHwCUfCEeyWkecFMTdAJQ; domain=.salesforce.com; path=/; expires=Thu,
-        17-Nov-2022 16:24:32 GMT; Max-Age=31536000
-      - CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/; expires=Thu,
-        17-Nov-2022 16:24:32 GMT; Max-Age=31536000
-      - LSKey-c$CookieConsentPolicy=0:1; domain=openstax--dev.my.salesforce.com; path=/;
-        expires=Thu, 17-Nov-2022 16:24:32 GMT; Max-Age=31536000
+      - BrowserId=9x2rh5EKEey229W4J-TV9Q; domain=.salesforce.com; path=/; expires=Sat,
+        18-Feb-2023 22:34:42 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; path=/; expires=Sat, 18-Feb-2023 22:34:42 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; path=/; expires=Sat, 18-Feb-2023 22:34:42
+        GMT; Max-Age=31536000
       Strict-Transport-Security:
-      - max-age=31536000; includeSubDomains
+      - max-age=63072000; includeSubDomains
       X-Robots-Tag:
       - none
       Cache-Control:
       - no-cache,must-revalidate,max-age=0,no-store,private
       Sforce-Limit-Info:
-      - api-usage=877/5000000
+      - api-usage=6360/5000000
       Location:
-      - "/services/data/v51.0/sobjects/Lead/00Q7h0000078RwoEAE"
-      Content-Type:
-      - application/json;charset=UTF-8
+      - "/services/data/v51.0/sobjects/Lead/00Q4C00000B5BugUAF"
       Vary:
       - Accept-Encoding
-      Transfer-Encoding:
-      - chunked
+      Server:
+      - sfdcedge
+      X-Sfdc-Request-Id:
+      - 143c398b3dc1217068a64703eba76b3b
     body:
       encoding: ASCII-8BIT
-      string: '{"id":"00Q7h0000078RwoEAE","success":true,"errors":[]}'
-  recorded_at: Wed, 17 Nov 2021 16:24:06 GMT
+      string: '{"id":"00Q4C00000B5BugUAF","success":true,"errors":[]}'
+  recorded_at: Fri, 18 Feb 2022 22:34:47 GMT
 recorded_with: VCR 6.0.0

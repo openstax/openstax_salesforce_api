@@ -1,10 +1,12 @@
 class Api::V1::BaseController < ApplicationController
-  before_action :authorized_for_api
-  protect_from_forgery with: :null_session
+  before_action :authorized_for_api?
+  protect_from_forgery with: :exception, unless: -> { request.format.json? }
 
+
+  include AuthenticateMethods
   include RescueFromUnlessLocal
 
-  rescue_from_unless_local CannotFindUserContact, send_to_sentry: false do |ex|
+  rescue_from_unless_local CannotFindUserContact, send_to_sentry: true do |ex|
     render json: { error: 'Cannot find Salesforce User' }, status: :not_found
   end
 
@@ -14,6 +16,10 @@ class Api::V1::BaseController < ApplicationController
 
   rescue_from_unless_local CannotFindProspect, send_to_sentry: false do |ex|
     render json: { error: 'Cannot find Pardot prospect with that Salesforce ID' }, status: :not_found
+  end
+
+  rescue_from_unless_local SchoolDoesNotExistInSalesforce, send_to_sentry: true do |ex|
+    render json: { error: 'Cannot find School in Salesforce with that ID' }, status: :not_found
   end
 
   rescue_from_unless_local BadRequest, send_to_sentry: true do |ex|
@@ -31,29 +37,7 @@ class Api::V1::BaseController < ApplicationController
 
   protected
 
-  def current_accounts_user
-    @current_accounts_user ||= JSON.parse(OpenStax::Accounts::Api.search_accounts("uuid:#{sso_cookie_field('uuid')}", options = {}).body)['items'][0]
-  end
-
-  def current_accounts_user!
-    current_accounts_user || raise(NoSSOCookieSet)
-  end
-
-  def current_contact
-    @current_contact ||= begin
-      raise(CannotFindUserContact) if current_accounts_user.blank?
-      contact = Contact.find_by(accounts_uuid: current_accounts_user['uuid'])
-      if contact.blank?
-        contact = SyncSalesforceContactsJob.new.perform(current_accounts_user['uuid'])
-        SyncSalesforceContactSchoolRelationsJob.new.perform(current_accounts_user['salesforce_contact_id'])
-        SyncSalesforceOpportunitiesJob.new.perform(current_accounts_user['uuid'])
-      end
-      Sentry.set_user(current_accounts_user)
-      contact
-    end
-  end
-
-  def current_contact!
-    current_contact || raise(CannotFindUserContact)
+  def current_api_user
+    @user = User.new(@current_sso_user_uuid)
   end
 end

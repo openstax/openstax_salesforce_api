@@ -1,27 +1,24 @@
 require "admin_constraint"
 
 Rails.application.routes.draw do
-  root 'login#new'
-  use_doorkeeper
-  mount Rswag::Ui::Engine => '/api-docs'
-  mount Rswag::Api::Engine => '/api-docs'
-  mount OpenStax::Accounts::Engine, at: '/accounts'
-  mount Sidekiq::Web => '/jobs', :constraints => AdminConstraint.new
-  get 'jobs', to: 'redirect#index'
-  namespace :api do
+  # we don't really need a homepage for this API - return a 404
+  # which would happen in prod anyways - but so we don't confuse devs/qas
+  root to: proc { [404, {}, ['Not found. Please use API paths.']] }
+
+  namespace :api, default: true  do
     api_version(
       module: 'V1',
       path: { value: 'v1' },
       defaults: { format: :json }
     ) do
 
-      resources :schools, except: :index do
+      resources :schools, except: [:index] do
         collection do
           get 'search'
         end
       end
 
-      resources :contacts, except: [:index, :show] do
+      resources :contacts, except: [:index] do
         collection do
           post 'add_school'
           post 'set_primary_school'
@@ -31,7 +28,7 @@ Rails.application.routes.draw do
 
       resources :opportunities, except: [:index, :show]
 
-      resources :leads, except: [:index, :show, :search]
+      resources :leads, only: [:create, :show]
 
       resources :users
 
@@ -40,32 +37,22 @@ Rails.application.routes.draw do
         get :unsubscribe
       end
 
-      ##############################
-      # commented out for later use
-      # resources :books, except: :index do
-      #   collection do
-      #     get 'search'
-      #   end
-      # end
-      #
-      # resources :campaigns, except: :index
-      #
-      # resources :leads, except: :index do
-      #   collection do
-      #     get 'search'
-      #   end
-      # end
-      #
-      # resources campaign_members: :index
-      # ##################################
+      resources :books, except: :index do
+        collection do
+          get 'search'
+        end
+      end
     end
   end
-  get 'login', to: 'login#new'
-  post 'login', to: 'login#create'
-  delete 'logout', to: 'login#destroy'
 
-  get 'error', to: 'errors#unauthorized'
+  # protect all the important routes by checking the cookie if the user is an admin
+  constraints(-> (req) { AdminConstraint.matches?(req) }) do
+    mount Rswag::Ui::Engine => '/api-docs'
+    mount Rswag::Api::Engine => '/api-docs'
+    mount Sidekiq::Web => '/jobs'
+    mount Blazer::Engine, at: "/blazer"
+    mount OpenStax::Salesforce::Engine => :openstax_salesforce
+  end
 
   mount OpenStax::Utilities::Engine => :status
-  mount Blazer::Engine, at: "blazer"
 end

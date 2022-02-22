@@ -1,19 +1,14 @@
 class Api::V1::UsersController < Api::V1::BaseController
-  def index
-    accounts_uuid = current_accounts_user!['uuid']
-    opportunities = Opportunity.where(accounts_uuid: accounts_uuid)
-    leads = Lead.where(accounts_uuid: accounts_uuid)
-    if contact = current_contact
-      schools = AccountContactRelation.where(contact_id: contact&.salesforce_id)
-      subscriptions = contact&.subscriptions
-    end
+  before_action :current_api_user
 
+  def index
     render json: {
-      opportunity: opportunities,
-      contact: current_contact,
-      schools: schools,
-      lead: leads,
-      subscriptions: subscriptions
+      ox_uuid: current_sso_user_uuid,
+      opportunities: @user&.opportunities,
+      contact: @user&.contact,
+      schools: @user&.schools,
+      leads: @user&.leads,
+      subscriptions: @user&.subscriptions
     }
   end
 end

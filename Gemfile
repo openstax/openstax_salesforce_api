@@ -12,9 +12,6 @@ gem 'bootsnap', require: false
 # CoffeeScript for .js.coffee assets and views
 gem 'coffee-rails'
 
-# OAuth provider
-gem 'doorkeeper', '~> 5.4'
-
 # Get env variables from .env file
 gem 'dotenv-rails'
 
@@ -23,12 +20,6 @@ gem 'mini_racer'
 
 # JavaScript asset compressor
 gem 'uglifier'
-
-# OpenStax Accounts
-gem 'openstax_accounts', '~> 9.8.0'
-
-# API versioning and documentation
-gem 'openstax_api', '~> 9.4.0'
 
 # OpenStax Accounts SSO
 gem 'openstax_auth', github: 'openstax/auth-rails', ref: 'ed2d7da86ca226b93376955b9474c4cf115c611f'
@@ -57,11 +48,9 @@ gem 'puma_worker_killer'
 # CORS for local testing/dev
 gem 'rack-cors'
 
-# Generate API Docs
-gem 'rswag'
-
 #XML Utilities
 gem 'rexml'
+gem 'multi_json'
 
 # Pardot integration
 gem 'ruby-pardot'
@@ -80,11 +69,11 @@ gem "sentry-sidekiq"
 
 # sidekiq for background jobs
 gem 'sidekiq'
-gem 'sidekiq-cron', github: 'ondrejbartas/sidekiq-cron', ref: '6a0aeff6c900f3b7246734282f6869c61e1d5b4e'
-gem 'sidekiq-enqueuer'
 gem 'sidekiq-failures'
 gem 'sidekiq-status'
 gem 'sidekiq-unique-jobs'
+gem "sidekiq-cron", "~> 1.1"
+gem "sidekiq-enqueuer", github: "umbrellio/sidekiq-enqueuer"
 
 # Version Rails RESTful APIs
 gem 'versionist'
@@ -92,27 +81,28 @@ gem 'versionist'
 # Pagination
 gem 'will_paginate', '~> 3.3.0'
 
-# Use RSpec for tests
-gem 'rspec-rails'
-
 # Key-value store for caching
 gem 'redis'
 
 # business intel package - database insight
-gem "blazer"
+gem 'blazer'
+
+# swagger for API docs
+gem 'rswag'
+
+# TODO: moving this outside the test group to see if it fixes an issue.. but it's probably an issue in the deployment
+# Use RSpec for tests
+gem 'rspec-rails'
 
 group :development, :test do
-  # Run specs in parallel
-  gem 'parallel_tests'
-
-  # Show failing parallel specs instantly
-  gem 'rspec-instafail'
-
   # Call 'debugger' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', require: false
 
   # Fixture replacement
   gem 'factory_bot_rails'
+
+  # code linting
+  gem 'rubocop', require: false
 
   # fake data generation
   gem 'faker'
@@ -124,27 +114,31 @@ group :development, :test do
   gem 'spring'
   gem 'spring-commands-rspec'
 
+  # swagger api docs
+  gem 'rswag-specs'
+
+  # Show failing parallel specs instantly
+  gem 'rspec-instafail'
+
+  # Add ability to test sidekiq
+  gem 'rspec-sidekiq'
+
+  # Test database cleanup gem with multiple strategies
+  gem 'database_cleaner'
+
+  # Run specs in parallel
+  gem 'parallel_tests'
+
   # Stubs HTTP requests
   gem 'webmock'
 
   # Records HTTP requests
   gem 'vcr'
-
-  # rswag docs from tests
-  gem 'rswag-specs'
-
-  # Add ability to test sidekiq
-  gem 'rspec-sidekiq'
 end
 
 group :development do
   # See updates in development to reload rails
   gem 'listen'
-end
-
-group :test do
-  # Test database cleanup gem with multiple strategies
-  gem 'database_cleaner'
 end
 
 group :production, :test do

@@ -1,0 +1,62 @@
+---
+http_interactions:
+- request:
+    method: post
+    uri: "<salesforce_instance_url>/services/data/v51.0/sobjects/Lead"
+    body:
+      encoding: UTF-8
+      string: '{"FirstName":"Wendell","LastName":"Orn","Salutation":"DO","Subject__c":"chemistry","Company":"Schamberger
+        College","Phone":"261-180-9916","Website":"http://example.com/burl","Status":"Needs
+        Opportunity","Email":"grayce.barrows@example.com","LeadSource":"SFAPI","Newsletter__c":true,"Newsletter_Opt_In__c":false,"Adoption_Status__c":"Confirmed
+        Adoption Won","Number_of_Students__c":95,"Accounts_ID__c":"4959683999","Accounts_UUID__c":"3e1e75b9-04fa-40f8-b5d1-cfe5930aa11d","Application_Source__c":"SFAPI","Role__c":"Student","who_chooses_books__c":"coordinator","FV_Status__c":"confirmed_faculty"}'
+    headers:
+      User-Agent:
+      - Faraday v1.10.0
+      Content-Type:
+      - application/json
+      Authorization:
+      - OAuth <salesforce_access_token>
+      Accept-Encoding:
+      - gzip;q=1.0,deflate;q=0.6,identity;q=0.3
+      Accept:
+      - "*/*"
+  response:
+    status:
+      code: 201
+      message: Created
+    headers:
+      Date:
+      - Fri, 18 Feb 2022 22:34:53 GMT
+      Content-Type:
+      - application/json;charset=UTF-8
+      Transfer-Encoding:
+      - chunked
+      Connection:
+      - keep-alive
+      Set-Cookie:
+      - BrowserId=-opwjZEKEey0ytFET0TuhQ; domain=.salesforce.com; path=/; expires=Sat,
+        18-Feb-2023 22:34:48 GMT; Max-Age=31536000
+      - CookieConsentPolicy=0:1; path=/; expires=Sat, 18-Feb-2023 22:34:48 GMT; Max-Age=31536000
+      - LSKey-c$CookieConsentPolicy=0:1; path=/; expires=Sat, 18-Feb-2023 22:34:48
+        GMT; Max-Age=31536000
+      Strict-Transport-Security:
+      - max-age=63072000; includeSubDomains
+      X-Robots-Tag:
+      - none
+      Cache-Control:
+      - no-cache,must-revalidate,max-age=0,no-store,private
+      Sforce-Limit-Info:
+      - api-usage=6360/5000000
+      Location:
+      - "/services/data/v51.0/sobjects/Lead/00Q4C00000B5BulUAF"
+      Vary:
+      - Accept-Encoding
+      Server:
+      - sfdcedge
+      X-Sfdc-Request-Id:
+      - 35d8f1aed1738e5c54c042e594295f5a
+    body:
+      encoding: ASCII-8BIT
+      string: '{"id":"00Q4C00000B5BulUAF","success":true,"errors":[]}'
+  recorded_at: Fri, 18 Feb 2022 22:34:53 GMT
+recorded_with: VCR 6.0.0
