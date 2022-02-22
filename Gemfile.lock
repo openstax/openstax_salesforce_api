@@ -8,16 +8,6 @@ GIT
       json-jwt
 
 GIT
-  remote: https://github.com/openstax/openstax_salesforce.git
-  revision: ca4bde2d833e78bf5ebad10f441a543adf4a6956
-  ref: ca4bde2d833e78bf5ebad10f441a543adf4a6956
-  specs:
-    openstax_salesforce (7.1.0)
-      openstax_active_force
-      rails (>= 5.0, < 7.0)
-      restforce
-
-GIT
   remote: https://github.com/umbrellio/sidekiq-enqueuer.git
   revision: cf8f2ff5b025781e8a6743adce38c4085fb83eb5
   specs:
@@ -268,7 +258,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2022.0105)
     mini_mime (1.1.2)
-    mini_portile2 (2.7.1)
+    mini_portile2 (2.8.0)
     mini_racer (0.6.2)
       libv8-node (~> 16.10.0.0)
     minitest (5.15.0)
@@ -277,12 +267,12 @@ GEM
     multi_xml (0.6.0)
     multipart-post (2.1.1)
     nio4r (2.5.8)
-    nokogiri (1.13.1)
-      mini_portile2 (~> 2.7.0)
+    nokogiri (1.13.3)
+      mini_portile2 (~> 2.8.0)
       racc (~> 1.4)
-    nokogiri (1.13.1-x86_64-darwin)
+    nokogiri (1.13.3-x86_64-darwin)
       racc (~> 1.4)
-    nokogiri (1.13.1-x86_64-linux)
+    nokogiri (1.13.3-x86_64-linux)
       racc (~> 1.4)
     numerizer (0.1.1)
     openstax_active_force (1.1.0)
@@ -291,6 +281,10 @@ GEM
       restforce
     openstax_healthcheck (1.0.1)
       rails (>= 3.0)
+    openstax_salesforce (7.1.0)
+      openstax_active_force
+      rails (>= 5.0, < 7.0)
+      restforce
     openstax_utilities (5.0.0)
       aws-sdk-autoscaling
       faraday
@@ -529,7 +523,7 @@ DEPENDENCIES
   multi_json
   openstax_auth!
   openstax_healthcheck
-  openstax_salesforce!
+  openstax_salesforce
   openstax_utilities
   parallel_tests
   pg
