@@ -20,10 +20,9 @@ jobs:
     services:
       redis:
         image: redis
-        options: --health-cmd "redis-cli ping" --health-interval 10s --health-timeout 5s --health-retries 5
-        env:
-          REDIS_HOST: redis
-          REDIS_PORT: 6379
+        ports:
+          - 6379:6379
+        options: --entrypoint redis-server
       postgres:
         image: postgres:11
         ports:
@@ -44,4 +43,7 @@ jobs:
       - name: Test
         run: |
           bundle exec rspec --format doc
+        env:
+          REDIS_HOST: localhost
+          REDIS_PORT: 6379
       - uses: codecov/codecov-action@v2
