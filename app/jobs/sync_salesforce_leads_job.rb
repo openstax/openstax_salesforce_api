@@ -10,7 +10,7 @@ class SyncSalesforceLeadsJob < ApplicationJob
       sf_leads = OpenStax::Salesforce::Remote::Lead.all
     end
 
-    total sf_contacts.count
+    total sf_leads.count
     processed = 0
 
     sf_leads.each do |sf_lead|
